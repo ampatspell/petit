@@ -10,6 +10,7 @@ Router.map(function () {
 
   this.route('session', function() {
     this.route('new');
+    this.route('delete');
   });
 
 });
