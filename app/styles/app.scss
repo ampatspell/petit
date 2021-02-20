@@ -1,0 +1,10 @@
+@import "reset";
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&subset=cyrillic,cyrillic-ext,latin-ext');
+
+$font-family: 'Roboto Mono', monospace;
+$font-size: 11px;
+$font-bold: 700;
+
+$red: rgba(255, 0, 0, 0.1);
+
+@import "body";
