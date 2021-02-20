@@ -1,1 +1,10 @@
 @import "session/new";
+
+.route-index {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  > .autosize {
+    flex: 1;
+  }
+}

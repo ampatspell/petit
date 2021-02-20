@@ -60,7 +60,8 @@
     "qunit": "^2.14.0",
     "qunit-dom": "^1.6.0",
     "sass": "^1.32.8",
-    "tracked-toolbox": "^1.2.1"
+    "tracked-toolbox": "^1.2.1",
+    "ember-cli-konva": "0.0.0"
   },
   "engines": {
     "node": "10.* || >= 12"
