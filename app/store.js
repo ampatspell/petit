@@ -1,4 +1,5 @@
 import Store from 'zuglet/store';
+import { reads } from 'macro-decorators';
 
 const options = {
   firebase: {
@@ -22,6 +23,8 @@ const options = {
 
 export default class PetiteStore extends Store {
 
-  options = options
+  options = options;
+
+  @reads('auth.user') user;
 
 }

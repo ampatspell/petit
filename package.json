@@ -54,11 +54,13 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "loader.js": "^4.7.0",
+    "macro-decorators": "^0.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "qunit": "^2.14.0",
     "qunit-dom": "^1.6.0",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "tracked-toolbox": "^1.2.1"
   },
   "engines": {
     "node": "10.* || >= 12"
