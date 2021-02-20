@@ -1,0 +1,8 @@
+<div class="application-header" ...attributes>
+  <LinkTo @route="index" class="logo">Petite</LinkTo>
+  {{#if this.user}}
+    <LinkTo @route="index">{{this.user.email}}</LinkTo>
+  {{else}}
+    <LinkTo @route="session.new">Sign in</LinkTo>
+  {{/if}}
+</div>

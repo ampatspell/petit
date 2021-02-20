@@ -1,0 +1,21 @@
+.application-header {
+  background: #000;
+  padding: 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1;
+  > a {
+    color: #fff;
+    text-decoration: none;
+    &.logo {
+      font-weight: 600;
+      margin-right: 25px;
+    }
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
