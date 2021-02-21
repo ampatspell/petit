@@ -1,3 +1,45 @@
 .route-dev {
+  flex: 1;
   padding: 15px;
+  background: fade-out(#000, 0.97);
+
+  > .window {
+    width: 300px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid fade-out(#000, 0.8);
+    box-shadow: 0 2px 5px fade-out(#000, 0.95);
+    > .title {
+      background: fade-out(#000, 0.97);
+      border-bottom: 1px solid fade-out(#000, 0.85);
+      padding: 9px 10px 7px 10px;
+      display: flex;
+      flex-direction: row;
+      line-height: 1;
+      > .actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 5px;
+        > .action {
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          margin-right: 5px;
+          border: 1px solid fade-out(#000, 0.95);
+          &.close {
+            background: rgba(237, 106, 94, 1);
+          }
+        }
+      }
+      > .label {
+        font-weight: 600;
+      }
+    }
+    > .content {
+      height: 150px;
+      padding: 5px;
+    }
+  }
+
 }
