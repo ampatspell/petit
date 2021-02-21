@@ -36,10 +36,11 @@
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-htmlbars": "^5.3.2",
     "ember-cli-inject-live-reload": "^2.0.2",
+    "ember-cli-konva": "git+ssh://git@github.com:ampatspell/ember-cli-konva.git#area",
     "ember-cli-sass": "^10.0.1",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.1",
-    "ember-cli-zuglet": "^2.4.15",
+    "ember-cli-zuglet": "^2.4.16",
     "ember-export-application-global": "^2.0.1",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -60,8 +61,7 @@
     "qunit": "^2.14.0",
     "qunit-dom": "^1.6.0",
     "sass": "^1.32.8",
-    "tracked-toolbox": "^1.2.1",
-    "ember-cli-konva": "0.0.0"
+    "tracked-toolbox": "^1.2.1"
   },
   "engines": {
     "node": "10.* || >= 12"
