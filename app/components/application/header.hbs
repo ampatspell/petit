@@ -1,10 +1,11 @@
 <div class="application-header" ...attributes>
   <LinkTo @route="index" class="logo">Petite</LinkTo>
   <div class="items left">
+    <LinkTo @route="dev">Dev</LinkTo>
   </div>
   <div class="items right">
     {{#if this.user}}
-      <LinkTo @route="index">{{this.user.email}}</LinkTo>
+      <div class="label">{{this.user.email}}</div>
       <LinkTo @route="session.delete">Sign out</LinkTo>
     {{else}}
       <LinkTo @route="session.new">Sign in</LinkTo>

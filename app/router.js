@@ -13,4 +13,6 @@ Router.map(function () {
     this.route('delete');
   });
 
+  this.route('dev');
+
 });
