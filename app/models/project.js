@@ -10,6 +10,7 @@ export default class Project extends Model {
 
   @reads('doc.id') id;
   @reads('doc.data.title') title;
+  @reads('doc.data.createdAt') createdAt;
 
   constructor(owner, { doc }) {
     super(owner);
