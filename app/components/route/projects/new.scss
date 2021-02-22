@@ -1,0 +1,14 @@
+.route-projects-new {
+  > .title {
+    padding: 15px;
+    font-weight: 600;
+  }
+  > .content {
+    > .row {
+      padding: 0 15px 5px 15px;
+      > .label {
+        font-weight: 600;
+      }
+    }
+  }
+}

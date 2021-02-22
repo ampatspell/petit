@@ -45,14 +45,12 @@ export default class Projects extends Model {
 
   async create({ title }) {
     let { store, collection, uid: owner } = this;
-    let doc = collection.doc().new({
+    return await collection.doc().new({
       title,
       owner,
       createdAt: store.serverTimestamp,
       version: 1
-    });
-    await doc.save();
-    return doc;
+    }).save();
   }
 
 }

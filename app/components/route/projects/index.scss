@@ -1,7 +1,13 @@
 .route-projects-index {
   > .header {
-    font-weight: 600;
     padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    > .title {
+      font-weight: 600;
+      flex: 1;
+    }
   }
   > .projects {
     > .project {

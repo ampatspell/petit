@@ -1,0 +1,15 @@
+<div class="route-projects-new">
+
+  <div class="title">New project</div>
+
+  <div class="content">
+    <div class="row">
+      <div class="label">Title</div>
+      <input type="text" value={{@model.title}} disabled={{@model.isBusy}} {{on "input" (fn this.update 'title')}}/>
+    </div>
+    <div class="row">
+      <Input::Button @value="Create" @disabled={{@model.isSaveDisabled}} @onClick={{this.save}}/>
+    </div>
+  </div>
+
+</div>
