@@ -5,7 +5,7 @@
   <div class="content">
     <div class="row">
       <div class="label">Title</div>
-      <input type="text" value={{@model.title}} disabled={{@model.isBusy}} {{on "input" (fn this.update 'title')}}/>
+      <Input::Text @value={{@model.title}} @disabled={{@model.isBusy}} @onInput={{fn this.update 'title'}}/>
     </div>
     <div class="row">
       <Input::Button @value="Create" @disabled={{@model.isSaveDisabled}} @onClick={{this.save}}/>
