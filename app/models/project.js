@@ -19,6 +19,10 @@ export default class Project extends Model {
   async load() {
   }
 
+  async delete() {
+    await this.doc.delete();
+  }
+
   toStringExtension() {
     let { id, title } = this;
     return `${id}:${title}`;
