@@ -1,0 +1,17 @@
+<div class="route-projects-index">
+
+  <div class="header">
+    All projects
+  </div>
+
+  <div class="projects">
+    {{#each @projects.models as |project|}}
+      <LinkTo @route="projects.project" @model={{project.id}} class="project">
+        <div class="title">{{project.title}}</div>
+      </LinkTo>
+    {{else}}
+      <div class="placeholder">There are no projects yet</div>
+    {{/each}}
+  </div>
+
+</div>

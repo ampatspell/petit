@@ -1,4 +1,4 @@
-import Model from '../../model';
+import Model from '../../-model';
 import { action } from "@ember/object"
 import { inject as service } from "@ember/service"
 

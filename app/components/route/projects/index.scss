@@ -1,0 +1,19 @@
+.route-projects-index {
+  > .header {
+    font-weight: 600;
+    padding: 15px;
+  }
+  > .projects {
+    > .project {
+      display: block;
+      text-decoration: none;
+      padding: 5px 15px;
+      &:hover {
+        background: fade-out(#000, 0.95);
+      }
+    }
+    > .placeholder {
+      padding: 5px 15px;
+    }
+  }
+}

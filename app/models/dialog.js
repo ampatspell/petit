@@ -1,4 +1,4 @@
-import Model from './model';
+import Model from './-model';
 import { defer } from 'rsvp';
 import { equal } from 'macro-decorators';
 
