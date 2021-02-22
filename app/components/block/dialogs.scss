@@ -1,0 +1,38 @@
+.block-dialogs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2000000001;
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    > * {
+      pointer-events: all;
+    }
+  }
+  > .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: fade-out(#000, 0.3);
+  }
+}
+
+.block-dialogs-dialog {
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px fade-out(#000, 0.8), 0 1px 5px fade-out(#000, 0.9);
+  user-select: none;
+}

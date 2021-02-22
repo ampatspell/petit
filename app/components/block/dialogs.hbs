@@ -1,0 +1,8 @@
+{{#if this.model}}
+  <div class="block-dialogs">
+    <div class="background" role="button" {{on "click" this.cancel}}></div>
+    <div class="content">
+      {{component this.model.componentName dialog=this.model}}
+    </div>
+  </div>
+{{/if}}

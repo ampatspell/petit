@@ -1,0 +1,17 @@
+<div class="block-dialogs-dialog alert">
+  <div class="message">
+    {{this.dialog.message}}
+  </div>
+  <div class="actions">
+    <div class="left">
+      {{#if this.isBusy}}
+        Working…
+      {{/if}}
+    </div>
+    <div class="right">
+      {{#each this.dialog.actions as |act|}}
+        <Input::Button @value={{act.label}} disabled={{this.isBusy}} @onClick={{fn this.invoke act}}/>
+      {{/each}}
+    </div>
+  </div>
+</div>
