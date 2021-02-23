@@ -4,7 +4,6 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
 import { or } from "macro-decorators";
-import { tracked } from "@glimmer/tracking";
 
 export default class Project extends Model {
 
@@ -33,6 +32,10 @@ export default class Project extends Model {
   }
 
   //
+
+  get group() {
+    return this;
+  }
 
   get selected() {
     return this.nodes.selected || this;

@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from "@ember/service";
 import { next, cancel } from '@ember/runloop';
-import { firstObject } from '../../util/array';
+import { firstObject } from '../../../util/array';
 import { action } from "@ember/object";
 import { reads } from 'macro-decorators';
 

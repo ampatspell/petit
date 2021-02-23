@@ -1,7 +1,7 @@
-<div class="block-project-nodes-tree">
+<div class="block-project-tree">
   <Block::Tree class="tree" @location="left" @onClick={{fn this.onSelect null}} as |tree|>
 
-    <Block::Project::Nodes::Tree::Content
+    <Block::Project::Tree::Content
       @array={{@nodes.root}}
       @tree={{tree}}
       @onSelect={{this.onSelect}}
