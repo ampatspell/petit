@@ -4,6 +4,10 @@ import { activate, models } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
 
+const {
+  assign
+} = Object;
+
 export default class Nodes extends Model {
 
   @service store;
@@ -61,7 +65,7 @@ export default class Nodes extends Model {
   async _createNode(props) {
     this.isBusy = true;
     try {
-      let doc = this.collection.doc().new(props);
+      let doc = this.collection.doc().new(assign({ createdAt: this.store.serverTimestamp }, props));
       this.query.register(doc);
       await doc.save();
       let model = this.all.find(model => model.doc === doc);
@@ -76,7 +80,7 @@ export default class Nodes extends Model {
     return await this._createNode({
       type: 'sprite',
       identifier: 'untitled',
-      createdAt: this.store.serverTimestamp,
+      parent: null,
       version: 1
     });
   }
@@ -85,7 +89,7 @@ export default class Nodes extends Model {
     return await this._createNode({
       type: 'scene',
       identifier: 'untitled',
-      createdAt: this.store.serverTimestamp,
+      parent: null,
       version: 1
     });
   }

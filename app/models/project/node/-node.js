@@ -1,6 +1,11 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
+import { or } from "macro-decorators";
+
+const {
+  assign
+} = Object;
 
 export default class Node extends Model {
 
@@ -12,8 +17,11 @@ export default class Node extends Model {
   @data('type') type;
   @data('identifier') identifier;
   @data('parent') parentId;
+  @data('locked') locked;
 
   _scheduleSave = new ScheduleSave(this);
+
+  @or('nodes.isBusy', 'locked') isEditingDisabled;
 
   constructor(owner, { doc, nodes }) {
     super(owner);
@@ -53,6 +61,14 @@ export default class Node extends Model {
   async delete() {
     this._scheduleSave.cancel();
     await this.doc.delete();
+  }
+
+  //
+
+  async _createNode(props) {
+    return this.nodes._createNode(assign({
+      parent: this.id
+    }, props));
   }
 
   //
