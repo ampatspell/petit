@@ -1,1 +1,7 @@
-<input type="text" value={{@value}} disabled={{@disabled}} {{on 'input' (fn this.onEvent 'onInput')}}/>
+<input
+  type="text"
+  value={{@value}}
+  disabled={{@disabled}}
+  {{on 'input' (fn this.onEvent 'onInput')}}
+  {{on 'change' (fn this.onEvent 'onChange')}}
+/>

@@ -1,0 +1,7 @@
+<div class="block-project-inspector-content">
+  {{yield (hash
+    header=(component 'block/project/inspector/content/header' model=@model)
+    input=(component 'block/project/inspector/content/input' model=@model)
+    delete=(component 'block/project/inspector/content/delete' model=@model)
+  )}}
+</div>

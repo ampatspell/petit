@@ -3,11 +3,8 @@
   <Block::Project::Nodes::Tree @nodes={{@project.nodes}} class="tree"/>
 
   <div class="content">
-    <div class="title">{{@project.title}} ({{dt @project.createdAt}})</div>
-
-    <div class="actions">
-      <Input::Button @value="Delete" @onClick={{this.delete}}/>
-    </div>
   </div>
+
+  <Block::Project::Inspector @project={{@project}} class="inspector"/>
 
 </div>
