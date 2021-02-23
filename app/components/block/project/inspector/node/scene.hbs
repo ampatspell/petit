@@ -1,1 +1,3 @@
-{{yield}}
+<@content.header @name={{@model.identifier}}/>
+<@content.input @label="Identifier" @key="identifier"/>
+<@content.delete @label="Delete scene" @confirmation="Are you sure you want to delete this scene?"/>
