@@ -1,21 +1,11 @@
 .application-header {
-  background: #000;
-  padding: 10px 15px;
-  color: #fff;
+  background: fade-out(#000, 0.97);
+  border-bottom: 1px solid fade-out(#000, 0.94);
+  padding: 10px 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   line-height: 1;
-
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  > a {
-    font-weight: $font-bold;
-    margin-right: 30px;
-  }
 
   > .items {
     flex: 1;
@@ -23,6 +13,8 @@
     flex-direction: row;
     align-items: center;
     > a {
+      text-decoration: none;
+      font-weight: $font-bold;
       &:last-child {
         margin-right: 0;
       }
