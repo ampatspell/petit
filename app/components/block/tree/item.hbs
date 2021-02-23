@@ -1,4 +1,4 @@
-<div class={{class "item" selected=@selected}} ...attributes>
+<div class={{class "item" selected=@selected}} ...attributes role="button" {{on 'click' this.onClick}}>
   <div class="content">
     {{yield to="content"}}
   </div>
