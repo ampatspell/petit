@@ -8,10 +8,17 @@ export default class Nodes extends Model {
 
   @service store;
 
+  @tracked isBusy = false;
+
   projectId = null;
 
+  get collection() {
+    let { store, projectId } = this;
+    return store.refs.nodes.collection(projectId);
+  }
+
   @activate()
-    .content(({ store, projectId }) => store.refs.nodes.collection(projectId).query())
+    .content(({ collection }) => collection.query())
   query;
 
   @models()
@@ -47,6 +54,40 @@ export default class Nodes extends Model {
 
   select(node) {
     this._selected = node;
+  }
+
+  //
+
+  async _createNode(props) {
+    this.isBusy = true;
+    try {
+      let doc = this.collection.doc().new(props);
+      this.query.register(doc);
+      await doc.save();
+      let model = this.all.find(model => model.doc === doc);
+      this.select(model);
+      return model;
+    } finally {
+      this.isBusy = false;
+    }
+  }
+
+  async createNewSprite() {
+    return await this._createNode({
+      type: 'sprite',
+      identifier: 'untitled',
+      createdAt: this.store.serverTimestamp,
+      version: 1
+    });
+  }
+
+  async createNewScene() {
+    return await this._createNode({
+      type: 'scene',
+      identifier: 'untitled',
+      createdAt: this.store.serverTimestamp,
+      version: 1
+    });
   }
 
 }

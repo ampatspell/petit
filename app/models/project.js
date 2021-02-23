@@ -3,6 +3,8 @@ import { activate } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
+import { or } from "macro-decorators";
+import { tracked } from "@glimmer/tracking";
 
 export default class Project extends Model {
 
@@ -13,6 +15,7 @@ export default class Project extends Model {
   @doc('id') id;
   @data('title') title;
   @data('createdAt') createdAt;
+  @data('locked') locked;
 
   @model()
     .named('project/nodes')
@@ -20,6 +23,9 @@ export default class Project extends Model {
   nodes
 
   _scheduleSave = new ScheduleSave(this);
+
+  @or('nodes.isBusy', 'locked')
+  isEditingDisabled;
 
   constructor(owner, { doc }) {
     super(owner);
