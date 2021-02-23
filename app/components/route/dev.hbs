@@ -1,2 +1,30 @@
 <div class="route-dev">
+
+  <Block::Tree class="tree" @location="left" as |tree|>
+    <tree.item class="scene">
+      <:content>
+        <div class="row">Scene</div>
+        <div class="row strong">Nice one</div>
+      </:content>
+      <:items>
+        <tree.item @selected={{true}} class="layer">
+          <:content>
+            <div class="row">Layer</div>
+            <div class="row strong">Characters</div>
+          </:content>
+          <:items>
+            <tree.item class="sprite">
+              <:content>
+                <div class="row">Sprite</div>
+                <div class="row strong">Ducky is a long and cute ducky which doesn't fit</div>
+              </:content>
+              <:items>
+              </:items>
+            </tree.item>
+          </:items>
+        </tree.item>
+      </:items>
+    </tree.item>
+  </Block::Tree>
+
 </div>

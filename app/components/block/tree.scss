@@ -1,0 +1,62 @@
+.block-tree {
+  background: $background-grey-color;
+  &.location-left {
+    border-right: 1px solid $background-grey-border-color;
+  }
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  > .scrollable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  > .scrollable {
+    .item {
+      > .content {
+        padding: 8px;
+        border-bottom: 1px solid $background-grey-border-color;
+        display: flex;
+        flex-direction: column;
+        > .row {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 3px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        > .strong {
+          font-weight: $font-bold;
+        }
+      }
+      &.selected {
+        > .content {
+          background: lighten(#000, 95%);
+        }
+      }
+    }
+
+    @mixin level($level) {
+      > .content {
+        padding-left: 10px + ($level * 15px);
+      }
+    }
+    .item {
+      @include level(0);
+      .item {
+        @include level(1);
+        .item {
+          @include level(2);
+          .item {
+            @include level(3);
+          }
+        }
+      }
+    }
+  }
+}

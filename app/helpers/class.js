@@ -9,7 +9,11 @@ export default helper(function(params, hash) {
     }
     let value = hash[key] || defaults[key];
     if(value) {
-      strings.push(`${key}-${value}`);
+      if(value === true) {
+        strings.push(key);
+      } else {
+        strings.push(`${key}-${value}`);
+      }
     }
   }
   return strings.join(' ');

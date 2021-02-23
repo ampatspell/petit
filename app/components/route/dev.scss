@@ -1,3 +1,11 @@
 .route-dev {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: fade-out(#000, 0.9);
+  > .tree {
+    flex: 1;
+    width: 250px;
+    height: 100%;
+  }
 }

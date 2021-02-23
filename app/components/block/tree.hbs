@@ -1,0 +1,7 @@
+<div class={{class "block-tree" location=@location}} ...attributes>
+  <div class="scrollable">
+    {{yield (hash
+      item=(component 'block/tree/item')
+    )}}
+  </div>
+</div>
