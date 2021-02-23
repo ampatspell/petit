@@ -7,12 +7,13 @@
       {{else}}
         <LinkTo @route={{item.route}}>{{item.label}}</LinkTo>
       {{/if}}
+      <Block::Icon @name="chevron-right" @class="delimiter"/>
     {{/each}}
   </div>
   <div class="items right">
     {{#if this.user}}
       <div class="label">{{this.user.email}}</div>
-      <LinkTo @route="session.delete">Sign out</LinkTo>
+      <LinkTo @route="session.delete"><Block::Icon @name="power-off" @class="icon"/></LinkTo>
     {{else}}
       <LinkTo @route="session.new">Sign in</LinkTo>
     {{/if}}

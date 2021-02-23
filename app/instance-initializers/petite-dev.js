@@ -1,4 +1,5 @@
 import { setGlobal } from '../util/set-global';
+import { registerDeprecationHandler } from '@ember/debug';
 
 export default {
   name: 'petite:dev',
@@ -7,5 +8,12 @@ export default {
     if(typeof window !== 'undefined') {
       window.setGlobal = setGlobal;
     }
+
+    registerDeprecationHandler((message, options, next) => {
+      if(options.id === 'ember-string.htmlsafe-ishtmlsafe') {
+        return;
+      }
+      next(message, options);
+    });
   }
 };

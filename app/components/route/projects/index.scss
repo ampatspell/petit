@@ -5,7 +5,7 @@
     flex-direction: row;
     align-items: flex-end;
     > .title {
-      font-weight: 600;
+      font-weight: $font-bold;
       flex: 1;
     }
   }

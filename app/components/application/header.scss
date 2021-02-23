@@ -6,16 +6,14 @@
   flex-direction: row;
   align-items: center;
   line-height: 1;
-  > a,
-  > .items > a,
-  .label {
+
+  a {
     color: #fff;
     text-decoration: none;
-    margin-right: 15px;
   }
 
   > a {
-    font-weight: 600;
+    font-weight: $font-bold;
     margin-right: 30px;
   }
 
@@ -29,8 +27,17 @@
         margin-right: 0;
       }
     }
+    > .delimiter {
+      margin: 0 10px;
+      &:last-child {
+        display: none;
+      }
+    }
     &.right {
       justify-content: flex-end;
+      > a {
+        margin-left: 10px;
+      }
     }
   }
 }
