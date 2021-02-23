@@ -1,9 +1,9 @@
 .route-projects-index {
   > .header {
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     > .title {
       font-weight: $font-bold;
       flex: 1;
@@ -13,13 +13,13 @@
     > .project {
       display: block;
       text-decoration: none;
-      padding: 5px 15px;
+      padding: 5px 10px;
       &:hover {
         background: fade-out(#000, 0.95);
       }
     }
     > .placeholder {
-      padding: 5px 15px;
+      padding: 5px 10px;
     }
   }
 }
