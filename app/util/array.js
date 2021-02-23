@@ -16,3 +16,11 @@ export const addObject = (array, object) => {
 export const firstObject = array => {
   return array && array[0];
 }
+
+export const replaceObject = (array, previous, object) => {
+  let index = array.indexOf(previous);
+  if(index > -1) {
+    array.splice(index, 1, object);
+  }
+  return array;
+}
