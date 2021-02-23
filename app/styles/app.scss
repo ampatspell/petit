@@ -7,6 +7,9 @@ $font-bold: 700;
 
 $red: rgba(255, 0, 0, 0.1);
 
+$background-grey-color: fade-out(#000, 0.97);
+$background-grey-border-color: fade-out(#000, 0.94);
+
 @import "body";
 @import "konva";
 @import "components";

@@ -1,12 +1,11 @@
 .application-header {
-  background: fade-out(#000, 0.97);
-  border-bottom: 1px solid fade-out(#000, 0.94);
+  background: $background-grey-color;
+  border-bottom: 1px solid $background-grey-border-color;
   padding: 10px 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   line-height: 1;
-
   > .items {
     flex: 1;
     display: flex;
