@@ -8,7 +8,7 @@ export default class ProjectsIndexRoute extends Route {
   @service store;
 
   model() {
-    return this.store.user.projects;
+    return this.store.build.projects(this.store.user.uid);
   }
 
   load(model) {

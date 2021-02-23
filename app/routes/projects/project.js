@@ -8,7 +8,7 @@ export default class ProjectsProjectRoute extends Route {
   @service store;
 
   model({ project_id }) {
-    return this.store.user.projects.loadById(project_id);
+    return this.store.build.project(project_id);
   }
 
   async load(model) {

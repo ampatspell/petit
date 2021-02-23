@@ -1,5 +1,6 @@
 import Store from 'zuglet/store';
 import { reads } from 'macro-decorators';
+import { cached } from 'tracked-toolbox';
 
 const options = {
   firebase: {
@@ -26,5 +27,26 @@ export default class PetiteStore extends Store {
   options = options;
 
   @reads('auth.user') user;
+
+  @cached
+  get refs() {
+    return {
+      projects: {
+        collection: this.collection('projects'),
+        doc: id => this.refs.projects.collection.doc(id)
+      }
+    };
+  }
+
+  @cached
+  get build() {
+    return {
+      projects: uid => this.models.create('projects', { uid }),
+      project: id => {
+        let doc = this.refs.projects.doc(id).existing();
+        return this.models.create('project', { doc });
+      }
+    };
+  }
 
 }

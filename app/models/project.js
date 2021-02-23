@@ -1,10 +1,9 @@
 import Model from './-model';
 import { activate } from 'zuglet/decorators';
 import { reads } from 'macro-decorators';
+import { load } from 'zuglet/utils';
 
 export default class Project extends Model {
-
-  projects = null;
 
   @activate() doc;
 
@@ -18,6 +17,8 @@ export default class Project extends Model {
   }
 
   async load() {
+    let { doc } = this;
+    await load(doc);
   }
 
   async delete() {
@@ -25,8 +26,8 @@ export default class Project extends Model {
   }
 
   toStringExtension() {
-    let { id, title } = this;
-    return `${id}:${title}`;
+    let { id } = this;
+    return `${id}`;
   }
 
 }

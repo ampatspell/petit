@@ -34,6 +34,16 @@ export default class NewProject extends Model {
     Object.assign(this, props);
   }
 
+  async _save({ title }) {
+    let { store, store: { user: { uid: owner } } } = this;
+    return await store.refs.projects.collection.doc().new({
+      title,
+      owner,
+      createdAt: store.serverTimestamp,
+      version: 1
+    }).save();
+  }
+
   async save() {
     let { title, isBusy } = this;
     if(isBusy) {
@@ -41,7 +51,7 @@ export default class NewProject extends Model {
     }
     this.isBusy = true;
     try {
-      let doc = await this.store.user.projects.create({ title });
+      let doc = await this._save({ title });
       this.didSave(doc);
     } catch(err) {
       this.saveDidFail(err);
