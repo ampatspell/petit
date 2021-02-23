@@ -20,8 +20,6 @@ export default class Nodes extends Model {
     .mapping((doc, nodes) => ({ doc, nodes }))
   all;
 
-  @tracked selected = null;
-
   get root() {
     return this.all.filter(node => !node.parent);
   }
@@ -31,12 +29,24 @@ export default class Nodes extends Model {
     this.projectId = projectId;
   }
 
-  select(node) {
-    this.selected = node;
-  }
-
   async load() {
     load(this.query);
+  }
+
+  //
+
+  @tracked _selected = null;
+
+  get selected() {
+    let selected = this._selected;
+    if(selected && selected.doc.exists) {
+      return selected;
+    }
+    return null;
+  }
+
+  select(node) {
+    this._selected = node;
   }
 
 }
