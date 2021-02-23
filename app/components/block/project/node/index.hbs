@@ -1,3 +1,5 @@
 <div class="block-project-node" ...attributes>
-  {{@node.group}}
+  {{#if @node.group.type}}
+    {{component (concat 'block/project/node/' @node.group.type) node=@node}}
+  {{/if}}
 </div>

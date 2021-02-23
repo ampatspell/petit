@@ -1,9 +1,7 @@
 <div class="route-projects-project-index">
 
   <Block::Project::Tree @nodes={{@project.nodes}} class="tree"/>
-
-  <Block::Project::Node @node={{@project.selected}} class="content"/>
-
+  <Block::Project::Node @node={{@project.selected}} class="node"/>
   <Block::Project::Inspector @project={{@project}} class="inspector"/>
 
 </div>
