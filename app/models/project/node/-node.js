@@ -1,7 +1,7 @@
-import Model, { doc, data } from '../-model';
+import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 
-export default class Project extends Model {
+export default class Node extends Model {
 
   nodes;
 

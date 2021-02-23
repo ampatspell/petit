@@ -16,7 +16,7 @@ export default class Nodes extends Model {
 
   @models()
     .source(({ query }) => query.content)
-    .named('project/node')
+    .named(doc => `project/node/${doc.data.type}`)
     .mapping((doc, nodes) => ({ doc, nodes }))
   all;
 
