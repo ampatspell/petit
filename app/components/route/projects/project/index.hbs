@@ -1,9 +1,13 @@
 <div class="route-projects-project-index">
 
-  <div class="title">{{@project.title}} ({{dt @project.createdAt}})</div>
+  <Block::Project::Nodes::Tree @nodes={{@project.nodes}} class="tree"/>
 
-  <div class="actions">
-    <Input::Button @value="Delete" @onClick={{this.delete}}/>
+  <div class="content">
+    <div class="title">{{@project.title}} ({{dt @project.createdAt}})</div>
+
+    <div class="actions">
+      <Input::Button @value="Delete" @onClick={{this.delete}}/>
+    </div>
   </div>
 
 </div>

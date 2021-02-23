@@ -1,6 +1,8 @@
 <div class="route-dev">
 
-  <Block::Tree class="tree" @location="left" @onClick={{fn this.select null}} as |tree|>
+  <Input::Button @value="Refresh" onClick={{this.onClick}}/>
+
+  {{!-- <Block::Tree class="tree" @location="left" @onClick={{fn this.select null}} as |tree|>
 
     {{#each this.items as |item|}}
 
@@ -39,6 +41,6 @@
       </tree.item>
     {{/each}}
 
-  </Block::Tree>
+  </Block::Tree> --}}
 
 </div>

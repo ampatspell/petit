@@ -1,0 +1,17 @@
+{{#each @array as |node|}}
+
+  <@tree.item class={{node.type}} @selected={{node.isSelected}} @onClick={{fn @onSelect node}}>
+    <:content>
+      <div class="row">{{node.type}}</div>
+      <div class="row strong">{{node.identifier}}</div>
+    </:content>
+    <:items>
+      <Block::Project::Nodes::Tree::Content
+        @array={{node.children}}
+        @tree={{@tree}}
+        @onSelect={{@onSelect}}
+      />
+    </:items>
+  </@tree.item>
+
+{{/each}}

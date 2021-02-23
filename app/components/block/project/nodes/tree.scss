@@ -1,0 +1,8 @@
+.block-project-nodes-tree {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  > .tree {
+    flex: 1;
+  }
+}

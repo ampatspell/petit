@@ -33,7 +33,10 @@ export default class PetiteStore extends Store {
     return {
       projects: {
         collection: this.collection('projects'),
-        doc: id => this.refs.projects.collection.doc(id)
+        doc: projectId => this.refs.projects.collection.doc(projectId),
+      },
+      nodes: {
+        collection: projectId => this.refs.projects.doc(projectId).collection('nodes')
       }
     };
   }

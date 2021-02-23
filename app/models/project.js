@@ -1,15 +1,20 @@
-import Model from './-model';
+import Model, { doc, data } from './-model';
 import { activate } from 'zuglet/decorators';
-import { reads } from 'macro-decorators';
 import { load } from 'zuglet/utils';
+import { model } from 'zuglet/decorators';
 
 export default class Project extends Model {
 
   @activate() doc;
 
-  @reads('doc.id') id;
-  @reads('doc.data.title') title;
-  @reads('doc.data.createdAt') createdAt;
+  @doc('id') id;
+  @data('title') title;
+  @data('createdAt') createdAt;
+
+  @model()
+    .named('project/nodes')
+    .mapping(({ id: projectId }) => ({ projectId }))
+  nodes
 
   constructor(owner, { doc }) {
     super(owner);
@@ -19,6 +24,7 @@ export default class Project extends Model {
   async load() {
     let { doc } = this;
     await load(doc);
+    await this.nodes.load();
   }
 
   async delete() {
