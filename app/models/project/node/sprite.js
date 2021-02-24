@@ -12,7 +12,6 @@ export default class SpriteNode extends Node {
   async createNewFrame() {
     return this._createNode({
       type: 'sprite/frame',
-      identifier: 'untitled',
       version: 1
     });
   }

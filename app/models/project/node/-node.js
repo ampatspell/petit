@@ -60,6 +60,15 @@ export default class Node extends Model {
     return lastObject(this.parentChildren) === this;
   }
 
+  get hasIdentifierConflict() {
+    let { identifier } = this;
+    if(!identifier) {
+      return false;
+    }
+    let another = this.nodes.all.find(node => node !== this && node.identifier === identifier);
+    return !!another;
+  }
+
   //
 
   get parent() {

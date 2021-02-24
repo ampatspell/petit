@@ -36,6 +36,7 @@
           flex: 1;
           display: flex;
           flex-direction: column;
+          min-width: 0;
           > .row {
             white-space: nowrap;
             overflow: hidden;
@@ -50,13 +51,19 @@
           }
         }
         > .accessories {
+          display: flex;
+          flex-direction: row;
+          margin-right: 5px;
           > .target {
-            padding: 10px;
+            padding: 10px 5px;
             > .icon {
               font-size: 11px;
               transition: 0.15s ease-in-out opacity;
               &.faded {
                 opacity: 0.3;
+              }
+              &.warning {
+                color: fade-out(red, 0.5);
               }
             }
           }
@@ -68,6 +75,16 @@
       &.selected {
         > .content {
           background: lighten(#000, 94%);
+        }
+      }
+      &.warning {
+        > .content {
+          background: lighten(red, 47%);
+        }
+        &.selected {
+          > .content {
+            background: lighten(red, 45%);
+          }
         }
       }
     }

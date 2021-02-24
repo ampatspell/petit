@@ -6,7 +6,8 @@ module.exports = function() {
       'lock',
       'unlock',
       'angle-right',
-      'angle-down'
+      'angle-down',
+      'exclamation-circle'
     ]
   };
 };

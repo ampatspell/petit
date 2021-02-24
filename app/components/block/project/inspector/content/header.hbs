@@ -1,7 +1,7 @@
 <div class="group header">
   <div class="details">
     <div class="type">{{@model.typeName}}</div>
-    <div class="name">{{@name}}</div>
+    <div class="identifier">{{or @name 'No identifier'}}</div>
   </div>
   <div class="accessories">
     <Block::Icon class={{class 'icon' faded=(not @model.selfLocked)}} @name={{if @model.selfLocked 'lock' 'unlock'}} {{on 'click' this.toggleLocked}}/>

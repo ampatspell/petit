@@ -11,7 +11,6 @@ export default class SceneNode extends Node {
   async createNewLayer() {
     return this._createNode({
       type: 'scene/layer',
-      identifier: 'untitled',
       version: 1
     });
   }

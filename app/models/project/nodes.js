@@ -94,17 +94,34 @@ export default class Nodes extends Model {
 
   _createNodeProperties(parentNode, props) {
     let parent = parentNode?.id || null;
+
     let index = 0;
     let last = lastObject(parentNode ? parentNode.children : this.root);
     if(last) {
       index = last.index + 1;
     }
+
     let createdAt = this.store.serverTimestamp;
+
+    let abbreviations = {
+      'scene': 'sc',
+      'scene/layer': null,
+      'sprite': 'spr',
+      'sprite/frame': null,
+      'entity': 'ent'
+    };
+    let abbr = abbreviations[props.type];
+    let identifier = '';
+    if(abbr) {
+      identifier = `${abbr}_${index}`;
+    }
+
     return assign({
       parent,
       index,
       expanded: false,
       locked: false,
+      identifier,
       createdAt
     }, props);
   }
@@ -127,7 +144,6 @@ export default class Nodes extends Model {
   async createNewSprite() {
     return await this._createNode(null, {
       type: 'sprite',
-      identifier: 'untitled',
       parent: null,
       version: 1
     });
@@ -136,7 +152,6 @@ export default class Nodes extends Model {
   async createNewScene() {
     return await this._createNode(null, {
       type: 'scene',
-      identifier: 'untitled',
       parent: null,
       version: 1
     });
