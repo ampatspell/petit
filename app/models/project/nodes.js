@@ -3,6 +3,7 @@ import { inject as service } from "@ember/service";
 import { activate, models } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
+import { existing } from '../../util/existing';
 
 const {
   assign
@@ -46,18 +47,10 @@ export default class Nodes extends Model {
 
   //
 
-  @tracked _selected = null;
-
-  get selected() {
-    let selected = this._selected;
-    if(selected && selected.doc.exists) {
-      return selected;
-    }
-    return null;
-  }
+  @existing() selected;
 
   select(node) {
-    this._selected = node;
+    this.selected = node;
   }
 
   //
