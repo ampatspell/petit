@@ -1,5 +1,5 @@
-import Application from 'petite/app';
-import config from 'petite/config/environment';
+import Application from 'petit/app';
+import config from 'petit/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

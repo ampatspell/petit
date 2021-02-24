@@ -2,7 +2,7 @@ import { setGlobal } from '../util/set-global';
 import { registerDeprecationHandler } from '@ember/debug';
 
 export default {
-  name: 'petite:dev',
+  name: 'petit:dev',
   // eslint-disable-next-line no-unused-vars
   initialize(app) {
     if(typeof window !== 'undefined') {

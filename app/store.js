@@ -22,7 +22,7 @@ const options = {
   // }
 };
 
-export default class PetiteStore extends Store {
+export default class PetitStore extends Store {
 
   options = options;
 

@@ -2,7 +2,7 @@ import { initialize } from 'zuglet/initialize';
 import Store from '../store';
 
 export default {
-  name: 'petite:store',
+  name: 'petit:store',
   initialize(app) {
     initialize(app, {
       store: {
