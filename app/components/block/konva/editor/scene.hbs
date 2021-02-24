@@ -1,14 +1,23 @@
 <Block::Konva::Editor class="scene" as |editor|>
 
   <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
-    <Konva::Node::Text @parent={{parent}} @model={{hash
+
+    <Konva::Node::Rect @parent={{parent}} @model={{hash
       x=10
       y=10
-      fill="#333"
-      text="Scene editor"
-      fontFamily="Ubuntu Mono"
-      fontSize=16
+      width=10
+      height=10
+      fill="#000"
     }}/>
+
+    <Konva::Node::Rect @parent={{parent}} @model={{hash
+      x=20
+      y=10
+      width=10
+      height=10
+      fill="#fff"
+    }}/>
+
   </Konva::Node::Layer>
 
 </Block::Konva::Editor>
