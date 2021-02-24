@@ -70,7 +70,7 @@ export default class Node extends Model {
   //
 
   async save() {
-    await this.doc.save();
+    await this.doc.save({ token: true });
   }
 
   update(props) {

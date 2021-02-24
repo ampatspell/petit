@@ -4,6 +4,7 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
 import { reads } from "macro-decorators";
+import { setGlobal } from '../util/set-global';
 
 class ProjectNodesDelegate {
 
@@ -67,7 +68,7 @@ export default class Project extends Model {
   }
 
   async save() {
-    await this.doc.save();
+    await this.doc.save({ token: true });
   }
 
   async delete() {
