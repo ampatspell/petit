@@ -36,6 +36,14 @@ export default class Node extends Model {
     return this.locked && !this._locked;
   }
 
+  get selfLocked() {
+    return this._locked;
+  }
+
+  get selected() {
+    return this.nodes.selected === this;
+  }
+
   get editable() {
     return !this.nodes.isBusy && !this.locked;
   }
@@ -54,8 +62,8 @@ export default class Node extends Model {
     return this.nodes.all.filter(node => node.parent === this);
   }
 
-  get isSelected() {
-    return this.nodes.selected === this;
+  get hasChildren() {
+    return this.children.length > 0;
   }
 
   //

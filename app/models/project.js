@@ -18,6 +18,7 @@ class ProjectNodesDelegate {
 export default class Project extends Model {
 
   type = 'project';
+  typeName = 'Project';
 
   @activate() doc;
 
@@ -25,6 +26,7 @@ export default class Project extends Model {
   @data('title') title;
   @data('createdAt') createdAt;
   @data('locked') locked;
+  @reads('locked') selfLocked;
 
   @model()
     .named('project/nodes')

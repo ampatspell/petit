@@ -31,7 +31,7 @@ export default class RouteDevComponent extends Component {
       parent: null
     });
     let layer = coll.doc().new({
-      type: 'layer',
+      type: 'scene/layer',
       identifier: 'Characters',
       parent: scene.id
     });

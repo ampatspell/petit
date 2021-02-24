@@ -9,11 +9,25 @@
     &.header {
       @include padding();
       @include border();
-      > .type {
-        margin-bottom: 3px;
+      display: flex;
+      flex-direction: row;
+      > .details {
+        flex: 1;
+        > .type {
+          margin-bottom: 3px;
+        }
+        > .name {
+          font-weight: $font-bold;
+        }
       }
-      > .name {
-        font-weight: $font-bold;
+      > .accessories {
+        font-size: 11px;
+        > .icon {
+          transition: 0.15s ease-in-out opacity;
+          &.faded {
+            opacity: 0.3;
+          }
+        }
       }
     }
     &.input {

@@ -8,4 +8,9 @@ export default class BlockProjectTreeIndexComponent extends Component {
     this.args.nodes.select(node);
   }
 
+  @action
+  onUpdate(node, props) {
+    node.update(props);
+  }
+
 }

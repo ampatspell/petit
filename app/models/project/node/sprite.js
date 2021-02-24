@@ -3,6 +3,8 @@ import { lastObject, firstObject, nextObject, prevObject } from '../../../util/a
 
 export default class SpriteNode extends Node {
 
+  typeName = 'Sprite';
+
   get group() {
     return this;
   }

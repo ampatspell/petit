@@ -1,6 +1,17 @@
-<div class={{class "item" selected=@selected}} ...attributes role="button" {{on 'click' this.onClick}}>
+<div class={{class "item" selected=@selected}} ...attributes role="button" {{on 'click' this.onSelect}}>
   <div class="content">
-    {{yield to="content"}}
+    <div class="expand">
+      <Block::Icon class="icon" @name="angle-right"/>
+    </div>
+    <div class="details">
+      {{yield to="content"}}
+    </div>
+    <div class="accessories">
+      {{!-- template-lint-disable no-nested-interactive --}}
+      <div class="target" role="button" {{on 'click' this.onToggleLock}}>
+        <Block::Icon class={{class 'icon' faded=this.lock.faded}} @name={{this.lock.icon}}/>
+      </div>
+    </div>
   </div>
   <div class="items">
     {{yield to="items"}}

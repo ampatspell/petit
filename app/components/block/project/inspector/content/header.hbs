@@ -1,4 +1,9 @@
 <div class="group header">
-  <div class="type">{{@model.type}}</div>
-  <div class="name">{{@name}}</div>
+  <div class="details">
+    <div class="type">{{@model.typeName}}</div>
+    <div class="name">{{@name}}</div>
+  </div>
+  <div class="accessories">
+    <Block::Icon class={{class 'icon' faded=(not @model.selfLocked)}} @name={{if @model.selfLocked 'lock' 'unlock'}} {{on 'click' this.toggleLocked}}/>
+  </div>
 </div>

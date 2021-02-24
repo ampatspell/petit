@@ -2,45 +2,4 @@
 
   <Input::Button @value="Refresh" onClick={{this.onClick}}/>
 
-  {{!-- <Block::Tree class="tree" @location="left" @onClick={{fn this.select null}} as |tree|>
-
-    {{#each this.items as |item|}}
-
-      <tree.item class={{item.type}} @selected={{item.isSelected}} @onClick={{fn this.select item}}>
-        <:content>
-          <div class="row">Scene</div>
-          <div class="row strong">Nice one</div>
-        </:content>
-        <:items>
-
-          {{#each item.items as |item|}}
-            <tree.item class={{item.type}} @selected={{item.isSelected}} @onClick={{fn this.select item}}>
-              <:content>
-                <div class="row">Scene</div>
-                <div class="row strong">Nice one</div>
-              </:content>
-              <:items>
-
-                {{#each item.items as |item|}}
-                  <tree.item class={{item.type}} @selected={{item.isSelected}} @onClick={{fn this.select item}}>
-                    <:content>
-                      <div class="row">Scene</div>
-                      <div class="row strong">Nice one</div>
-                    </:content>
-                    <:items>
-
-                    </:items>
-                  </tree.item>
-                {{/each}}
-
-              </:items>
-            </tree.item>
-          {{/each}}
-
-        </:items>
-      </tree.item>
-    {{/each}}
-
-  </Block::Tree> --}}
-
 </div>
