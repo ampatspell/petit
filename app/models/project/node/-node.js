@@ -1,11 +1,7 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
-import { sortedBy } from '../../../util/array';
-
-const {
-  assign
-} = Object;
+import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 
 export default class Node extends Model {
 
@@ -49,6 +45,19 @@ export default class Node extends Model {
 
   get editable() {
     return !this.nodes.isBusy && !this.locked;
+  }
+
+  get parentChildren() {
+    let { parent } = this;
+    return parent ? parent.children : this.nodes.root;
+  }
+
+  get isFirst() {
+    return firstObject(this.parentChildren) === this;
+  }
+
+  get isLast() {
+    return lastObject(this.parentChildren) === this;
   }
 
   //
@@ -101,6 +110,34 @@ export default class Node extends Model {
       return;
     }
     this.update({ expanded: !expanded });
+  }
+
+  //
+
+  async reorderParentChildren() {
+    sortedBy(this.parentChildren, 'index').forEach((model, index) => model.update({ index }));
+  }
+
+  async moveUp() {
+    let another = prevObject(this.parentChildren, this);
+    if(!another) {
+      return;
+    }
+    let index = this.index;
+    this.update({ index: another.index });
+    another.update({ index: index });
+    this.reorderParentChildren();
+  }
+
+  async moveDown() {
+    let another = nextObject(this.parentChildren, this);
+    if(!another) {
+      return;
+    }
+    let index = this.index;
+    this.update({ index: another.index });
+    another.update({ index: index });
+    this.reorderParentChildren();
   }
 
   //

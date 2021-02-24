@@ -52,11 +52,18 @@
       flex-direction: column;
       > .button {
         width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         &:last-child {
           margin-bottom: 0;
         }
       }
+    }
+    &.reorder {
+      @include padding();
+      @include border();
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 10px;
     }
   }
 }
