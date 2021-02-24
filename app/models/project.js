@@ -3,7 +3,6 @@ import { activate } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
-import { or } from "macro-decorators";
 
 export default class Project extends Model {
 
@@ -23,8 +22,9 @@ export default class Project extends Model {
 
   _scheduleSave = new ScheduleSave(this);
 
-  @or('nodes.isBusy', 'locked')
-  isEditingDisabled;
+  get editable() {
+    return !this.nodes.isBusy && !this.locked;
+  }
 
   constructor(owner, { doc }) {
     super(owner);

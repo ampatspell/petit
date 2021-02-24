@@ -21,12 +21,16 @@ export default class Node extends Model {
 
   _scheduleSave = new ScheduleSave(this);
 
-  @or('nodes.isBusy', 'locked') isEditingDisabled;
-
   constructor(owner, { doc, nodes }) {
     super(owner);
     this.doc = doc;
     this.nodes = nodes;
+  }
+
+  //
+
+  get editable() {
+    return !this.nodes.isBusy && !this.locked;
   }
 
   //
