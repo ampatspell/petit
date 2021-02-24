@@ -4,6 +4,7 @@ import { activate, models } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
 import { existing } from '../../util/existing';
+import { reads } from "macro-decorators";
 
 const {
   assign
@@ -36,14 +37,19 @@ export default class Nodes extends Model {
     return this.all.filter(node => !node.parent);
   }
 
-  constructor(owner, { projectId }) {
+  constructor(owner, { projectId, delegate }) {
     super(owner);
     this.projectId = projectId;
+    this.delegate = delegate;
   }
 
   async load() {
     load(this.query);
   }
+
+  //
+
+  @reads('delegate.locked') locked;
 
   //
 

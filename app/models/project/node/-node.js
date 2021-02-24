@@ -16,7 +16,7 @@ export default class Node extends Model {
   @data('type') type;
   @data('identifier') identifier;
   @data('parent') parentId;
-  @data('locked') locked;
+  @data('locked') _locked;
 
   _scheduleSave = new ScheduleSave(this);
 
@@ -27,6 +27,14 @@ export default class Node extends Model {
   }
 
   //
+
+  get locked() {
+    return this._locked || this.parent?.locked || this.nodes.locked;
+  }
+
+  get parentLocked() {
+    return this.locked && !this._locked;
+  }
 
   get editable() {
     return !this.nodes.isBusy && !this.locked;

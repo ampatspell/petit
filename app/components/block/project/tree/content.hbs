@@ -4,6 +4,14 @@
     <:content>
       <div class="row">{{node.type}}</div>
       <div class="row strong">{{node.identifier}}</div>
+      {{!--
+      {{#if node.locked}}
+        lock
+        {{#if node.parentLocked}}
+          faded
+        {{/if}}
+      {{/if}}
+      --}}
     </:content>
     <:items>
       <Block::Project::Tree::Content

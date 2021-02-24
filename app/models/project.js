@@ -3,6 +3,17 @@ import { activate } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
+import { reads } from "macro-decorators";
+
+class ProjectNodesDelegate {
+
+  constructor(project) {
+    this._project = project;
+  }
+
+  @reads('_project.locked') locked;
+
+}
 
 export default class Project extends Model {
 
@@ -17,7 +28,10 @@ export default class Project extends Model {
 
   @model()
     .named('project/nodes')
-    .mapping(({ id: projectId }) => ({ projectId }))
+    .mapping(project => ({
+      projectId: project.id,
+      delegate: new ProjectNodesDelegate(project)
+    }))
   nodes
 
   _scheduleSave = new ScheduleSave(this);
@@ -29,6 +43,7 @@ export default class Project extends Model {
   constructor(owner, { doc }) {
     super(owner);
     this.doc = doc;
+    setGlobal({ project: this });
   }
 
   //
