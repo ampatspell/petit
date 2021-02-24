@@ -17,6 +17,13 @@ export default class BlockTreeItemComponent extends Component {
     onUpdate && onUpdate({ locked: !selfLocked });
   }
 
+  @action
+  toggleExpand(e) {
+    e.stopPropagation();
+    let { expanded, onUpdate } = this.args;
+    onUpdate && onUpdate({ expanded: !expanded });
+  }
+
   get lock() {
     let { locked, parentLocked } = this.args;
 

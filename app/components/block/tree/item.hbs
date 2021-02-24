@@ -1,8 +1,13 @@
 <div class={{class "item" selected=@selected}} ...attributes role="button" {{on 'click' this.onSelect}}>
   <div class="content">
-    <div class="expand">
-      <Block::Icon class="icon" @name="angle-right"/>
-    </div>
+    {{!-- template-lint-disable no-nested-interactive --}}
+    {{#if @expandable}}
+      <div class="expand" role="button" {{on 'click' this.toggleExpand}}>
+        <Block::Icon class="icon" @name={{if @expanded 'angle-down' 'angle-right'}}/>
+      </div>
+    {{else}}
+      <div class="expand"></div>
+    {{/if}}
     <div class="details">
       {{yield to="content"}}
     </div>
@@ -14,6 +19,8 @@
     </div>
   </div>
   <div class="items">
-    {{yield to="items"}}
+    {{#if @expanded}}
+      {{yield to="items"}}
+    {{/if}}
   </div>
 </div>

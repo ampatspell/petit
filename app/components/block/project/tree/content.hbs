@@ -5,11 +5,13 @@
     @selected={{node.selected}}
     @locked={{node.locked}}
     @parentLocked={{node.parentLocked}}
+    @expanded={{node.expanded}}
+    @expandable={{node.hasChildren}}
     @onSelect={{fn @onSelect node}}
     @onUpdate={{fn @onUpdate node}}
   >
     <:content>
-      <div class="row">{{node.type}}</div>
+      <div class="row">{{node.typeName}}</div>
       <div class="row strong">{{node.identifier}}</div>
     </:content>
     <:items>

@@ -17,6 +17,7 @@ export default class Node extends Model {
   @data('identifier') identifier;
   @data('parent') parentId;
   @data('locked') _locked;
+  @data('expanded') expanded;
 
   _scheduleSave = new ScheduleSave(this);
 
@@ -84,7 +85,26 @@ export default class Node extends Model {
 
   //
 
+  maybeExpand() {
+    let { expanded, hasChildren } = this;
+    if(expanded || !hasChildren) {
+      return;
+    }
+    this.update({ expanded: true });
+  }
+
+  maybeToggleExpanded() {
+    let { expanded, hasChildren } = this;
+    if(!hasChildren) {
+      return;
+    }
+    this.update({ expanded: !expanded });
+  }
+
+  //
+
   async _createNode(props) {
+    this.update({ expanded: true });
     return this.nodes._createNode(assign({
       parent: this.id
     }, props));

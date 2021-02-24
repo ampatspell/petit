@@ -5,7 +5,12 @@ export default class BlockProjectTreeIndexComponent extends Component {
 
   @action
   onSelect(node) {
-    this.args.nodes.select(node);
+    let { nodes } = this.args;
+    if(nodes.selected === node) {
+      node.maybeToggleExpanded();
+    } else {
+      nodes.select(node);
+    }
   }
 
   @action

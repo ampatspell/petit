@@ -34,7 +34,7 @@ export default class Nodes extends Model {
   all;
 
   get root() {
-    return this.all.filter(node => !node.parent);
+    return this.all.filter(node => !node.parentId);
   }
 
   constructor(owner, { projectId, delegate }) {
@@ -64,7 +64,10 @@ export default class Nodes extends Model {
   async _createNode(props) {
     this.isBusy = true;
     try {
-      let doc = this.collection.doc().new(assign({ createdAt: this.store.serverTimestamp }, props));
+      let doc = this.collection.doc().new(assign({
+        expanded: false,
+        createdAt: this.store.serverTimestamp
+      }, props));
       this.query.register(doc);
       await doc.save();
       let model = this.all.find(model => model.doc === doc);
