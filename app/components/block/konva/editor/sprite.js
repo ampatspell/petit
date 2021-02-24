@@ -5,6 +5,7 @@ import { reads } from "macro-decorators";
 export default class BlockKonvaEditorSpriteComponent extends Component {
 
   @reads('args.model.group') sprite;
+  @reads('sprite.frame') frame;
 
   @action
   onBindHotkeys(hotkeys) {
