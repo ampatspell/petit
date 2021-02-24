@@ -13,9 +13,13 @@
     > .project {
       display: block;
       text-decoration: none;
-      padding: 5px 10px;
+      padding: 10px 10px;
+      border-bottom: 1px solid $background-grey-border-color;
+      &:first-child {
+        border-top: 1px solid $background-grey-border-color;
+      }
       &:hover {
-        background: fade-out(#000, 0.95);
+        background: $background-grey-color;
       }
     }
     > .placeholder {
