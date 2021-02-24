@@ -44,7 +44,8 @@ export default class Nodes extends Model {
   }
 
   async load() {
-    load(this.query);
+    await load(this.query);
+    this.maybeSelectInitialSelection();
   }
 
   //
@@ -58,12 +59,23 @@ export default class Nodes extends Model {
   select(node, opts) {
     let { expandParents } = assign({ expandParents: false }, opts);
     this.selected = node;
+    this.delegate.didSelectNode(node);
     if(node && expandParents) {
       this.maybeExpandNodeParents(node);
     }
   }
 
   //
+
+  maybeSelectInitialSelection() {
+    let id = this.delegate.initialSelection;
+    if(id) {
+      let node = this.all.find(node => node.id === id);
+      if(node) {
+        this.select(node, { expandParents: true });
+      }
+    }
+  }
 
   maybeExpandNodeParents(node) {
     let curr = node.parent;

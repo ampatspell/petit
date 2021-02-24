@@ -13,6 +13,11 @@ class ProjectNodesDelegate {
   }
 
   @reads('_project.locked') locked;
+  @reads('_project.doc.data.selected') initialSelection;
+
+  didSelectNode(node) {
+    this._project.nodesDidSelectNode(node);
+  }
 
 }
 
@@ -81,6 +86,13 @@ export default class Project extends Model {
   update(props) {
     Object.assign(this.doc.data, props);
     this._scheduleSave.schedule();
+  }
+
+  //
+
+  nodesDidSelectNode(node) {
+    let selected = node?.id || null;
+    this.update({ selected });
   }
 
   //
