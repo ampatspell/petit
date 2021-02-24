@@ -44,3 +44,11 @@ export const replaceObject = (array, previous, object) => {
   }
   return array;
 }
+
+export const sortedBy = (array, key) => {
+  return [ ...array ].sort((a, b) => {
+    a = a[key];
+    b = b[key];
+    return a < b ? -1 : a > b ? 1 : 0;
+  });
+}

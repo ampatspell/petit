@@ -1,6 +1,7 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
+import { sortedBy } from '../../../util/array';
 
 const {
   assign
@@ -14,6 +15,7 @@ export default class Node extends Model {
 
   @doc('id') id;
   @data('type') type;
+  @data('index') index;
   @data('identifier') identifier;
   @data('parent') parentId;
   @data('locked') _locked;
@@ -60,7 +62,7 @@ export default class Node extends Model {
   }
 
   get children() {
-    return this.nodes.all.filter(node => node.parent === this);
+    return sortedBy(this.nodes.all.filter(node => node.parent === this), 'index');
   }
 
   get hasChildren() {
@@ -105,9 +107,7 @@ export default class Node extends Model {
 
   async _createNode(props) {
     this.update({ expanded: true });
-    return this.nodes._createNode(assign({
-      parent: this.id
-    }, props));
+    return this.nodes._createNode(this, props);
   }
 
   //

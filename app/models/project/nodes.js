@@ -5,6 +5,7 @@ import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
 import { existing } from '../../util/existing';
 import { reads } from "macro-decorators";
+import { lastObject, sortedBy } from '../../util/array';
 
 const {
   assign
@@ -34,7 +35,7 @@ export default class Nodes extends Model {
   all;
 
   get root() {
-    return this.all.filter(node => !node.parentId);
+    return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
 
   constructor(owner, { projectId, delegate }) {
@@ -87,13 +88,28 @@ export default class Nodes extends Model {
 
   //
 
-  async _createNode(props) {
+  _createNodeProperties(parentNode, props) {
+    let parent = parentNode?.id || null;
+    let index = 0;
+    let last = lastObject(parent ? parentNode.children : this.root);
+    if(last) {
+      index = last.index + 1;
+    }
+    let createdAt = this.store.serverTimestamp;
+    return assign({
+      parent,
+      index,
+      expanded: false,
+      locked: false,
+      createdAt
+    }, props);
+  }
+
+  async _createNode(parent, props) {
     this.isBusy = true;
+    props = this._createNodeProperties(parent, props);
     try {
-      let doc = this.collection.doc().new(assign({
-        expanded: false,
-        createdAt: this.store.serverTimestamp
-      }, props));
+      let doc = this.collection.doc().new(props);
       this.query.register(doc);
       await doc.save();
       let model = this.all.find(model => model.doc === doc);
@@ -105,7 +121,7 @@ export default class Nodes extends Model {
   }
 
   async createNewSprite() {
-    return await this._createNode({
+    return await this._createNode(null, {
       type: 'sprite',
       identifier: 'untitled',
       parent: null,
@@ -114,7 +130,7 @@ export default class Nodes extends Model {
   }
 
   async createNewScene() {
-    return await this._createNode({
+    return await this._createNode(null, {
       type: 'scene',
       identifier: 'untitled',
       parent: null,
