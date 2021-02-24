@@ -1,7 +1,6 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
-import { or } from "macro-decorators";
 
 const {
   assign
