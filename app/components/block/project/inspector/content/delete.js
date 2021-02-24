@@ -9,8 +9,8 @@ export default class BlockProjectInspectorContentDeleteComponent extends Compone
 
   @action
   async onClick() {
-    let { model, confirmation, route } = this.args;
-    let confirmed = await this.dialogs.alert(confirmation, 'Cancel', 'Delete');
+    let { model, confirmation, label, route } = this.args;
+    let confirmed = await this.dialogs.alert(confirmation, 'Cancel', label);
     if(!confirmed) {
       return;
     }
