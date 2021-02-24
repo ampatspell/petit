@@ -46,7 +46,7 @@ export default class SpriteNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next);
+      this.nodes.select(next, { expandParents: true });
     }
   }
 
@@ -62,7 +62,7 @@ export default class SpriteNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next);
+      this.nodes.select(next, { expandParents: true });
     }
   }
 
