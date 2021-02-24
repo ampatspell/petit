@@ -1,5 +1,8 @@
-.block-project-node {
+.block-konva-editor {
   flex: 1;
   display: flex;
   flex-direction: column;
+  > .autosize {
+    flex: 1;
+  }
 }

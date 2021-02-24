@@ -1,0 +1,14 @@
+<Block::Konva::Editor class="scene" as |editor|>
+
+  <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
+    <Konva::Node::Text @parent={{parent}} @model={{hash
+      x=10
+      y=10
+      fill="#333"
+      text="Sprite editor"
+      fontFamily="Ubuntu Mono"
+      fontSize=16
+    }}/>
+  </Konva::Node::Layer>
+
+</Block::Konva::Editor>

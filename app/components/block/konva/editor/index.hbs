@@ -1,0 +1,10 @@
+<div class="block-konva-editor" ...attributes>
+  <Konva::Autosize class="autosize" as |size|>
+    <Konva::Stage @size={{size}} as |stage|>
+      {{yield (hash
+        stage=stage
+        size=size
+      )}}
+    </Konva::Stage>
+  </Konva::Autosize>
+</div>

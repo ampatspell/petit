@@ -8,6 +8,8 @@
 @import "block/project/inspector";
 @import "block/project/inspector/content";
 @import "block/project/node";
+@import "block/project/node/project";
+@import "block/konva/editor";
 
 @import "route/index";
 @import "route/session/new";
