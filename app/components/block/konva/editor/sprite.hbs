@@ -1,16 +1,40 @@
 <Konva::Hotkeys @onBind={{this.onBindHotkeys}}/>
 
-<Block::Konva::Editor class="scene" as |editor|>
+{{#if this.frame}}
 
-  <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
-    <Konva::Node::Text @parent={{parent}} @model={{hash
-      x=10
-      y=10
-      fill="#333"
-      text="Sprite editor"
-      fontFamily="Ubuntu Mono"
-      fontSize=16
-    }}/>
-  </Konva::Node::Layer>
+  <Block::Konva::Editor class="scene" as |editor|>
 
-</Block::Konva::Editor>
+    <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
+      <Konva::Node::Text @parent={{parent}} @model={{hash
+        x=10
+        y=10
+        fill="#333"
+        text="Sprite editor"
+        fontFamily="Ubuntu Mono"
+        fontSize=16
+      }}/>
+      <Konva::Node::Rect @parent={{parent}} @model={{hash
+        x=100
+        y=100
+        width=10
+        height=10
+        fill="#000"
+      }}/>
+      <Konva::Node::Rect @parent={{parent}} @model={{hash
+        x=110
+        y=100
+        width=10
+        height=10
+        fill="#fff"
+      }}/>
+    </Konva::Node::Layer>
+
+  </Block::Konva::Editor>
+
+{{else}}
+
+  <div class="block-konva-editor placeholder">
+    <div class="title">Please create a frame</div>
+  </div>
+
+{{/if}}
