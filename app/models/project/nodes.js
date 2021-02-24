@@ -91,7 +91,7 @@ export default class Nodes extends Model {
   _createNodeProperties(parentNode, props) {
     let parent = parentNode?.id || null;
     let index = 0;
-    let last = lastObject(parent ? parentNode.children : this.root);
+    let last = lastObject(parentNode ? parentNode.children : this.root);
     if(last) {
       index = last.index + 1;
     }
