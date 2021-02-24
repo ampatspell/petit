@@ -1,5 +1,5 @@
-{{#if this.hasTimeline}}
+{{#if this.needsTimeline}}
   <div class="block-project-timeline" ...attributes>
-    {{component (concat 'block/project/timeline/' this.type)}}
+    {{component (concat 'block/project/timeline/' this.type) node=@node}}
   </div>
 {{/if}}

@@ -17,6 +17,26 @@ export const firstObject = array => {
   return array && array[0];
 }
 
+export const lastObject = array => {
+  return array && array[array.length - 1];
+}
+
+export const nextObject = (array, object) => {
+  let idx = array.indexOf(object);
+  if(idx === -1 || idx === array.length - 1) {
+    return;
+  }
+  return array[idx + 1];
+}
+
+export const prevObject = (array, object) => {
+  let idx = array.indexOf(object);
+  if(idx === -1 || idx === 0) {
+    return;
+  }
+  return array[idx - 1];
+}
+
 export const replaceObject = (array, previous, object) => {
   let index = array.indexOf(previous);
   if(index > -1) {

@@ -10,7 +10,6 @@
       @include padding();
       @include border();
       > .type {
-        text-transform: capitalize;
         margin-bottom: 3px;
       }
       > .name {
