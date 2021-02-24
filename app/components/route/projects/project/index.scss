@@ -2,7 +2,12 @@
   flex: 1;
   display: flex;
   flex-direction: row;
-  > .node {
+  > .content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    > .node {
+      flex: 1;
+    }
   }
 }
