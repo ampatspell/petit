@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 
-export default class BlockKonvaEditorSpriteComponent extends Component {
+export default class BlockKonvaEditorSpriteIndexComponent extends Component {
 
   @reads('args.model.group') sprite;
   @reads('sprite.frame') frame;
