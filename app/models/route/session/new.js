@@ -6,6 +6,7 @@ export default class SessionNew extends Model {
 
   @service store;
   @service router;
+  @service requirements;
 
   @action
   async perform() {
@@ -15,7 +16,9 @@ export default class SessionNew extends Model {
       console.error(err.stack);
       return;
     }
-    this.router.transitionTo('index');
+    if(!this.requirements.retryStoredTransition()) {
+      this.router.transitionTo('index');
+    }
   }
 
 }
