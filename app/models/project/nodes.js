@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import { activate, models, model } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
-import { existing } from '../../util/existing';
+import { exists } from '../../util/exists';
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 
@@ -68,7 +68,7 @@ export default class Nodes extends Model {
   @tracked
   isBusy = false;
 
-  @existing()
+  @exists()
   selected;
 
   //

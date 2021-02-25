@@ -1,4 +1,4 @@
-<div class={{class "block-tree" location=@location}} ...attributes role="button" {{on 'click' (optional-function @onClick)}}>
+<div class="block-tree" ...attributes role="button" {{on 'click' (optional-function @onClick)}}>
   <div class="scrollable">
     {{yield (hash
       item=(component 'block/tree/item')

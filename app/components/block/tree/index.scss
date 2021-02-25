@@ -1,8 +1,6 @@
 .block-tree {
   background: $background-grey-color;
-  &.location-left {
-    border-right: 1px solid $background-grey-border-color;
-  }
+  border-right: 1px solid $background-grey-border-color;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
