@@ -14,12 +14,12 @@ export default class Color extends Model {
     super(owner);
     this.palette = palette;
     this.data = data;
-    console.log('create', this+'', data);
+    // console.log('create', this+'', data);
   }
 
   mappingDidChange({ data }) {
     this.data = data;
-    console.log('mappingDidChange', this+'', data);
+    // console.log('mappingDidChange', this+'', data);
   }
 
   @data('r') r;
@@ -36,6 +36,10 @@ export default class Color extends Model {
   update(props) {
     assign(this.data, props);
     this.palette._didUpdateColor(this);
+  }
+
+  async delete() {
+    await this.palette._deleteColor(this);
   }
 
   toStringExtension() {

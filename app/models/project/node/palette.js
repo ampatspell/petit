@@ -1,6 +1,7 @@
 import Node, { data } from './-node';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
+import { lastObject, removeAt } from '../../../util/array';
 
 export default class PaletteNode extends Node {
 
@@ -15,24 +16,42 @@ export default class PaletteNode extends Node {
     .mapping((data, palette) => ({ palette, data }))
   colors;
 
-  _didUpdateColor() {
+  _didUpdate() {
     this._scheduleSave.schedule();
+  }
+
+  _didUpdateColor() {
+    this._didUpdate();
+  }
+
+  _deleteColor(color) {
+    this.doc.data.colors = removeAt(this.doc.data.colors, this.colors.indexOf(color));
+    this._didUpdate();
   }
 
   //
 
-  @tracked _selected;
+  @tracked _color;
 
-  get selected() {
-    let { _selected, colors } = this;
-    if(!colors.includes(_selected)) {
+  get color() {
+    let { _color, colors } = this;
+    if(!colors.includes(_color)) {
       return null;
     }
-    return _selected;
+    return _color;
   }
 
   select(color) {
-    this._selected = color;
+    this._color = color;
+  }
+
+  //
+
+  createNewColor() {
+    this._colors.push({ r: 229, g: 112, b: 126, a: 1 });
+    let color = lastObject(this.colors);
+    this.select(color);
+    this._didUpdate();
   }
 
   //
