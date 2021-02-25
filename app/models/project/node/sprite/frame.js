@@ -20,7 +20,7 @@ export default class SpriteFrameNode extends Node {
   }
 
   get group() {
-    return this.parent;
+    return this.parent.group;
   }
 
   _blobFromUint8Array(bytes) {
