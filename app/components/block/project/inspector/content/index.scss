@@ -6,6 +6,12 @@
     @mixin border() {
       border-bottom: 1px solid $background-grey-border-color;
     }
+    @mixin label() {
+      > .label {
+        font-weight: $font-bold;
+        margin-bottom: 3px;
+      }
+    }
     &.header {
       @include padding();
       @include border();
@@ -33,10 +39,7 @@
     &.input {
       @include padding();
       @include border();
-      > .label {
-        font-weight: $font-bold;
-        margin-bottom: 3px;
-      }
+      @include label();
     }
     &.delete {
       @include padding();
@@ -64,6 +67,25 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 10px;
+    }
+    &.reference {
+      @include padding();
+      @include border();
+      @include label();
+      > .missing {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 3px;
+        padding: 5px;
+        align-items: center;
+        > .icon {
+          font-size: 11px;
+          color: fade-out(red, 0.2);
+        }
+        > .identifier {
+          margin-left: 5px;
+        }
+      }
     }
   }
 }

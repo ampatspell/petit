@@ -1,9 +1,13 @@
-import Node, { child } from './-node';
+import Node, { child, reference, data } from './-node';
 
 export default class SpriteNode extends Node {
 
   typeName = 'Sprite';
   group = this;
+  referenceKeys = [ 'palette' ];
+
+  @data('palette') _palette;
+  @reference('palette', '_palette') palette;
 
   @child('sprite/frames') frames;
 

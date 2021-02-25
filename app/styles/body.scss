@@ -81,3 +81,26 @@ input[type="text"] {
     color: fade-out(#000, 0.5);
   }
 }
+
+select {
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  color: #000;
+  background: #fff;
+  padding: 5px;
+  line-height: 1;
+  border-radius: 3px;
+  border: 1px solid $background-grey-border-color;
+  font-family: $font-family;
+  font-size: $font-size;
+  width: 100%;
+  position: relative;
+  transition:
+    0.15s ease-in-out opacity,
+    0.15s ease-in-out color;
+  &:disabled {
+    opacity: 0.7;
+    color: fade-out(#000, 0.5);
+  }
+}

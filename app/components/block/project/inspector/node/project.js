@@ -1,16 +1,24 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
+import { reads } from "macro-decorators";
 
 export default class BlockProjectInspectorNodeProjectComponent extends Component {
 
+  @reads('args.model.nodes') nodes;
+
   @action
   addSprite() {
-    this.args.model.nodes.createNewSprite();
+    this.nodes.createNewSprite();
   }
 
   @action
   addScene() {
-    this.args.model.nodes.createNewScene();
+    this.nodes.createNewScene();
+  }
+
+  @action
+  addPalette() {
+    this.nodes.createNewPalette();
   }
 
 }

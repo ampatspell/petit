@@ -16,7 +16,7 @@ export default class ScheduleSave {
 
   schedule() {
     this.cancel();
-    this._cancel = later(() => this.save(), 1000);
+    this._cancel = later(() => this.save(), 300);
   }
 
 }

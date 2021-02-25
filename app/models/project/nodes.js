@@ -1,6 +1,6 @@
 import Model from '../-model';
 import { inject as service } from "@ember/service";
-import { activate, models } from 'zuglet/decorators';
+import { activate, models, model } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
 import { existing } from '../../util/existing';
@@ -14,10 +14,16 @@ const {
 export default class Nodes extends Model {
 
   @service store;
-
-  @tracked isBusy = false;
-
   projectId = null;
+  delegate = null;
+
+  constructor(owner, { projectId, delegate }) {
+    super(owner);
+    this.projectId = projectId;
+    this.delegate = delegate;
+  }
+
+  //
 
   get collection() {
     let { store, projectId } = this;
@@ -34,6 +40,13 @@ export default class Nodes extends Model {
     .mapping((doc, nodes) => ({ doc, nodes }))
   all;
 
+  async load() {
+    await load(this.query);
+    this.maybeSelectInitialSelection();
+  }
+
+  //
+
   get root() {
     return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
@@ -42,24 +55,23 @@ export default class Nodes extends Model {
     return this.all.filter(node => node.parentId && !node.parent);
   }
 
-  constructor(owner, { projectId, delegate }) {
-    super(owner);
-    this.projectId = projectId;
-    this.delegate = delegate;
-  }
-
-  async load() {
-    await load(this.query);
-    this.maybeSelectInitialSelection();
-  }
+  @model()
+    .named('project/nodes/identified')
+    .mapping(nodes => ({ nodes }))
+  identified;
 
   //
 
-  @reads('delegate.locked') locked;
+  @reads('delegate.locked')
+  locked;
+
+  @tracked
+  isBusy = false;
+
+  @existing()
+  selected;
 
   //
-
-  @existing() selected;
 
   select(node, opts) {
     let { expandParents } = assign({ expandParents: false }, opts);
@@ -69,8 +81,6 @@ export default class Nodes extends Model {
       this.maybeExpandNodeParents(node);
     }
   }
-
-  //
 
   maybeSelectInitialSelection() {
     let id = this.delegate.initialSelection;
@@ -108,7 +118,8 @@ export default class Nodes extends Model {
       'scene/layer': null,
       'sprite': 'spr',
       'sprite/frame': null,
-      'entity': 'ent'
+      'entity': 'ent',
+      'palette': 'cp'
     };
     let abbr = abbreviations[props.type];
     let identifier = '';
@@ -144,7 +155,6 @@ export default class Nodes extends Model {
   async createNewSprite() {
     return await this._createNode(null, {
       type: 'sprite',
-      parent: null,
       version: 1
     });
   }
@@ -152,7 +162,13 @@ export default class Nodes extends Model {
   async createNewScene() {
     return await this._createNode(null, {
       type: 'scene',
-      parent: null,
+      version: 1
+    });
+  }
+
+  async createNewPalette() {
+    return await this._createNode(null, {
+      type: 'palette',
       version: 1
     });
   }

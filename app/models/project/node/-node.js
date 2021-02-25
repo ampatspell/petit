@@ -3,6 +3,7 @@ import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
+import { or } from "macro-decorators";
 
 export {
   doc,
@@ -12,6 +13,23 @@ export {
 export const child = type => () => ({
   get() {
     return this.children.find(node => node.type === type);
+  }
+});
+
+export const reference = (type, identifierKey) => () => ({
+  get() {
+    let identifier = this[identifierKey];
+    let model = null;
+    let missing = false;
+    if(identifier) {
+      model = this.nodes.all.find(node => node.type === type && node.identifier === identifier);
+      missing = !model;
+    }
+    return {
+      identifier,
+      missing,
+      model
+    };
   }
 });
 
@@ -31,6 +49,8 @@ export default class Node extends Model {
   @data('expanded') expanded;
 
   _scheduleSave = new ScheduleSave(this);
+
+  referenceKeys = [];
 
   constructor(owner, { doc, nodes }) {
     super(owner);
@@ -82,6 +102,12 @@ export default class Node extends Model {
     return !!another;
   }
 
+  get hasMissingReferences() {
+    return this.referenceKeys.find(key => this[key].missing === true);
+  }
+
+  @or('hasIdentifierConflict', 'hasMissingReferences') hasWarnings;
+
   //
 
   get parent() {
@@ -106,8 +132,21 @@ export default class Node extends Model {
     await this.doc.save({ token: true });
   }
 
+  _normalizeReferences(props) {
+    let { referenceKeys } = this;
+    let hash = {};
+    for(let key in props) {
+      let value = props[key];
+      if(referenceKeys.includes(key)) {
+        value = value?.identifier || null;
+      }
+      hash[key] = value;
+    }
+    return hash;
+  }
+
   update(props) {
-    Object.assign(this.doc.data, props);
+    Object.assign(this.doc.data, this._normalizeReferences(props));
     this._scheduleSave.schedule();
   }
 
