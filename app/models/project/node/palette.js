@@ -48,7 +48,7 @@ export default class PaletteNode extends Node {
   //
 
   createNewColor() {
-    this._colors.push({ r: 229, g: 112, b: 126, a: 1 });
+    this._colors.push({ r: 255, g: 100, b: 200, a: 1 });
     let color = lastObject(this.colors);
     this.select(color);
     this._didUpdate();
