@@ -3,5 +3,6 @@
     <Block::Project::Inspector::Content @model={{@project.selected}} as |content|>
       {{component (concat 'block/project/inspector/node/' @project.selected.type) model=@project.selected content=content}}
     </Block::Project::Inspector::Content>
+    <Block::SetGlobal class="padded" @key={{if @project.selected.isProject "project" "node"}} @value={{@project.selected}}/>
   </div>
 </div>

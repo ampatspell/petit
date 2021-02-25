@@ -1,5 +1,6 @@
 import Node, { data } from '../-node';
 import { Pixel } from '../../../../util/pixel';
+import { reads } from "macro-decorators";
 
 export default class SpriteFrameNode extends Node {
 
@@ -8,6 +9,10 @@ export default class SpriteFrameNode extends Node {
   width = 16;
   height = 16;
   pixel = 20;
+
+  @reads('parent') frames;
+  @reads('frames.sprite') sprite;
+  @reads('sprite.palette') palette;
 
   @data('bytes') _blob;
 

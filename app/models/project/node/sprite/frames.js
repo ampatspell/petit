@@ -1,11 +1,14 @@
 import Node from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
+import { reads } from "macro-decorators";
 
 export default class SpriteFramesNode extends Node {
 
   typeName = 'Frames';
   group = this;
+
+  @reads('parent') sprite;
 
   get needsTimeline() {
     return this.children.length > 0;

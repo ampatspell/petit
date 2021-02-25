@@ -7,7 +7,8 @@ module.exports = function() {
       'unlock',
       'angle-right',
       'angle-down',
-      'exclamation-circle'
+      'exclamation-circle',
+      'terminal'
     ]
   };
 };

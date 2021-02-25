@@ -25,6 +25,8 @@ export default class Project extends Model {
   type = 'project';
   typeName = 'Project';
 
+  isProject = true;
+
   @activate() doc;
 
   @doc('id') id;
@@ -50,7 +52,6 @@ export default class Project extends Model {
   constructor(owner, { doc }) {
     super(owner);
     this.doc = doc;
-    setGlobal({ project: this });
   }
 
   //
