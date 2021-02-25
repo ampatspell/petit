@@ -9,6 +9,7 @@ export default class BlockKonvaEditorSpriteFramesIndexComponent extends Componen
 
   @reads('args.model.group') frames;
   @reads('frames.frame') frame;
+  @reads('frame.palette.model') palette;
 
   @editing('frame.locked') editing;
   @tracked color = Pixel.black;

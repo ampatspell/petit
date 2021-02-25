@@ -9,27 +9,20 @@ export default class BlockKonvaEditorSpriteFramesFrameContentComponent extends S
   @reads('args.size') size;
   @reads('args.frame') frame;
   @reads('args.color') color;
+  @reads('args.palette') palette;
 
   @cached
   get sceneFunc() {
-    let { width, height, pixel, bytes } = this.frame;
+    let { palette, frame: { width, height, pixel, bytes } } = this;
     let size = { width, height };
     return (ctx) => {
-      if(bytes) {
+      if(bytes && palette) {
         bytes.forEach((byte, idx) => {
-          if(byte === Pixel.transparent) {
+          let c = palette.rgb(byte);
+          if(!c) {
             return;
           }
-
-          let c;
-          if(byte === Pixel.black) {
-            c = '#000';
-          } else {
-            c = '#fff';
-          }
-
           let { x, y } = fromIndex(idx, size);
-
           ctx.fillStyle = c;
           ctx.fillRect(x * pixel, y * pixel, pixel, pixel);
         });
