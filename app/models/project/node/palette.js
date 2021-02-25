@@ -14,12 +14,13 @@ export default class PaletteNode extends Node {
     return [
       Color.transparent(),
       Color.color(255, 255, 255),
-      Color.color(0, 0, 0)
+      Color.color(0, 0, 0),
+      Color.color(220, 0, 100),
     ];
   }
 
-  rgb(index) {
-    return this.colors[index]?.rgb;
+  rgba(index) {
+    return this.colors[index]?.rgba;
   }
 
 }

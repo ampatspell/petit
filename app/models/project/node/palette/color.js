@@ -1,4 +1,5 @@
 import { cached } from 'tracked-toolbox';
+import { toString } from 'zuglet/utils';
 
 export default class Color {
 
@@ -10,7 +11,7 @@ export default class Color {
   }
 
   @cached
-  get rgb() {
+  get rgba() {
     let { r, g, b, a } = this;
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
@@ -21,6 +22,11 @@ export default class Color {
 
   static color(r, g, b, a) {
     return new this(r, g, b, a);
+  }
+
+  toString() {
+    let { r, g, b, a } = this;
+    return toString(this, `${r},${g},${b},${a}`);
   }
 
 }

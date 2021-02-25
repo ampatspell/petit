@@ -18,7 +18,7 @@ export default class BlockKonvaEditorSpriteFramesFrameContentComponent extends S
     return (ctx) => {
       if(bytes && palette) {
         bytes.forEach((byte, idx) => {
-          let c = palette.rgb(byte);
+          let c = palette.rgba(byte);
           if(!c) {
             return;
           }
