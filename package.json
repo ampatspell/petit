@@ -20,7 +20,12 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "test": "npm-run-all lint test:*",
-    "test:ember": "ember test"
+    "test:ember": "ember test",
+    "client:build": "npm run build -- --output-path ./firebase/public",
+    "firebase:deploy:all": "(cd firebase && npm run deploy:all)",
+    "firebase:deploy:hosting": "(cd firebase && npm run deploy:hosting)",
+    "deploy:all": "npm run client:build && npm run firebase:deploy:all",
+    "deploy:hosting": "npm run client:build && npm run firebase:deploy:hosting"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",

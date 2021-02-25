@@ -1,0 +1,8 @@
+{
+  "name": "firebase",
+  "private": true,
+  "scripts": {
+    "deploy:all": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting"
+  }
+}
