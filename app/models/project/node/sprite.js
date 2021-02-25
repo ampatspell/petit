@@ -1,5 +1,6 @@
 import Node from './-node';
 import { lastObject, firstObject, nextObject, prevObject } from '../../../util/array';
+import { heart } from '../../../util/heart';
 
 export default class SpriteNode extends Node {
 
@@ -10,6 +11,7 @@ export default class SpriteNode extends Node {
   }
 
   async createNewFrame({ bytes=null }={}) {
+    bytes = bytes || this.store.blobFromUint8Array(new Uint8Array(heart)); // TODO: temporary. needs centering
     return this._createNode({
       type: 'sprite/frame',
       bytes,
