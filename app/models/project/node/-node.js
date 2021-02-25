@@ -103,7 +103,7 @@ export default class Node extends Model {
   }
 
   get hasMissingReferences() {
-    return this.referenceKeys.find(key => this[key].missing === true);
+    return !!this.referenceKeys.find(key => this[key].missing === true);
   }
 
   @or('hasIdentifierConflict', 'hasMissingReferences') hasWarnings;
