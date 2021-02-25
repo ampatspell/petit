@@ -1,11 +1,18 @@
 import Group from 'ember-cli-konva/components/konva/node/group';
-import { pick } from 'ember-cli-konva/util/object';
+// import { pick } from 'ember-cli-konva/util/object';
 import { reads } from "macro-decorators";
 
 export default class BlockKonvaEditorSpriteFrameEditorComponent extends Group {
 
   get nodeProperties() {
-    return pick(super.nodeProperties, [ 'x', 'y' ]);
+    // return pick(super.nodeProperties, [ 'x', 'y' ]);
+    let { stageSize } = this.args;
+    let size = this.size;
+    let c = (d) => Math.round((stageSize[d] / 2) - (size[d] / 2));
+    return {
+      x: c('width'),
+      y: c('height')
+    };
   }
 
   @reads('args.frame') frame;

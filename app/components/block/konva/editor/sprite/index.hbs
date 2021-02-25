@@ -11,8 +11,9 @@
       <Konva::Node::Layer @parent={{parent}} as |parent|>
 
         <Block::Konva::Editor::Sprite::Frame::Editor
+          @stageSize={{editor.size}}
           @parent={{parent}}
-          @model={{hash x=50 y=50}}
+          {{!-- @model={{hash x=50 y=50}} --}}
           @frame={{this.frame}}
           @editing={{this.editing}}
           @color={{this.color}}
