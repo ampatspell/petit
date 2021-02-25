@@ -1,3 +1,12 @@
-<div class="block-project-node-palette">
-  <div class="title">Palette</div>
+<div class="block-project-node-palette" role="button" {{on "click" (fn this.select null)}}>
+
+  <div class="colors">
+    {{#each @node.colors as |color|}}
+      {{!-- template-lint-disable no-nested-interactive --}}
+      <div class="color" role="button" {{on "click" (fn this.select color)}}>
+        <Block::Node::Palette::Color::Rect class="rect" @color={{color}}/>
+      </div>
+    {{/each}}
+  </div>
+
 </div>

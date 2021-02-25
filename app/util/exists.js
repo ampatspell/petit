@@ -1,7 +1,7 @@
 import { tracked } from "@glimmer/tracking";
 import { getInstance } from './instances';
 
-class Existing {
+class Exists {
 
   @tracked model;
 
@@ -25,15 +25,15 @@ class Existing {
 
 }
 
-const getExisting = (target, key, doc) => getInstance(target, key, () => new Existing(doc));
+const getExists = (target, key, doc) => getInstance(target, key, () => new Exists(doc));
 
-export const existing = (doc='doc') => (_target, key) => {
+export const exists = (doc='doc') => (_target, key) => {
   return {
     get() {
-      return getExisting(this, key, doc).value;
+      return getExists(this, key, doc).value;
     },
     set(value) {
-      getExisting(this, key, doc).value = value;
+      getExists(this, key, doc).value = value;
       return value;
     }
   };

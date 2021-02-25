@@ -1,7 +1,7 @@
 .block-project-inspector-content {
   > .group {
     @mixin padding() {
-      padding: 10px;
+      padding: 8px 10px;
     }
     @mixin border() {
       border-bottom: 1px solid $background-grey-border-color;
@@ -83,6 +83,17 @@
             font-size: 11px;
             color: fade-out(red, 0.2);
           }
+        }
+      }
+    }
+    &.color {
+      @include padding();
+      @include border();
+      @include label();
+      > .input {
+        margin-bottom: 1px;
+        &:last-child {
+          margin-bottom: 0;
         }
       }
     }
