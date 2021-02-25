@@ -1,4 +1,5 @@
 import Node, { data } from '../-node';
+import { Pixel } from '../../../../util/pixel';
 
 export default class SpriteFrameNode extends Node {
 
@@ -33,9 +34,16 @@ export default class SpriteFrameNode extends Node {
   }
 
   setPixel(index, value) {
-    this.mutateBytes(bytes => {
-      bytes[index] = value;
-    });
+    this.mutateBytes(bytes => bytes[index] = value);
+  }
+
+  clear() {
+    this.mutateBytes(bytes => bytes.fill(Pixel.transparent));
+  }
+
+  async duplicate() {
+    let { bytes, group } = this;
+    return await group.createNewFrame(bytes);
   }
 
 }

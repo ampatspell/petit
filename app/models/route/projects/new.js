@@ -39,6 +39,8 @@ export default class NewProject extends Model {
     return await store.refs.projects.collection.doc().new({
       title,
       owner,
+      locked: false,
+      selected: null,
       createdAt: store.serverTimestamp,
       version: 1
     }).save();

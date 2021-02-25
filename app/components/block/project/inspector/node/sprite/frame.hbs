@@ -1,4 +1,8 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.input @label="Identifier" @key="identifier"/>
+<@content.actions as |actions|>
+  <actions.button @label="Clear frame" @onClick={{this.clearFrame}}/>
+  <actions.button @label="Duplicate frame" @onClick={{this.duplicateFrame}}/>
+</@content.actions>
 <@content.reorder/>
 <@content.delete @label="Delete frame" @confirmation="Are you sure you want to delete this frame?"/>
