@@ -3,7 +3,7 @@ import { Pixel } from '../../../../util/pixel';
 
 export default class SpriteFrameNode extends Node {
 
-  typeName = 'Sprite Frame';
+  typeName = 'Frame';
 
   width = 16;
   height = 16;

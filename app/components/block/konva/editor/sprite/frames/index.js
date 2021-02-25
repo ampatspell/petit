@@ -2,21 +2,21 @@ import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
-import { Pixel } from '../../../../../util/pixel';
-import { editing } from '../../../../../util/editing';
+import { Pixel } from 'petit/util/pixel';
+import { editing } from 'petit/util/editing';
 
-export default class BlockKonvaEditorSpriteIndexComponent extends Component {
+export default class BlockKonvaEditorSpriteFramesIndexComponent extends Component {
 
-  @reads('args.model.group') sprite;
-  @reads('sprite.frame') frame;
+  @reads('args.model.group') frames;
+  @reads('frames.frame') frame;
 
   @editing('frame.locked') editing;
   @tracked color = Pixel.black;
 
   @action
   onBindHotkeys(hotkeys) {
-    hotkeys.add('left', () => this.sprite.selectPrevFrame());
-    hotkeys.add('right', () => this.sprite.selectNextFrame());
+    hotkeys.add('left', () => this.frames.selectPrev());
+    hotkeys.add('right', () => this.frames.selectNext());
 
     let color = (c, value) => hotkeys.add(c, e => {
       e.preventRepeat();

@@ -8,9 +8,4 @@ export default class BlockProjectInspectorNodeSpriteComponent extends Component 
     this.args.model.createNewFrame();
   }
 
-  @action
-  addFrames() {
-    this.args.model.maybeCreateFrames();
-  }
-
 }

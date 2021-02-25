@@ -3,17 +3,16 @@
 {{#if this.frame}}
 
   <Block::Konva::Editor class="scene" as |editor|>
-    <Block::Konva::Editor::Sprite::Stage
+    <Block::Konva::Editor::Sprite::Frames::Stage
       @size={{editor.size}}
       @onClick={{this.stopEditing}}
       as |parent|>
 
       <Konva::Node::Layer @parent={{parent}} as |parent|>
 
-        <Block::Konva::Editor::Sprite::Frame::Editor
+        <Block::Konva::Editor::Sprite::Frames::Frame::Editor
           @stageSize={{editor.size}}
           @parent={{parent}}
-          {{!-- @model={{hash x=50 y=50}} --}}
           @frame={{this.frame}}
           @editing={{this.editing}}
           @color={{this.color}}
@@ -21,7 +20,7 @@
         />
 
       </Konva::Node::Layer>
-    </Block::Konva::Editor::Sprite::Stage>
+    </Block::Konva::Editor::Sprite::Frames::Stage>
   </Block::Konva::Editor>
 
 {{else}}

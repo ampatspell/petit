@@ -9,6 +9,12 @@ export {
   data
 };
 
+export const child = type => () => ({
+  get() {
+    return this.children.find(node => node.type === type);
+  }
+});
+
 export default class Node extends Model {
   @service store;
 
