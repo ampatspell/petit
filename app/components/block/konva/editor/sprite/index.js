@@ -10,7 +10,7 @@ export default class BlockKonvaEditorSpriteIndexComponent extends Component {
   @reads('args.model.group') sprite;
   @reads('sprite.frame') frame;
 
-  @editing('frame.locked') editing = false;
+  @editing('frame.locked') editing;
   @tracked color = Pixel.black;
 
   @action
