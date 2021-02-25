@@ -4,7 +4,6 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import ScheduleSave from '../util/schedule-save';
 import { reads } from "macro-decorators";
-import { setGlobal } from '../util/set-global';
 
 class ProjectNodesDelegate {
 

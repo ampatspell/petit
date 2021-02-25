@@ -1,0 +1,13 @@
+<div class="sprite-frame-editor" ...attributes {{konva-node this}}>
+
+  <Block::Konva::Editor::Sprite::Frame::Content
+    @parent={{this}}
+    @editing={{this.editing}}
+    @size={{this.size}}
+    @frame={{this.frame}}
+    @color={{@color}}
+  />
+
+  <Konva::Node::Rect @parent={{this}} @model={{this.border}}/>
+
+</div>

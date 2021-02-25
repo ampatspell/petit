@@ -2,8 +2,15 @@ import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import ScheduleSave from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
+import { inject as service } from "@ember/service";
+
+export {
+  doc,
+  data
+};
 
 export default class Node extends Model {
+  @service store;
 
   nodes;
 

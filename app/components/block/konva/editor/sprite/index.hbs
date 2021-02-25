@@ -3,8 +3,24 @@
 {{#if this.frame}}
 
   <Block::Konva::Editor class="scene" as |editor|>
-    <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
-    </Konva::Node::Layer>
+    <Block::Konva::Editor::Sprite::Stage
+      @size={{editor.size}}
+      @onClick={{this.stopEditing}}
+      as |parent|>
+
+      <Konva::Node::Layer @parent={{parent}} as |parent|>
+
+        <Block::Konva::Editor::Sprite::Frame::Editor
+          @parent={{parent}}
+          @model={{hash x=50 y=50}}
+          @frame={{this.frame}}
+          @editing={{this.editing}}
+          @color={{this.color}}
+          @onStartEditing={{this.startEditing}}
+        />
+
+      </Konva::Node::Layer>
+    </Block::Konva::Editor::Sprite::Stage>
   </Block::Konva::Editor>
 
 {{else}}

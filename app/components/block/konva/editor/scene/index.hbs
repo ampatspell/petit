@@ -1,23 +1,23 @@
 <Block::Konva::Editor class="scene" as |editor|>
+  <Konva::Stage @size={{editor.size}} as |parent|>
+    <Konva::Node::Layer @parent={{parent}} as |parent|>
 
-  <Konva::Node::Layer @parent={{editor.stage}} as |parent|>
+      <Konva::Node::Rect @parent={{parent}} @model={{hash
+        x=10
+        y=10
+        width=10
+        height=10
+        fill="#000"
+      }}/>
 
-    <Konva::Node::Rect @parent={{parent}} @model={{hash
-      x=10
-      y=10
-      width=10
-      height=10
-      fill="#000"
-    }}/>
+      <Konva::Node::Rect @parent={{parent}} @model={{hash
+        x=20
+        y=10
+        width=10
+        height=10
+        fill="#fff"
+      }}/>
 
-    <Konva::Node::Rect @parent={{parent}} @model={{hash
-      x=20
-      y=10
-      width=10
-      height=10
-      fill="#fff"
-    }}/>
-
-  </Konva::Node::Layer>
-
+    </Konva::Node::Layer>
+  </Konva::Stage>
 </Block::Konva::Editor>
