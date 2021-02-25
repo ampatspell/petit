@@ -9,7 +9,7 @@ export default class SpriteNode extends Node {
     return this;
   }
 
-  async createNewFrame(bytes=null) {
+  async createNewFrame({ bytes=null }={}) {
     return this._createNode({
       type: 'sprite/frame',
       bytes,

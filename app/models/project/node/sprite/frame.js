@@ -23,13 +23,17 @@ export default class SpriteFrameNode extends Node {
     return this.parent;
   }
 
+  _blobFromUint8Array(bytes) {
+    return this.store.blobFromUint8Array(bytes);
+  }
+
   mutateBytes(cb) {
     let { bytes } = this;
     let ret = cb(bytes);
     if(ret === false) {
       return;
     }
-    bytes = this.store.blobFromUint8Array(bytes);
+    bytes = this._blobFromUint8Array(bytes);
     this.update({ bytes });
   }
 
@@ -43,7 +47,8 @@ export default class SpriteFrameNode extends Node {
 
   async duplicate() {
     let { bytes, group } = this;
-    return await group.createNewFrame(bytes);
+    bytes = this._blobFromUint8Array(bytes);
+    return await group.createNewFrame({ bytes });
   }
 
 }
