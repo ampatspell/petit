@@ -169,7 +169,11 @@ export default class Nodes extends Model {
   async createNewPalette() {
     return await this._createNode(null, {
       type: 'palette',
-      colors: [],
+      colors: [
+        { r: 0, g: 0, b: 0, a: 0 },
+        { r: 0, g: 0, b: 0, a: 1 },
+        { r: 255, g: 255, b: 255, a: 1 }
+      ],
       version: 1
     });
   }
