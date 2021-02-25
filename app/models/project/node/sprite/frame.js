@@ -3,7 +3,7 @@ import { Pixel } from '../../../../util/pixel';
 
 export default class SpriteFrameNode extends Node {
 
-  typeName = 'Sprite Frame';
+  typeName = 'Frame';
 
   width = 16;
   height = 16;
@@ -20,7 +20,7 @@ export default class SpriteFrameNode extends Node {
   }
 
   get group() {
-    return this.parent;
+    return this.parent.group;
   }
 
   _blobFromUint8Array(bytes) {

@@ -2,7 +2,7 @@ import Group from 'ember-cli-konva/components/konva/node/group';
 // import { pick } from 'ember-cli-konva/util/object';
 import { reads } from "macro-decorators";
 
-export default class BlockKonvaEditorSpriteFrameEditorComponent extends Group {
+export default class BlockKonvaEditorSpriteFramesFrameEditorComponent extends Group {
 
   get nodeProperties() {
     // return pick(super.nodeProperties, [ 'x', 'y' ]);

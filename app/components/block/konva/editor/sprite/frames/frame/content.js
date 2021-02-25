@@ -1,9 +1,9 @@
 import Shape from 'ember-cli-konva/components/konva/node/shape';
 import { reads } from "macro-decorators";
 import { cached } from 'tracked-toolbox';
-import { Pixel, fromIndex, toIndex } from '../../../../../../util/pixel';
+import { Pixel, fromIndex, toIndex } from 'petit/util/pixel';
 
-export default class BlockKonvaEditorSpriteEditorFrameContentComponent extends Shape {
+export default class BlockKonvaEditorSpriteFramesFrameContentComponent extends Shape {
 
   @reads('args.editing') editing;
   @reads('args.size') size;
