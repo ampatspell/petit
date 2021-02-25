@@ -3,13 +3,14 @@ import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
 import { Pixel } from '../../../../../util/pixel';
+import { editing } from '../../../../../util/editing';
 
 export default class BlockKonvaEditorSpriteIndexComponent extends Component {
 
   @reads('args.model.group') sprite;
   @reads('sprite.frame') frame;
 
-  @tracked editing = false;
+  @editing('frame.locked') editing = false;
   @tracked color = Pixel.black;
 
   @action

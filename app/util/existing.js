@@ -1,20 +1,19 @@
 import { tracked } from "@glimmer/tracking";
-
-let INSTANCES = new WeakMap();
+import { getInstance } from './instances';
 
 class Existing {
 
   @tracked model;
 
-  docKey = null;
+  doc = null;
 
-  constructor(def) {
-    this.docKey = def;
+  constructor(doc) {
+    this.doc = doc;
   }
 
   get value() {
     let model = this.model;
-    if(model && model[this.docKey].exists) {
+    if(model && model[this.doc].exists) {
       return model;
     }
     return null;
@@ -26,27 +25,15 @@ class Existing {
 
 }
 
-const getInstance = (target, key, def) => {
-  let instances = INSTANCES.get(target);
-  if(!instances) {
-    instances = {};
-    INSTANCES.set(target, instances);
-  }
-  let instance = instances[key];
-  if(!instance) {
-    instance = new Existing(def);
-    instances[key] = instance;
-  }
-  return instance;
-}
+const getExisting = (target, key, doc) => getInstance(target, key, () => new Existing(doc));
 
-export const existing = (def='doc') => (_target, key) => {
+export const existing = (doc='doc') => (_target, key) => {
   return {
     get() {
-      return getInstance(this, key, def).value;
+      return getExisting(this, key, doc).value;
     },
     set(value) {
-      getInstance(this, key, def).value = value;
+      getExisting(this, key, doc).value = value;
       return value;
     }
   };
