@@ -34,9 +34,11 @@ export const reference = (type, identifierKey) => () => ({
 });
 
 export default class Node extends Model {
-  @service store;
 
+  @service store;
   nodes;
+
+  referenceKeys = [];
 
   @activate() doc;
 
@@ -49,8 +51,6 @@ export default class Node extends Model {
   @data('expanded') expanded;
 
   _scheduleSave = new ScheduleSave(this);
-
-  referenceKeys = [];
 
   constructor(owner, { doc, nodes }) {
     super(owner);
