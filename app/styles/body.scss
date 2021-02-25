@@ -54,12 +54,9 @@ a.button {
   font-size: $font-size;
   text-decoration: none;
   display: inline-block;
-  transition:
-    0.15s ease-in-out opacity,
-    0.15s ease-in-out color;
+  transition: 0.15s ease-in-out color;
   &:disabled {
-    opacity: 0.2;
-    color: fade-out(#fff, 0.2);
+    color: fade-out(#fff, 0.6);
   }
 }
 
