@@ -8,4 +8,9 @@ export default class BlockProjectInspectorNodePaletteComponent extends Component
     this.args.model.createNewColor();
   }
 
+  @action
+  deleteColor() {
+    this.args.model.color.delete();
+  }
+
 }

@@ -169,8 +169,21 @@ export default class Nodes extends Model {
   async createNewPalette() {
     return await this._createNode(null, {
       type: 'palette',
+      colors: [],
       version: 1
     });
+  }
+
+  //
+
+  async deleteOrphans() {
+    let orphans = this.orphans;
+    while(orphans.length > 0) {
+      console.log('delete', orphans.length);
+      await orphans.map(n => n.delete());
+      orphans = this.orphans;
+    }
+    console.log('done');
   }
 
 }

@@ -10,6 +10,8 @@ const data = key => reads(`data.${key}`);
 
 export default class Color extends Model {
 
+  @reads('palette.editable') editable;
+
   constructor(owner, { palette, data }) {
     super(owner);
     this.palette = palette;
