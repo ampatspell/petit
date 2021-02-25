@@ -72,18 +72,17 @@
       @include padding();
       @include border();
       @include label();
-      > .missing {
+      > .label {
         display: flex;
         flex-direction: row;
-        margin-bottom: 3px;
-        padding: 5px;
-        align-items: center;
-        > .icon {
-          font-size: 11px;
-          color: fade-out(red, 0.2);
+        > .text {
+          flex: 1;
         }
-        > .identifier {
-          margin-left: 5px;
+        > .warning {
+          > .icon {
+            font-size: 11px;
+            color: fade-out(red, 0.2);
+          }
         }
       }
     }

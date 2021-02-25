@@ -1,11 +1,10 @@
 <div class="group reference">
-  <div class="label">{{@label}}</div>
-  {{#if this.reference.missing}}
-    <div class="missing">
-      <Block::Icon class="icon" @name="exclamation-circle"/>
-      <div class="identifier">{{this.reference.identifier}}</div>
-    </div>
-  {{/if}}
+  <div class="label">
+    <div class="text">{{@label}}</div>
+    {{#if this.reference.missing}}
+      <div class="warning"><Block::Icon class="icon" @name="exclamation-circle"/></div>
+    {{/if}}
+  </div>
   <Input::Select
     @values={{this.values}}
     @value={{this.value}}
@@ -15,7 +14,7 @@
     {{#if value}}
       {{value.identifier}}
     {{else}}
-      Not selected
+      None
     {{/if}}
   </Input::Select>
 </div>
