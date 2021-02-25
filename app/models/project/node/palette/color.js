@@ -1,14 +1,31 @@
+import Model from '../../../-model';
 import { cached } from 'tracked-toolbox';
-import { toString } from 'zuglet/utils';
+import { reads } from "macro-decorators";
 
-export default class Color {
+const {
+  assign
+} = Object;
 
-  constructor(r, g, b, a=1) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.a = a;
+const data = key => reads(`data.${key}`);
+
+export default class Color extends Model {
+
+  constructor(owner, { palette, data }) {
+    super(owner);
+    this.palette = palette;
+    this.data = data;
+    console.log('create', this+'', data);
   }
+
+  mappingDidChange({ data }) {
+    this.data = data;
+    console.log('mappingDidChange', this+'', data);
+  }
+
+  @data('r') r;
+  @data('g') g;
+  @data('b') b;
+  @data('a') a;
 
   @cached
   get rgba() {
@@ -16,17 +33,14 @@ export default class Color {
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 
-  static transparent() {
-    return new this(0, 0, 0, 0);
+  update(props) {
+    assign(this.data, props);
+    this.palette._didUpdateColor(this);
   }
 
-  static color(r, g, b, a) {
-    return new this(r, g, b, a);
-  }
-
-  toString() {
+  toStringExtension() {
     let { r, g, b, a } = this;
-    return toString(this, `${r},${g},${b},${a}`);
+    return `${r},${g},${b},${a}`;
   }
 
 }
