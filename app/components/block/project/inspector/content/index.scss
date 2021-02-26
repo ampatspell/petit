@@ -34,6 +34,9 @@
           &.faded {
             opacity: 0.3;
           }
+          &:first-child {
+            margin: 0;
+          }
         }
       }
     }

@@ -4,7 +4,9 @@
     <div class="identifier">{{or @name 'No identifier'}}</div>
   </div>
   <div class="accessories">
-    <Block::Icon class={{class 'icon' faded=(not @model.selfHidden)}} @name={{if @model.selfHidden 'eye-slash' 'eye'}} {{on 'click' this.toggleHidden}}/>
+    {{#unless @model.isProject}}
+      <Block::Icon class={{class 'icon' faded=(not @model.selfHidden)}} @name={{if @model.selfHidden 'eye-slash' 'eye'}} {{on 'click' this.toggleHidden}}/>
+    {{/unless}}
     <Block::Icon class={{class 'icon' faded=(not @model.selfLocked)}} @name={{if @model.selfLocked 'lock' 'unlock'}} {{on 'click' this.toggleLocked}}/>
   </div>
 </div>
