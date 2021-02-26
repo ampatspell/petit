@@ -48,9 +48,6 @@ class EditorProperties {
 
   constructor(node) {
     this.node = node;
-    if(!node._editor) {
-      node.update({ editor: { x: 10, y: 10 }}, false);
-    }
   }
 
   update(props) {

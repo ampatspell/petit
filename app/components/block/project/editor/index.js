@@ -75,6 +75,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
+      this.onSelect(node);
 
       let d = p => pointer[p] - node.editor[p];
       dragging = {

@@ -133,11 +133,12 @@ export default class Nodes extends Model {
 
     return assign({
       parent,
+      identifier,
       index,
+      editor: { x: 10, y: 10 },
       expanded: false,
       locked: false,
       hidden: false,
-      identifier,
       createdAt
     }, props);
   }
