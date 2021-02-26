@@ -2,6 +2,10 @@ import Group from 'ember-cli-konva/components/konva/node/group';
 // import { pick } from 'ember-cli-konva/util/object';
 import { reads } from "macro-decorators";
 
+const stroke = (locked, editing) => {
+  return locked ? 'rgba(0,0,0,0.15)' : editing ? 'rgba(255,102,97,0.75)' : 'rgba(96,190,253, 0.5)'
+};
+
 export default class BlockKonvaEditorSpriteFramesFrameEditorComponent extends Group {
 
   get nodeProperties() {
@@ -28,13 +32,13 @@ export default class BlockKonvaEditorSpriteFramesFrameEditorComponent extends Gr
   }
 
   get border() {
-    let { editing, size: { width, height } } = this;
+    let { editing, frame: { locked }, size: { width, height } } = this;
     return {
       x: 0,
       y: 0,
       width,
       height,
-      stroke: editing ? 'rgba(255,102,97,0.75)' : 'rgba(96,190,253, 0.5)',
+      stroke: stroke(locked, editing),
       strokeWidth: 1,
       listening: false
     };
