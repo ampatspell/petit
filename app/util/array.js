@@ -7,7 +7,7 @@ export const removeAt = (array, index) => {
 
 export const removeObject = (array, object) => {
   let index = array.indexOf(object);
-  return removeAt(index);
+  return removeAt(array, index);
 }
 
 export const addObject = (array, object) => {
