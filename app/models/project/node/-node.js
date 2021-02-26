@@ -1,6 +1,6 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
-import ScheduleSave from '../../../util/schedule-save';
+import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
 import { or } from "macro-decorators";
@@ -50,7 +50,7 @@ export default class Node extends Model {
   @data('locked') _locked;
   @data('expanded') expanded;
 
-  _scheduleSave = new ScheduleSave(this);
+  @scheduleSave _scheduleSave;
 
   constructor(owner, { doc, nodes }) {
     super(owner);

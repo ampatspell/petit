@@ -2,7 +2,7 @@ import Model, { doc, data } from './-model';
 import { activate } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
-import ScheduleSave from '../util/schedule-save';
+import { scheduleSave } from '../util/schedule-save';
 import { reads } from "macro-decorators";
 
 class ProjectNodesDelegate {
@@ -43,7 +43,7 @@ export default class Project extends Model {
     }))
   nodes
 
-  _scheduleSave = new ScheduleSave(this);
+  @scheduleSave _scheduleSave;
 
   get editable() {
     return !this.nodes.isBusy && !this.locked;

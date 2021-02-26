@@ -1,13 +1,17 @@
 import { later, cancel } from '@ember/runloop';
+import { getInstance } from './instances';
+import { getOwner } from '@ember/application';
+import Model from '../models/-model';
 
-export default class ScheduleSave {
+class ScheduleSave extends Model {
 
-  constructor(owner) {
-    this.owner = owner;
+  constructor(owner, model) {
+    super(owner);
+    this.model = model;
   }
 
-  save() {
-    this.owner.save({ type: 'scheduled' });
+  async save() {
+    await this.model.save({ type: 'scheduled' });
   }
 
   cancel() {
@@ -19,4 +23,12 @@ export default class ScheduleSave {
     this._cancel = later(() => this.save(), 300);
   }
 
+}
+
+export const scheduleSave = (_, key) => {
+  return {
+    get() {
+      return getInstance(this, key, () => new ScheduleSave(getOwner(this), this));
+    }
+  }
 }
