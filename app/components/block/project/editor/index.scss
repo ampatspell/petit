@@ -1,0 +1,15 @@
+.block-project-editor {
+  flex: 1;
+  position: relative;
+  > .content {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    overflow: hidden;
+    background: darken(#fff, 12%);
+    border: 1px solid lighten(#000, 78%);
+    z-index: 1;
+  }
+}
