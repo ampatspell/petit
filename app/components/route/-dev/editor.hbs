@@ -1,0 +1,22 @@
+<div class="route-dev-editor" style={{this.style}}>
+
+  <Konva::Stage
+    @size={{hash
+      width=@model.width
+      height=@model.height}}
+    as |parent|>
+    <Konva::Node::Layer @parent={{parent}} as |parent|>
+      <Konva::Node::Rect
+        @parent={{parent}}
+        @model={{hash
+          x=0
+          y=0
+          width=@model.width
+          height=@model.height
+          fill=@model.fill
+        }}
+      />
+    </Konva::Node::Layer>
+  </Konva::Stage>
+
+</div>
