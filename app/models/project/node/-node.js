@@ -4,6 +4,11 @@ import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
 import { or } from "macro-decorators";
+import { tracked } from "@glimmer/tracking";
+
+const {
+  assign
+} = Object;
 
 export {
   doc,
@@ -33,6 +38,20 @@ export const reference = (type, identifierKey) => () => ({
   }
 });
 
+class EditorProperties {
+
+  @tracked x = 0;
+  @tracked y = 0;
+
+  constructor() {
+  }
+
+  update(props) {
+    assign(this, props);
+  }
+
+}
+
 export default class Node extends Model {
 
   @service store;
@@ -52,6 +71,8 @@ export default class Node extends Model {
   @data('expanded') expanded;
 
   @scheduleSave _scheduleSave;
+
+  editor = new EditorProperties();
 
   constructor(owner, { doc, nodes }) {
     super(owner);

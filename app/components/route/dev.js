@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { tracked } from "@glimmer/tracking";
-import { cached } from 'tracked-toolbox';
 import { action } from "@ember/object";
 import { events } from '../../util/window-events';
 

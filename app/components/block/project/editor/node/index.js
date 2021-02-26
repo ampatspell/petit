@@ -10,7 +10,8 @@ export default class BlockProjectEditorNodeIndexComponent extends Component {
   }
 
   get style() {
-    return htmlSafe(`transform: translate(10px, 10px)`);
+    let { node: { editor: { x, y } } } = this.args;
+    return htmlSafe(`transform: translate(${x}px, ${y}px)`);
   }
 
 }

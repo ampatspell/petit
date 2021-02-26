@@ -6,8 +6,9 @@
     {{did-insert this.didInsertContent}}
     {{on "click" this.onDeselect}}
   >
-    {{#each @project.nodes.visible as |node|}}
+    {{#each this.visible as |node idx|}}
       <Block::Project::Editor::Node
+        @index={{idx}}
         @node={{node}}
         @onSelect={{fn this.onSelect node}}
       />
