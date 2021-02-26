@@ -15,9 +15,9 @@ export default class BlockKonvaEditorSpriteFramesFrameContentComponent extends S
   get sceneFunc() {
     let { palette, frame: { width, height, pixel, bytes } } = this;
     let size = { width, height };
-    let rgba = palette.rgba;
+    let rgba = palette?.rgba;
     return (ctx) => {
-      if(bytes && palette) {
+      if(bytes && rgba) {
         bytes.forEach((byte, idx) => {
           let c = rgba(byte);
           if(!c) {
