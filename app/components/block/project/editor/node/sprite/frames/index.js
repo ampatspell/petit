@@ -7,12 +7,22 @@ import { editing } from 'petit/util/editing';
 
 export default class BlockKonvaEditorSpriteFramesIndexComponent extends Component {
 
-  @reads('args.model.group') frames;
+  @reads('args.sprite') sprite;
+  @reads('sprite.frames') frames;
   @reads('frames.frame') frame;
   @reads('frame.palette.model') palette;
 
   @editing('frame.locked') editing;
   @tracked color = Pixel.black;
+
+  get size() {
+    let { width, height, pixel } = this.frame;
+    let s = value => value * pixel;
+    return {
+      width: s(width),
+      height: s(height)
+    };
+  }
 
   @action
   onBindHotkeys(hotkeys) {

@@ -1,0 +1,31 @@
+<Konva::Hotkeys @onBind={{this.onBindHotkeys}}/>
+
+{{#if this.frame}}
+
+  <Block::Project::Editor::Node::Sprite::Frames::Stage
+    @size={{this.size}}
+    @onClick={{this.stopEditing}}
+    as |parent|>
+
+    <Konva::Node::Layer @parent={{parent}} as |parent|>
+
+      <Block::Project::Editor::Node::Sprite::Frames::Frame::Editor
+        @size={{this.size}}
+        @parent={{parent}}
+        @frame={{this.frame}}
+        @editing={{this.editing}}
+        @color={{this.color}}
+        @palette={{this.palette}}
+        @onStartEditing={{this.startEditing}}
+      />
+
+    </Konva::Node::Layer>
+  </Block::Project::Editor::Node::Sprite::Frames::Stage>
+
+{{else}}
+
+  <div class="block-konva-editor placeholder">
+    <div class="title">Please create a frame</div>
+  </div>
+
+{{/if}}

@@ -1,6 +1,6 @@
 import Stage from 'ember-cli-konva/components/konva/stage';
 
-export default class BlockKonvaEditorSpriteFramesStageComponent extends Stage {
+export default class BlockProjectEditorNodeSpriteStageComponent extends Stage {
 
   didCreateNode() {
     this.on('click', e => {
