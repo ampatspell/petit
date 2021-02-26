@@ -5,6 +5,7 @@ import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../..
 import { inject as service } from "@ember/service";
 import { or } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
+import { reads } from "macro-decorators";
 
 const {
   assign
@@ -40,14 +41,21 @@ export const reference = (type, identifierKey) => () => ({
 
 class EditorProperties {
 
-  @tracked x = 10;
-  @tracked y = 10;
+  @reads('node._editor') data;
 
-  constructor() {
+  @reads('data.x') x;
+  @reads('data.y') y;
+
+  constructor(node) {
+    this.node = node;
+    if(!node._editor) {
+      node.update({ editor: { x: 10, y: 10 }}, false);
+    }
   }
 
   update(props) {
-    assign(this, props);
+    assign(this.data, props);
+    this.node._scheduleSave.schedule();
   }
 
 }
@@ -69,15 +77,15 @@ export default class Node extends Model {
   @data('locked') _locked;
   @data('hidden') _hidden;
   @data('expanded') expanded;
+  @data('editor') _editor;
 
   @scheduleSave _scheduleSave;
-
-  editor = new EditorProperties();
 
   constructor(owner, { doc, nodes }) {
     super(owner);
     this.doc = doc;
     this.nodes = nodes;
+    this.editor = new EditorProperties(this);
   }
 
   //
@@ -183,9 +191,11 @@ export default class Node extends Model {
     return hash;
   }
 
-  update(props) {
+  update(props, schedule=true) {
     Object.assign(this.doc.data, this._normalizeReferences(props));
-    this._scheduleSave.schedule();
+    if(schedule) {
+      this._scheduleSave.schedule();
+    }
   }
 
   async delete() {
