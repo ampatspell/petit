@@ -5,7 +5,7 @@ const stroke = (locked, editing) => {
   return locked ? 'rgba(0,0,0,0.15)' : editing ? 'rgba(255,102,97,0.75)' : 'rgba(96,190,253, 0.5)'
 };
 
-export default class BlockKonvaEditorSpriteFramesFrameEditorComponent extends Group {
+export default class BlockProjectEditorNodeSpriteFramesFrameEditorComponent extends Group {
 
   get nodeProperties() {
     return {

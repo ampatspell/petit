@@ -5,7 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { Pixel } from 'petit/util/pixel';
 import { editing } from 'petit/util/editing';
 
-export default class BlockKonvaEditorSpriteFramesIndexComponent extends Component {
+export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Component {
 
   @reads('args.node') frames;
   @reads('frames.frame') frame;
