@@ -16,6 +16,7 @@ class ScheduleSave extends Model {
 
   cancel() {
     cancel(this._cancel);
+    this._cancel = null;
   }
 
   schedule() {
