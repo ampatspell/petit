@@ -76,11 +76,16 @@ export default class RouteDevComponent extends Component {
     let mousemove = e => {
       let pointer = getPointerPosition(e);
       if(dragging) {
-        let u = p => Math.round(pointer[p] - dragging.delta[p]);
-        dragging.model.x = u('x');
-        dragging.model.y = u('y');
-        // dragging.model.width = u('x');
-        // dragging.model.height = u('y');
+        // {
+        //   let u = p => Math.round(pointer[p] - dragging.delta[p]);
+        //   dragging.model.x = u('x');
+        //   dragging.model.y = u('y');
+        // }
+        {
+          let u = (p, m) => pointer[p] - dragging.pointer[p] + dragging[m];
+          dragging.model.width = u('x', 'width');
+          dragging.model.height = u('y', 'height');
+        }
       }
     }
 
@@ -101,8 +106,11 @@ export default class RouteDevComponent extends Component {
         y: d('y')
       };
       dragging = {
+        pointer,
         delta,
-        model
+        model,
+        width: model.width,
+        height: model.height
       };
     }
 
