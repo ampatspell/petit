@@ -40,8 +40,8 @@ export const reference = (type, identifierKey) => () => ({
 
 class EditorProperties {
 
-  @tracked x = 0;
-  @tracked y = 0;
+  @tracked x = 10;
+  @tracked y = 10;
 
   constructor() {
   }
