@@ -2,6 +2,7 @@
 
 ## TODO
 
+* Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
 * Add "show" in references inspector block
 * Frame fill
 * Sprite dimensions from doc. Defaults to 16x16px
