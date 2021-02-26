@@ -1,5 +1,11 @@
 <div class="block-project-editor">
+  <div class="border"></div>
   <div class="content">
-    {{@project}}
+    {{#each @project.nodes.visible as |node|}}
+      <Block::Project::Editor::Node
+        @node={{node}}
+        @onSelect={{fn this.onSelect node}}
+      />
+    {{/each}}
   </div>
 </div>
