@@ -7,8 +7,7 @@ import { editing } from 'petit/util/editing';
 
 export default class BlockKonvaEditorSpriteFramesIndexComponent extends Component {
 
-  @reads('args.sprite') sprite;
-  @reads('sprite.frames') frames;
+  @reads('args.node') frames;
   @reads('frames.frame') frame;
   @reads('frame.palette.model') palette;
 
@@ -42,11 +41,6 @@ export default class BlockKonvaEditorSpriteFramesIndexComponent extends Componen
   @action
   startEditing() {
     this.editing = true;
-  }
-
-  @action
-  stopEditing() {
-    this.editing = false;
   }
 
 }

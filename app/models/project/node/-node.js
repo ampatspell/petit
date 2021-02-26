@@ -128,6 +128,14 @@ export default class Node extends Model {
     return parent ? parent.children : this.nodes.root;
   }
 
+  hasParent(node) {
+    let { parent } = this;
+    if(parent === node) {
+      return true;
+    }
+    return parent?.hasParent(node);
+  }
+
   get isFirst() {
     return firstObject(this.parentChildren) === this;
   }

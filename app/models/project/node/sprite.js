@@ -6,6 +6,10 @@ export default class SpriteNode extends Node {
   group = this;
   referenceKeys = [ 'palette' ];
 
+  get groups() {
+    return [ this.frames ];
+  }
+
   @data('palette') _palette;
   @reference('palette', '_palette') palette;
 

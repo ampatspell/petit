@@ -51,8 +51,10 @@ export default class Nodes extends Model {
     return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
 
-  get visible() {
-    return this.root.filter(node => !node.hidden);
+  get groups() {
+    return this.root.filter(node => !node.hidden).reduce((nodes, node) => {
+      return [ ...nodes, ...node.groups ];
+    }, []);
   }
 
   get orphans() {

@@ -4,9 +4,8 @@ export default class SceneNode extends Node {
 
   typeName = 'Scene';
 
-  get group() {
-    return this;
-  }
+  group = this;
+  groups = [ this ];
 
   async createNewLayer() {
     return this._createNode({

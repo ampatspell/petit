@@ -2,6 +2,7 @@ import Node from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
+import { tracked } from "@glimmer/tracking";
 
 export default class SpriteFramesNode extends Node {
 
@@ -23,16 +24,23 @@ export default class SpriteFramesNode extends Node {
     });
   }
 
+  //
+
+  @tracked _frame;
+
   get frame() {
-    let selected = this.nodes.selected;
-    if(selected && selected.group === this) {
-      if(selected === this) {
-        return this.children[0] || null;
-      }
-      return selected;
+    let frame = this._frame;
+    if(!frame) {
+      frame = this.children[0] || null;
     }
-    return null;
+    return frame;
   }
+
+  select(frame) {
+    this._frame = frame;
+  }
+
+  //
 
   selectPrev() {
     let { frame, children } = this;
@@ -46,7 +54,7 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next, { expandParents: true });
+      this._frame = next;
     }
   }
 
@@ -62,7 +70,7 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next, { expandParents: true });
+      this._frame = next;
     }
   }
 

@@ -2,9 +2,7 @@
 
 {{#if this.frame}}
 
-  <Block::Project::Editor::Node::Sprite::Frames::Stage
-    @size={{this.size}}
-    @onClick={{this.stopEditing}}
+  <Konva::Stage @size={{this.size}}
     as |parent|>
 
     <Konva::Node::Layer @parent={{parent}} as |parent|>
@@ -20,11 +18,12 @@
       />
 
     </Konva::Node::Layer>
-  </Block::Project::Editor::Node::Sprite::Frames::Stage>
+  </Konva::Stage>
 
 {{else}}
 
   <div class="block-konva-editor placeholder">
+      {{@node}}
     <div class="title">Please create a frame</div>
   </div>
 

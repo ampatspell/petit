@@ -7,6 +7,7 @@ export default class PaletteNode extends Node {
 
   typeName = 'Color Palette';
   group = this;
+  groups = [ this ];
 
   @data('colors') _colors;
 
