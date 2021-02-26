@@ -8,7 +8,9 @@ module.exports = function() {
       'angle-right',
       'angle-down',
       'exclamation-circle',
-      'terminal'
+      'terminal',
+      'eye',
+      'eye-slash'
     ]
   };
 };

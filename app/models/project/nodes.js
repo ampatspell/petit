@@ -132,6 +132,7 @@ export default class Nodes extends Model {
       index,
       expanded: false,
       locked: false,
+      hidden: false,
       identifier,
       createdAt
     }, props);

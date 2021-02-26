@@ -1,4 +1,4 @@
-<div class={{class "item" selected=@selected warning=@warning}} ...attributes role="button" {{on 'click' this.onSelect}}>
+<div class={{class "item" selected=@selected warning=@warning hidden=@hidden}} ...attributes role="button" {{on 'click' this.onSelect}}>
   <div class="content">
     {{!-- template-lint-disable no-nested-interactive --}}
     {{#if @expandable}}
@@ -17,6 +17,10 @@
           <Block::Icon class="icon warning" @name="exclamation-circle"/>
         </div>
       {{/if}}
+      {{!-- template-lint-disable no-nested-interactive --}}
+      <div class="target" role="button" {{on 'click' this.onToggleHidden}}>
+        <Block::Icon class={{class 'icon' faded=this.hidden.faded}} @name={{this.hidden.icon}}/>
+      </div>
       {{!-- template-lint-disable no-nested-interactive --}}
       <div class="target" role="button" {{on 'click' this.onToggleLock}}>
         <Block::Icon class={{class 'icon' faded=this.lock.faded}} @name={{this.lock.icon}}/>

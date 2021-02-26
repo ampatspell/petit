@@ -48,6 +48,7 @@ export default class Node extends Model {
   @data('identifier') identifier;
   @data('parent') parentId;
   @data('locked') _locked;
+  @data('hidden') _hidden;
   @data('expanded') expanded;
 
   @scheduleSave _scheduleSave;
@@ -71,6 +72,22 @@ export default class Node extends Model {
   get selfLocked() {
     return this._locked;
   }
+
+  //
+
+  get hidden() {
+    return this._hidden || this.parent?.hidden;
+  }
+
+  get parentHidden() {
+    return this.hidden && !this._hidden;
+  }
+
+  get selfHidden() {
+    return this._hidden;
+  }
+
+  //
 
   get selected() {
     return this.nodes.selected === this;

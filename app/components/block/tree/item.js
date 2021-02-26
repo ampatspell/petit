@@ -18,6 +18,13 @@ export default class BlockTreeItemComponent extends Component {
   }
 
   @action
+  onToggleHidden(e) {
+    e.stopPropagation();
+    let { hidden, onUpdate } = this.args;
+    onUpdate && onUpdate({ hidden: !hidden });
+  }
+
+  @action
   toggleExpand(e) {
     e.stopPropagation();
     let { expanded, onUpdate } = this.args;
@@ -35,6 +42,25 @@ export default class BlockTreeItemComponent extends Component {
       faded = parentLocked;
     } else {
       icon = 'unlock';
+      faded = true;
+    }
+
+    return {
+      icon,
+      faded
+    };
+  }
+
+  get hidden() {
+    let { hidden, parentHidden } = this.args;
+    let icon;
+    let faded;
+
+    if(hidden) {
+      icon = 'eye-slash';
+      faded = parentHidden;
+    } else {
+      icon = 'eye';
       faded = true;
     }
 
