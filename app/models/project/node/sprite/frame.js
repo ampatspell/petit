@@ -10,8 +10,19 @@ export default class SpriteFrameNode extends Node {
   height = 16;
   pixel = 20;
 
+  //
+
   @reads('parent') sprite;
+
+  get group() {
+    return this.parent;
+  }
+
+  //
+
   @reads('sprite.palette') palette;
+
+  //
 
   @data('bytes') _blob;
 
@@ -21,10 +32,6 @@ export default class SpriteFrameNode extends Node {
       return new Uint8Array(this.width * this.height);
     }
     return blob.toUint8Array();
-  }
-
-  get group() {
-    return this.parent.group;
   }
 
   _blobFromUint8Array(bytes) {
@@ -48,6 +55,8 @@ export default class SpriteFrameNode extends Node {
   clear() {
     this.mutateBytes(bytes => bytes.fill(Pixel.transparent));
   }
+
+  //
 
   async duplicate() {
     let { bytes, group } = this;

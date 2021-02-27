@@ -35,7 +35,6 @@ export default class SpriteNode extends Node {
 
   typeName = 'Sprite';
   group = this;
-  groups = [ this ];
   referenceKeys = [ 'palette' ];
 
   async createNewFrame(opts) {

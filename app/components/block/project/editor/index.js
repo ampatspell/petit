@@ -6,7 +6,7 @@ import { reads } from "macro-decorators";
 export default class BlockProjectEditorIndexComponent extends Component {
 
   @reads('args.project') project;
-  @reads('args.project.nodes.groups') groups;
+  @reads('args.project.nodes.visible') visible;
 
   @action
   didInsertContent(el) {
@@ -43,7 +43,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
 
     let nodeForEditorElement = el => {
       let idx = parseInt(el.dataset.index);
-      return this.groups[idx];
+      return this.visible[idx];
     }
 
     let getPointerPosition = e => {
