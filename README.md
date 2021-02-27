@@ -2,6 +2,7 @@
 
 ## TODO
 
+* node.selected → new Select(node);
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
 * Add "show" in references inspector block
 * Frame fill
