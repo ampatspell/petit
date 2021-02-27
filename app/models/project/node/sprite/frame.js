@@ -1,4 +1,4 @@
-import Node, { data } from '../-node';
+import Node, { data, lock } from '../-node';
 import { Pixel } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
 

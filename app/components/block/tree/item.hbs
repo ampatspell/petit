@@ -17,13 +17,13 @@
           <Block::Icon class="icon warning" @name="exclamation-circle"/>
         </div>
       {{/if}}
-      {{#if @hideable}}
+      {{#if @hide}}
         {{!-- template-lint-disable no-nested-interactive --}}
         <div class="target" role="button" {{on 'click' this.onToggleHidden}}>
           <Block::Icon class={{class 'icon' faded=this.hidden.faded}} @name={{this.hidden.icon}}/>
         </div>
       {{/if}}
-      {{#if @lockable}}
+      {{#if @lock}}
         {{!-- template-lint-disable no-nested-interactive --}}
         <div class="target" role="button" {{on 'click' this.onToggleLock}}>
           <Block::Icon class={{class 'icon' faded=this.lock.faded}} @name={{this.lock.icon}}/>

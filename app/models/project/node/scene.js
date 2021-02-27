@@ -1,6 +1,14 @@
-import Node from './-node';
+import Node, { editor, lock, hide, warnings } from './-node';
 
 export default class SceneNode extends Node {
+
+  constructor() {
+    super(...arguments);
+    editor(this);
+    lock(this);
+    hide(this);
+    warnings(this);
+  }
 
   typeName = 'Scene';
 

@@ -3,122 +3,23 @@ import { activate } from 'zuglet/decorators';
 import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
-import { reads, or } from "macro-decorators";
-
-const {
-  assign
-} = Object;
+import { editor } from './-node/editor';
+import { lock } from './-node/lock';
+import { hide } from './-node/hide';
+import { warnings } from './-node/warnings';
+import { reference } from './-node/reference';
+import { child } from './-node/child';
 
 export {
+  editor,
+  hide,
+  lock,
+  warnings,
+  reference,
+  child,
   doc,
   data
 };
-
-export const child = type => () => ({
-  get() {
-    return this.children.find(node => node.type === type);
-  }
-});
-
-export const reference = (type, identifierKey) => () => ({
-  get() {
-    let identifier = this[identifierKey];
-    let model = null;
-    let missing = false;
-    if(identifier) {
-      model = this.nodes.all.find(node => node.type === type && node.identifier === identifier);
-      missing = !model;
-    }
-    return {
-      identifier,
-      missing,
-      model
-    };
-  }
-});
-
-class EditorProperties {
-
-  @reads('node._editor') data;
-
-  @reads('data.x') x;
-  @reads('data.y') y;
-
-  constructor(node) {
-    this.node = node;
-  }
-
-  update(props) {
-    assign(this.data, props);
-    this.node._scheduleSave.schedule();
-  }
-
-}
-
-class Lock {
-
-  constructor(node) {
-    this.node = node;
-  }
-
-  @reads('node._locked') _locked;
-  @reads('node.parent.lock.locked') _parent;
-  @reads('node.nodes.locked') _nodes;
-
-  @or('_locked', '_parent', '_nodes') locked;
-  @or('_parent', '_nodes') parent;
-  @reads('_locked') self;
-
-  toggle() {
-    this.node.update({ locked: !this._locked });
-  }
-
-}
-
-class Hide {
-
-  constructor(node) {
-    this.node = node;
-  }
-
-  @reads('node._hidden') _hidden;
-
-  @reads('node.parent.hide.hidden') parent;
-  @or('_hidden', 'parent') hidden;
-  @reads('_hidden') self;
-
-  toggle() {
-    this.node.update({ hidden: !this._hidden });
-  }
-
-}
-
-class Warnings {
-
-  constructor(node) {
-    this.node = node;
-  }
-
-  get identifierConflict() {
-    let { node, node: {identifier, nodes } } = this;
-    if(!identifier) {
-      return false;
-    }
-    let another = nodes.all.find(another => another !== node && another.identifier === identifier);
-    return !!another;
-  }
-
-  get missingReferences() {
-    let { node } = this;
-    return !!node.referenceKeys.find(key => {
-      let ref = node[key];
-      return ref.missing === true || ref.model === null;
-    });
-  }
-
-  @or('identifierConflict', 'missingReferences') any;
-
-}
 
 export default class Node extends Model {
 
@@ -134,9 +35,6 @@ export default class Node extends Model {
   @data('index') index;
   @data('identifier') identifier;
   @data('parent') parentId;
-  @data('locked') _locked;
-  @data('hidden') _hidden;
-  @data('editor') _editor;
   @data('expanded') expanded;
 
   @scheduleSave _scheduleSave;
@@ -145,10 +43,6 @@ export default class Node extends Model {
     super(owner);
     this.doc = doc;
     this.nodes = nodes;
-    this.editor = new EditorProperties(this);
-    this.lock = new Lock(this);
-    this.hide = new Hide(this);
-    this.warnings = new Warnings(this);
   }
 
   //
@@ -158,16 +52,14 @@ export default class Node extends Model {
   }
 
   get editable() {
-    return !this.nodes.isBusy && !this.lock.locked;
+    return !this.nodes.isBusy && (!this.lock || !this.lock.locked);
   }
 
   //
 
   get tree() {
     return {
-      expandable: this.hasChildren,
-      lockable: true,
-      hideable: true
+      expandable: this.hasChildren
     };
   }
 

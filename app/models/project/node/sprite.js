@@ -1,6 +1,13 @@
-import Node, { child, reference, data } from './-node';
+import Node, { child, reference, data, lock, hide, warnings } from './-node';
 
 export default class SpriteNode extends Node {
+
+  constructor() {
+    super(...arguments)
+    lock(this);
+    hide(this);
+    warnings(this);
+  }
 
   typeName = 'Sprite';
   group = this;

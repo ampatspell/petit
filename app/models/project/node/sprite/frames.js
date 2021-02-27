@@ -1,4 +1,4 @@
-import Node, { data } from '../-node';
+import Node, { editor, lock, hide, data } from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
@@ -7,10 +7,17 @@ import { editing } from 'petit/util/editing';
 export default class SpriteFramesNode extends Node {
 
   typeName = 'Frames';
+
+  constructor() {
+    super(...arguments);
+    editor(this);
+    lock(this);
+    hide(this);
+  }
+
   group = this;
 
   @data('frame') _frame;
-
   @reads('parent') sprite;
 
   get needsTimeline() {

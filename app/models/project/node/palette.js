@@ -1,4 +1,4 @@
-import Node, { data } from './-node';
+import Node, { editor, lock, hide, data } from './-node';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
 import { lastObject, removeAt } from '../../../util/array';
@@ -6,6 +6,14 @@ import { lastObject, removeAt } from '../../../util/array';
 export default class PaletteNode extends Node {
 
   typeName = 'Color Palette';
+
+  constructor() {
+    super(...arguments);
+    editor(this);
+    lock(this);
+    hide(this);
+  }
+
   group = this;
   groups = [ this ];
 
