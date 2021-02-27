@@ -19,6 +19,7 @@ export default class SpriteFramesNode extends Node {
 
   @data('frame') _frame;
   @reads('parent') sprite;
+  @reads('sprite.palette') palette;
 
   get needsTimeline() {
     return this.children.length > 0;
