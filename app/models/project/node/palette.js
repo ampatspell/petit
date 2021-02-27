@@ -5,7 +5,7 @@ import { lastObject, removeAt } from '../../../util/array';
 
 export default class PaletteNode extends Node {
 
-  typeName = 'Color Palette';
+  typeName = 'Palette';
 
   constructor() {
     super(...arguments);
