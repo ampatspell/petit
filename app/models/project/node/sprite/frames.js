@@ -29,7 +29,8 @@ export default class SpriteFramesNode extends Node {
   //
 
   get frame() {
-    return this.children[this._frame] || this.children[0] || null;
+    let index = this._frame;
+    return this.children.find(child => child.index === index) || this.children[0] || null;
   }
 
   select(frame) {
