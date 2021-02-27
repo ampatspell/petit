@@ -4,10 +4,10 @@
     <div class="identifier">{{or @name 'No identifier'}}</div>
   </div>
   <div class="accessories">
-    {{#if @model.tree.hideable}}
+    {{#if @model.hide}}
       <Block::Icon class={{class 'icon' faded=(not @model.hide.self)}} @name={{if @model.hide.self 'eye-slash' 'eye'}} {{on 'click' this.toggleHidden}}/>
     {{/if}}
-    {{#if @model.tree.lockable}}
+    {{#if @model.lock}}
       <Block::Icon class={{class 'icon' faded=(not @model.lock.self)}} @name={{if @model.lock.self 'lock' 'unlock'}} {{on 'click' this.toggleLocked}}/>
     {{/if}}
   </div>

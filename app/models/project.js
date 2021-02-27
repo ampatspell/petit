@@ -40,10 +40,6 @@ export default class Project extends Model {
   type = 'project';
   typeName = 'Project';
 
-  tree = {
-    lockable: true
-  };
-
   isProject = true;
 
   @activate() doc;
