@@ -1,7 +1,12 @@
 {{#if @palette}}
   <div class="block-node-palette-toolbar">
     {{#each @palette.colors as |color|}}
-      <Block::Node::Palette::Color::Rect class="color" @color={{color}}/>
+      <Block::Node::Palette::Color::Rect
+        class={{class 'color' selected=(eq @selected color)}}
+        @size='small'
+        @color={{color}}
+        {{on 'click' (fn (optional-function @onSelect) color)}}
+      />
     {{/each}}
   </div>
 {{/if}}

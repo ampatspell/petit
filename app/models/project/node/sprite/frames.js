@@ -1,12 +1,26 @@
-import Node, { editor, lock, hide, data } from '../-node';
+import Node, { editor, lock, hide, reference, data } from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { editing } from 'petit/util/editing';
 
+const color = () => {
+  return {
+    get() {
+      let color = this._color || 0;
+      return this.palette.model.colors[color] || null;
+    },
+    set(color) {
+      this.doc.data.color = color?.index || 0;
+      this._scheduleSave.schedule();
+    }
+  };
+}
+
 export default class SpriteFramesNode extends Node {
 
   typeName = 'Frames';
+  referenceKeys = [ 'palette' ];
 
   constructor() {
     super(...arguments);
@@ -18,8 +32,15 @@ export default class SpriteFramesNode extends Node {
   group = this;
 
   @data('frame') _frame;
+  @data('palette') _palette;
+
   @reads('parent') sprite;
-  @reads('sprite.palette') palette;
+
+  @reference('palette', '_palette') palette;
+
+  // TODO: move to this.editor
+  @data('color') _color;
+  @color color;
 
   get needsTimeline() {
     return this.children.length > 0;

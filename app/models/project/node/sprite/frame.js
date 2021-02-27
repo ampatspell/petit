@@ -12,7 +12,7 @@ export default class SpriteFrameNode extends Node {
 
   @reads('parent') frames;
   @reads('frames.sprite') sprite;
-  @reads('sprite.palette') palette;
+  @reads('frames.palette') palette;
 
   @data('bytes') _blob;
 

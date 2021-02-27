@@ -1,6 +1,7 @@
 import Model from '../../../-model';
 import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
+import { tracked } from "@glimmer/tracking";
 
 const {
   assign
@@ -10,24 +11,27 @@ const data = key => reads(`data.${key}`);
 
 export default class Color extends Model {
 
+  @tracked data;
   @reads('palette.editable') editable;
 
   constructor(owner, { palette, data }) {
     super(owner);
     this.palette = palette;
     this.data = data;
-    // console.log('create', this+'', data);
   }
 
   mappingDidChange({ data }) {
     this.data = data;
-    // console.log('mappingDidChange', this+'', data);
   }
 
   @data('r') r;
   @data('g') g;
   @data('b') b;
   @data('a') a;
+
+  get index() {
+    return this.palette.colors.indexOf(this);
+  }
 
   @cached
   get rgba() {

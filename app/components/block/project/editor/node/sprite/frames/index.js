@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { reads } from "macro-decorators";
-import { tracked } from "@glimmer/tracking";
-import { Pixel } from 'petit/util/pixel';
 
 export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Component {
 
@@ -10,8 +8,7 @@ export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Co
   @reads('frames.frame') frame;
   @reads('frame.palette.model') palette;
   @reads('frames.editing') editing;
-
-  @tracked color = Pixel.black;
+  @reads('frames.color.index') color;
 
   get size() {
     let { width, height, pixel } = this.frame;
@@ -21,18 +18,6 @@ export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Co
       height: s(height)
     };
   }
-
-  // @action
-  // onBindHotkeys(hotkeys) {
-  //   let color = (c, value) => hotkeys.add(c, e => {
-  //     e.preventRepeat();
-  //     this.color = value;
-  //   }, () => {
-  //     this.color = Pixel.black;
-  //   });
-  //   color('w', Pixel.white);
-  //   color('e', Pixel.transparent);
-  // }
 
   @action
   startEditing() {
