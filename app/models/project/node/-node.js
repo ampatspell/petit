@@ -149,7 +149,7 @@ export default class Node extends Model {
     return {
       expandable: this.hasChildren,
       lockable: true,
-      hideable: true,
+      hideable: true
     };
   }
 
