@@ -11,11 +11,26 @@ class ProjectNodesDelegate {
     this._project = project;
   }
 
-  @reads('_project.locked') locked;
+  @reads('_project.lock.locked') locked;
   @reads('_project.doc.data.selected') initialSelection;
 
   didSelectNode(node) {
     this._project.nodesDidSelectNode(node);
+  }
+
+}
+
+class Lock {
+
+  constructor(project) {
+    this.project = project;
+  }
+
+  @reads('project._locked') locked;
+  @reads('locked') self;
+
+  toggle() {
+    this.project.update({ locked: !this.self });
   }
 
 }
@@ -25,6 +40,10 @@ export default class Project extends Model {
   type = 'project';
   typeName = 'Project';
 
+  tree = {
+    lockable: true
+  };
+
   isProject = true;
 
   @activate() doc;
@@ -32,8 +51,7 @@ export default class Project extends Model {
   @doc('id') id;
   @data('title') title;
   @data('createdAt') createdAt;
-  @data('locked') locked;
-  @reads('locked') selfLocked;
+  @data('locked') _locked;
 
   @model()
     .named('project/nodes')
@@ -52,6 +70,7 @@ export default class Project extends Model {
   constructor(owner, { doc }) {
     super(owner);
     this.doc = doc;
+    this.lock = new Lock(this);
   }
 
   //
