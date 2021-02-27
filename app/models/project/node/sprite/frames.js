@@ -1,14 +1,15 @@
-import Node from '../-node';
+import Node, { data } from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
-import { tracked } from "@glimmer/tracking";
 import { editing } from 'petit/util/editing';
 
 export default class SpriteFramesNode extends Node {
 
   typeName = 'Frames';
   group = this;
+
+  @data('frame') _frame;
 
   @reads('parent') sprite;
 
@@ -27,18 +28,12 @@ export default class SpriteFramesNode extends Node {
 
   //
 
-  @tracked _frame;
-
   get frame() {
-    let frame = this._frame;
-    if(!frame) {
-      frame = this.children[0] || null;
-    }
-    return frame;
+    return this.children[this._frame] || this.children[0] || null;
   }
 
   select(frame) {
-    this._frame = frame;
+    this.update({ frame: frame?.index || 0 });
     this.nodes.select(frame);
   }
 
