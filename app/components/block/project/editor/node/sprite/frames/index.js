@@ -24,9 +24,6 @@ export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Co
 
   // @action
   // onBindHotkeys(hotkeys) {
-  //   hotkeys.add('left', () => this.frames.selectPrev());
-  //   hotkeys.add('right', () => this.frames.selectNext());
-
   //   let color = (c, value) => hotkeys.add(c, e => {
   //     e.preventRepeat();
   //     this.color = value;

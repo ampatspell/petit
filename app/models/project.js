@@ -116,6 +116,16 @@ export default class Project extends Model {
 
   //
 
+  onKeyLeft() {
+    this.selected?.onKeyLeft();
+  }
+
+  onKeyRight() {
+    this.selected?.onKeyRight();
+  }
+
+  //
+
   toStringExtension() {
     let { id } = this;
     return `${id}`;

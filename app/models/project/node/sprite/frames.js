@@ -83,4 +83,14 @@ export default class SpriteFramesNode extends Node {
     this.editing = false;
   }
 
+  //
+
+  onKeyLeft() {
+    this.selectPrev();
+  }
+
+  onKeyRight() {
+    this.selectNext();
+  }
+
 }

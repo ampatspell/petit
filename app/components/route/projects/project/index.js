@@ -1,11 +1,14 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { reads } from "macro-decorators";
 
 export default class RouteProjectsProjectIndexComponent extends Component {
 
   @service dialogs;
   @service router;
+
+  @reads('args.project') project;
 
   @action
   async delete() {
@@ -14,7 +17,13 @@ export default class RouteProjectsProjectIndexComponent extends Component {
       return;
     }
     this.router.transitionTo('projects');
-    await this.args.project.delete();
+    await this.project.delete();
+  }
+
+  @action
+  onBindHotkeys(hotkeys) {
+    hotkeys.add('left', () => this.project.onKeyLeft());
+    hotkeys.add('right', () => this.project.onKeyRight());
   }
 
 }
