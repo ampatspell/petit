@@ -1,0 +1,7 @@
+{{#if @palette}}
+  <div class="block-node-palette-toolbar">
+    {{#each @palette.colors as |color|}}
+      <Block::Node::Palette::Color::Rect class="color" @color={{color}}/>
+    {{/each}}
+  </div>
+{{/if}}
