@@ -134,6 +134,8 @@ export default class Node extends Model {
     sortedBy(this.parentChildren, 'index').forEach((model, index) => model.update({ index }));
   }
 
+  didMove() {}
+
   async moveUp() {
     let another = prevObject(this.parentChildren, this);
     if(!another) {
@@ -143,6 +145,7 @@ export default class Node extends Model {
     this.update({ index: another.index });
     another.update({ index: index });
     this.reorderParentChildren();
+    this.didMove();
   }
 
   async moveDown() {
@@ -154,6 +157,7 @@ export default class Node extends Model {
     this.update({ index: another.index });
     another.update({ index: index });
     this.reorderParentChildren();
+    this.didMove();
   }
 
   //
