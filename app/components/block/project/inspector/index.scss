@@ -11,5 +11,20 @@
     left: 0;
     right: 0;
     bottom: 0;
+    > .development {
+      padding: 10px;
+      > .set-global {
+        margin-bottom: 5px;
+      }
+      > .row {
+        margin-bottom: 5px;
+        font-size: $font-size-small;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }
