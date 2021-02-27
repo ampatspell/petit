@@ -3,8 +3,7 @@ import { activate } from 'zuglet/decorators';
 import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
-import { or } from "macro-decorators";
-import { reads } from "macro-decorators";
+import { reads, or } from "macro-decorators";
 
 const {
   assign
@@ -56,6 +55,44 @@ class EditorProperties {
 
 }
 
+class Lock {
+
+  constructor(node) {
+    this.node = node;
+  }
+
+  @reads('node._locked') _locked;
+  @reads('node.parent.lock.locked') _parent;
+  @reads('node.nodes.locked') _nodes;
+
+  @or('_locked', '_parent', '_nodes') locked;
+  @or('_parent', '_nodes') parent;
+  @reads('_locked') self;
+
+  toggle() {
+    this.node.update({ locked: !this._locked });
+  }
+
+}
+
+class Hide {
+
+  constructor(node) {
+    this.node = node;
+  }
+
+  @reads('node._hidden') _hidden;
+
+  @reads('node.parent.hide.hidden') parent;
+  @or('_hidden', 'parent') hidden;
+  @reads('_hidden') self;
+
+  toggle() {
+    this.node.update({ hidden: !this._hidden });
+  }
+
+}
+
 export default class Node extends Model {
 
   @service store;
@@ -72,8 +109,8 @@ export default class Node extends Model {
   @data('parent') parentId;
   @data('locked') _locked;
   @data('hidden') _hidden;
-  @data('expanded') expanded;
   @data('editor') _editor;
+  @data('expanded') expanded;
 
   @scheduleSave _scheduleSave;
 
@@ -82,50 +119,31 @@ export default class Node extends Model {
     this.doc = doc;
     this.nodes = nodes;
     this.editor = new EditorProperties(this);
+    this.lock = new Lock(this);
+    this.hide = new Hide(this);
   }
 
   //
 
+  // TODO: remove
   get locked() {
-    return this._locked || this.parent?.locked || this.nodes.locked;
+    return this.lock.locked;
   }
 
-  get parentLocked() {
-    return this.locked && !this._locked;
-  }
-
-  get selfLocked() {
-    return this._locked;
-  }
-
-  //
-
+  // TODO: remove
   get hidden() {
-    return this._hidden || this.parent?.hidden;
+    return this.hide.hidden;
   }
-
-  get parentHidden() {
-    return this.hidden && !this._hidden;
-  }
-
-  get selfHidden() {
-    return this._hidden;
-  }
-
-  //
 
   get selected() {
     return this.nodes.selected === this;
   }
 
   get editable() {
-    return !this.nodes.isBusy && !this.locked;
+    return !this.nodes.isBusy && !this.lock.locked;
   }
 
-  get parentChildren() {
-    let { parent } = this;
-    return parent ? parent.children : this.nodes.root;
-  }
+  //
 
   get tree() {
     return {
@@ -133,6 +151,13 @@ export default class Node extends Model {
       lockable: true,
       hideable: true,
     };
+  }
+
+  //
+
+  get parentChildren() {
+    let { parent } = this;
+    return parent ? parent.children : this.nodes.root;
   }
 
   hasParent(node) {

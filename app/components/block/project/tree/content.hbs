@@ -3,14 +3,12 @@
   <@tree.item
     class={{node.type}}
     @selected={{node.selected}}
-    @locked={{node.locked}}
-    @parentLocked={{node.parentLocked}}
-    @hidden={{node.hidden}}
-    @parentHidden={{node.parentHidden}}
+    @lock={{node.lock}}
+    @lockable={{node.tree.lockable}}
+    @hide={{node.hide}}
+    @hideable={{node.tree.hideable}}
     @expanded={{node.expanded}}
     @expandable={{node.tree.expandable}}
-    @lockable={{node.tree.lockable}}
-    @hideable={{node.tree.hideable}}
     @warning={{node.hasWarnings}}
     @onSelect={{fn @onSelect node}}
     @onUpdate={{fn @onUpdate node}}

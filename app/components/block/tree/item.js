@@ -12,16 +12,13 @@ export default class BlockTreeItemComponent extends Component {
   @action
   onToggleLock(e) {
     e.stopPropagation();
-    let { locked, parentLocked, onUpdate } = this.args;
-    let selfLocked = locked && !parentLocked;
-    onUpdate && onUpdate({ locked: !selfLocked });
+    this.args.lock.toggle();
   }
 
   @action
   onToggleHidden(e) {
     e.stopPropagation();
-    let { hidden, onUpdate } = this.args;
-    onUpdate && onUpdate({ hidden: !hidden });
+    this.args.hide.toggle();
   }
 
   @action
@@ -32,14 +29,14 @@ export default class BlockTreeItemComponent extends Component {
   }
 
   get lock() {
-    let { locked, parentLocked } = this.args;
+    let { locked, parent } = this.args.lock;
 
     let icon;
     let faded;
 
     if(locked) {
       icon = 'lock';
-      faded = parentLocked;
+      faded = parent;
     } else {
       icon = 'unlock';
       faded = true;
@@ -52,13 +49,13 @@ export default class BlockTreeItemComponent extends Component {
   }
 
   get hidden() {
-    let { hidden, parentHidden } = this.args;
+    let { hidden, parent } = this.args.hide;
     let icon;
     let faded;
 
     if(hidden) {
       icon = 'eye-slash';
-      faded = parentHidden;
+      faded = parent;
     } else {
       icon = 'eye';
       faded = true;

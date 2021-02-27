@@ -5,14 +5,12 @@ export default class BlockProjectInspectorContentHeaderComponent extends Compone
 
   @action
   toggleLocked() {
-    let { model } = this.args;
-    model.update({ locked: !model.selfLocked });
+    this.args.model.lock.toggle();
   }
 
   @action
   toggleHidden() {
-    let { model } = this.args;
-    model.update({ hidden: !model.selfHidden });
+    this.args.model.hide.toggle();
   }
 
 }
