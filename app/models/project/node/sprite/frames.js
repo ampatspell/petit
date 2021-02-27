@@ -1,12 +1,15 @@
-import Node from '../-node';
+import Node, { data } from '../-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
+import { editing } from 'petit/util/editing';
 
 export default class SpriteFramesNode extends Node {
 
   typeName = 'Frames';
   group = this;
+
+  @data('frame') _frame;
 
   @reads('parent') sprite;
 
@@ -23,16 +26,19 @@ export default class SpriteFramesNode extends Node {
     });
   }
 
+  //
+
   get frame() {
-    let selected = this.nodes.selected;
-    if(selected && selected.group === this) {
-      if(selected === this) {
-        return this.children[0] || null;
-      }
-      return selected;
-    }
-    return null;
+    let index = this._frame;
+    return this.children.find(child => child.index === index) || this.children[0] || null;
   }
+
+  select(frame) {
+    this.update({ frame: frame?.index || 0 });
+    this.nodes.select(frame);
+  }
+
+  //
 
   selectPrev() {
     let { frame, children } = this;
@@ -46,7 +52,7 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next, { expandParents: true });
+      this.select(next);
     }
   }
 
@@ -62,9 +68,19 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this.nodes.select(next, { expandParents: true });
+      this.select(next);
     }
   }
 
+  //
+
+  @editing('locked') editing;
+
+  didDeselect(next) {
+    if(next && next.parent === this || next === this) {
+      return;
+    }
+    this.editing = false;
+  }
 
 }

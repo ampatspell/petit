@@ -1,0 +1,16 @@
+<div class="block-project-editor-node-palette" role="button" {{on "click" (fn this.select null)}}>
+
+  <div class="identifier">
+    {{or @node.identifier 'No identifier'}}
+  </div>
+
+  <div class="colors">
+    {{#each @node.colors as |color|}}
+      {{!-- template-lint-disable no-nested-interactive --}}
+      <div class="color" role="button" {{on "click" (fn this.select color)}}>
+        <Block::Node::Palette::Color::Rect @size="small" class="rect" @color={{color}}/>
+      </div>
+    {{/each}}
+  </div>
+
+</div>

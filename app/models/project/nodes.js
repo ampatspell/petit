@@ -51,6 +51,12 @@ export default class Nodes extends Model {
     return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
 
+  get groups() {
+    return this.root.filter(node => !node.hidden).reduce((nodes, node) => {
+      return [ ...nodes, ...node.groups.filter(node => !node.hidden) ];
+    }, []);
+  }
+
   get orphans() {
     return this.all.filter(node => node.parentId && !node.parent);
   }
@@ -75,10 +81,15 @@ export default class Nodes extends Model {
 
   select(node, opts) {
     let { expandParents } = assign({ expandParents: false }, opts);
-    this.selected = node;
-    this.delegate.didSelectNode(node);
-    if(node && expandParents) {
-      this.maybeExpandNodeParents(node);
+    let { selected } = this;
+    if(selected !== node) {
+      this.selected = node;
+      node && node.didSelect();
+      selected && selected.didDeselect(node);
+      this.delegate.didSelectNode(node);
+      if(node && expandParents) {
+        this.maybeExpandNodeParents(node);
+      }
     }
   }
 
@@ -129,10 +140,12 @@ export default class Nodes extends Model {
 
     return assign({
       parent,
+      identifier,
       index,
+      editor: { x: 10, y: 10 },
       expanded: false,
       locked: false,
-      identifier,
+      hidden: false,
       createdAt
     }, props);
   }

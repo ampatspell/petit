@@ -4,6 +4,11 @@ import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
 import { or } from "macro-decorators";
+import { reads } from "macro-decorators";
+
+const {
+  assign
+} = Object;
 
 export {
   doc,
@@ -33,6 +38,24 @@ export const reference = (type, identifierKey) => () => ({
   }
 });
 
+class EditorProperties {
+
+  @reads('node._editor') data;
+
+  @reads('data.x') x;
+  @reads('data.y') y;
+
+  constructor(node) {
+    this.node = node;
+  }
+
+  update(props) {
+    assign(this.data, props);
+    this.node._scheduleSave.schedule();
+  }
+
+}
+
 export default class Node extends Model {
 
   @service store;
@@ -48,7 +71,9 @@ export default class Node extends Model {
   @data('identifier') identifier;
   @data('parent') parentId;
   @data('locked') _locked;
+  @data('hidden') _hidden;
   @data('expanded') expanded;
+  @data('editor') _editor;
 
   @scheduleSave _scheduleSave;
 
@@ -56,6 +81,7 @@ export default class Node extends Model {
     super(owner);
     this.doc = doc;
     this.nodes = nodes;
+    this.editor = new EditorProperties(this);
   }
 
   //
@@ -72,6 +98,22 @@ export default class Node extends Model {
     return this._locked;
   }
 
+  //
+
+  get hidden() {
+    return this._hidden || this.parent?.hidden;
+  }
+
+  get parentHidden() {
+    return this.hidden && !this._hidden;
+  }
+
+  get selfHidden() {
+    return this._hidden;
+  }
+
+  //
+
   get selected() {
     return this.nodes.selected === this;
   }
@@ -83,6 +125,22 @@ export default class Node extends Model {
   get parentChildren() {
     let { parent } = this;
     return parent ? parent.children : this.nodes.root;
+  }
+
+  get tree() {
+    return {
+      expandable: this.hasChildren,
+      lockable: true,
+      hideable: true,
+    };
+  }
+
+  hasParent(node) {
+    let { parent } = this;
+    if(parent === node) {
+      return true;
+    }
+    return parent?.hasParent(node);
   }
 
   get isFirst() {
@@ -145,9 +203,11 @@ export default class Node extends Model {
     return hash;
   }
 
-  update(props) {
+  update(props, schedule=true) {
     Object.assign(this.doc.data, this._normalizeReferences(props));
-    this._scheduleSave.schedule();
+    if(schedule) {
+      this._scheduleSave.schedule();
+    }
   }
 
   async delete() {
@@ -206,6 +266,14 @@ export default class Node extends Model {
   async _createNode(props) {
     this.update({ expanded: true });
     return this.nodes._createNode(this, props);
+  }
+
+  //
+
+  didDeselect() {
+  }
+
+  didSelect() {
   }
 
   //

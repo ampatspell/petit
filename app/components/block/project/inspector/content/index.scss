@@ -29,9 +29,13 @@
       > .accessories {
         font-size: 11px;
         > .icon {
+          margin: 0 0 0 3px;
           transition: 0.15s ease-in-out opacity;
           &.faded {
             opacity: 0.3;
+          }
+          &:first-child {
+            margin: 0;
           }
         }
       }

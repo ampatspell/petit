@@ -3,7 +3,7 @@ import { reads } from "macro-decorators";
 import { cached } from 'tracked-toolbox';
 import { Pixel, fromIndex, toIndex } from 'petit/util/pixel';
 
-export default class BlockKonvaEditorSpriteFramesFrameContentComponent extends Shape {
+export default class BlockProjectEditorNodeSpriteFramesFrameContentComponent extends Shape {
 
   @reads('args.editing') editing;
   @reads('args.size') size;

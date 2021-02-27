@@ -1,0 +1,17 @@
+<div class="block-project-editor">
+  <div class="border"></div>
+  <div
+    class="content"
+    role="button"
+    {{did-insert this.didInsertContent}}
+    {{on "click" this.onDeselect}}
+  >
+    {{#each this.groups as |node idx|}}
+      <Block::Project::Editor::Node
+        @index={{idx}}
+        @node={{node}}
+        @onSelect={{fn this.onSelect node}}
+      />
+    {{/each}}
+  </div>
+</div>

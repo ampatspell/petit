@@ -3,16 +3,24 @@ import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
 import { Pixel } from 'petit/util/pixel';
-import { editing } from 'petit/util/editing';
 
-export default class BlockKonvaEditorSpriteFramesIndexComponent extends Component {
+export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Component {
 
-  @reads('args.model.group') frames;
+  @reads('args.node') frames;
   @reads('frames.frame') frame;
   @reads('frame.palette.model') palette;
+  @reads('frames.editing') editing;
 
-  @editing('frame.locked') editing;
   @tracked color = Pixel.black;
+
+  get size() {
+    let { width, height, pixel } = this.frame;
+    let s = value => value * pixel;
+    return {
+      width: s(width),
+      height: s(height)
+    };
+  }
 
   @action
   onBindHotkeys(hotkeys) {
@@ -31,12 +39,7 @@ export default class BlockKonvaEditorSpriteFramesIndexComponent extends Componen
 
   @action
   startEditing() {
-    this.editing = true;
-  }
-
-  @action
-  stopEditing() {
-    this.editing = false;
+    this.frames.editing = true;
   }
 
 }

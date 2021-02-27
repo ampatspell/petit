@@ -5,8 +5,12 @@
     @selected={{node.selected}}
     @locked={{node.locked}}
     @parentLocked={{node.parentLocked}}
+    @hidden={{node.hidden}}
+    @parentHidden={{node.parentHidden}}
     @expanded={{node.expanded}}
-    @expandable={{node.hasChildren}}
+    @expandable={{node.tree.expandable}}
+    @lockable={{node.tree.lockable}}
+    @hideable={{node.tree.hideable}}
     @warning={{node.hasWarnings}}
     @onSelect={{fn @onSelect node}}
     @onUpdate={{fn @onUpdate node}}

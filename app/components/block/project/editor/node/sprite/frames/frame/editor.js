@@ -1,35 +1,22 @@
 import Group from 'ember-cli-konva/components/konva/node/group';
-// import { pick } from 'ember-cli-konva/util/object';
 import { reads } from "macro-decorators";
 
 const stroke = (locked, editing) => {
   return locked ? 'rgba(0,0,0,0.15)' : editing ? 'rgba(255,102,97,0.75)' : 'rgba(96,190,253, 0.5)'
 };
 
-export default class BlockKonvaEditorSpriteFramesFrameEditorComponent extends Group {
+export default class BlockProjectEditorNodeSpriteFramesFrameEditorComponent extends Group {
 
   get nodeProperties() {
-    // return pick(super.nodeProperties, [ 'x', 'y' ]);
-    let { stageSize } = this.args;
-    let size = this.size;
-    let c = (d) => Math.round((stageSize[d] / 2) - (size[d] / 2));
     return {
-      x: c('width'),
-      y: c('height')
+      x: 0,
+      y: 0
     };
   }
 
   @reads('args.frame') frame;
   @reads('args.editing') editing;
-
-  get size() {
-    let { width, height, pixel } = this.args.frame;
-    let s = value => value * pixel;
-    return {
-      width: s(width),
-      height: s(height)
-    };
-  }
+  @reads('args.size') size;
 
   get border() {
     let { editing, frame: { locked }, size: { width, height } } = this;

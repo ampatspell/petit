@@ -9,13 +9,13 @@
 @import "block/project/tree";
 @import "block/project/inspector";
 @import "block/project/inspector/content";
-@import "block/project/node";
-@import "block/project/node/project";
-@import "block/project/node/sprite";
-@import "block/project/node/palette";
+@import "block/project/editor";
+@import "block/project/editor/node";
+@import "block/project/editor/node/scene";
+@import "block/project/editor/node/sprite/frames";
+@import "block/project/editor/node/palette";
 @import "block/project/timeline";
 @import "block/project/timeline/sprite/frames";
-@import "block/konva/editor";
 
 @import "route/index";
 @import "route/session/new";

@@ -1,0 +1,12 @@
+<div
+  class={{class 'block-project-editor-node' type=@node.type}}
+  role="button"
+  data-type="editor"
+  data-index={{@index}}
+  style={{this.style}}
+  {{on 'click' this.onClick}}
+>
+  {{component (concat 'block/project/editor/node/' @node.type)
+    node=@node
+  }}
+</div>

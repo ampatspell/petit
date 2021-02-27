@@ -9,4 +9,10 @@ export default class BlockProjectInspectorContentHeaderComponent extends Compone
     model.update({ locked: !model.selfLocked });
   }
 
+  @action
+  toggleHidden() {
+    let { model } = this.args;
+    model.update({ hidden: !model.selfHidden });
+  }
+
 }
