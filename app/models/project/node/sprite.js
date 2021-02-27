@@ -54,6 +54,12 @@ export default class SpriteNode extends Node {
 
   //
 
+  @data('width') width;
+  @data('height') height;
+  @data('pixel') pixel;
+
+  //
+
   @data('palette') _palette;
   @reference('palette', '_palette') palette;
 
@@ -134,6 +140,14 @@ export default class SpriteNode extends Node {
 
   onKeyRight() {
     this.selectNext();
+  }
+
+  onKeyNumber(n) {
+    let mapping = [ 0, 1, 2, 4, 8, 20 ];
+    let pixel = mapping[n];
+    if(typeof pixel !== 'undefined') {
+      this.update({ pixel });
+    }
   }
 
 }

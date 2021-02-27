@@ -110,20 +110,25 @@ export default class Project extends Model {
 
   //
 
-  onKeyLeft() {
+  _onKey(name, ...args) {
     let { selected } = this;
     if(selected === this) {
       return;
     }
-    selected?.onKeyLeft();
+    let fn = selected?.[name];
+    fn && fn.call(selected, ...args);
+  }
+
+  onKeyLeft() {
+    this._onKey('onKeyLeft');
   }
 
   onKeyRight() {
-    let { selected } = this;
-    if(selected === this) {
-      return;
-    }
-    selected?.onKeyRight();
+    this._onKey('onKeyRight');
+  }
+
+  onKeyNumber(number) {
+    this._onKey('onKeyNumber', number);
   }
 
   //

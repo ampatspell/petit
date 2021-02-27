@@ -24,6 +24,9 @@ export default class RouteProjectsProjectIndexComponent extends Component {
   onBindHotkeys(hotkeys) {
     hotkeys.add('left', () => this.project.onKeyLeft());
     hotkeys.add('right', () => this.project.onKeyRight());
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ].forEach(key => {
+      hotkeys.add(`${key}`, () => this.project.onKeyNumber(key));
+    });
   }
 
 }

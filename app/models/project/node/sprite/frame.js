@@ -6,17 +6,17 @@ export default class SpriteFrameNode extends Node {
 
   typeName = 'Frame';
 
-  width = 16;
-  height = 16;
-  pixel = 20;
-
-  //
-
   @reads('parent') sprite;
 
   get group() {
     return this.parent;
   }
+
+  //
+
+  @reads('sprite.width') width;
+  @reads('sprite.height') height;
+  @reads('sprite.pixel') pixel;
 
   //
 
@@ -86,6 +86,10 @@ export default class SpriteFrameNode extends Node {
 
   onKeyRight() {
     this.sprite.onKeyRight();
+  }
+
+  onKeyNumber() {
+    this.sprite.onKeyNumber(...arguments);
   }
 
 }

@@ -167,6 +167,9 @@ export default class Nodes extends Model {
   async createNewSprite() {
     return await this._createNode(null, {
       type: 'sprite',
+      width: 16,
+      height: 16,
+      pixel: 20,
       version: 1
     });
   }
