@@ -1,4 +1,4 @@
-import Node, { child, reference, data, lock, hide, expand, warnings } from './-node';
+import Node, { child, lock, hide, expand, warnings } from './-node';
 
 export default class SpriteNode extends Node {
 
