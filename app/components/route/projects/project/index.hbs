@@ -1,5 +1,7 @@
 <div class="route-projects-project-index">
 
+  <Konva::Hotkeys @onBind={{this.onBindHotkeys}}/>
+
   <Block::Project::Tree @nodes={{@project.nodes}} class="tree"/>
   <div class="content">
     <Block::Project::Editor @project={{@project}} class="editor"/>

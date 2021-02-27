@@ -1,9 +1,4 @@
 <div class="block-project-editor-node-palette" role="button" {{on "click" (fn this.select null)}}>
-
-  <div class="identifier">
-    {{or @node.identifier 'No identifier'}}
-  </div>
-
   <div class="colors">
     {{#each @node.colors as |color|}}
       {{!-- template-lint-disable no-nested-interactive --}}
@@ -12,5 +7,4 @@
       </div>
     {{/each}}
   </div>
-
 </div>

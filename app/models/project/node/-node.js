@@ -298,11 +298,13 @@ export default class Node extends Model {
 
   //
 
-  didDeselect() {
-  }
+  didDeselect() {}
+  didSelect() {}
 
-  didSelect() {
-  }
+  //
+
+  onKeyLeft() {}
+  onKeyRight() {}
 
   //
 
