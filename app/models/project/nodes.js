@@ -141,7 +141,7 @@ export default class Nodes extends Model {
       parent,
       identifier,
       index,
-      editor: { x: 10, y: 10 },
+      editor: { x: 10, y: 20 },
       expanded: false,
       locked: false,
       hidden: false,
@@ -149,7 +149,8 @@ export default class Nodes extends Model {
     }, props);
   }
 
-  async _createNode(parent, props) {
+  async _createNode(parent, props, opts) {
+    opts = assign({ select: true }, opts);
     this.isBusy = true;
     props = this._createNodeProperties(parent, props);
     try {
@@ -157,7 +158,9 @@ export default class Nodes extends Model {
       this.query.register(doc);
       await doc.save();
       let model = this.all.find(model => model.doc === doc);
-      this.select(model);
+      if(opts.select) {
+        this.select(model);
+      }
       return model;
     } finally {
       this.isBusy = false;
@@ -165,13 +168,20 @@ export default class Nodes extends Model {
   }
 
   async createNewSprite() {
-    return await this._createNode(null, {
+    let palette = this.all.find(node => node.type === 'palette' && node.identifier)?.identifier || null;
+
+    let sprite = await this._createNode(null, {
       type: 'sprite',
+      palette,
       width: 16,
       height: 16,
-      pixel: 20,
+      pixel: 4,
       version: 1
     });
+
+    await sprite.createNewFrame({ select: false });
+
+    return sprite;
   }
 
   async createNewScene() {

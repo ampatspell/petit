@@ -38,12 +38,12 @@ export default class SpriteNode extends Node {
   referenceKeys = [ 'palette' ];
 
   async createNewFrame(opts) {
-    let { bytes } = assign({ bytes: defaultBytes(this) }, opts);
+    let { bytes, select } = assign({ bytes: defaultBytes(this) }, opts);
     return this._createNode({
       type: 'sprite/frame',
       bytes,
       version: 1
-    });
+    }, { select });
   }
 
   //
