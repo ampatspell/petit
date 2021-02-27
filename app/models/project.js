@@ -117,11 +117,19 @@ export default class Project extends Model {
   //
 
   onKeyLeft() {
-    this.selected?.onKeyLeft();
+    let { selected } = this;
+    if(selected === this) {
+      return;
+    }
+    selected?.onKeyLeft();
   }
 
   onKeyRight() {
-    this.selected?.onKeyRight();
+    let { selected } = this;
+    if(selected === this) {
+      return;
+    }
+    selected?.onKeyRight();
   }
 
   //
