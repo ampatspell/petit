@@ -270,6 +270,14 @@ export default class Node extends Model {
 
   //
 
+  didDeselect() {
+  }
+
+  didSelect() {
+  }
+
+  //
+
   toStringExtension() {
     let { id } = this;
     return `${id}`;

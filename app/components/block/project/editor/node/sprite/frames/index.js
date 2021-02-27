@@ -3,15 +3,14 @@ import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
 import { Pixel } from 'petit/util/pixel';
-import { editing } from 'petit/util/editing';
 
 export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Component {
 
   @reads('args.node') frames;
   @reads('frames.frame') frame;
   @reads('frame.palette.model') palette;
+  @reads('frames.editing') editing;
 
-  @editing('frame.locked') editing;
   @tracked color = Pixel.black;
 
   get size() {
@@ -40,7 +39,7 @@ export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Co
 
   @action
   startEditing() {
-    this.editing = true;
+    this.frames.editing = true;
   }
 
 }

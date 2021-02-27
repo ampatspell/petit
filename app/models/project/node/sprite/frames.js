@@ -3,6 +3,7 @@ import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
+import { editing } from 'petit/util/editing';
 
 export default class SpriteFramesNode extends Node {
 
@@ -38,6 +39,7 @@ export default class SpriteFramesNode extends Node {
 
   select(frame) {
     this._frame = frame;
+    this.nodes.select(frame);
   }
 
   //
@@ -54,7 +56,7 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this._frame = next;
+      this.select(next);
     }
   }
 
@@ -70,9 +72,19 @@ export default class SpriteFramesNode extends Node {
     }
 
     if(next) {
-      this._frame = next;
+      this.select(next);
     }
   }
 
+  //
+
+  @editing('locked') editing;
+
+  didDeselect(next) {
+    if(next && next.parent === this || next === this) {
+      return;
+    }
+    this.editing = false;
+  }
 
 }

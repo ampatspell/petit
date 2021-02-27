@@ -81,10 +81,15 @@ export default class Nodes extends Model {
 
   select(node, opts) {
     let { expandParents } = assign({ expandParents: false }, opts);
-    this.selected = node;
-    this.delegate.didSelectNode(node);
-    if(node && expandParents) {
-      this.maybeExpandNodeParents(node);
+    let { selected } = this;
+    if(selected !== node) {
+      this.selected = node;
+      node && node.didSelect();
+      selected && selected.didDeselect(node);
+      this.delegate.didSelectNode(node);
+      if(node && expandParents) {
+        this.maybeExpandNodeParents(node);
+      }
     }
   }
 

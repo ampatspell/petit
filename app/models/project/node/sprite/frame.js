@@ -64,4 +64,14 @@ export default class SpriteFrameNode extends Node {
     return await group.createNewFrame({ bytes });
   }
 
+  //
+
+  didDeselect(next) {
+    this.frames.didDeselect(next);
+  }
+
+  didSelect() {
+    this.frames.select(this);
+  }
+
 }
