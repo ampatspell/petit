@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { setGlobal } from 'petit/util/set-global';
 
-export default class BlockSetGlobalComponent extends Component {
+export default class BlockSetGlobalIndexComponent extends Component {
 
   @action
   setGlobal() {

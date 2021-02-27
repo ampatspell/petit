@@ -53,7 +53,7 @@ export default class Nodes extends Model {
 
   get groups() {
     return this.root.filter(node => !node.hidden).reduce((nodes, node) => {
-      return [ ...nodes, ...node.groups ];
+      return [ ...nodes, ...node.groups.filter(node => !node.hidden) ];
     }, []);
   }
 
