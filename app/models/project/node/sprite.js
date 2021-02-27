@@ -7,7 +7,7 @@ export default class SpriteNode extends Node {
   referenceKeys = [ 'palette' ];
 
   get groups() {
-    return [ this.frames ];
+    return [ this.frames ].filter(Boolean);
   }
 
   @data('palette') _palette;

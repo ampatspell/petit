@@ -74,7 +74,7 @@ export default class SpriteFramesNode extends Node {
 
   //
 
-  @editing('locked') editing;
+  @editing('lock.locked') editing;
 
   didDeselect(next) {
     if(next && next.parent === this || next === this) {

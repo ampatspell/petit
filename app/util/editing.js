@@ -36,7 +36,7 @@ class Editing {
 
 const getEditing = (target, key, locked, initial) => getInstance(target, key, () => new Editing(target, locked, initial));
 
-export const editing = (locked='locked') => (_target, key, def) => {
+export const editing = (locked='lock.locked') => (_target, key, def) => {
   let initial = def.initializer ? def.initializer() : false;
   return {
     get() {

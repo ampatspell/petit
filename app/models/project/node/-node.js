@@ -150,16 +150,6 @@ export default class Node extends Model {
 
   //
 
-  // TODO: remove
-  get locked() {
-    return this.lock.locked;
-  }
-
-  // TODO: remove
-  get hidden() {
-    return this.hide.hidden;
-  }
-
   get selected() {
     return this.nodes.selected === this;
   }
