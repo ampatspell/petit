@@ -47,6 +47,9 @@ export default class Project extends Model {
   @data('title') title;
   @data('createdAt') createdAt;
 
+  // TODO: move to editor
+  @data('overlays') overlays;
+
   @model()
     .named('project/nodes')
     .mapping(project => ({

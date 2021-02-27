@@ -1,0 +1,4 @@
+<div class="checkbox" role="button" {{on "click" this.onToggle}}>
+  <Input::Checkbox class="checkbox" @value={{get @model @key}} @disabled={{not @model.editable}}/>
+  <div class="label">{{@label}}</div>
+</div>

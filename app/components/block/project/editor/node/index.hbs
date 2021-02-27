@@ -6,7 +6,9 @@
   style={{this.style}}
   {{on 'click' this.onClick}}
 >
-  <div class="identifier">{{or @node.identifier 'No identifier'}}</div>
+  {{#if @overlays}}
+    <div class="identifier">{{or @node.identifier 'No identifier'}}</div>
+  {{/if}}
   {{component (concat 'block/project/editor/node/' @node.type)
     node=@node
   }}

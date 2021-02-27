@@ -1,6 +1,9 @@
 <@content.header @name={{@model.title}}/>
 <@content.input @label="Title" @key="title"/>
 <@content.actions as |actions|>
+  <actions.checkbox @label="Show identifiers" @key="overlays"/>
+</@content.actions>
+<@content.actions as |actions|>
   <actions.button @label="Add new sprite" @onClick={{this.addSprite}}/>
   <actions.button @label="Add new scene" @onClick={{this.addScene}}/>
   <actions.button @label="Add new palette" @onClick={{this.addPalette}}/>
