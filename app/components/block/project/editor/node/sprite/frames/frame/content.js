@@ -1,7 +1,7 @@
 import Shape from 'ember-cli-konva/components/konva/node/shape';
 import { reads } from "macro-decorators";
 import { cached } from 'tracked-toolbox';
-import { Pixel, fromIndex, toIndex } from 'petit/util/pixel';
+import { fromIndex, toIndex } from 'petit/util/pixel';
 
 export default class BlockProjectEditorNodeSpriteFramesFrameContentComponent extends Shape {
 

@@ -110,7 +110,10 @@ class Warnings {
 
   get missingReferences() {
     let { node } = this;
-    return !!node.referenceKeys.find(key => node[key].missing === true);
+    return !!node.referenceKeys.find(key => {
+      let ref = node[key];
+      return ref.missing === true || ref.model === null;
+    });
   }
 
   @or('identifierConflict', 'missingReferences') any;
