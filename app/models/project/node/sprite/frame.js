@@ -10,9 +10,8 @@ export default class SpriteFrameNode extends Node {
   height = 16;
   pixel = 20;
 
-  @reads('parent') frames;
-  @reads('frames.sprite') sprite;
-  @reads('frames.palette') palette;
+  @reads('parent') sprite;
+  @reads('sprite.palette') palette;
 
   @data('bytes') _blob;
 
@@ -59,21 +58,25 @@ export default class SpriteFrameNode extends Node {
   //
 
   didDeselect(next) {
-    this.frames.didDeselect(next);
+    this.sprite.didDeselect(next);
   }
 
   didSelect() {
-    this.frames.select(this);
+    this.sprite.select(this);
+  }
+
+  didMove() {
+    this.sprite.didMoveFrame(this);
   }
 
   //
 
   onKeyLeft() {
-    this.frames.onKeyLeft();
+    this.sprite.onKeyLeft();
   }
 
   onKeyRight() {
-    this.frames.onKeyRight();
+    this.sprite.onKeyRight();
   }
 
 }

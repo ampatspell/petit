@@ -2,13 +2,13 @@ import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { reads } from "macro-decorators";
 
-export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Component {
+export default class BlockProjectEditorNodeSpriteIndexComponent extends Component {
 
-  @reads('args.node') frames;
-  @reads('frames.frame') frame;
+  @reads('args.node') sprite;
+  @reads('sprite.frame') frame;
   @reads('frame.palette.model') palette;
-  @reads('frames.editing') editing;
-  @reads('frames.color.index') color;
+  @reads('sprite.editing') editing;
+  @reads('sprite.color.index') color;
 
   get size() {
     let { width, height, pixel } = this.frame;
@@ -21,7 +21,7 @@ export default class BlockProjectEditorNodeSpriteFramesIndexComponent extends Co
 
   @action
   startEditing() {
-    this.frames.editing = true;
+    this.sprite.editing = true;
   }
 
 }

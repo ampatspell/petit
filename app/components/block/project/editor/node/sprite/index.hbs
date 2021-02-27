@@ -5,7 +5,7 @@
 
     <Konva::Node::Layer @parent={{parent}} as |parent|>
 
-      <Block::Project::Editor::Node::Sprite::Frames::Frame::Editor
+      <Block::Project::Editor::Node::Sprite::Frame::Editor
         @parent={{parent}}
         @size={{this.size}}
         @frame={{this.frame}}
@@ -20,7 +20,7 @@
 
   {{#if this.editing}}
     <Application::InTools>
-      <Block::Project::Editor::Node::Sprite::Frames::Tools @frames={{this.frames}}/>
+      <Block::Project::Editor::Node::Sprite::Tools @sprite={{this.sprite}}/>
     </Application::InTools>
   {{/if}}
 

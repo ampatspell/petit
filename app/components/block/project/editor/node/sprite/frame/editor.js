@@ -15,12 +15,12 @@ export default class BlockProjectEditorNodeSpriteFramesFrameEditorComponent exte
   }
 
   @reads('args.frame') frame;
-  @reads('frame.frames') frames;
+  @reads('frame.sprite') sprite;
   @reads('args.editing') editing;
   @reads('args.size') size;
 
   get border() {
-    let { editing, frames: { lock: { locked } }, size: { width, height } } = this;
+    let { editing, sprite: { lock: { locked } }, size: { width, height } } = this;
     return {
       x: 0,
       y: 0,
