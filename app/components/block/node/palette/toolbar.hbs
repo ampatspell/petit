@@ -3,7 +3,7 @@
     {{#each @palette.colors as |color|}}
       <Block::Node::Palette::Color::Rect
         class={{class 'color' selected=(eq @selected color)}}
-        @size='small'
+        @size='regular'
         @color={{color}}
         {{on 'click' (fn (optional-function @onSelect) color)}}
       />
