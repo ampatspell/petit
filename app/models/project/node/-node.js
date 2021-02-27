@@ -93,6 +93,30 @@ class Hide {
 
 }
 
+class Warnings {
+
+  constructor(node) {
+    this.node = node;
+  }
+
+  get identifierConflict() {
+    let { node, node: {identifier, nodes } } = this;
+    if(!identifier) {
+      return false;
+    }
+    let another = nodes.all.find(another => another !== node && another.identifier === identifier);
+    return !!another;
+  }
+
+  get missingReferences() {
+    let { node } = this;
+    return !!node.referenceKeys.find(key => node[key].missing === true);
+  }
+
+  @or('identifierConflict', 'missingReferences') any;
+
+}
+
 export default class Node extends Model {
 
   @service store;
@@ -121,6 +145,7 @@ export default class Node extends Model {
     this.editor = new EditorProperties(this);
     this.lock = new Lock(this);
     this.hide = new Hide(this);
+    this.warnings = new Warnings(this);
   }
 
   //
@@ -175,21 +200,6 @@ export default class Node extends Model {
   get isLast() {
     return lastObject(this.parentChildren) === this;
   }
-
-  get hasIdentifierConflict() {
-    let { identifier } = this;
-    if(!identifier) {
-      return false;
-    }
-    let another = this.nodes.all.find(node => node !== this && node.identifier === identifier);
-    return !!another;
-  }
-
-  get hasMissingReferences() {
-    return !!this.referenceKeys.find(key => this[key].missing === true);
-  }
-
-  @or('hasIdentifierConflict', 'hasMissingReferences') hasWarnings;
 
   //
 
