@@ -6,6 +6,8 @@ import { action } from "@ember/object";
 
 export default class BreadcrumbsService extends Service {
 
+  @tracked _tools;
+
   _items = [];
   @tracked items = [];
 

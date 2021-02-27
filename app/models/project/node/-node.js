@@ -159,7 +159,7 @@ export default class Node extends Model {
   //
 
   async _createNode(props) {
-    this.expand.expand();
+    this.expand?.expand();
     return this.nodes._createNode(this, props);
   }
 

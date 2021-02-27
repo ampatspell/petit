@@ -198,7 +198,7 @@ export default class Nodes extends Model {
     let orphans = this.orphans;
     while(orphans.length > 0) {
       console.log('delete', orphans.length);
-      await orphans.map(n => n.delete());
+      await Promise.all(orphans.map(n => n.delete()));
       orphans = this.orphans;
     }
     console.log('done');

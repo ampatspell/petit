@@ -25,6 +25,10 @@ export const lastObject = array => {
   return array && array[array.length - 1];
 }
 
+export const lastObjects = (array, count) => {
+  return array && array.slice(-count);
+}
+
 export const nextObject = (array, object) => {
   let idx = array.indexOf(object);
   if(idx === -1 || idx === array.length - 1) {

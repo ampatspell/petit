@@ -1,15 +1,28 @@
 <div class="application-header" ...attributes>
   <div class="items left">
-    <LinkTo @route="index">Petit</LinkTo>
-    <Block::Icon @name="chevron-right" @class="delimiter"/>
-    {{#each this.breadcrumbs.items as |item|}}
-      {{#if item.model}}
-        <LinkTo @route={{item.route}} @model={{item.model}}>{{item.label}}</LinkTo>
+
+    {{#if this.back}}
+
+      {{#if this.back.model}}
+        <LinkTo @route={{this.back.route}} @model={{this.back.model}}>
+          <Block::Icon @name="chevron-left" @class="icon"/>
+        </LinkTo>
       {{else}}
-        <LinkTo @route={{item.route}}>{{item.label}}</LinkTo>
+        <LinkTo @route={{this.back.route}}>
+          <Block::Icon @name="chevron-left" @class="icon"/>
+        </LinkTo>
       {{/if}}
-      <Block::Icon @name="chevron-right" @class="delimiter"/>
-    {{/each}}
+
+    {{/if}}
+
+    {{#if this.item.model}}
+      <LinkTo @route={{this.item.route}} @model={{this.item.model}}>{{this.item.label}}</LinkTo>
+    {{else}}
+      <LinkTo @route={{this.item.route}}>{{this.item.label}}</LinkTo>
+    {{/if}}
+
+  </div>
+  <div class="items tools" {{did-insert this.didInsertToolsElement}}>
   </div>
   <div class="items right">
     {{#if this.user}}
