@@ -4,7 +4,6 @@ import { scheduleSave } from '../../../util/schedule-save';
 import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
 import { inject as service } from "@ember/service";
 import { or } from "macro-decorators";
-import { tracked } from "@glimmer/tracking";
 import { reads } from "macro-decorators";
 
 const {
@@ -126,6 +125,10 @@ export default class Node extends Model {
   get parentChildren() {
     let { parent } = this;
     return parent ? parent.children : this.nodes.root;
+  }
+
+  get expandable() {
+    return this.hasChildren;
   }
 
   hasParent(node) {

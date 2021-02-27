@@ -15,6 +15,8 @@ export default class SpriteFramesNode extends Node {
     return this.children.length > 0;
   }
 
+  expandable = false;
+
   async createNewFrame({ bytes=null }={}) {
     bytes = bytes || this.store.blobFromUint8Array(new Uint8Array(heart)); // TODO: temporary. needs centering
     return this._createNode({

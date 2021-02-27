@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="items">
-    {{#if @expanded}}
+    {{#if (and @expandable @expanded)}}
       {{yield to="items"}}
     {{/if}}
   </div>
