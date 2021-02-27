@@ -127,8 +127,12 @@ export default class Node extends Model {
     return parent ? parent.children : this.nodes.root;
   }
 
-  get expandable() {
-    return this.hasChildren;
+  get tree() {
+    return {
+      expandable: this.hasChildren,
+      lockable: true,
+      hideable: true,
+    };
   }
 
   hasParent(node) {

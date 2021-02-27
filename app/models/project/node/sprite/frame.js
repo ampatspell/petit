@@ -2,6 +2,10 @@ import Node, { data } from '../-node';
 import { Pixel } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
 
+const {
+  assign
+} = Object;
+
 export default class SpriteFrameNode extends Node {
 
   typeName = 'Frame';
@@ -15,6 +19,10 @@ export default class SpriteFrameNode extends Node {
   @reads('sprite.palette') palette;
 
   @data('bytes') _blob;
+
+  get tree() {
+    return assign({}, super.tree, { lockable: false, hideable: false });
+  }
 
   get bytes() {
     let blob = this._blob;

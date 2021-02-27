@@ -8,7 +8,9 @@
     @hidden={{node.hidden}}
     @parentHidden={{node.parentHidden}}
     @expanded={{node.expanded}}
-    @expandable={{node.expandable}}
+    @expandable={{node.tree.expandable}}
+    @lockable={{node.tree.lockable}}
+    @hideable={{node.tree.hideable}}
     @warning={{node.hasWarnings}}
     @onSelect={{fn @onSelect node}}
     @onUpdate={{fn @onUpdate node}}
