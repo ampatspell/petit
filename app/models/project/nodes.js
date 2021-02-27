@@ -107,7 +107,7 @@ export default class Nodes extends Model {
   maybeExpandNodeParents(node) {
     let curr = node.parent;
     while(curr) {
-      curr.maybeExpand();
+      curr.expand && curr.expand.maybe();
       curr = curr.parent;
     }
   }

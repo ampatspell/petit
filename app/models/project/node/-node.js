@@ -9,11 +9,13 @@ import { hide } from './-node/hide';
 import { warnings } from './-node/warnings';
 import { reference } from './-node/reference';
 import { child } from './-node/child';
+import { expand } from './-node/expand';
 
 export {
   editor,
   hide,
   lock,
+  expand,
   warnings,
   reference,
   child,
@@ -35,7 +37,6 @@ export default class Node extends Model {
   @data('index') index;
   @data('identifier') identifier;
   @data('parent') parentId;
-  @data('expanded') expanded;
 
   @scheduleSave _scheduleSave;
 
@@ -53,14 +54,6 @@ export default class Node extends Model {
 
   get editable() {
     return !this.nodes.isBusy && (!this.lock || !this.lock.locked);
-  }
-
-  //
-
-  get tree() {
-    return {
-      expandable: this.hasChildren
-    };
   }
 
   //
@@ -137,24 +130,6 @@ export default class Node extends Model {
 
   //
 
-  maybeExpand() {
-    let { expanded, hasChildren } = this;
-    if(expanded || !hasChildren) {
-      return;
-    }
-    this.update({ expanded: true });
-  }
-
-  maybeToggleExpanded() {
-    let { expanded, hasChildren } = this;
-    if(!hasChildren) {
-      return;
-    }
-    this.update({ expanded: !expanded });
-  }
-
-  //
-
   async reorderParentChildren() {
     sortedBy(this.parentChildren, 'index').forEach((model, index) => model.update({ index }));
   }
@@ -184,7 +159,7 @@ export default class Node extends Model {
   //
 
   async _createNode(props) {
-    this.update({ expanded: true });
+    this.expand.expand();
     return this.nodes._createNode(this, props);
   }
 

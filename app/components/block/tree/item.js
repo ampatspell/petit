@@ -24,8 +24,7 @@ export default class BlockTreeItemComponent extends Component {
   @action
   toggleExpand(e) {
     e.stopPropagation();
-    let { expanded, onUpdate } = this.args;
-    onUpdate && onUpdate({ expanded: !expanded });
+    this.args.expand.toggle();
   }
 
   get lock() {

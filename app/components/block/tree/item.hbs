@@ -1,9 +1,9 @@
 <div class={{class "item" selected=@selected warning=@warning hidden=@hidden}} ...attributes role="button" {{on 'click' this.onSelect}}>
   <div class="content">
     {{!-- template-lint-disable no-nested-interactive --}}
-    {{#if @expandable}}
+    {{#if @expand.expandable}}
       <div class="expand" role="button" {{on 'click' this.toggleExpand}}>
-        <Block::Icon class="icon" @name={{if @expanded 'angle-down' 'angle-right'}}/>
+        <Block::Icon class="icon" @name={{if @expand.expanded 'angle-down' 'angle-right'}}/>
       </div>
     {{else}}
       <div class="expand"></div>
@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="items">
-    {{#if (and @expandable @expanded)}}
+    {{#if (and @expand.expandable @expand.expanded)}}
       {{yield to="items"}}
     {{/if}}
   </div>

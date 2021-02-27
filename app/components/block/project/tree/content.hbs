@@ -5,11 +5,9 @@
     @selected={{node.selected}}
     @lock={{node.lock}}
     @hide={{node.hide}}
-    @expanded={{node.expanded}}
-    @expandable={{node.tree.expandable}}
+    @expand={{node.expand}}
     @warning={{node.warnings.any}}
     @onSelect={{fn @onSelect node}}
-    @onUpdate={{fn @onUpdate node}}
   >
     <:content>
       <div class="row">{{node.typeName}}</div>

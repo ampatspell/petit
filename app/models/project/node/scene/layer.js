@@ -1,4 +1,4 @@
-import Node, { lock, hide, warnings } from '../-node';
+import Node, { lock, hide, warnings, expand } from '../-node';
 
 export default class LayerNode extends Node {
 
@@ -8,6 +8,7 @@ export default class LayerNode extends Node {
     super(...arguments);
     lock(this);
     hide(this);
+    expand(this);
     warnings(this);
   }
 
