@@ -26,7 +26,7 @@ class Lock {
     this.project = project;
   }
 
-  @reads('project._locked') locked;
+  @reads('project.doc.data.locked') locked;
   @reads('locked') self;
 
   toggle() {
@@ -37,17 +37,15 @@ class Lock {
 
 export default class Project extends Model {
 
+  isProject = true;
   type = 'project';
   typeName = 'Project';
-
-  isProject = true;
 
   @activate() doc;
 
   @doc('id') id;
   @data('title') title;
   @data('createdAt') createdAt;
-  @data('locked') _locked;
 
   @model()
     .named('project/nodes')
