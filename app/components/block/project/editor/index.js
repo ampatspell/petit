@@ -76,6 +76,10 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
+      if(node.editing) {
+        return;
+      }
+
       this.onSelect(node);
 
       let d = p => pointer[p] - node.editor[p];
