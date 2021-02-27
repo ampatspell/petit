@@ -58,7 +58,7 @@ export default class Project extends Model {
   @scheduleSave _scheduleSave;
 
   get editable() {
-    return !this.nodes.isBusy && !this.locked;
+    return !this.nodes.isBusy && !this.lock.locked;
   }
 
   constructor(owner, { doc }) {
