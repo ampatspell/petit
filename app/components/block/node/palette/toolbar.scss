@@ -14,20 +14,15 @@
       left: -2px;
       bottom: -2px;
       right: -2px;
-      z-index: 2;
-      border: 2px solid transparent;
+      z-index: 1;
+      border: 3px solid transparent;
       transition: 0.1s ease-in-out border-color;
     }
     &.selected {
       &:after {
         content: '';
         position: absolute;
-        top: -2px;
-        left: -2px;
-        bottom: -2px;
-        right: -2px;
-        z-index: 2;
-        border: 2px solid #000;
+        border-color: #000;
       }
     }
   }
