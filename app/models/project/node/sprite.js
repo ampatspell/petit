@@ -8,7 +8,16 @@ const {
   assign
 } = Object;
 
-const defaultBytes = node => node.store.blobFromUint8Array(new Uint8Array(heart));
+const defaultBytes = node => {
+  if(node.frames.length > 0) {
+    return;
+  }
+  let { width, height } = node;
+  if(width !== 16 || height !== 16) {
+    return;
+  }
+  return node.store.blobFromUint8Array(new Uint8Array(heart));
+};
 
 const color = () => {
   return {
@@ -39,10 +48,10 @@ export default class SpriteNode extends Node {
   referenceKeys = [ 'palette' ];
 
   async createNewFrame(opts) {
-    let { bytes, select } = assign({ bytes: defaultBytes(this) }, opts);
+    let { bytes, select } = assign({ select: true }, opts);
     return this._createNode({
       type: 'sprite/frame',
-      bytes,
+      bytes: bytes || defaultBytes(this),
       version: 1
     }, { select });
   }
