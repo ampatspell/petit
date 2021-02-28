@@ -7,6 +7,7 @@
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
+* https://github.com/brunocrosier/google-one-tap/blob/master/useGoogleOneTap.ts
 
 ## DONE
 
