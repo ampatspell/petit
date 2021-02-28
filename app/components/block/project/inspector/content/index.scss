@@ -129,5 +129,10 @@
         }
       }
     }
+    &.pixel {
+      @include padding();
+      @include border();
+      @include label();
+    }
   }
 }

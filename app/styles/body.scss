@@ -75,6 +75,9 @@ input[type="text"] {
   font-size: $font-size;
   width: 100%;
   margin: 0;
+  &.small {
+    padding: 0 3px;
+  }
   transition:
     0.15s ease-in-out opacity,
     0.15s ease-in-out color;
@@ -145,7 +148,7 @@ input[type="range"] {
     background: #000;
     width: 25px;
     height: 15px;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: 0.15s ease-in-out opacity;
   }
   &:disabled {

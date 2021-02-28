@@ -1,4 +1,4 @@
-import Node, { editor, lock, hide, expand, warnings, data, reference } from './-node';
+import Node, { editor, lock, hide, expand, warnings, data, reference, pixel } from './-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { editing } from 'petit/util/editing';
@@ -41,6 +41,7 @@ export default class SpriteNode extends Node {
     hide(this);
     expand(this);
     warnings(this);
+    pixel(this);
   }
 
   typeName = 'Sprite';
@@ -66,7 +67,6 @@ export default class SpriteNode extends Node {
 
   @data('width') width;
   @data('height') height;
-  @data('pixel') pixel;
 
   //
 
@@ -151,14 +151,6 @@ export default class SpriteNode extends Node {
 
   onKeyRight() {
     this.selectNext();
-  }
-
-  onKeyNumber(n) {
-    let mapping = [ 30, 1, 2, 4, 8, 12, 16, 20, 24, 26 ];
-    let pixel = mapping[n];
-    if(typeof pixel !== 'undefined') {
-      this.update({ pixel });
-    }
   }
 
 }

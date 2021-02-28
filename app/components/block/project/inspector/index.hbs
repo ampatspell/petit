@@ -1,17 +1,19 @@
 <div class="block-project-inspector">
-  <div class="scrollable">
-
-    <Block::Project::Inspector::Content @model={{@project.selected}} as |content|>
-      {{component (concat 'block/project/inspector/node/' @project.selected.type) model=@project.selected content=content}}
-    </Block::Project::Inspector::Content>
-
-    <div class="development">
-      <Block::SetGlobal
-        class="set-global"
-        @key={{if @project.selected.isProject "project" "node"}}
-        @value={{@project.selected}}
-      />
+  <div class="content">
+    <div class="scrollable">
+      <Block::Project::Inspector::Content @model={{@project.selected}} as |content|>
+        {{component (concat 'block/project/inspector/node/' @project.selected.type) model=@project.selected content=content}}
+      </Block::Project::Inspector::Content>
+      <div class="development">
+        <Block::SetGlobal
+          class="set-global"
+          @key={{if @project.selected.isProject "project" "node"}}
+          @value={{@project.selected}}
+        />
+      </div>
     </div>
-
+  </div>
+  <div class="footer">
+    <Block::Project::Inspector::Footer @project={{@project}}/>
   </div>
 </div>

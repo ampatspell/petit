@@ -11,7 +11,7 @@ export default class BlockProjectEditorNodeSpriteIndexComponent extends Componen
   @reads('sprite.color.index') color;
 
   get size() {
-    let { width, height, pixel } = this.frame;
+    let { width, height, pixel: { absolute: pixel } } = this.frame;
     let s = value => value * pixel;
     return {
       width: s(width),

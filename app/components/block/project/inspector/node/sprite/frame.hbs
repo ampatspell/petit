@@ -1,5 +1,6 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.input @label="Identifier" @key="identifier"/>
+<@content.pixel @model={{@model.sprite}}/>
 <@content.actions as |actions|>
   <actions.button @label="Clear frame" @onClick={{this.clearFrame}} @confirmation="Are you sure you want to clear this frame?"/>
   <actions.button @label="Duplicate frame" @onClick={{this.duplicateFrame}}/>

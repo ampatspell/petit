@@ -10,6 +10,7 @@ import { warnings } from './-node/warnings';
 import { reference } from './-node/reference';
 import { child } from './-node/child';
 import { expand } from './-node/expand';
+import { pixel } from './-node/pixel';
 
 export {
   editor,
@@ -18,6 +19,7 @@ export {
   expand,
   warnings,
   reference,
+  pixel,
   child,
   doc,
   data

@@ -13,6 +13,7 @@ class ProjectNodesDelegate {
 
   @reads('_project.lock.locked') locked;
   @reads('_project.doc.data.selected') initialSelection;
+  @reads('_project.pixel') pixel;
 
   didSelectNode(node) {
     this._project.nodesDidSelectNode(node);
@@ -46,6 +47,7 @@ export default class Project extends Model {
   @doc('id') id;
   @data('title') title;
   @data('createdAt') createdAt;
+  @data('pixel') pixel;
 
   // TODO: move to editor
   @data('overlays') overlays;

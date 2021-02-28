@@ -40,6 +40,8 @@ export default class NewProject extends Model {
       title,
       owner,
       locked: false,
+      overlays: true,
+      pixel: 2,
       selected: null,
       createdAt: store.serverTimestamp,
       version: 1

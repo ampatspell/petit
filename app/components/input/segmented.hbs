@@ -1,0 +1,7 @@
+<div class={{class 'input-segmented' disabled=@disabled}} ...attributes>
+  {{#each @values as |value|}}
+    <div class={{class 'segment' selected=(eq value @value)}} role="button" {{on "click" (fn this.onSelect value)}}>
+      {{yield value}}
+    </div>
+  {{/each}}
+</div>

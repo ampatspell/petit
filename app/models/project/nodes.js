@@ -70,6 +70,9 @@ export default class Nodes extends Model {
   @reads('delegate.locked')
   locked;
 
+  @reads('delegate.pixel')
+  pixel
+
   @tracked
   isBusy = false;
 
@@ -175,7 +178,7 @@ export default class Nodes extends Model {
       palette,
       width: 16,
       height: 16,
-      pixel: 4,
+      pixel: 1,
       version: 1
     });
 

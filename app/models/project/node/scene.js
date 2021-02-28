@@ -1,4 +1,4 @@
-import Node, { editor, lock, hide, warnings, expand } from './-node';
+import Node, { editor, lock, hide, warnings, expand, pixel } from './-node';
 
 export default class SceneNode extends Node {
 
@@ -9,6 +9,7 @@ export default class SceneNode extends Node {
     hide(this);
     warnings(this);
     expand(this);
+    pixel(this);
   }
 
   typeName = 'Scene';

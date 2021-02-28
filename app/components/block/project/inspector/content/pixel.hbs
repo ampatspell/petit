@@ -1,0 +1,13 @@
+<div class="group pixel">
+  <div class="label">Pixel</div>
+  <Input::Segmented
+    class="segmented"
+    @disabled={{not @model.editable}}
+    @values={{this.sizes}}
+    @value={{this.size}}
+    @onSelect={{this.onSize}}
+    as |value|
+  >
+    {{value}}x
+  </Input::Segmented>
+</div>

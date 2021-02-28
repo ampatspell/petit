@@ -1,6 +1,7 @@
 @import "application";
 @import "application/header";
 
+@import "input/segmented";
 @import "block/set-global";
 @import "block/dialogs";
 @import "block/dialogs/alert";
@@ -11,6 +12,7 @@
 @import "block/project/tree";
 @import "block/project/inspector";
 @import "block/project/inspector/content";
+@import "block/project/inspector/footer";
 @import "block/project/editor";
 @import "block/project/editor/node";
 @import "block/project/editor/node/scene";

@@ -13,7 +13,7 @@ export default class BlockProjectEditorNodeSpriteFramesFrameContentComponent ext
 
   @cached
   get sceneFunc() {
-    let { palette, frame: { width, height, pixel, bytes } } = this;
+    let { palette, frame: { width, height, pixel: { absolute: pixel }, bytes } } = this;
     let size = { width, height };
     let rgba = palette?.rgba;
     return (ctx) => {
@@ -88,7 +88,7 @@ export default class BlockProjectEditorNodeSpriteFramesFrameContentComponent ext
 
   pixelForRelativePointerPosition() {
     let pos = this.getRelativePointerPosition();
-    let { frame: { pixel, width, height } } = this;
+    let { frame: { pixel: { absolute: pixel }, width, height } } = this;
     let size = { width, height };
     let x = Math.floor(pos.x / pixel);
     let y = Math.floor(pos.y / pixel);
