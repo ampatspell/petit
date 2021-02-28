@@ -1,6 +1,5 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.input @label="Identifier" @key="identifier"/>
-<@content.pixel/>
 <@content.actions as |actions|>
   <actions.button @label="Add new color" @onClick={{this.addColor}}/>
 </@content.actions>
@@ -8,5 +7,6 @@
   <@content.color @label="Selected color" @model={{@model.color}}/>
   <@content.delete @label="Delete color" @confirmation="Are you sure you want to delete this color?" @model={{@model.color}}/>
 {{/if}}
+<@content.pixel/>
 <@content.reorder/>
 <@content.delete @label="Delete palette" @confirmation="Are you sure you want to delete this palette?"/>

@@ -1,4 +1,5 @@
 import Node, { lock, hide, warnings, expand } from '../-node';
+import { reads } from "macro-decorators";
 
 export default class LayerNode extends Node {
 
@@ -15,5 +16,7 @@ export default class LayerNode extends Node {
   get group() {
     return this.parent;
   }
+
+  @reads('parent') scene;
 
 }

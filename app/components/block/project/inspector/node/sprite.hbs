@@ -1,9 +1,9 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.input @label="Identifier" @key="identifier"/>
 <@content.reference @label="Color Palette" @collection="palettes" @key="palette"/>
-<@content.pixel/>
 <@content.actions as |actions|>
   <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>
 </@content.actions>
+<@content.pixel/>
 <@content.reorder/>
 <@content.delete @label="Delete sprite" @confirmation="Are you sure you want to delete this sprite?"/>
