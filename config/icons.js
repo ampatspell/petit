@@ -11,7 +11,8 @@ module.exports = function() {
       'exclamation-circle',
       'terminal',
       'eye',
-      'eye-slash'
+      'eye-slash',
+      'chevron-circle-right'
     ]
   };
 };

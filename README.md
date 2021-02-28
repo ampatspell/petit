@@ -7,7 +7,6 @@
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
-* Add "show" in references inspector block
 
 ## DONE
 
@@ -23,3 +22,4 @@
 * color sliders
 * sprite colors toolbar
 * Sprite dimensions from doc. Defaults to 16x16px
+* Add "show" in references inspector block

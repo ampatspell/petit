@@ -53,4 +53,12 @@ export default class BlockProjectInspectorContentReferenceComponent extends Comp
     model.update({ [key]: value });
   }
 
+  @action
+  onFollow() {
+    let model = this.reference?.model;
+    if(model) {
+      model.nodes.select(model);
+    }
+  }
+
 }
