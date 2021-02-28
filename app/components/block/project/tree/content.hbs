@@ -2,7 +2,7 @@
 
   <@tree.item
     class={{node.type}}
-    @selected={{node.selected}}
+    @selected={{or node.selected (and (not node.expand.expanded) node.hasSelectedChild)}}
     @lock={{node.lock}}
     @hide={{node.hide}}
     @expand={{node.expand}}

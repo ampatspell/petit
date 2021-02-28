@@ -52,6 +52,15 @@ export default class Node extends Model {
     return this.nodes.selected === this;
   }
 
+  get hasSelectedChild() {
+    return !!this.children.find(node => {
+      if(node.selected) {
+        return true;
+      }
+      return node.hasSelectedChild;
+    });
+  }
+
   get editable() {
     return !this.nodes.isBusy && (!this.lock || !this.lock.locked);
   }

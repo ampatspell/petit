@@ -17,3 +17,4 @@
 * Frame dimensions from sprite
 * Color palettes limited to 255 colors + transparent.
 * Sprite timeline
+* tree should show nested selection when not expanded
