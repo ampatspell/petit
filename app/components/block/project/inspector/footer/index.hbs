@@ -1,9 +1,7 @@
 <div class="block-project-inspector-footer">
   <div class="pixel">
-    <div class="label">Pixel size</div>
-    <div class="content">
-      <Input::Slider class="slider" @min={{this.min}} @max={{this.max}} @value={{this.pixel}} @onInput={{this.onPixel}}/>
-      <Input::Text class="input small" @value={{this.pixel}} @type="int" @onChange={{this.onPixel}}/>
-    </div>
+    <Input::Segmented @class="segmented" @values={{this.pixels}} @value={{this.pixel}} @onSelect={{this.onPixel}} as |pixel|>
+      {{pixel}}x
+    </Input::Segmented>
   </div>
 </div>

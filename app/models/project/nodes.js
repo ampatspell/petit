@@ -148,6 +148,7 @@ export default class Nodes extends Model {
       expanded: false,
       locked: false,
       hidden: false,
+      pixel: 1,
       createdAt
     }, props);
   }
@@ -178,7 +179,6 @@ export default class Nodes extends Model {
       palette,
       width: 16,
       height: 16,
-      pixel: 1,
       version: 1
     });
 

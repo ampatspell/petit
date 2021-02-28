@@ -7,6 +7,8 @@ export default class BlockProjectInspectorFooterComponent extends Component {
   min = 1;
   max = 20;
 
+  pixels = [ 1, 2, 3, 5, 10 ];
+
   @reads('args.project') project;
   @reads('project.pixel') pixel;
 
