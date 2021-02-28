@@ -1,12 +1,14 @@
 <div class="group color">
   <div class="label">{{@label}}</div>
+  <Block::Node::Palette::Color::Rect class="color" @size="wide" @color={{@model}}/>
   {{#each this.props as |key|}}
-    <Input::Text
+    <Input::Slider
       class="input"
       @value={{get @model key}}
       @disabled={{not @model.editable}}
-      @type="int"
-      @onChange={{fn this.onChange key}}
+      @min={{0}}
+      @max={{255}}
+      @onInput={{fn this.onChange key}}
     />
   {{/each}}
 </div>

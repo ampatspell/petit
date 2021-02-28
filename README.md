@@ -2,7 +2,6 @@
 
 ## TODO
 
-* palette alpha 0..255
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
@@ -20,3 +19,6 @@
 * Color palettes limited to 255 colors + transparent.
 * Sprite timeline
 * tree should show nested selection when not expanded
+* palette alpha 0..255
+* slider input
+* color sliders

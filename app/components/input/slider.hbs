@@ -1,0 +1,10 @@
+<input
+  type="range"
+  ...attributes
+  min={{@min}}
+  max={{@max}}
+  step={{or @step 1}}
+  value={{@value}}
+  {{on 'input' (fn this.onEvent 'onInput')}}
+  {{on 'change' (fn this.onEvent 'onChange')}}
+/>

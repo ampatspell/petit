@@ -102,6 +102,9 @@
       @include padding();
       @include border();
       @include label();
+      > .color {
+        margin-bottom: 1px;
+      }
       > .input {
         margin-bottom: 1px;
         &:last-child {
