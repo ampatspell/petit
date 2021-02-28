@@ -4,7 +4,11 @@
     {{#if this.reference.missing}}
       <Block::Icon class="icon warning" @name="exclamation-circle"/>
     {{/if}}
-    <Block::Icon class={{class "icon" "follow" faded=(not this.reference.model)}} @name="chevron-circle-right" {{on "click" this.onFollow}}/>
+    <Block::Icon
+      class={{class "icon" "follow" faded=(not this.reference.model)}}
+      @name="chevron-circle-right"
+      {{on "click" this.onFollow}}
+    />
   </div>
   <Input::Select
     class="select"
