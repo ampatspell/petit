@@ -4,7 +4,7 @@
     class="content"
     role="button"
     {{did-insert this.didInsertContent}}
-    {{on "click" this.onDeselect}}
+    {{on "mousedown" this.onDeselect}}
   >
     {{#each this.visible as |node idx|}}
       <Block::Project::Editor::Node
