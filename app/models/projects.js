@@ -10,7 +10,12 @@ export default class Projects extends Model {
   uid = null;
 
   @activate()
-    .content(({ store, uid }) => store.refs.projects.collection.where('owner', '==', uid).query())
+    .content(({ store, uid }) => {
+      return store.refs.projects.collection
+        .where('owner', '==', uid)
+        .orderBy('createdAt', 'desc')
+        .query();
+    })
   query;
 
   @models()

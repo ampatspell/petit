@@ -22,10 +22,15 @@ export default class RouteProjectsProjectIndexComponent extends Component {
 
   @action
   onBindHotkeys(hotkeys) {
-    hotkeys.add('left', () => this.project.onKeyLeft());
-    hotkeys.add('right', () => this.project.onKeyRight());
+    let wrap = cb => e => {
+      if(e.target.tagName !== 'INPUT' && !e.metaKey) {
+        cb();
+      }
+    };
+    hotkeys.add('left', wrap(() => this.project.onKeyLeft()));
+    hotkeys.add('right', wrap(() => this.project.onKeyRight()));
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ].forEach(key => {
-      hotkeys.add(`${key}`, () => this.project.onKeyNumber(key));
+      hotkeys.add(`${key}`, wrap(() => this.project.onKeyNumber(key)));
     });
   }
 
