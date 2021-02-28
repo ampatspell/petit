@@ -23,3 +23,4 @@
 * sprite colors toolbar
 * Sprite dimensions from doc. Defaults to 16x16px
 * Add "show" in references inspector block
+* Project pixel, node.pixel
