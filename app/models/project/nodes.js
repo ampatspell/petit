@@ -53,7 +53,7 @@ export default class Nodes extends Model {
 
   get visible() {
     let visible = arr => arr.filter(node => node.hide && !node.hide.hidden);
-    return visible(this.root);
+    return visible(this.root).reverse();
   }
 
   get orphans() {
