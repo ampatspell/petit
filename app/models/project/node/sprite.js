@@ -145,7 +145,7 @@ export default class SpriteNode extends Node {
   }
 
   onKeyNumber(n) {
-    let mapping = [ 0, 1, 2, 4, 8, 20 ];
+    let mapping = [ 30, 1, 2, 4, 8, 12, 16, 20, 24, 26 ];
     let pixel = mapping[n];
     if(typeof pixel !== 'undefined') {
       this.update({ pixel });
