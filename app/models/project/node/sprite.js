@@ -153,4 +153,14 @@ export default class SpriteNode extends Node {
     this.selectNext();
   }
 
+  onKeyNumber(n) {
+    if(n === 0) {
+      return;
+    }
+    let color = this.palette.model?.colors[n - 1];
+    if(color) {
+      this.color = color;
+    }
+  }
+
 }
