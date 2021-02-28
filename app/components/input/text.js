@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
-
-const r = (v, s) => Number(Number(v).toFixed(s));
+import { round as r } from 'petit/util/math';
 
 export default class InputTextComponent extends Component {
 

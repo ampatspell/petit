@@ -1,18 +1,12 @@
 <div class="group color">
-
   <div class="label">{{@label}}</div>
-
-  <Input::Text class="input" @value={{@model.r}} @disabled={{not @model.editable}} @type="int" @onChange={{fn this.onChange 'r'}}/>
-  <Input::Text class="input" @value={{@model.g}} @disabled={{not @model.editable}} @type="int" @onChange={{fn this.onChange 'g'}}/>
-  <Input::Text class="input" @value={{@model.b}} @disabled={{not @model.editable}} @type="int" @onChange={{fn this.onChange 'b'}}/>
-
-  <Input::Text
-    class="input"
-    @value={{@model.a}}
-    @disabled={{not @model.editable}}
-    @type="float"
-    @round={{2}}
-    @onChange={{fn this.onChange 'a'}}
-  />
-
+  {{#each this.props as |key|}}
+    <Input::Text
+      class="input"
+      @value={{get @model key}}
+      @disabled={{not @model.editable}}
+      @type="int"
+      @onChange={{fn this.onChange key}}
+    />
+  {{/each}}
 </div>

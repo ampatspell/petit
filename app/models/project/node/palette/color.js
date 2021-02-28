@@ -2,6 +2,7 @@ import Model from '../../../-model';
 import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
+import { round } from 'petit/util/math';
 
 const {
   assign
@@ -36,13 +37,13 @@ export default class Color extends Model {
   @cached
   get rgba() {
     let { r, g, b, a } = this;
-    return `rgba(${r}, ${g}, ${b}, ${a})`;
+    return `rgba(${r}, ${g}, ${b}, ${round(a / 255, 2)})`;
   }
 
   @cached
   get canvas() {
     let { r, g, b, a } = this;
-    return { r, g, b, a: 255 * a };
+    return { r, g, b, a };
   }
 
   update(props) {
