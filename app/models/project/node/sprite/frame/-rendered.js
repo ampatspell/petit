@@ -38,13 +38,15 @@ class Rendered {
     let { data } = image;
 
     bytes.forEach((byte, idx) => {
-      let { r, g, b, a } = palette(byte);
-
-      let i = idx * 4;
-      data[i + 0] = r;
-      data[i + 1] = g;
-      data[i + 2] = b;
-      data[i + 3] = a;
+      let color = palette(byte);
+      if(color) {
+        let { r, g, b, a } = color;
+        let i = idx * 4;
+        data[i + 0] = r;
+        data[i + 1] = g;
+        data[i + 2] = b;
+        data[i + 3] = a;
+      }
     });
 
     ctx.putImageData(image, 0, 0);
