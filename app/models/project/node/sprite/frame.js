@@ -1,10 +1,16 @@
 import Node, { data } from '../-node';
 import { Pixel } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
+import { rendered } from './frame/-rendered';
 
 export default class SpriteFrameNode extends Node {
 
   typeName = 'Frame';
+
+  constructor() {
+    super(...arguments);
+    rendered(this);
+  }
 
   @reads('parent') sprite;
 

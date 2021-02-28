@@ -1,4 +1,10 @@
 <div class="block-project-timeline-sprite">
-  <div class="row">{{@node.group}}</div>
-  <div class="row">{{@node.group.frame}}</div>
+
+  <div class="frames">
+    {{#each @node.group.frames as |frame|}}
+      <Block::Node::Sprite::Frame class="frame" @pixel={{2}} @frame={{frame}}/>
+    {{/each}}
+  </div>
+
+  {{!-- <div class="row">{{@node.group.frame}}</div> --}}
 </div>

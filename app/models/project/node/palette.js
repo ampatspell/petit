@@ -70,4 +70,9 @@ export default class PaletteNode extends Node {
     return index => values[index];
   }
 
+  get canvas() {
+    let values = this.colors.map(color => color.canvas);
+    return index => values[index];
+  }
+
 }

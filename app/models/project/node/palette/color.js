@@ -39,6 +39,12 @@ export default class Color extends Model {
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 
+  @cached
+  get canvas() {
+    let { r, g, b, a } = this;
+    return { r, g, b, a: 255 * a };
+  }
+
   update(props) {
     assign(this.data, props);
     this.palette._didUpdateColor(this);

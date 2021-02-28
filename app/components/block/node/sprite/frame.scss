@@ -1,0 +1,7 @@
+.block-node-sprite-frame {
+  background: darken(#fff, 12%);
+  > .image {
+    display: inline-block;
+    image-rendering: pixelated;
+  }
+}

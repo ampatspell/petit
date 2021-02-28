@@ -2,6 +2,7 @@ import Node, { editor, lock, hide, expand, warnings, data, reference } from './-
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { editing } from 'petit/util/editing';
+import { reads } from "macro-decorators";
 
 const {
   assign
@@ -65,11 +66,12 @@ export default class SpriteNode extends Node {
 
   //
 
+  @reads('children') frames;
   @data('frame') _frame;
 
   get frame() {
     let index = this._frame;
-    return this.children.find(child => child.index === index) || this.children[0] || null;
+    return this.frames.find(child => child.index === index) || this.frames[0] || null;
   }
 
   select(frame) {
@@ -90,14 +92,14 @@ export default class SpriteNode extends Node {
   //
 
   selectPrev() {
-    let { frame, children } = this;
+    let { frame, frames } = this;
     if(!frame) {
       return;
     }
 
-    let next = prevObject(children, frame);
+    let next = prevObject(frames, frame);
     if(!next) {
-      next = lastObject(children);
+      next = lastObject(frames);
     }
 
     if(next) {
@@ -106,14 +108,14 @@ export default class SpriteNode extends Node {
   }
 
   selectNext() {
-    let { frame, children } = this;
+    let { frame, frames } = this;
     if(!frame) {
       return;
     }
 
-    let next = nextObject(children, frame);
+    let next = nextObject(frames, frame);
     if(!next) {
-      next = firstObject(children);
+      next = firstObject(frames);
     }
 
     if(next) {
