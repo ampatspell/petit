@@ -2,13 +2,12 @@
 
 ## TODO
 
+* Toolbar tools for sprite resize, select, copy-paste
+* resize sprites
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
 * Add "show" in references inspector block
-* Sprite dimensions from doc. Defaults to 16x16px
-* Sprite frame preview in editor
-* Toolbar for editor with sprite colors, resize, select, copy-paste
 
 ## DONE
 
@@ -22,3 +21,5 @@
 * palette alpha 0..255
 * slider input
 * color sliders
+* sprite colors toolbar
+* Sprite dimensions from doc. Defaults to 16x16px
