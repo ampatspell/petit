@@ -1,10 +1,15 @@
-<div class="block-project-timeline-sprite">
-
-  <div class="frames">
-    {{#each @node.group.frames as |frame|}}
-      <Block::Node::Sprite::Frame class="frame" @pixel={{2}} @frame={{frame}}/>
-    {{/each}}
+<div class="block-project-timeline-sprite" style={{this.style}}>
+  <div class="scrollable">
+    <div class="frames">
+      {{#each @node.group.frames as |frame|}}
+        <div
+          class={{class 'frame' selected=(eq frame @node.group.frame)}}
+          role="button"
+          {{on 'click' (fn this.select frame)}}
+        >
+          <Block::Node::Sprite::Frame class="image" @pixel={{this.pixel}} @frame={{frame}}/>
+        </div>
+      {{/each}}
+    </div>
   </div>
-
-  {{!-- <div class="row">{{@node.group.frame}}</div> --}}
 </div>
