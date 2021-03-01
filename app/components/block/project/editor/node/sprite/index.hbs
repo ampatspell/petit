@@ -12,16 +12,13 @@
         @editing={{this.editing}}
         @color={{this.color}}
         @palette={{this.palette}}
-        @onStartEditing={{this.startEditing}}
       />
 
     </Konva::Node::Layer>
   </Konva::Stage>
 
-  {{#if this.editing}}
-    <Application::InTools>
-      <Block::Project::Editor::Node::Sprite::Tools @sprite={{this.sprite}}/>
-    </Application::InTools>
+  {{#if this.resizing}}
+    <Block::Resize class="resize" @onResize={{this.onResize}}/>
   {{/if}}
 
 {{/if}}

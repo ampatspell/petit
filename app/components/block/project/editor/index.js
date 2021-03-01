@@ -76,7 +76,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
-      if(node.editing) {
+      if(node.tools.selected.type !== 'idle') {
         return;
       }
 

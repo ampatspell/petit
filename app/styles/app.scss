@@ -12,5 +12,6 @@ $background-grey-color: lighten(#000, 99%);
 $background-grey-border-color: lighten(#000, 91%);
 
 @import "body";
+@import "loading";
 @import "konva";
 @import "components";

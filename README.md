@@ -4,6 +4,7 @@
 
 * Toolbar tools for sprite resize, select, copy-paste
 * resize sprites
+* draggable project editor
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette

@@ -11,6 +11,34 @@ const {
   assign
 } = Object;
 
+class NodesTools {
+
+  @tracked node;
+  @tracked tool;
+
+  constructor(nodes) {
+    this.nodes = nodes;
+  }
+
+  select(node, tool) {
+    this.node = node;
+    this.tool = tool;
+  }
+
+  selected(node) {
+    if(this.node !== node) {
+      return null;
+    }
+    return this.tool;
+  }
+
+  reset() {
+    this.node = null;
+    this.tool = null;
+  }
+
+}
+
 export default class Nodes extends Model {
 
   @service store;
@@ -21,6 +49,7 @@ export default class Nodes extends Model {
     super(owner);
     this.projectId = projectId;
     this.delegate = delegate;
+    this.tools = new NodesTools(this);
   }
 
   //
@@ -86,6 +115,7 @@ export default class Nodes extends Model {
     let { selected } = this;
     if(selected !== node) {
       this.selected = node;
+      this.tools.reset();
       node && node.didSelect();
       selected && selected.didDeselect(node);
       this.delegate.didSelectNode(node);

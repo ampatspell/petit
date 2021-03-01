@@ -1,0 +1,8 @@
+.block-project-tools-sprite {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  > .tools {
+    margin-right: 1px;
+  }
+}

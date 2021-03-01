@@ -11,6 +11,7 @@ import { reference } from './-node/reference';
 import { child } from './-node/child';
 import { expand } from './-node/expand';
 import { pixel } from './-node/pixel';
+import { tools } from './-node/tools';
 
 export {
   editor,
@@ -20,6 +21,7 @@ export {
   warnings,
   reference,
   pixel,
+  tools,
   child,
   doc,
   data

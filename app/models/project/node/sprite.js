@@ -1,4 +1,4 @@
-import Node, { editor, lock, hide, expand, warnings, data, reference, pixel } from './-node';
+import Node, { editor, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { editing } from 'petit/util/editing';
@@ -32,6 +32,12 @@ const color = () => {
   };
 }
 
+const tools = node => _tools(node, [
+  { icon: 'mouse-pointer', type: 'idle' },
+  { icon: 'pen',           type: 'edit' },
+  { icon: 'expand',        type: 'resize' }
+]);
+
 export default class SpriteNode extends Node {
 
   constructor() {
@@ -42,6 +48,7 @@ export default class SpriteNode extends Node {
     expand(this);
     warnings(this);
     pixel(this);
+    tools(this);
   }
 
   typeName = 'Sprite';
@@ -145,6 +152,27 @@ export default class SpriteNode extends Node {
 
   //
 
+  resize(handle, size) {
+    let clamp = value => Math.min(Math.max(value, 1), 96);
+    size.width = clamp(size.width);
+    size.height = clamp(size.height);
+
+    let { editor } = this;
+    let { x, y } = editor;
+    let pos = (x, w) => Math.ceil(editor[x] - ((size[w] - this[w]) * this.pixel.absolute));
+    if(handle === 'left') {
+      x = pos('x', 'width');
+    } else if(handle === 'top') {
+      y = pos('y', 'height');
+    }
+
+    this.frames.forEach(frame => frame.resize(handle, size));
+    editor.update({ x, y });
+    this.update(size);
+  }
+
+  //
+
   onKeyLeft() {
     this.selectPrev();
   }
@@ -160,6 +188,18 @@ export default class SpriteNode extends Node {
     let color = this.palette.model?.colors[n - 1];
     if(color) {
       this.color = color;
+    }
+  }
+
+  onKeyEsc() {
+    this.tools.selectByType('idle');
+  }
+
+  onKeyLetter(key) {
+    if(key === 'e') {
+      this.tools.selectByType('edit');
+    } else if(key === 'r') {
+      this.tools.selectByType('resize');
     }
   }
 

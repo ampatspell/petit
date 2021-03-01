@@ -6,8 +6,10 @@
 @import "block/dialogs";
 @import "block/dialogs/alert";
 @import "block/tree";
+@import "block/resize";
 @import "block/node/palette/color/rect";
-@import "block/node/palette/toolbar";
+@import "block/node/toolbar/palette";
+@import "block/node/toolbar/tools";
 @import "block/node/sprite/frame";
 @import "block/project/tree";
 @import "block/project/inspector";
@@ -19,6 +21,7 @@
 @import "block/project/editor/node/palette";
 @import "block/project/timeline";
 @import "block/project/timeline/sprite";
+@import "block/project/tools/sprite";
 
 @import "route/index";
 @import "route/session/new";

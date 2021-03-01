@@ -1,0 +1,7 @@
+<div class="block-node-toolbar-tools" ...attributes>
+  {{#each @tools as |tool|}}
+    <div class={{class 'tool' selected=(eq tool @tool)}} role="button" {{on "click" (fn @onSelect tool)}}>
+      <Block::Icon class="icon" @name={{tool.icon}}/>
+    </div>
+  {{/each}}
+</div>

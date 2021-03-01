@@ -1,0 +1,5 @@
+<Application::InTools>
+  {{#if @node}}
+    {{component (concat 'block/project/tools/' @node.type) node=@node}}
+  {{/if}}
+</Application::InTools>

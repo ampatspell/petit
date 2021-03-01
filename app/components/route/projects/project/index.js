@@ -27,8 +27,20 @@ export default class RouteProjectsProjectIndexComponent extends Component {
         cb();
       }
     };
-    hotkeys.add('left', wrap(() => this.project.onKeyLeft()));
-    hotkeys.add('right', wrap(() => this.project.onKeyRight()));
+
+    let forward = name => wrap(() => {
+      let project = this.project;
+      project[name].call(project);
+    });
+
+    hotkeys.add('esc', forward('onKeyEsc'));
+    hotkeys.add('left', forward('onKeyLeft'));
+    hotkeys.add('right', forward('onKeyRight'));
+
+    [ 'e', 'r' ].forEach(key => {
+      hotkeys.add(key, wrap(() => this.project.onKeyLetter(key)));
+    });
+
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ].forEach(key => {
       hotkeys.add(`${key}`, wrap(() => this.project.onKeyNumber(key)));
     });

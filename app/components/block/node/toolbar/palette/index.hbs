@@ -1,9 +1,9 @@
 {{#if @palette}}
-  <div class="block-node-palette-toolbar">
+  <div class="block-node-toolbar-palette">
     {{#each @palette.colors as |color|}}
       <Block::Node::Palette::Color::Rect
         class={{class 'color' selected=(eq @selected color)}}
-        @size='regular'
+        @size="regular"
         @color={{color}}
         {{on 'click' (fn (optional-function @onSelect) color)}}
       />
