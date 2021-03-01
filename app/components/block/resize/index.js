@@ -21,11 +21,6 @@ export default class BlockResizeIndexComponent extends Component {
       return target;
     }
 
-    let getSize = () => {
-      let { width, height } = this.el.getBoundingClientRect();
-      return { width, height };
-    }
-
     let getPointerPosition = e => {
       let { pageX: x, pageY: y } = e;
       return { x, y };
