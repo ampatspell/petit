@@ -166,6 +166,7 @@ export default class SpriteNode extends Node {
       y = pos('y', 'height');
     }
 
+    this.frames.forEach(frame => frame.resize(handle, size));
     editor.update({ x, y });
     this.update(size);
   }

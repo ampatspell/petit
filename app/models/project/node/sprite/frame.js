@@ -1,5 +1,5 @@
 import Node, { data } from '../-node';
-import { Pixel } from '../../../../util/pixel';
+import { toIndex } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
 import { rendered } from './frame/-rendered';
 
@@ -59,7 +59,7 @@ export default class SpriteFrameNode extends Node {
   }
 
   clear() {
-    this.mutateBytes(bytes => bytes.fill(Pixel.transparent));
+    this.mutateBytes(bytes => bytes.fill(0));
   }
 
   //
@@ -68,6 +68,43 @@ export default class SpriteFrameNode extends Node {
     let { bytes, group } = this;
     bytes = this._blobFromUint8Array(bytes);
     return await group.createNewFrame({ bytes });
+  }
+
+  resize(handle, size) {
+    let source = {
+      bytes: new Uint8Array(this.bytes),
+      size: {
+        width: this.width,
+        height: this.height
+      }
+    };
+
+    let target = {
+      bytes: new Uint8Array(size.width * size.height),
+      size
+    };
+
+    for(let y = 0; y < source.size.height; y++) {
+      for(let x = 0; x < source.size.width; x++) {
+        let value = source.bytes[toIndex(x, y, source.size)];
+        if(handle === 'right' || handle === 'bottom') {
+          target.bytes[toIndex(x, y, target.size)] = value;
+        } else if(handle === 'top') {
+          let d = target.size.height - source.size.height;
+          let ty = y + d;
+          target.bytes[toIndex(x, ty, target.size)] = value;
+        } else if(handle === 'left') {
+          let d = target.size.width - source.size.width;
+          let tx = x + d;
+          if(tx >= 0) {
+            target.bytes[toIndex(tx, y, target.size)] = value;
+          }
+        }
+      }
+    }
+
+    let bytes = this._blobFromUint8Array(target.bytes);
+    this.update({ bytes });
   }
 
   //
