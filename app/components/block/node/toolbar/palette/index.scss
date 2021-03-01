@@ -9,6 +9,10 @@
     border-radius: 2px;
     background: darken(#fff, 12%);
     position: relative;
+    margin-right: 1px;
+    &:last-child {
+      margin-right: 0;
+    }
     > .color {
       border-radius: 2px;
     }
