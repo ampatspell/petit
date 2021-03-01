@@ -8,7 +8,7 @@ class Rendered {
   }
 
   @reads('node.width') width;
-  @reads('node.width') height;
+  @reads('node.height') height;
   @reads('node.bytes') bytes;
   @reads('node.palette.model.canvas') palette;
 
