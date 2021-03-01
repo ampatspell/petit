@@ -18,11 +18,4 @@
     </Konva::Node::Layer>
   </Konva::Stage>
 
-  {{!-- TODO: Move it somewhere else --}}
-  {{#if (or this.frame.selected this.sprite.selected)}}
-    <Application::InTools>
-      <Block::Project::Editor::Node::Sprite::Tools @sprite={{this.sprite}}/>
-    </Application::InTools>
-  {{/if}}
-
 {{/if}}

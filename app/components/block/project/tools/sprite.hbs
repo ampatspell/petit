@@ -1,0 +1,14 @@
+<div class="block-project-tools-sprite">
+  <Block::Node::Toolbar::Tools
+    class="tools"
+    @tools={{this.tools}}
+    @tool={{this.tool}}
+    @onSelect={{this.selectTool}}
+  />
+  <Block::Node::Toolbar::Palette
+    class="palette"
+    @palette={{@node.palette.model}}
+    @selected={{@node.color}}
+    @onSelect={{this.selectColor}}
+  />
+</div>
