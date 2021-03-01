@@ -13,7 +13,9 @@ module.exports = function() {
       'eye',
       'eye-slash',
       'chevron-circle-right',
-      'expand'
+      'expand',
+      'mouse-pointer',
+      'pen'
     ]
   };
 };
