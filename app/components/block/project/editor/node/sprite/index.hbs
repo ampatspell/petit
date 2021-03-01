@@ -17,4 +17,8 @@
     </Konva::Node::Layer>
   </Konva::Stage>
 
+  {{#if this.resizing}}
+    <Block::Resize class="resize" @onResize={{this.onResize}}/>
+  {{/if}}
+
 {{/if}}

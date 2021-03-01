@@ -152,6 +152,26 @@ export default class SpriteNode extends Node {
 
   //
 
+  resize(handle, size) {
+    let clamp = value => Math.min(Math.max(value, 1), 96);
+    size.width = clamp(size.width);
+    size.height = clamp(size.height);
+
+    let { editor } = this;
+    let { x, y } = editor;
+    let pos = (x, w) => Math.ceil(editor[x] - ((size[w] - this[w]) * this.pixel.absolute));
+    if(handle === 'left') {
+      x = pos('x', 'width');
+    } else if(handle === 'top') {
+      y = pos('y', 'height');
+    }
+
+    editor.update({ x, y });
+    this.update(size);
+  }
+
+  //
+
   onKeyLeft() {
     this.selectPrev();
   }
