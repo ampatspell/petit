@@ -46,6 +46,11 @@ export default class BlockProjectEditorIndexComponent extends Component {
       return this.visible[idx];
     }
 
+    let isIdle = node => {
+      let { tools } = node;
+      return !tools || tools.selected.type === 'idle';
+    }
+
     let getPointerPosition = e => {
       let rect = this.contentElement.getBoundingClientRect();
       let c = (rp, ep) => Math.round(e[ep] - rect[rp]);
@@ -76,7 +81,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
-      if(node.tools.selected.type !== 'idle') {
+      if(!isIdle(node)) {
         return;
       }
 
