@@ -18,7 +18,7 @@
     </Konva::Node::Layer>
   </Konva::Stage>
 
-  {{#if this.editing}}
+  {{#if @node.group.selected}}
     <Application::InTools>
       <Block::Project::Editor::Node::Sprite::Tools @sprite={{this.sprite}}/>
     </Application::InTools>
