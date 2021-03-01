@@ -12,7 +12,8 @@ module.exports = function() {
       'terminal',
       'eye',
       'eye-slash',
-      'chevron-circle-right'
+      'chevron-circle-right',
+      'expand'
     ]
   };
 };
