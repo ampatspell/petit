@@ -34,9 +34,6 @@ export default class BlockProjectEditorIndexComponent extends Component {
     let editorElement = e => {
       let el = e.target;
       while(el) {
-        if(el.dataset.draggable === 'false') {
-          return;
-        }
         if(el.dataset.type === 'editor') {
           return el;
         }
@@ -79,7 +76,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
-      if(node.editing) {
+      if(node.tools.selected.type !== 'idle') {
         return;
       }
 
