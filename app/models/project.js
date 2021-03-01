@@ -124,6 +124,10 @@ export default class Project extends Model {
     fn && fn.call(selected, ...args);
   }
 
+  onKeyEsc() {
+    this._onKey('onKeyEsc');
+  }
+
   onKeyLeft() {
     this._onKey('onKeyLeft');
   }
@@ -134,6 +138,10 @@ export default class Project extends Model {
 
   onKeyNumber(number) {
     this._onKey('onKeyNumber', number);
+  }
+
+  onKeyLetter(key) {
+    this._onKey('onKeyLetter', key);
   }
 
   //

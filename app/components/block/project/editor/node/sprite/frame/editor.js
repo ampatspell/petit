@@ -32,8 +32,4 @@ export default class BlockProjectEditorNodeSpriteFramesFrameEditorComponent exte
     };
   }
 
-  didCreateNode() {
-    this.on('dblclick', () => this.args.onStartEditing());
-  }
-
 }

@@ -86,6 +86,10 @@ export default class SpriteFrameNode extends Node {
 
   //
 
+  onKeyEsc() {
+    this.sprite.onKeyEsc();
+  }
+
   onKeyLeft() {
     this.sprite.onKeyLeft();
   }
@@ -96,6 +100,10 @@ export default class SpriteFrameNode extends Node {
 
   onKeyNumber() {
     this.sprite.onKeyNumber(...arguments);
+  }
+
+  onKeyLetter() {
+    this.sprite.onKeyLetter(...arguments);
   }
 
 }
