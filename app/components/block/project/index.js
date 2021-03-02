@@ -1,14 +1,11 @@
 import Component from '@glimmer/component';
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
-import { reads } from "macro-decorators";
 
 export default class BlockProjectIndexComponent extends Component {
 
   @service dialogs;
   @service router;
-
-  @reads('args.project') project;
 
   @action
   async delete() {
@@ -17,7 +14,7 @@ export default class BlockProjectIndexComponent extends Component {
       return;
     }
     this.router.transitionTo('projects');
-    await this.project.delete();
+    await this.args.project.delete();
   }
 
   // @action
