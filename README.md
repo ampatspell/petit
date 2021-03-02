@@ -2,6 +2,7 @@
 
 ## TODO
 
+* move tools to node.editor
 * sprite select, move parts of pixels
 * draggable project editor
 * color picker
