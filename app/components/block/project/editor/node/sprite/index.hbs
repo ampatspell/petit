@@ -18,7 +18,7 @@
   </Konva::Stage>
 
   {{#if this.resizing}}
-    <Block::Resize class="resize" @onResize={{this.onResize}}/>
+    <Block::Resize class="resize" @node={{this.sprite}} @onCommit={{this.onResize}}/>
   {{/if}}
 
 {{/if}}

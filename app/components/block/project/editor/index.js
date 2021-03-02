@@ -46,9 +46,17 @@ export default class BlockProjectEditorIndexComponent extends Component {
       return this.visible[idx];
     }
 
-    let isIdle = node => {
+    let isDraggable = (node, e) => {
+      if(e.target.dataset.draggable === 'false') {
+        return false;
+      }
+
       let { tools } = node;
-      return !tools || tools.selected.type === 'idle';
+      if(!tools) {
+        return true;
+      }
+      let type = tools.selected.type;
+      return [ 'idle', 'resize' ].includes(type);
     }
 
     let getPointerPosition = e => {
@@ -81,7 +89,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
-      if(!isIdle(node)) {
+      if(!isDraggable(node, e)) {
         return;
       }
 

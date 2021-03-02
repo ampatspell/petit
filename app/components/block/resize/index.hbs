@@ -1,4 +1,8 @@
-<div class="block-resize" ...attributes {{did-insert this.didInsertResizeElement}}>
+<div
+  class="block-resize"
+  ...attributes
+  style={{this.style}}
+>
   <Block::Resize::Handle @position="top"/>
   <Block::Resize::Handle @position="left"/>
   <Block::Resize::Handle @position="bottom"/>
