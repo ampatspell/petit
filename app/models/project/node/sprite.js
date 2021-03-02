@@ -1,7 +1,6 @@
 import Node, { editor, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
-import { editing } from 'petit/util/editing';
 import { reads } from "macro-decorators";
 
 const {
@@ -158,37 +157,5 @@ export default class SpriteNode extends Node {
     this.editor.update({ x, y });
     this.update({ width, height });
   }
-
-  //
-
-  // onKeyLeft() {
-  //   this.selectPrev();
-  // }
-
-  // onKeyRight() {
-  //   this.selectNext();
-  // }
-
-  // onKeyNumber(n) {
-  //   if(n === 0) {
-  //     return;
-  //   }
-  //   let color = this.palette.model?.colors[n - 1];
-  //   if(color) {
-  //     this.color = color;
-  //   }
-  // }
-
-  // onKeyEsc() {
-  //   this.tools.selectByType('idle');
-  // }
-
-  // onKeyLetter(key) {
-  //   if(key === 'e') {
-  //     this.tools.selectByType('edit');
-  //   } else if(key === 'r') {
-  //     this.tools.selectByType('resize');
-  //   }
-  // }
 
 }
