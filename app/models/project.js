@@ -4,6 +4,12 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import { scheduleSave } from '../util/schedule-save';
 import { reads } from "macro-decorators";
+import { tools as _tools } from './project/node/-node/tools';
+
+const tools = node => _tools(node, [
+  { icon: 'mouse-pointer', type: 'idle' },
+  { icon: 'expand',        type: 'resize' }
+]);
 
 class ProjectNodesDelegate {
 
@@ -11,6 +17,7 @@ class ProjectNodesDelegate {
     this._project = project;
   }
 
+  @reads('_project') defaultSelection;
   @reads('_project.lock.locked') locked;
   @reads('_project.doc.data.selected') initialSelection;
   @reads('_project.pixel') pixel;
@@ -41,6 +48,7 @@ export default class Project extends Model {
   isProject = true;
   type = 'project';
   typeName = 'Project';
+  group = this;
 
   @activate() doc;
 
@@ -70,16 +78,13 @@ export default class Project extends Model {
     super(owner);
     this.doc = doc;
     this.lock = new Lock(this);
+    tools(this);
   }
 
   //
 
-  get group() {
-    return this;
-  }
-
   get selected() {
-    return this.nodes.selected || this;
+    return this.nodes.selected;
   }
 
   //

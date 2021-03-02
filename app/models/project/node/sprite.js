@@ -141,13 +141,12 @@ export default class SpriteNode extends Node {
 
   //
 
-  @editing('lock.locked') editing;
-
   didDeselect(next) {
     if(next === this || next?.parent === this) {
       return;
     }
-    this.editing = false;
+    console.log('reset');
+    this.tools.reset();
   }
 
   //
