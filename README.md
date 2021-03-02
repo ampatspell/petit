@@ -2,8 +2,7 @@
 
 ## TODO
 
-* Toolbar tools for sprite resize, select, copy-paste
-* resize sprites
+* sprite select, move parts of pixels
 * draggable project editor
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
@@ -26,3 +25,5 @@
 * Sprite dimensions from doc. Defaults to 16x16px
 * Add "show" in references inspector block
 * Project pixel, node.pixel
+* Toolbar tools for sprite resize, select, copy-paste
+* resize sprites
