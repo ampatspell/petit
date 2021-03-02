@@ -36,6 +36,12 @@ export default class RouteProjectsProjectIndexComponent extends Component {
     hotkeys.add('esc', forward('onKeyEsc'));
     hotkeys.add('left', forward('onKeyLeft'));
     hotkeys.add('right', forward('onKeyRight'));
+    hotkeys.add('space', e => {
+      e.preventRepeat();
+      this.project.onKeySpaceDown();
+    }, () => {
+      this.project.onKeySpaceUp();
+    });
 
     [ 'e', 'r' ].forEach(key => {
       hotkeys.add(key, wrap(() => this.project.onKeyLetter(key)));

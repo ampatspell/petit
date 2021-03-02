@@ -39,6 +39,17 @@ class NodesTools {
 
 }
 
+class NodesEditor {
+
+  // TODO: this should be a tool
+  @tracked draggable = false;
+
+  constructor(nodes) {
+    this.nodes = nodes;
+  }
+
+}
+
 export default class Nodes extends Model {
 
   @service store;
@@ -50,6 +61,7 @@ export default class Nodes extends Model {
     this.projectId = projectId;
     this.delegate = delegate;
     this.tools = new NodesTools(this);
+    this.editor = new NodesEditor(this);
   }
 
   //

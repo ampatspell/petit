@@ -124,6 +124,14 @@ export default class Project extends Model {
     fn && fn.call(selected, ...args);
   }
 
+  onKeySpaceDown() {
+    this.nodes.editor.draggable = true;
+  }
+
+  onKeySpaceUp() {
+    this.nodes.editor.draggable = false;
+  }
+
   onKeyEsc() {
     this._onKey('onKeyEsc');
   }
