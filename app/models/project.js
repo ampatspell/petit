@@ -122,37 +122,6 @@ export default class Project extends Model {
 
   //
 
-  // _onKey(name, ...args) {
-  //   let { selected } = this;
-  //   if(selected === this) {
-  //     return;
-  //   }
-  //   let fn = selected?.[name];
-  //   fn && fn.call(selected, ...args);
-  // }
-
-  // onKeyEsc() {
-  //   this._onKey('onKeyEsc');
-  // }
-
-  // onKeyLeft() {
-  //   this._onKey('onKeyLeft');
-  // }
-
-  // onKeyRight() {
-  //   this._onKey('onKeyRight');
-  // }
-
-  // onKeyNumber(number) {
-  //   this._onKey('onKeyNumber', number);
-  // }
-
-  // onKeyLetter(key) {
-  //   this._onKey('onKeyLetter', key);
-  // }
-
-  //
-
   toStringExtension() {
     let { id } = this;
     return `${id}`;
