@@ -1,7 +1,8 @@
 <div class="block-project-tools-sprite">
+  <Konva::Hotkeys @onBind={{this.bindKeys}}/>
   <Block::Node::Toolbar::Tools
     class="tools"
-    @tools={{this.tools}}
+    @tools={{this.tools.all}}
     @tool={{this.tool}}
     @onSelect={{this.selectTool}}
   />

@@ -1,7 +1,6 @@
 import Node, { editor, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
-import { editing } from 'petit/util/editing';
 import { reads } from "macro-decorators";
 
 const {
@@ -22,7 +21,7 @@ const defaultBytes = node => {
 const color = () => {
   return {
     get() {
-      let color = this._color || 0;
+      let color = this.doc.data.color || 0;
       return this.palette.model.colors[color] || null;
     },
     set(color) {
@@ -35,7 +34,7 @@ const color = () => {
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
   { icon: 'pen',           type: 'edit' },
-  { icon: 'expand',        type: 'resize' }
+  { icon: 'expand',        type: 'resize', overlaysHidden: true }
 ]);
 
 export default class SpriteNode extends Node {
@@ -80,6 +79,8 @@ export default class SpriteNode extends Node {
   @data('palette') _palette;
   @reference('palette', '_palette') palette;
 
+  @color color;
+
   //
 
   @reads('children') frames;
@@ -98,12 +99,6 @@ export default class SpriteNode extends Node {
   didMoveFrame(frame) {
     this.select(frame);
   }
-
-  //
-
-  // TODO: move to this.editor
-  @data('color') _color;
-  @color color;
 
   //
 
@@ -141,13 +136,11 @@ export default class SpriteNode extends Node {
 
   //
 
-  @editing('lock.locked') editing;
-
   didDeselect(next) {
     if(next === this || next?.parent === this) {
       return;
     }
-    this.editing = false;
+    this.tools.reset();
   }
 
   //
@@ -159,38 +152,6 @@ export default class SpriteNode extends Node {
     this.frames.forEach(frame => frame.resize(handle, { width, height }));
     this.editor.update({ x, y });
     this.update({ width, height });
-  }
-
-  //
-
-  onKeyLeft() {
-    this.selectPrev();
-  }
-
-  onKeyRight() {
-    this.selectNext();
-  }
-
-  onKeyNumber(n) {
-    if(n === 0) {
-      return;
-    }
-    let color = this.palette.model?.colors[n - 1];
-    if(color) {
-      this.color = color;
-    }
-  }
-
-  onKeyEsc() {
-    this.tools.selectByType('idle');
-  }
-
-  onKeyLetter(key) {
-    if(key === 'e') {
-      this.tools.selectByType('edit');
-    } else if(key === 'r') {
-      this.tools.selectByType('resize');
-    }
   }
 
 }
