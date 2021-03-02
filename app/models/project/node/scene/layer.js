@@ -19,4 +19,7 @@ export default class LayerNode extends Node {
 
   @reads('parent') scene;
 
+  resize() {
+  }
+
 }
