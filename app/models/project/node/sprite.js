@@ -145,7 +145,6 @@ export default class SpriteNode extends Node {
     if(next === this || next?.parent === this) {
       return;
     }
-    console.log('reset');
     this.tools.reset();
   }
 

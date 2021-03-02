@@ -2,7 +2,7 @@ import { tracked } from "@glimmer/tracking";
 
 class Tools {
 
-  @tracked __selected;
+  @tracked _selected;
 
   constructor(node, tools) {
     this.node = node;
@@ -13,20 +13,18 @@ class Tools {
     return this.all[0];
   }
 
-  get _selected() {
-    return this.__selected || this._default;
-  }
+  //
 
   select(tool) {
-    this.__selected = tool;
+    this._selected = tool;
   }
 
   reset() {
-    this.__selected = null;
+    this._selected = null;
   }
 
   get selected() {
-    return this.node.selected ? this._selected : this._default;
+    return this._selected || this._default;
   }
 
   selectWith(key, value) {

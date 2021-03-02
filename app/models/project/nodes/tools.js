@@ -5,7 +5,7 @@ class NodesTools {
   }
 
   get selected() {
-    return this.nodes.selection.selected.tools.selected;
+    return this.nodes.selection.selected.group.tools.selected;
   }
 
 }
