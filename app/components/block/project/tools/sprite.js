@@ -14,7 +14,7 @@ export default class BlockProjectToolsSpriteComponent extends Base {
       if(tool.type === 'idle') {
         node.nodes.select(node);
       } else {
-        tools.selectByType('idle');
+        tools.reset();
       }
     });
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ].forEach(n => {

@@ -11,6 +11,7 @@ export default class BlockProjectToolsProjectComponent extends Base {
     }, () => {
       this.node.tools.reset();
     });
+    keys.add('esc', () => this.node.tools.reset());
   }
 
 }
