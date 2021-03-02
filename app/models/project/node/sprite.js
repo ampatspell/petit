@@ -21,7 +21,7 @@ const defaultBytes = node => {
 const color = () => {
   return {
     get() {
-      let color = this._color || 0;
+      let color = this.doc.data.color || 0;
       return this.palette.model.colors[color] || null;
     },
     set(color) {
@@ -79,6 +79,8 @@ export default class SpriteNode extends Node {
   @data('palette') _palette;
   @reference('palette', '_palette') palette;
 
+  @color color;
+
   //
 
   @reads('children') frames;
@@ -97,12 +99,6 @@ export default class SpriteNode extends Node {
   didMoveFrame(frame) {
     this.select(frame);
   }
-
-  //
-
-  // TODO: move to this.editor
-  @data('color') _color;
-  @color color;
 
   //
 

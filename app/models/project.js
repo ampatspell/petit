@@ -56,8 +56,6 @@ export default class Project extends Model {
   @data('title') title;
   @data('createdAt') createdAt;
   @data('pixel') pixel;
-
-  // TODO: move to editor
   @data('overlays') overlays;
 
   @model()
