@@ -78,7 +78,9 @@ export default class BlockResizeIndexComponent extends Component {
 
       let { node, position } = dragging;
 
-      let _diff = prop => pointer[prop] - dragging.pointer[prop];
+      let round = v => Math.ceil(v / node.pixel) * node.pixel;
+
+      let _diff = prop => round(pointer[prop] - dragging.pointer[prop]);
       let diff = {
         x: _diff('x'),
         y: _diff('y')
@@ -86,21 +88,19 @@ export default class BlockResizeIndexComponent extends Component {
 
       let x = 0;
       let y = 0;
-      let width = (node.width * node.pixel);
-      let height = (node.height * node.pixel);
-
-      let round = v => Math.round(v / node.pixel) * node.pixel;
+      let width = node.width * node.pixel;
+      let height = node.height * node.pixel;
 
       if(position === 'top') {
         diff.y = Math.min(diff.y, height - node.pixel);
         height = round(height - diff.y);
-        y = round(diff.y);
+        y = diff.y;
       } else if(position === 'bottom') {
         height = Math.max(round(height + diff.y), node.pixel);
       } else if(position === 'left') {
         diff.x = Math.min(diff.x, width - node.pixel);
         width = round(width - diff.x);
-        x = round(diff.x);
+        x = diff.x;
       } else if(position === 'right') {
         width = Math.max(round(width + diff.x), node.pixel);
       }
@@ -112,6 +112,8 @@ export default class BlockResizeIndexComponent extends Component {
         width,
         height
       };
+
+      console.log(this.frame);
     }
 
     let mouseup = e => {
