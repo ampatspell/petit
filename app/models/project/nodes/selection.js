@@ -31,6 +31,7 @@ class NodesSelection {
   select(node, opts) {
     let { expandParents } = assign({ expandParents: false }, opts);
     let { selected } = this;
+    node = node || this._default;
     if(selected !== node) {
       this._selected = node;
       node?.didSelect && node.didSelect();

@@ -118,6 +118,10 @@ export default class Project extends Model {
     this.update({ selected });
   }
 
+  didDeselect() {
+    this.tools.reset();
+  }
+
   //
 
   // _onKey(name, ...args) {
