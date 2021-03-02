@@ -1,3 +1,18 @@
-<div class="block-project-editor-node-scene">
-  {{@node}}
-</div>
+<Konva::Stage @size={{this.size}} as |parent|>
+  <Konva::Node::Layer @parent={{parent}} as |parent|>
+
+    <Konva::Node::Rect @parent={{parent}} @model={{hash
+      x=0
+      y=0
+      width=this.size.width
+      height=this.size.height
+      fill=this.scene.background.rgba
+      stroke=this.stroke
+    }}/>
+
+  </Konva::Node::Layer>
+</Konva::Stage>
+
+{{#if this.resizing}}
+  <Block::Resize class="resize" @node={{this.scene}} @onCommit={{this.onResize}}/>
+{{/if}}

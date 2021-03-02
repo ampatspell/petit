@@ -1,0 +1,16 @@
+<div class="block-node-palette-select">
+  <Block::Node::Palette::Color::Rect @size="wide" @disabled={{@disabled}} @color={{@selected}} {{on "click" this.setOpen}}/>
+  {{#if this.open}}
+    <div class="overlay">
+      {{#each @palette.colors as |color|}}
+        <Block::Node::Palette::Color::Rect
+          class="color"
+          @size="wide"
+          @selected={{eq color @selected}}
+          @color={{color}}
+          {{on "click" (fn this.select color)}}
+        />
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

@@ -1,0 +1,11 @@
+<div class="group palette">
+  <div class="label">{{@label}}</div>
+  {{#if this.palette}}
+    <Block::Node::Palette::Select
+      @palette={{this.palette}}
+      @selected={{this.color}}
+      @onSelect={{this.onSelect}}
+      @disabled={{not @model.editable}}
+    />
+  {{/if}}
+</div>

@@ -19,6 +19,7 @@ const defaultBytes = node => {
   return node.store.blobFromUint8Array(new Uint8Array(heart));
 };
 
+// TODO: take this from scene
 const color = () => {
   return {
     get() {
@@ -101,7 +102,7 @@ export default class SpriteNode extends Node {
 
   //
 
-  // TODO: move to this.editor
+  // TODO: scene also has this
   @data('color') _color;
   @color color;
 
@@ -141,6 +142,7 @@ export default class SpriteNode extends Node {
 
   //
 
+  // TODO: this sould be in tool
   @editing('lock.locked') editing;
 
   didDeselect(next) {

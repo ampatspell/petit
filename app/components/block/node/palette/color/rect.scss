@@ -20,5 +20,12 @@
     > .color {
       border-radius: 2px;
     }
+    &.selected {
+      border-color: darken($background-grey-border-color, 30%);
+    }
+    transition: 0.15s ease-in-out border-color;
+    &.disabled {
+      border-color: fade-out($background-grey-border-color, 0.3);
+    }
   }
 }
