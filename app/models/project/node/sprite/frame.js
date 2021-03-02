@@ -121,26 +121,4 @@ export default class SpriteFrameNode extends Node {
     this.sprite.didMoveFrame(this);
   }
 
-  //
-
-  onKeyEsc() {
-    this.sprite.onKeyEsc();
-  }
-
-  onKeyLeft() {
-    this.sprite.onKeyLeft();
-  }
-
-  onKeyRight() {
-    this.sprite.onKeyRight();
-  }
-
-  onKeyNumber() {
-    this.sprite.onKeyNumber(...arguments);
-  }
-
-  onKeyLetter() {
-    this.sprite.onKeyLetter(...arguments);
-  }
-
 }

@@ -4,6 +4,12 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import { scheduleSave } from '../util/schedule-save';
 import { reads } from "macro-decorators";
+import { tools as _tools } from './project/node/-node/tools';
+
+const tools = node => _tools(node, [
+  { icon: 'mouse-pointer', type: 'idle' },
+  { icon: 'arrows-alt',    type: 'drag' }
+]);
 
 class ProjectNodesDelegate {
 
@@ -11,6 +17,7 @@ class ProjectNodesDelegate {
     this._project = project;
   }
 
+  @reads('_project') defaultSelection;
   @reads('_project.lock.locked') locked;
   @reads('_project.doc.data.selected') initialSelection;
   @reads('_project.pixel') pixel;
@@ -41,6 +48,7 @@ export default class Project extends Model {
   isProject = true;
   type = 'project';
   typeName = 'Project';
+  group = this;
 
   @activate() doc;
 
@@ -48,8 +56,6 @@ export default class Project extends Model {
   @data('title') title;
   @data('createdAt') createdAt;
   @data('pixel') pixel;
-
-  // TODO: move to editor
   @data('overlays') overlays;
 
   @model()
@@ -70,16 +76,13 @@ export default class Project extends Model {
     super(owner);
     this.doc = doc;
     this.lock = new Lock(this);
+    tools(this);
   }
 
   //
 
-  get group() {
-    return this;
-  }
-
   get selected() {
-    return this.nodes.selected || this;
+    return this.nodes.selected;
   }
 
   //
@@ -113,43 +116,8 @@ export default class Project extends Model {
     this.update({ selected });
   }
 
-  //
-
-  _onKey(name, ...args) {
-    let { selected } = this;
-    if(selected === this) {
-      return;
-    }
-    let fn = selected?.[name];
-    fn && fn.call(selected, ...args);
-  }
-
-  onKeySpaceDown() {
-    this.nodes.editor.draggable = true;
-  }
-
-  onKeySpaceUp() {
-    this.nodes.editor.draggable = false;
-  }
-
-  onKeyEsc() {
-    this._onKey('onKeyEsc');
-  }
-
-  onKeyLeft() {
-    this._onKey('onKeyLeft');
-  }
-
-  onKeyRight() {
-    this._onKey('onKeyRight');
-  }
-
-  onKeyNumber(number) {
-    this._onKey('onKeyNumber', number);
-  }
-
-  onKeyLetter(key) {
-    this._onKey('onKeyLetter', key);
+  didDeselect() {
+    this.tools.reset();
   }
 
   //

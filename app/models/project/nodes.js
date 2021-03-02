@@ -3,52 +3,13 @@ import { inject as service } from "@ember/service";
 import { activate, models, model } from 'zuglet/decorators';
 import { load } from 'zuglet/utils';
 import { tracked } from "@glimmer/tracking";
-import { exists } from '../../util/exists';
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
+import { selection } from './nodes/selection';
 
 const {
   assign
 } = Object;
-
-class NodesTools {
-
-  @tracked node;
-  @tracked tool;
-
-  constructor(nodes) {
-    this.nodes = nodes;
-  }
-
-  select(node, tool) {
-    this.node = node;
-    this.tool = tool;
-  }
-
-  selected(node) {
-    if(this.node !== node) {
-      return null;
-    }
-    return this.tool;
-  }
-
-  reset() {
-    this.node = null;
-    this.tool = null;
-  }
-
-}
-
-class NodesEditor {
-
-  // TODO: this should be a tool
-  @tracked draggable = false;
-
-  constructor(nodes) {
-    this.nodes = nodes;
-  }
-
-}
 
 export default class Nodes extends Model {
 
@@ -60,8 +21,7 @@ export default class Nodes extends Model {
     super(owner);
     this.projectId = projectId;
     this.delegate = delegate;
-    this.tools = new NodesTools(this);
-    this.editor = new NodesEditor(this);
+    selection(this);
   }
 
   //
@@ -83,7 +43,7 @@ export default class Nodes extends Model {
 
   async load() {
     await load(this.query);
-    this.maybeSelectInitialSelection();
+    this.selection.maybeSelectInitial(this.delegate.initialSelection);
   }
 
   //
@@ -117,42 +77,12 @@ export default class Nodes extends Model {
   @tracked
   isBusy = false;
 
-  @exists()
-  selected;
-
   //
 
+  @reads('selection.selected') selected;
+
   select(node, opts) {
-    let { expandParents } = assign({ expandParents: false }, opts);
-    let { selected } = this;
-    if(selected !== node) {
-      this.selected = node;
-      this.tools.reset();
-      node && node.didSelect();
-      selected && selected.didDeselect(node);
-      this.delegate.didSelectNode(node);
-      if(node && expandParents) {
-        this.maybeExpandNodeParents(node);
-      }
-    }
-  }
-
-  maybeSelectInitialSelection() {
-    let id = this.delegate.initialSelection;
-    if(id) {
-      let node = this.all.find(node => node.id === id);
-      if(node) {
-        this.select(node, { expandParents: true });
-      }
-    }
-  }
-
-  maybeExpandNodeParents(node) {
-    let curr = node.parent;
-    while(curr) {
-      curr.expand && curr.expand.maybe();
-      curr = curr.parent;
-    }
+    this.selection.select(node, opts);
   }
 
   //

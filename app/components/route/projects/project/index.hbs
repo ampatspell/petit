@@ -1,14 +1,3 @@
 <div class="route-projects-project-index">
-
-  <Konva::Hotkeys @onBind={{this.onBindHotkeys}}/>
-
-  <Block::Project::Tree @nodes={{@project.nodes}} class="tree"/>
-  <div class="content">
-    <Block::Project::Editor @project={{@project}} class="editor"/>
-    <Block::Project::Timeline @node={{@project.selected}} class="timeline"/>
-  </div>
-  <Block::Project::Inspector @project={{@project}} class="inspector"/>
-
-  <Block::Project::Tools @node={{@project.selected.group}}/>
-
+  <Block::Project @project={{@project}}/>
 </div>

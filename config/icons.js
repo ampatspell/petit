@@ -15,7 +15,8 @@ module.exports = function() {
       'chevron-circle-right',
       'expand',
       'mouse-pointer',
-      'pen'
+      'pen',
+      'arrows-alt'
     ]
   };
 };
