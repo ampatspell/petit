@@ -34,7 +34,7 @@ const color = () => {
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
   { icon: 'pen',           type: 'edit' },
-  { icon: 'expand',        type: 'resize' }
+  { icon: 'expand',        type: 'resize', overlaysHidden: true }
 ]);
 
 export default class SpriteNode extends Node {

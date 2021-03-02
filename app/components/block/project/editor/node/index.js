@@ -11,16 +11,11 @@ export default class BlockProjectEditorNodeIndexComponent extends Component {
     return editor;
   }
 
-  // TODO: this needs to be done in a tool
   get overlays() {
     if(!this.args.overlays) {
       return false;
     }
-    let tools = this.args.node.tools;
-    if(!tools) {
-      return false;
-    }
-    return tools.selected.type === 'idle';
+    return !this.args.node.tools?.selected.overlaysHidden;
   }
 
   @action
