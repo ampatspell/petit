@@ -123,24 +123,24 @@ export default class SpriteFrameNode extends Node {
 
   //
 
-  onKeyEsc() {
-    this.sprite.onKeyEsc();
-  }
+  // onKeyEsc() {
+  //   this.sprite.onKeyEsc();
+  // }
 
-  onKeyLeft() {
-    this.sprite.onKeyLeft();
-  }
+  // onKeyLeft() {
+  //   this.sprite.onKeyLeft();
+  // }
 
-  onKeyRight() {
-    this.sprite.onKeyRight();
-  }
+  // onKeyRight() {
+  //   this.sprite.onKeyRight();
+  // }
 
-  onKeyNumber() {
-    this.sprite.onKeyNumber(...arguments);
-  }
+  // onKeyNumber() {
+  //   this.sprite.onKeyNumber(...arguments);
+  // }
 
-  onKeyLetter() {
-    this.sprite.onKeyLetter(...arguments);
-  }
+  // onKeyLetter() {
+  //   this.sprite.onKeyLetter(...arguments);
+  // }
 
 }

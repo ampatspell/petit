@@ -163,34 +163,34 @@ export default class SpriteNode extends Node {
 
   //
 
-  onKeyLeft() {
-    this.selectPrev();
-  }
+  // onKeyLeft() {
+  //   this.selectPrev();
+  // }
 
-  onKeyRight() {
-    this.selectNext();
-  }
+  // onKeyRight() {
+  //   this.selectNext();
+  // }
 
-  onKeyNumber(n) {
-    if(n === 0) {
-      return;
-    }
-    let color = this.palette.model?.colors[n - 1];
-    if(color) {
-      this.color = color;
-    }
-  }
+  // onKeyNumber(n) {
+  //   if(n === 0) {
+  //     return;
+  //   }
+  //   let color = this.palette.model?.colors[n - 1];
+  //   if(color) {
+  //     this.color = color;
+  //   }
+  // }
 
-  onKeyEsc() {
-    this.tools.selectByType('idle');
-  }
+  // onKeyEsc() {
+  //   this.tools.selectByType('idle');
+  // }
 
-  onKeyLetter(key) {
-    if(key === 'e') {
-      this.tools.selectByType('edit');
-    } else if(key === 'r') {
-      this.tools.selectByType('resize');
-    }
-  }
+  // onKeyLetter(key) {
+  //   if(key === 'e') {
+  //     this.tools.selectByType('edit');
+  //   } else if(key === 'r') {
+  //     this.tools.selectByType('resize');
+  //   }
+  // }
 
 }
