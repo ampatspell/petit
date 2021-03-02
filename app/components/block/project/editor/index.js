@@ -46,11 +46,11 @@ export default class BlockProjectEditorIndexComponent extends Component {
       return this.visible[idx];
     }
 
-    let isDraggable = (node, e) => {
-      if(e.target.dataset.draggable === 'false') {
-        return false;
-      }
+    let isTargetDraggable = e => {
+      return e.target.dataset.draggable !== 'false';
+    }
 
+    let isNodeDraggable = node => {
       let { tools } = node;
       if(!tools) {
         return true;
@@ -82,6 +82,10 @@ export default class BlockProjectEditorIndexComponent extends Component {
     }
 
     let mousedown = e => {
+      if(!isTargetDraggable(e)) {
+        return;
+      }
+
       let pointer = getPointerPosition(e);
       let el = editorElement(e);
       if(!el) {
@@ -89,7 +93,7 @@ export default class BlockProjectEditorIndexComponent extends Component {
       }
 
       let node = nodeForEditorElement(el);
-      if(!isDraggable(node, e)) {
+      if(!isNodeDraggable(node, e)) {
         return;
       }
 
