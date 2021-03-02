@@ -16,10 +16,10 @@ export default class BlockProjectEditorIndexComponent extends Component {
 
   @action
   onDeselect(e) {
-    // TODO: needs to be tool
-    if(this.project.nodes.editor.draggable) {
-      return;
-    }
+    // TODO: dragging
+    // if(this.project.nodes.editor.draggable) {
+    //   return;
+    // }
     if(e.target !== this.contentElement) {
       return;
     }
