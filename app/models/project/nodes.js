@@ -6,7 +6,6 @@ import { tracked } from "@glimmer/tracking";
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 import { selection } from './nodes/selection';
-import { tools } from './nodes/tools';
 
 const {
   assign
@@ -22,7 +21,6 @@ export default class Nodes extends Model {
     super(owner);
     this.projectId = projectId;
     this.delegate = delegate;
-    tools(this);
     selection(this);
   }
 
