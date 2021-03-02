@@ -11,6 +11,7 @@ export default class BlockResizeIndexComponent extends Component {
   }
 
   @tracked frame;
+  @tracked size;
 
   get style() {
     let { frame } = this;
@@ -113,7 +114,11 @@ export default class BlockResizeIndexComponent extends Component {
         height
       };
 
-      console.log(this.frame);
+      // eslint-disable-next-line ember/no-side-effects
+      this.size = {
+        width: width / node.pixel,
+        height: height / node.pixel
+      }
     }
 
     let mouseup = e => {
@@ -139,6 +144,8 @@ export default class BlockResizeIndexComponent extends Component {
       dragging = null;
       // eslint-disable-next-line ember/no-side-effects
       this.frame = null;
+      // eslint-disable-next-line ember/no-side-effects
+      this.size = null;
     }
 
     return {

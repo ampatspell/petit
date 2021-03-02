@@ -1,5 +1,10 @@
 .block-resize {
   border: 1px dashed #888;
+  > .size {
+    position: absolute;
+    top: -12px;
+    font-size: $font-size-small;
+  }
   > .handle {
     position: absolute;
     $s: 10px;

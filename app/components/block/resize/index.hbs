@@ -3,6 +3,9 @@
   ...attributes
   style={{this.style}}
 >
+  {{#if this.size}}
+    <div class="size">{{this.size.width}}×{{this.size.height}}</div>
+  {{/if}}
   <Block::Resize::Handle @position="top"/>
   <Block::Resize::Handle @position="left"/>
   <Block::Resize::Handle @position="bottom"/>
