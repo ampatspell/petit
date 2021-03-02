@@ -187,11 +187,6 @@ export default class Node extends Model {
 
   //
 
-  onKeyLeft() {}
-  onKeyRight() {}
-
-  //
-
   toStringExtension() {
     let { id } = this;
     return `${id}`;
