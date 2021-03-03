@@ -1,25 +1,24 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { events } from 'petit/util/window-events';
-import { reads } from "macro-decorators";
+import { reads, equal } from "macro-decorators";
+import { htmlSafe } from '@ember/template';
 
-export default class BlockProjectEditorIndexComponent extends Component {
+export default class BlockProjectEditorNodesComponent extends Component {
 
   @reads('args.project') project;
-  @reads('args.project.nodes.visible') visible;
+  @reads('project.nodes.visible') visible;
+  @equal('project.tools.selected.type', 'drag') dragging;
+
+  get style() {
+    let { x, y } = this.project;
+    return htmlSafe(`transform: translate(${x}px, ${y}px)`);
+  }
 
   @action
   didInsertContent(el) {
     this.contentElement = el;
     this.windowEventHandlers.start();
-  }
-
-  @action
-  onDeselect(e) {
-    if(e.target !== this.contentElement) {
-      return;
-    }
-    this.onSelect(null);
   }
 
   @action

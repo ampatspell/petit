@@ -2,8 +2,12 @@ import Component from '@glimmer/component';
 import { action } from "@ember/object";
 import { htmlSafe } from '@ember/template';
 import { assert } from '@ember/debug';
+import { reads } from "macro-decorators";
 
 export default class BlockProjectEditorNodeIndexComponent extends Component {
+
+  @reads('args.node.nodes.selected.group.tools.selected') selectedTool;
+  @reads('args.node.tools.selected') nodeTool;
 
   get editor() {
     let editor = this.args.node.editor;
@@ -15,7 +19,7 @@ export default class BlockProjectEditorNodeIndexComponent extends Component {
     if(!this.args.overlays) {
       return false;
     }
-    return !this.args.node.tools?.selected.overlaysHidden;
+    return !this.nodeTool?.overlaysHidden;
   }
 
   @action

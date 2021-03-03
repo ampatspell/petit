@@ -1,0 +1,16 @@
+<div
+  class={{class "block-project-editor-nodes" disabled=this.dragging}}
+  ...attributes
+  style={{this.style}}
+  role="button"
+  {{did-insert this.didInsertContent}}
+>
+  {{#each this.visible as |node idx|}}
+    <Block::Project::Editor::Node
+      @index={{idx}}
+      @node={{node}}
+      @overlays={{@project.overlays}}
+      @onSelect={{fn this.onSelect node}}
+    />
+  {{/each}}
+</div>

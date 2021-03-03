@@ -1,18 +1,6 @@
 <div class="block-project-editor">
   <div class="border"></div>
-  <div
-    class="content"
-    role="button"
-    {{did-insert this.didInsertContent}}
-    {{on "mousedown" this.onDeselect}}
-  >
-    {{#each this.visible as |node idx|}}
-      <Block::Project::Editor::Node
-        @index={{idx}}
-        @node={{node}}
-        @overlays={{@project.overlays}}
-        @onSelect={{fn this.onSelect node}}
-      />
-    {{/each}}
-  </div>
+  <Block::Project::Editor::Content class="content" @project={{@project}}>
+    <Block::Project::Editor::Nodes class="nodes" @project={{@project}}/>
+  </Block::Project::Editor::Content>
 </div>
