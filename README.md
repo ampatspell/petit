@@ -2,6 +2,8 @@
 
 ## TODO
 
+* move selection to project
+* provide project as node.project instead of nodes
 * sprite select, move parts of pixels
 * color picker
 * node.selected → new Select(node); also expanded-selcted handling
