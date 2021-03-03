@@ -57,6 +57,8 @@ export default class Project extends Model {
   @data('createdAt') createdAt;
   @data('pixel') pixel;
   @data('overlays') overlays;
+  @data('x') x;
+  @data('y') y;
 
   @model()
     .named('project/nodes')
