@@ -25,6 +25,11 @@ export default class BlockProjectToolsSpriteComponent extends Base {
         }
       });
     });
+    [ 1, 2, 4, 8 ].forEach((pixel, idx) => {
+      keys.add(`alt + ${idx+1}`, () => {
+        this.node.update({ pixel });
+      });
+    });
   }
 
   @action

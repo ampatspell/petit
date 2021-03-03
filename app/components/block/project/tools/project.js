@@ -12,6 +12,11 @@ export default class BlockProjectToolsProjectComponent extends Base {
       this.node.tools.reset();
     });
     keys.add('esc', () => this.node.tools.reset());
+    [ 1, 2, 3, 5, 10 ].forEach((pixel, idx) => {
+      keys.add(`alt + ${idx+1}`, () => {
+        this.node.update({ pixel });
+      });
+    });
   }
 
 }
