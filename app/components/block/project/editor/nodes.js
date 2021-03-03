@@ -8,7 +8,7 @@ export default class BlockProjectEditorNodesComponent extends Component {
 
   @reads('args.project') project;
   @reads('project.nodes.visible') visible;
-  @equal('project.tools.selected.type', 'drag') dragging;
+  @equal('project.nodes.selected.tools.selected.type', 'drag') dragging;
 
   get style() {
     let { x, y } = this.project;

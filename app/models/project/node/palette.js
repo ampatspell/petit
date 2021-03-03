@@ -1,7 +1,11 @@
-import Node, { editor, lock, hide, data, pixel } from './-node';
+import Node, { editor, lock, hide, data, pixel, tools as _tools } from './-node';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
 import { lastObject, removeAt } from '../../../util/array';
+
+const tools = node => _tools(node, [
+  { icon: 'mouse-pointer', type: 'idle' },
+]);
 
 export default class PaletteNode extends Node {
 
@@ -13,6 +17,7 @@ export default class PaletteNode extends Node {
     lock(this);
     hide(this);
     pixel(this);
+    tools(this);
   }
 
   group = this;

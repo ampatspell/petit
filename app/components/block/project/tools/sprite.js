@@ -30,6 +30,12 @@ export default class BlockProjectToolsSpriteComponent extends Base {
         this.node.update({ pixel });
       });
     });
+    keys.add('space', e => {
+      e.preventRepeat();
+      this.node.tools.selectByType('drag');
+    }, () => {
+      this.node.tools.reset();
+    });
   }
 
   @action

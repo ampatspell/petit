@@ -6,7 +6,7 @@ import { reads, equal } from "macro-decorators";
 export default class BlockProjectEditorContentComponent extends Component {
 
   @reads('args.project') project;
-  @equal('project.tools.selected.type', 'drag') dragging;
+  @equal('project.nodes.selected.tools.selected.type', 'drag') dragging;
 
   @action
   didInsertContent(el) {

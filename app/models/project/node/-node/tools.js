@@ -6,7 +6,10 @@ class Tools {
 
   constructor(node, tools) {
     this.node = node;
-    this.all = tools;
+    this.all = tools || [];
+    if(!this.findWith('type', 'drag')) {
+      this.all.push({ icon: 'arrows-alt', type: 'drag', hidden: true });
+    }
   }
 
   get _default() {
@@ -27,8 +30,12 @@ class Tools {
     return this._selected || this._default;
   }
 
+  findWith(key, value) {
+    return this.all.find(tool => tool[key] === value)
+  }
+
   selectWith(key, value) {
-    this.select(this.all.find(tool => tool[key] === value));
+    this.select(this.findWith(key, value));
   }
 
   selectByType(type) {
