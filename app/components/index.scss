@@ -8,6 +8,7 @@
 @import "block/tree";
 @import "block/resize";
 @import "block/node/palette/color/rect";
+@import "block/node/palette/select";
 @import "block/node/toolbar/palette";
 @import "block/node/toolbar/tools";
 @import "block/node/sprite/frame";
@@ -18,7 +19,6 @@
 @import "block/project/inspector/footer";
 @import "block/project/editor";
 @import "block/project/editor/node";
-@import "block/project/editor/node/scene";
 @import "block/project/editor/node/palette";
 @import "block/project/timeline";
 @import "block/project/timeline/sprite";

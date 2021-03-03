@@ -1,9 +1,6 @@
 import Group from 'ember-cli-konva/components/konva/node/group';
 import { reads } from "macro-decorators";
-
-const stroke = (locked, editing) => {
-  return locked ? 'rgba(0,0,0,0.15)' : editing ? 'rgba(255,102,97,0.75)' : 'rgba(96,190,253, 0.5)'
-};
+import { stroke } from 'petit/util/stroke';
 
 export default class BlockProjectEditorNodeSpriteFramesFrameEditorComponent extends Group {
 

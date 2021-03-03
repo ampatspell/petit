@@ -1,3 +1,39 @@
-<div class="block-project-editor-node-scene">
-  {{@node}}
-</div>
+<Konva::Stage @size={{this.size}} as |parent|>
+  <Konva::Node::Layer @parent={{parent}} as |parent|>
+
+    <Konva::Node::Rect @parent={{parent}} @model={{hash
+      x=0
+      y=0
+      width=this.size.width
+      height=this.size.height
+      fill=this.scene.background.rgba
+      stroke=this.stroke
+    }}/>
+
+    {{#each this.layers as |layer idx|}}
+
+      <Konva::Node::Group @parent={{parent}} zIndex={{idx}} as |parent|>
+        <Konva::Node::Rect @parent={{parent}} @model={{hash
+          x=0
+          y=0
+          width=this.size.width
+          height=this.size.height
+          fill="#fff"
+          opacity=0.9
+        }}/>
+        <Konva::Node::Text @parent={{parent}} @model={{hash
+          x=5
+          y=5
+          fontFamily="Ubuntu Mono"
+          text=(concat layer.identifier)
+        }}/>
+      </Konva::Node::Group>
+
+    {{/each}}
+
+  </Konva::Node::Layer>
+</Konva::Stage>
+
+{{#if this.resizing}}
+  <Block::Resize class="resize" @node={{this.scene}} @onCommit={{this.onResize}}/>
+{{/if}}
