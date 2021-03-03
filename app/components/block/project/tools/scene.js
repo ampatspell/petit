@@ -1,15 +1,25 @@
-import Component from '@glimmer/component';
+import Base from './-base';
 import { action } from "@ember/object";
-import { reads } from "macro-decorators";
 
-export default class BlockProjectToolsSceneComponent extends Component {
-
-  @reads('args.node.tools.all') tools;
-  @reads('args.node.tools.selected') tool;
+export default class BlockProjectToolsSceneComponent extends Base {
 
   @action
-  selectTool(tool) {
-    this.args.node.tools.select(tool);
+  bindKeys(keys) {
+    keys.add('e', () => this.tools.selectByType('edit'));
+    keys.add('r', () => this.tools.selectByType('resize'));
+    keys.add('esc', () => {
+      let { node, tools, tool } = this;
+      if(tool.type === 'idle') {
+        node.nodes.select(node);
+      } else {
+        tools.reset();
+      }
+    });
+    [ 1, 2, 4, 8 ].forEach((pixel, idx) => {
+      keys.add(`alt + ${idx+1}`, () => {
+        this.node.update({ pixel });
+      });
+    });
   }
 
 }
