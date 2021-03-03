@@ -39,6 +39,8 @@ export default class SceneNode extends Node {
 
   @reads('children') layers;
 
+  @data('x') x;
+  @data('y') y;
   @data('width') width;
   @data('height') height;
   @data('palette') _palette;

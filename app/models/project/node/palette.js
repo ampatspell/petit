@@ -22,6 +22,8 @@ export default class PaletteNode extends Node {
 
   group = this;
 
+  @data('x') x;
+  @data('y') y;
   @data('colors') _colors;
 
   @models()

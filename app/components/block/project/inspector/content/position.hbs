@@ -1,0 +1,14 @@
+<div class="group position">
+  {{#each this.props as |prop|}}
+    <div class="key">
+      <div class="label">{{prop.label}}</div>
+      <Input::Text
+        class="input"
+        @type="int"
+        @value={{get @model prop.key}}
+        @disabled={{not @model.editable}}
+        @onChange={{fn this.onChange prop.key}}
+      />
+    </div>
+  {{/each}}
+</div>

@@ -1,13 +1,9 @@
 import { reads } from "macro-decorators";
 
-const {
-  assign
-} = Object;
-
 const pos = (_target, key) => {
   return {
     get() {
-      return this.pixel * this.data[key];
+      return this.pixel * this.doc.data[key];
     }
   }
 }
@@ -16,7 +12,7 @@ const xy = [ 'x', 'y' ];
 
 class EditorProperties {
 
-  @reads('node.doc.data.editor') data;
+  @reads('node.doc') doc;
   @reads('node.nodes.pixel', 1) pixel;
 
   @pos x;
@@ -40,8 +36,7 @@ class EditorProperties {
 
   update(props) {
     props = this.translate(props);
-    assign(this.data, props);
-    this.node._scheduleSave.schedule();
+    this.node.update(props);
   }
 
 }

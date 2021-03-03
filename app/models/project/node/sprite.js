@@ -72,6 +72,8 @@ export default class SpriteNode extends Node {
 
   //
 
+  @data('x') x;
+  @data('y') y;
   @data('width') width;
   @data('height') height;
 
