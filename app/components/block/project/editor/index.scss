@@ -22,5 +22,10 @@
     right: 0px;
     overflow: hidden;
     background: darken(#fff, 12%);
+    > .nodes {
+      &.disabled {
+        pointer-events: none;
+      }
+    }
   }
 }

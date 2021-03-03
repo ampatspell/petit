@@ -1,16 +1,30 @@
+import { tracked } from "@glimmer/tracking";
+
 class Tools {
+
+  @tracked _selected;
 
   constructor(node, tools) {
     this.node = node;
     this.all = tools;
   }
 
+  get _default() {
+    return this.all[0];
+  }
+
+  //
+
   select(tool) {
-    this.node.nodes.tools.select(this.node, tool || null);
+    this._selected = tool;
+  }
+
+  reset() {
+    this._selected = null;
   }
 
   get selected() {
-    return this.node.nodes.tools.selected(this.node) || this.all[0];
+    return this._selected || this._default;
   }
 
   selectWith(key, value) {
