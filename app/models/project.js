@@ -8,7 +8,7 @@ import { tools as _tools } from './project/node/-node/tools';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
-  { icon: 'arrows-alt',    type: 'drag', nodeDraggingDisabled: true }
+  { icon: 'arrows-alt',    type: 'project:drag' }
 ]);
 
 class ProjectNodesDelegate {

@@ -7,8 +7,8 @@ class Tools {
   constructor(node, tools) {
     this.node = node;
     this.all = tools || [];
-    if(!this.findWith('type', 'drag')) {
-      this.all.push({ icon: 'arrows-alt', type: 'drag', hidden: true });
+    if(!this.findWith('type', 'project:drag')) {
+      this.all.push({ type: 'project:drag', hidden: true });
     }
   }
 

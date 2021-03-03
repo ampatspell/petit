@@ -22,7 +22,7 @@ export default class BlockProjectToolsSceneComponent extends Base {
     });
     keys.add('space', e => {
       e.preventRepeat();
-      this.node.tools.selectByType('drag');
+      this.node.tools.selectByType('project:drag');
     }, () => {
       this.node.tools.reset();
     });

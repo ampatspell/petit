@@ -7,7 +7,7 @@ export default class BlockProjectToolsPaletteComponent extends Base {
   bindKeys(keys) {
     keys.add('space', e => {
       e.preventRepeat();
-      this.node.tools.selectByType('drag');
+      this.node.tools.selectByType('project:drag');
     }, () => {
       this.node.tools.reset();
     });
