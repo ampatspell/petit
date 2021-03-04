@@ -19,13 +19,14 @@
           width=this.size.width
           height=this.size.height
           fill="#fff"
-          opacity=0.9
+          opacity=0.5
         }}/>
         <Konva::Node::Text @parent={{parent}} @model={{hash
           x=5
           y=5
           fontFamily="Ubuntu Mono"
-          text=(concat layer.identifier)
+          fill="#000"
+          text=layer.identifier
         }}/>
       </Konva::Node::Group>
 
