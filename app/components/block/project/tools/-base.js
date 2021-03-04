@@ -2,6 +2,13 @@ import Component from '@glimmer/component';
 import { reads } from "macro-decorators";
 import { action } from "@ember/object";
 
+export const handler = cb => e => {
+  if(e.target.tagName === 'INPUT') {
+    return;
+  }
+  return cb(e);
+}
+
 export default class BlockProjectToolsBaseComponent extends Component {
 
   @reads('args.node') node;
