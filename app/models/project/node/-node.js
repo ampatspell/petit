@@ -12,9 +12,11 @@ import { child } from './-node/child';
 import { expand } from './-node/expand';
 import { pixel } from './-node/pixel';
 import { tools } from './-node/tools';
+import { editable } from './-node/editable';
 
 export {
   editor,
+  editable,
   hide,
   lock,
   expand,
@@ -63,10 +65,6 @@ export default class Node extends Model {
       }
       return node.hasSelectedChild;
     });
-  }
-
-  get editable() {
-    return !this.nodes.isBusy && (!this.lock || !this.lock.locked);
   }
 
   //

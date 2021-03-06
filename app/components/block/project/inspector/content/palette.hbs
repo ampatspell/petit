@@ -5,7 +5,7 @@
       @palette={{this.palette}}
       @selected={{this.color}}
       @onSelect={{this.onSelect}}
-      @disabled={{not @model.editable}}
+      @disabled={{@model.editable.disabled}}
     />
   {{/if}}
 </div>

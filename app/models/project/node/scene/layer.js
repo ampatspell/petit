@@ -1,4 +1,4 @@
-import Node, { lock, hide, warnings, expand } from '../-node';
+import Node, { lock, hide, warnings, expand, editable } from '../-node';
 import { reads } from "macro-decorators";
 
 export default class LayerNode extends Node {
@@ -11,6 +11,7 @@ export default class LayerNode extends Node {
     hide(this);
     expand(this);
     warnings(this);
+    editable(this);
   }
 
   get group() {

@@ -6,7 +6,7 @@
         class="input"
         @type="int"
         @value={{get @model prop.key}}
-        @disabled={{not @model.editable}}
+        @disabled={{@model.editable.disabled}}
         @onChange={{fn this.onChange prop.key}}
       />
     </div>

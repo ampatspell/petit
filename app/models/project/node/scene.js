@@ -1,4 +1,4 @@
-import Node, { data, reference, editor, lock, hide, warnings, expand, pixel, tools as _tools } from './-node';
+import Node, { data, reference, editor, editable, lock, hide, warnings, expand, pixel, tools as _tools } from './-node';
 import { reads } from "macro-decorators";
 
 const tools = node => _tools(node, [
@@ -31,6 +31,7 @@ export default class SceneNode extends Node {
     expand(this);
     pixel(this);
     tools(this);
+    editable(this);
   }
 
   typeName = 'Scene';

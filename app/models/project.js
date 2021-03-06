@@ -5,6 +5,7 @@ import { model } from 'zuglet/decorators';
 import { scheduleSave } from '../util/schedule-save';
 import { reads } from "macro-decorators";
 import { tools as _tools } from './project/node/-node/tools';
+import { editable } from './project/node/-node/editable';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
@@ -70,15 +71,12 @@ export default class Project extends Model {
 
   @scheduleSave _scheduleSave;
 
-  get editable() {
-    return !this.nodes.isBusy && !this.lock.locked;
-  }
-
   constructor(owner, { doc }) {
     super(owner);
     this.doc = doc;
     this.lock = new Lock(this);
     tools(this);
+    editable(this);
   }
 
   //
