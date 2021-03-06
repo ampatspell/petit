@@ -122,8 +122,17 @@
       > .color {
         margin-bottom: 1px;
       }
-      > .input {
+      > .prop {
+        display: flex;
+        flex-direction: row;
         margin-bottom: 1px;
+        > .slider {
+          flex: 1;
+          margin-right: 1px;
+        }
+        > .input {
+          width: 28px;
+        }
         &:last-child {
           margin-bottom: 0;
         }
