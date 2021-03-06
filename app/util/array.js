@@ -60,3 +60,9 @@ export const sortedBy = (array, key) => {
     return a < b ? -1 : a > b ? 1 : 0;
   });
 }
+
+export const uniq = array => {
+  let arr = [];
+  array.forEach(item => addObject(arr, item));
+  return arr;
+}

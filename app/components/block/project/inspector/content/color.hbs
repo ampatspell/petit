@@ -1,5 +1,11 @@
 <div class="group color">
   <div class="label">{{@label}}</div>
+  <Input::Text
+    class="identifier"
+    @disabled={{@model.editable.disabled}}
+    @value={{@model.identifier}}
+    @onChange={{fn this.onChange 'identifier'}}
+  />
   <Block::Node::Palette::Color::Rect class="color" @size="wide" @color={{@model}}/>
   {{#each this.props as |key|}}
     <div class="prop">

@@ -1,11 +1,22 @@
-import Node, { editor, lock, hide, data, pixel, editable, tools as _tools } from './-node';
+import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, warnings } from './-node';
+import { Warning } from './-node/warnings';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
-import { lastObject, removeAt } from '../../../util/array';
+import { lastObject, removeAt, uniq } from 'petit/util/array';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
 ]);
+
+class ColorIdentifierConflict extends Warning {
+
+  get has() {
+    let identifiers = this.node.colors.map(color => color.identifier).filter(Boolean);
+    let unique = uniq(identifiers);
+    return unique.length !== identifiers.length;
+  }
+
+}
 
 export default class PaletteNode extends Node {
 
@@ -19,6 +30,9 @@ export default class PaletteNode extends Node {
     pixel(this);
     tools(this);
     editable(this);
+    warnings(this, {
+      add: [ ColorIdentifierConflict ]
+    });
   }
 
   group = this;
@@ -65,7 +79,8 @@ export default class PaletteNode extends Node {
   //
 
   createNewColor() {
-    this._colors.push({ r: 255, g: 100, b: 200, a: 255 });
+    let identifier = `c_${this._colors.length + 1}`;
+    this._colors.push({ r: 255, g: 100, b: 200, a: 255, identifier });
     let color = lastObject(this.colors);
     this.select(color);
     this._didUpdate();

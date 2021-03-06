@@ -1,12 +1,18 @@
-import { or } from "macro-decorators";
+import { reads } from "macro-decorators";
 
-class Warnings {
+export class Warning {
 
-  constructor(node) {
-    this.node = node;
+  @reads('warnings.node') node;
+
+  constructor(warnings) {
+    this.warnings = warnings;
   }
 
-  get identifierConflict() {
+}
+
+export class GlobalIdentifierConflict extends Warning {
+
+  get has() {
     let { node, node: { identifier, nodes } } = this;
     if(!identifier) {
       return false;
@@ -15,7 +21,11 @@ class Warnings {
     return !!another;
   }
 
-  get missingReferences() {
+}
+
+export class MissingReferences extends Warning {
+
+  get has() {
     let { node } = this;
     return !!node.referenceKeys.find(key => {
       let ref = node[key];
@@ -23,10 +33,40 @@ class Warnings {
     });
   }
 
-  @or('identifierConflict', 'missingReferences') any;
+}
+
+const defaults = [
+  GlobalIdentifierConflict,
+  MissingReferences
+];
+
+const normalizeOpts = (opts={}) => {
+  let types = defaults;
+  if(opts.add) {
+    types = [ ...types, ...opts.add ];
+  } else if(opts.replace) {
+    types = opts.replace;
+  }
+  return {
+    types
+  };
+}
+
+class Warnings {
+
+  constructor(node, opts) {
+    opts = normalizeOpts(opts);
+    this.node = node;
+    this.warnings = opts.types.map(type => new type(this));
+  }
+
+  get any() {
+    return this.warnings.find(warning => warning.has);
+  }
 
 }
 
-export const warnings = node => {
-  node.warnings = new Warnings(node);
+// opts: { add: [], replace: [] }
+export const warnings = (node, opts) => {
+  node.warnings = new Warnings(node, opts);
 }

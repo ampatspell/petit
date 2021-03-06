@@ -26,6 +26,7 @@ export default class Color extends Model {
     this.data = data;
   }
 
+  @data('identifier') identifier;
   @data('r') r;
   @data('g') g;
   @data('b') b;
