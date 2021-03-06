@@ -5,12 +5,12 @@ export default class BlockProjectInspectorContentReorderComponent extends Compon
 
   @action
   moveUp() {
-    this.args.model.moveUp();
+    this.args.model.move.up();
   }
 
   @action
   moveDown() {
-    this.args.model.moveDown();
+    this.args.model.move.down();
   }
 
 }

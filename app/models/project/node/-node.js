@@ -1,7 +1,7 @@
 import Model, { doc, data } from '../../-model';
 import { activate } from 'zuglet/decorators';
 import { scheduleSave } from '../../../util/schedule-save';
-import { firstObject, lastObject, sortedBy, prevObject, nextObject } from '../../../util/array';
+import { firstObject, lastObject, sortedBy } from '../../../util/array';
 import { inject as service } from "@ember/service";
 import { editor } from './-node/editor';
 import { lock } from './-node/lock';
@@ -13,6 +13,7 @@ import { expand } from './-node/expand';
 import { pixel } from './-node/pixel';
 import { tools } from './-node/tools';
 import { editable } from './-node/editable';
+import { move } from './-node/move';
 
 export {
   editor,
@@ -50,6 +51,7 @@ export default class Node extends Model {
     super(owner);
     this.doc = doc;
     this.nodes = nodes;
+    move(this);
   }
 
   //
@@ -141,47 +143,10 @@ export default class Node extends Model {
 
   //
 
-  async reorderParentChildren() {
-    sortedBy(this.parentChildren, 'index').forEach((model, index) => model.update({ index }));
-  }
-
-  didMove() {}
-
-  async moveUp() {
-    let another = prevObject(this.parentChildren, this);
-    if(!another) {
-      return;
-    }
-    let index = this.index;
-    this.update({ index: another.index });
-    another.update({ index: index });
-    this.reorderParentChildren();
-    this.didMove();
-  }
-
-  async moveDown() {
-    let another = nextObject(this.parentChildren, this);
-    if(!another) {
-      return;
-    }
-    let index = this.index;
-    this.update({ index: another.index });
-    another.update({ index: index });
-    this.reorderParentChildren();
-    this.didMove();
-  }
-
-  //
-
   async _createNode(props, opts) {
     this.expand?.expand();
     return this.nodes._createNode(this, props, opts);
   }
-
-  //
-
-  didDeselect() {}
-  didSelect() {}
 
   //
 
