@@ -39,6 +39,7 @@ export default class SceneNode extends Node {
   referenceKeys = [ 'palette' ];
 
   @reads('children') layers;
+  @reads('visibleChildren') visibleLayers;
 
   @data('x') x;
   @data('y') y;

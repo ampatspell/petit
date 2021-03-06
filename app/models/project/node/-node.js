@@ -110,6 +110,11 @@ export default class Node extends Model {
     return this.children.length > 0;
   }
 
+  get visibleChildren() {
+    let visible = arr => arr.filter(node => !node.hide || !node.hide.hidden);
+    return visible(this.children).reverse();
+  }
+
   //
 
   async save() {
