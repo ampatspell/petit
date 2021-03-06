@@ -185,5 +185,20 @@
       @include border();
       @include label();
     }
+    &.warnings {
+      @include padding();
+      $b: lighten(red, 43%);
+      background: lighten(red, 47%);
+      margin: -1px 0 0 0;
+      border-top: 1px solid $b;
+      border-bottom: 1px solid $b;
+      > .warning {
+        font-size: $font-size-small;
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }

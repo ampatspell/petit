@@ -12,6 +12,10 @@ export class Warning {
 
 export class GlobalIdentifierConflict extends Warning {
 
+  get description() {
+    return `Global identifier conflict`;
+  }
+
   get has() {
     let { node, node: { identifier, nodes } } = this;
     if(!identifier) {
@@ -24,6 +28,10 @@ export class GlobalIdentifierConflict extends Warning {
 }
 
 export class MissingReferences extends Warning {
+
+  get description() {
+    return `Missing references`;
+  }
 
   get has() {
     let { node } = this;
@@ -60,8 +68,12 @@ class Warnings {
     this.warnings = opts.types.map(type => new type(this));
   }
 
+  get enabled() {
+    return this.warnings.filter(warning => warning.has);
+  }
+
   get any() {
-    return this.warnings.find(warning => warning.has);
+    return this.enabled.length > 0;
   }
 
 }

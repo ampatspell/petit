@@ -10,6 +10,10 @@ const tools = node => _tools(node, [
 
 class ColorIdentifierConflict extends Warning {
 
+  get description() {
+    return `Color identifier conflict`;
+  }
+
   get has() {
     let identifiers = this.node.colors.map(color => color.identifier).filter(Boolean);
     let unique = uniq(identifiers);

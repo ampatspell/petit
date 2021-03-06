@@ -1,0 +1,7 @@
+{{#if @model.warnings.any}}
+  <div class="group warnings">
+    {{#each @model.warnings.enabled as |warning|}}
+      <div class="warning">{{warning.description}}</div>
+    {{/each}}
+  </div>
+{{/if}}
