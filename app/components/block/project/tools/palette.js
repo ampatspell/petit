@@ -11,6 +11,11 @@ export default class BlockProjectToolsPaletteComponent extends Base {
     }), handler(() => {
       this.node.tools.reset();
     }));
+    [ 1, 2, 4, 8 ].forEach((pixel, idx) => {
+      keys.add(`alt + ${idx+1}`, handler(() => {
+        this.node.update({ pixel });
+      }));
+    });
   }
 
 }
