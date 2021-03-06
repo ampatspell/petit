@@ -13,6 +13,7 @@ const data = key => reads(`data.${key}`);
 export default class Color extends Model {
 
   @tracked data;
+
   @reads('palette.editable') editable;
 
   constructor(owner, { palette, data }) {
