@@ -2,13 +2,13 @@
   <Input::Button
     class="button"
     @value="Move up"
-    @disabled={{or @model.isFirst (not @model.editable)}}
+    @disabled={{or @model.isFirst @model.editable.disabled}}
     @onClick={{this.moveUp}}
   />
   <Input::Button
     class="button"
     @value="Move down"
-    @disabled={{or @model.isLast (not @model.editable)}}
+    @disabled={{or @model.isLast @model.editable.disabled}}
     @onClick={{this.moveDown}}
   />
 </div>

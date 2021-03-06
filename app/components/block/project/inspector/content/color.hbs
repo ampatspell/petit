@@ -6,19 +6,19 @@
       <Input::Slider
         class="slider"
         @value={{get @model key}}
-        @disabled={{not @model.editable}}
+        @disabled={{@model.editable.disabled}}
         @min={{0}}
         @max={{255}}
         @onInput={{fn this.onChange key}}
       />
       <Input::Text
         class={{class "input" "small"}}
-        @disabled={{not @model.editable}}
+        @disabled={{@model.editable.disabled}}
         @value={{get @model key}}
         @type="int"
         @onChange={{fn this.onChange key}}
       />
     </div>
   {{/each}}
-  <Input::Text @disabled={{not @model.editable}} @value={{this.hex}} @onChange={{this.onHex}}/>
+  <Input::Text @disabled={{@model.editable.disabled}} @value={{this.hex}} @onChange={{this.onHex}}/>
 </div>

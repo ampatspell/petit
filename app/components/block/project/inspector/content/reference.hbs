@@ -14,7 +14,7 @@
     class="select"
     @values={{this.values}}
     @value={{this.value}}
-    @disabled={{not @model.editable}}
+    @disabled={{@model.editable.disabled}}
     @onChange={{this.onChange}}
   as |value|>
     {{#if value}}
