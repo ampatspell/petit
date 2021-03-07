@@ -1,4 +1,4 @@
-import Node, { data, reference, editor, editable, lock, hide, warnings, expand, pixel, tools as _tools } from './-node';
+import Node, { data, reference, editor, editable, lock, hide, warnings, expand, pixel, tools as _tools, color } from './-node';
 import { reads } from "macro-decorators";
 
 const tools = node => _tools(node, [
@@ -6,20 +6,6 @@ const tools = node => _tools(node, [
   { icon: 'pen',           type: 'edit' },
   { icon: 'expand',        type: 'resize' }
 ]);
-
-// TODO: missing reference handling
-const color = palette => (_target, key) => {
-  return {
-    get() {
-      let color = this.doc.data[key];
-      return this[palette]?.model?.colors.find(model => model.identifier === color) || null;
-    },
-    set(color) {
-      this.doc.data[key] = color?.identifier || null;
-      this._scheduleSave.schedule();
-    }
-  };
-}
 
 export default class SceneNode extends Node {
 
