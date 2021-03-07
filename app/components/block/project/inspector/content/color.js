@@ -1,32 +1,19 @@
 import Component from '@glimmer/component';
 import { action } from "@ember/object";
-import Color from 'color';
 
 export default class BlockProjectInspectorContentColorComponent extends Component {
 
-  props = [ 'r', 'g', 'b', 'a' ];
+  rgba = [ 'r', 'g', 'b' ];
 
-  get hex() {
-    let { model: { r, g, b } } = this.args;
-    return Color({ r, g, b }).hex().toString();
-  }
+  hsv = [
+    { key: 'h', min: 0, max: 359 },
+    { key: 's', min: 0, max: 100 },
+    { key: 'v', min: 0, max: 100 }
+  ];
 
   @action
   onChange(key, value) {
     this.args.model.update({ [key]: value });
-  }
-
-  @action
-  onHex(value) {
-    let object;
-    try {
-      object = Color(value).object();
-    } catch(err) {
-      return;
-    }
-
-    let { r, g, b } = object;
-    this.args.model.update({ r, g, b });
   }
 
 }
