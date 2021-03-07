@@ -2,6 +2,7 @@
 
 ## TODO
 
+* color mapping to color identifiers for sprites
 * identifier save needs optionally update usages
 * move selection to project
 * provide project as node.project instead of nodes
