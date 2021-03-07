@@ -2,7 +2,6 @@
   <div class="items left">
 
     {{#if this.back}}
-
       {{#if this.back.model}}
         <LinkTo @route={{this.back.route}} @model={{this.back.model}}>
           <Block::Icon @name="chevron-left" @class="icon"/>
@@ -12,7 +11,6 @@
           <Block::Icon @name="chevron-left" @class="icon"/>
         </LinkTo>
       {{/if}}
-
     {{/if}}
 
     {{#if this.item.model}}
@@ -22,7 +20,8 @@
     {{/if}}
 
   </div>
-  <div class="items tools" {{did-insert this.didInsertToolsElement}}>
+  <div class="items tools">
+    <div class="scrollable" {{did-insert this.didInsertToolsElement}}></div>
   </div>
   <div class="items right">
     {{#if this.user}}
