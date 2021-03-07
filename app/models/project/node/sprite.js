@@ -2,6 +2,7 @@ import Node, { editor, editable, lock, hide, expand, warnings, data, reference, 
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
+import { colors } from './sprite/colors';
 
 const {
   assign
@@ -50,6 +51,7 @@ export default class SpriteNode extends Node {
     pixel(this);
     tools(this);
     editable(this);
+    colors(this, { key: 'colors', palette: 'palette' });
   }
 
   typeName = 'Sprite';
