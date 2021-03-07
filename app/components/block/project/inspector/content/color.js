@@ -1,19 +1,25 @@
 import Component from '@glimmer/component';
+import { reads } from "macro-decorators";
 import { action } from "@ember/object";
 
 export default class BlockProjectInspectorContentColorComponent extends Component {
 
-  rgba = [ 'r', 'g', 'b' ];
+  get reference() {
+    let { model, palette } = this.args;
+    return model[palette];
+  }
 
-  hsv = [
-    { key: 'h', min: 0, max: 359 },
-    { key: 's', min: 0, max: 100 },
-    { key: 'v', min: 0, max: 100 }
-  ];
+  @reads('reference.model') palette;
+
+  get color() {
+    let { model, key } = this.args;
+    return model[key];
+  }
 
   @action
-  onChange(key, value) {
-    this.args.model.update({ [key]: value });
+  onSelect(color) {
+    let { model, key } = this.args;
+    model[key] = color;
   }
 
 }

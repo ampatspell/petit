@@ -1,77 +1,11 @@
-<div class="group color preview">
-  <Block::Node::Palette::Color::Rect class="color" @size="wide-large" @color={{@model}}/>
-</div>
-
-<div class="group color input">
-  <div class="label">Opacity</div>
-  {{#with 'a' as |key|}}
-    <div class="prop">
-      <Input::Slider
-        class="slider"
-        @value={{get @model key}}
-        @disabled={{@model.editable.disabled}}
-        @min={{0}}
-        @max={{255}}
-        @onInput={{fn this.onChange key}}
-      />
-      <Input::Text
-        class={{class "input" "small"}}
-        @disabled={{@model.editable.disabled}}
-        @value={{get @model key}}
-        @type="int"
-        @onChange={{fn this.onChange key}}
-      />
-    </div>
-  {{/with}}
-</div>
-
-<div class="group color input">
-  <div class="label">RGB</div>
-  {{#each this.rgba as |key|}}
-    <div class="prop">
-      <Input::Slider
-        class="slider"
-        @value={{get @model key}}
-        @disabled={{@model.editable.disabled}}
-        @min={{0}}
-        @max={{255}}
-        @onInput={{fn this.onChange key}}
-      />
-      <Input::Text
-        class={{class "input" "small"}}
-        @disabled={{@model.editable.disabled}}
-        @value={{get @model key}}
-        @type="int"
-        @onChange={{fn this.onChange key}}
-      />
-    </div>
-  {{/each}}
-</div>
-
-<div class="group color input">
-  <div class="label">HSV</div>
-  {{#each this.hsv as |prop|}}
-    <div class="prop">
-      <Input::Slider
-        class="slider"
-        @value={{get @model prop.key}}
-        @disabled={{@model.editable.disabled}}
-        @min={{prop.min}}
-        @max={{prop.max}}
-        @onInput={{fn this.onChange prop.key}}
-      />
-      <Input::Text
-        class={{class "input" "small"}}
-        @disabled={{@model.editable.disabled}}
-        @value={{get @model prop.key}}
-        @type="int"
-        @onChange={{fn this.onChange prop.key}}
-      />
-    </div>
-  {{/each}}
-</div>
-
-<div class="group color hex">
-  <div class="label">Hex</div>
-  <Input::Text @disabled={{@model.editable.disabled}} @value={{@model.hex}} @onChange={{fn this.onChange 'hex'}}/>
+<div class="group color">
+  <div class="label">{{@label}}</div>
+  {{#if this.palette}}
+    <Block::Node::Palette::Select
+      @palette={{this.palette}}
+      @selected={{this.color}}
+      @onSelect={{this.onSelect}}
+      @disabled={{@model.editable.disabled}}
+    />
+  {{/if}}
 </div>

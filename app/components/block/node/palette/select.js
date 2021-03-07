@@ -14,6 +14,11 @@ export default class BlockNodePaletteSelectComponent extends Component {
     this._open = true;
   }
 
+  @action
+  setClosed() {
+    this._open = false;
+  }
+
   get open() {
     return this._open && !this.args.disabled;
   }

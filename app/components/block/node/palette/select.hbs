@@ -1,6 +1,7 @@
 <div class="block-node-palette-select">
   <Block::Node::Palette::Color::Rect @size="wide" @disabled={{@disabled}} @color={{@selected}} {{on "click" this.setOpen}}/>
   {{#if this.open}}
+    <div class="background" role="button" {{on "click" this.setClosed}}></div>
     <div class="overlay">
       {{#each @palette.identifiedColors as |color|}}
         <Block::Node::Palette::Color::Rect
