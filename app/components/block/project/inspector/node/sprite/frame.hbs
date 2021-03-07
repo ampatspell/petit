@@ -1,11 +1,22 @@
-<@content.header @name={{@model.identifier}}/>
-<@content.warnings @model={{@model.sprite}}/>
-<@content.identifier/>
-<@content.size/>
-<@content.actions as |actions|>
-  <actions.button @label="Clear frame" @onClick={{this.clearFrame}} @confirmation="Are you sure you want to clear this frame?"/>
-  <actions.button @label="Duplicate frame" @onClick={{this.duplicateFrame}}/>
-</@content.actions>
-<@content.pixel @model={{@model.sprite}}/>
-<@content.reorder/>
-<@content.delete @label="Delete frame" @confirmation="Are you sure you want to delete this frame?"/>
+<@content.tabs @tabs={{this.tabs}} @tab={{this.tab}} @label="label" @onSelect={{this.selectTab}}/>
+
+{{#if (eq this.tab.id 'frame')}}
+
+  <@content.header @name={{@model.identifier}}/>
+  <@content.warnings @model={{@model.sprite}}/>
+  <@content.identifier/>
+  <@content.actions as |actions|>
+    <actions.button @label="Clear frame" @onClick={{this.clearFrame}} @confirmation="Are you sure you want to clear this frame?"/>
+    <actions.button @label="Duplicate frame" @onClick={{this.duplicateFrame}}/>
+  </@content.actions>
+  <@content.pixel @model={{@model.sprite}}/>
+  <@content.reorder/>
+  <@content.delete @label="Delete frame" @confirmation="Are you sure you want to delete this frame?"/>
+
+{{else if (eq this.tab.id 'sprite')}}
+
+  <Block::Project::Inspector::Content::Nested @model={{@model.sprite}} as |content|>
+    <Block::Project::Inspector::Node::Sprite @model={{@model.sprite}} @content={{content}}/>
+  </Block::Project::Inspector::Content::Nested>
+
+{{/if}}

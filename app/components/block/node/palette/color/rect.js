@@ -10,7 +10,7 @@ export default class BlockNodePaletteColorRectComponent extends Component {
       props.push(`background: ${color.rgba}`);
     }
     if(typeof size === 'number') {
-      size = size * 5;
+      size = size * 8;
       props.push(`width: ${size}px; height: ${size}px`);
     }
     return htmlSafe(props.join('; '));

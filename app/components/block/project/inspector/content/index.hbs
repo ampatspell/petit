@@ -1,17 +1,5 @@
 <div class="block-project-inspector-content">
-  {{yield (hash
-    header=(component 'block/project/inspector/content/header' model=@model)
-    input=(component 'block/project/inspector/content/input' model=@model)
-    delete=(component 'block/project/inspector/content/delete' model=@model)
-    actions=(component 'block/project/inspector/content/actions' model=@model)
-    reorder=(component 'block/project/inspector/content/reorder' model=@model)
-    reference=(component 'block/project/inspector/content/reference' model=@model)
-    color=(component 'block/project/inspector/content/color' model=@model)
-    pixel=(component 'block/project/inspector/content/pixel' model=@model)
-    identifier=(component 'block/project/inspector/content/input' model=@model label="Identifier" key="identifier")
-    position=(component 'block/project/inspector/content/position' model=@model)
-    size=(component 'block/project/inspector/content/size' model=@model)
-    palette=(component 'block/project/inspector/content/palette' model=@model)
-    warnings=(component 'block/project/inspector/content/warnings' model=@model)
-  )}}
+  <Block::Project::Inspector::Content::Nested @model={{@model}} as |content|>
+    {{yield content}}
+  </Block::Project::Inspector::Content::Nested>
 </div>

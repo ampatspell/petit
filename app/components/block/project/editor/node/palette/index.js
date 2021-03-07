@@ -15,7 +15,7 @@ export default class BlockProjectEditorNodePaletteComponent extends Component {
 
   get style() {
     let { pixel } = this;
-    let size = (pixel * 5) + 1;
+    let size = (pixel * 8) + 1;
     let width = (8 * size) + 1;
     return htmlSafe(`max-width: ${width}px`);
   }

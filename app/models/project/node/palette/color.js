@@ -12,6 +12,8 @@ const data = key => reads(`data.${key}`);
 
 export default class Color extends Model {
 
+  typeName = 'Color';
+
   @tracked data;
 
   @reads('palette.editable') editable;

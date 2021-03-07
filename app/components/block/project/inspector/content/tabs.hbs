@@ -1,0 +1,11 @@
+<div class="group tabs">
+  {{#each @tabs as |tab|}}
+    <div
+      class={{class "tab" selected=(eq tab @tab)}}
+      role="button"
+      {{on 'click' (fn @onSelect tab)}}
+    >
+      {{get tab @label}}
+    </div>
+  {{/each}}
+</div>

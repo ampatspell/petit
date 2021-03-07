@@ -1,12 +1,8 @@
-<div class="group color">
-  <div class="label">{{@label}}</div>
-  <Input::Text
-    class="identifier"
-    @disabled={{@model.editable.disabled}}
-    @value={{@model.identifier}}
-    @onChange={{fn this.onChange 'identifier'}}
-  />
-  <Block::Node::Palette::Color::Rect class="color" @size="wide" @color={{@model}}/>
+<div class="group color preview">
+  <Block::Node::Palette::Color::Rect class="color" @size="wide-large" @color={{@model}}/>
+</div>
+<div class="group color input">
+  <div class="label">RGBA</div>
   {{#each this.props as |key|}}
     <div class="prop">
       <Input::Slider
@@ -26,5 +22,8 @@
       />
     </div>
   {{/each}}
+</div>
+<div class="group color hex">
+  <div class="label">Hex</div>
   <Input::Text @disabled={{@model.editable.disabled}} @value={{this.hex}} @onChange={{this.onHex}}/>
 </div>
