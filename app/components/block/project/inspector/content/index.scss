@@ -184,7 +184,7 @@
       @include border();
       @include label-reference();
       > .identifier {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
       }
     }
     &.warnings {
