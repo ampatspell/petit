@@ -2,10 +2,7 @@
 
 ## TODO
 
-* color.warnings, ui
-* color dropdown filter colors with identifiers
-* scene.color missing reference
-* identifier save and update references
+* identifier save needs optionally update usages
 * move selection to project
 * provide project as node.project instead of nodes
 * sprite select, move parts of pixels
@@ -32,3 +29,6 @@
 * resize sprites
 * draggable project editor
 * Sidebar tabs -- inspector, "color". instead of selected color stuff in palette
+* color.warnings, ui
+* color dropdown filter colors with identifiers
+* scene.color missing reference
