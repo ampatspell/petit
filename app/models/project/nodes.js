@@ -163,6 +163,8 @@ export default class Nodes extends Model {
   async createNewScene() {
     return await this._createNode(null, {
       type: 'scene',
+      width: 120,
+      height: 64,
       version: 1
     });
   }
