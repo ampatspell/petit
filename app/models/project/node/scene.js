@@ -7,14 +7,15 @@ const tools = node => _tools(node, [
   { icon: 'expand',        type: 'resize' }
 ]);
 
+// TODO: missing reference handling
 const color = palette => (_target, key) => {
   return {
     get() {
-      let color = this.doc.data[key] || 0;
-      return this[palette]?.model?.colors[color] || null;
+      let color = this.doc.data[key];
+      return this[palette]?.model?.colors.find(model => model.identifier === color) || null;
     },
     set(color) {
-      this.doc.data[key] = color?.index || 0;
+      this.doc.data[key] = color?.identifier || null;
       this._scheduleSave.schedule();
     }
   };
@@ -49,7 +50,6 @@ export default class SceneNode extends Node {
 
   @reference('palette', '_palette') palette;
 
-  // TODO: use the same for sprite
   @color('palette') background;
 
   async createNewLayer() {

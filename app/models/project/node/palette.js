@@ -52,6 +52,10 @@ export default class PaletteNode extends Node {
     .mapping((data, palette) => ({ palette, data }))
   colors;
 
+  get identifiedColors() {
+    return this.colors.filter(color => !!color.identifier);
+  }
+
   _didUpdate() {
     this._scheduleSave.schedule();
   }

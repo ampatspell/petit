@@ -2,7 +2,7 @@
   <Block::Node::Palette::Color::Rect @size="wide" @disabled={{@disabled}} @color={{@selected}} {{on "click" this.setOpen}}/>
   {{#if this.open}}
     <div class="overlay">
-      {{#each @palette.colors as |color|}}
+      {{#each @palette.identifiedColors as |color|}}
         <Block::Node::Palette::Color::Rect
           class="color"
           @size="wide"
