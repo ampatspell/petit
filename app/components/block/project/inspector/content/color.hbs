@@ -1,11 +1,20 @@
 <div class="group color">
-  <div class="label">{{@label}}</div>
-  {{#if this.palette}}
-    <Block::Node::Palette::Color::Select
-      @palette={{this.palette}}
-      @selected={{this.color}}
-      @onSelect={{this.onSelect}}
-      @disabled={{@model.editable.disabled}}
+  <div class="label">
+    <div class="text">{{@label}}</div>
+    {{#if this.reference.missing}}
+      <Block::Icon class="icon warning" @name="exclamation-circle"/>
+    {{/if}}
+    <Block::Icon
+      class={{class "icon" "follow" faded=(not this.reference.palette)}}
+      @name="chevron-circle-right"
+      {{on "click" this.onFollow}}
     />
-  {{/if}}
+  </div>
+  <div class="identifier">{{or this.reference.identifier 'No identifier'}}</div>
+  <Block::Node::Palette::Color::Select
+    @palette={{this.reference.palette}}
+    @selected={{this.color}}
+    @onSelect={{this.onSelect}}
+    @disabled={{or @model.editable.disabled (not this.reference.palette)}}
+  />
 </div>

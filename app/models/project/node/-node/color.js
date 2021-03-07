@@ -34,9 +34,8 @@ class ColorReference {
   }
 
   set(color) {
-    let identifier = color?.identifier || null;
     let { _node, _opts: { key } } = this;
-    _node.update({ [key]: identifier });
+    _node.update({ [key]: color });
   }
 
 }
@@ -44,6 +43,7 @@ class ColorReference {
 const getReference = (target, key, opts) => getInstance(target, key, () => new ColorReference(target, assign({ key }, opts)));
 
 //
+// referenceKeys = [ 'palette', 'background' ];
 // @reference('palette', '_palette') palette;
 // @color('palette') background;
 //

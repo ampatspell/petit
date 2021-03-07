@@ -4,24 +4,26 @@ import { action } from "@ember/object";
 
 export default class BlockProjectInspectorContentColorComponent extends Component {
 
-  get paletteReference() {
-    let { model, palette } = this.args;
-    return model[palette];
-  }
-
-  @reads('paletteReference.model') palette;
-
-  get colorReference() {
+  get reference() {
     let { model, key } = this.args;
     return model[key];
   }
 
-  @reads('colorReference.model') color;
+  @reads('reference.model') color;
 
   @action
   onSelect(color) {
     let { model, key } = this.args;
     model[key] = color;
+  }
+
+  @action
+  onFollow() {
+    let model = this.reference?.palette;
+    if(model) {
+      model.select(this.color);
+      model.nodes.select(model);
+    }
   }
 
 }

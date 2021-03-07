@@ -23,7 +23,7 @@ export default class SceneNode extends Node {
 
   typeName = 'Scene';
   group = this;
-  referenceKeys = [ 'palette' ];
+  referenceKeys = [ 'palette', 'background' ];
 
   @reads('children') layers;
   @reads('visibleChildren') visibleLayers;
