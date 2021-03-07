@@ -6,6 +6,9 @@ export const removeAt = (array, index) => {
 }
 
 export const removeObject = (array, object) => {
+  if(!array) {
+    return;
+  }
   let index = array.indexOf(object);
   return removeAt(array, index);
 }

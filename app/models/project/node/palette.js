@@ -1,4 +1,4 @@
-import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, warnings } from './-node';
+import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, warnings, actions } from './-node';
 import { Warning } from './-node/warnings';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
@@ -34,6 +34,7 @@ export default class PaletteNode extends Node {
     pixel(this);
     tools(this);
     editable(this);
+    actions(this);
     warnings(this, {
       add: [ ColorIdentifierConflict ]
     });
@@ -78,6 +79,7 @@ export default class PaletteNode extends Node {
 
   select(color) {
     this._color = color;
+    this.actions.invoke('select', color);
   }
 
   //

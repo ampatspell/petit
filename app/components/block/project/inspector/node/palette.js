@@ -30,4 +30,9 @@ export default class BlockProjectInspectorNodePaletteComponent extends Component
     this.model.color.delete();
   }
 
+  @action
+  onColorSelected() {
+    this.selectTab(this.tabs.find(tab => tab.id === 'color'));
+  }
+
 }

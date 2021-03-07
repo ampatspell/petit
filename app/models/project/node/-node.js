@@ -14,6 +14,7 @@ import { pixel } from './-node/pixel';
 import { tools } from './-node/tools';
 import { editable } from './-node/editable';
 import { move } from './-node/move';
+import { actions } from './-node/actions';
 
 export {
   editor,
@@ -23,6 +24,7 @@ export {
   expand,
   warnings,
   reference,
+  actions,
   pixel,
   tools,
   child,

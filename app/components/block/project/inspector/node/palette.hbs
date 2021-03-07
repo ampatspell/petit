@@ -1,3 +1,10 @@
+<Block::Actions
+  @model={{@model}}
+  @handlers={{hash
+    select=this.onColorSelected
+  }}
+/>
+
 <@content.tabs @tabs={{this.tabs}} @tab={{this.tab}} @label="label" @onSelect={{this.selectTab}}/>
 
 {{#if (eq this.tab.id 'palette')}}
