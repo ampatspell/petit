@@ -56,6 +56,10 @@ export default class PaletteNode extends Node {
     return this.colors.filter(color => !!color.identifier);
   }
 
+  colorByIdentifier(identifier) {
+    return this.colors.find(color => color.identifier === identifier) || null;
+  }
+
   _didUpdate() {
     this._scheduleSave.schedule();
   }

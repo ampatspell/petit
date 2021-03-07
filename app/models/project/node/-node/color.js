@@ -30,7 +30,7 @@ class ColorReference {
     if(!identifier) {
       return null;
     }
-    return this.palette?.identifiedColors.find(color => color.identifier === identifier) || null;
+    return this.palette?.colorByIdentifier(identifier);
   }
 
   set(color) {
