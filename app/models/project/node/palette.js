@@ -63,6 +63,7 @@ export default class PaletteNode extends Node {
   _deleteColor(color) {
     this.doc.data.colors = removeAt(this.doc.data.colors, this.colors.indexOf(color));
     this._didUpdate();
+    this.actions.invoke('delete-color', color);
   }
 
   //
@@ -79,7 +80,7 @@ export default class PaletteNode extends Node {
 
   select(color) {
     this._color = color;
-    this.actions.invoke('select', color);
+    this.actions.invoke('select-color', color);
   }
 
   //
