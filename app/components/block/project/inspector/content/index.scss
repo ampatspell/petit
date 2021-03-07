@@ -183,8 +183,8 @@
       @include padding();
       @include border();
       @include label-reference();
-      > .identifier {
-        margin-bottom: 5px;
+      > .select {
+        margin-bottom: 1px;
       }
     }
     &.warnings {

@@ -1,4 +1,4 @@
-<div class="block-node-palette-color-select">
+<div class="block-node-palette-color-select" ...attributes>
   <Block::Node::Palette::Color::Rect @size="wide" @disabled={{@disabled}} @color={{@selected}} {{on "click" this.setOpen}}/>
   {{#if this.open}}
     <div class="background" role="button" {{on "click" this.setClosed}}></div>

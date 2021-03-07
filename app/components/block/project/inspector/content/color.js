@@ -12,6 +12,13 @@ export default class BlockProjectInspectorContentColorComponent extends Componen
   @reads('reference.model') color;
 
   @action
+  onChange(value) {
+    let { model, key } = this.args;
+    let color = this.reference.palette?.identifiedColors.find(({ identifier }) => identifier === value) || null;
+    model[key] = color;
+  }
+
+  @action
   onSelect(color) {
     let { model, key } = this.args;
     model[key] = color;

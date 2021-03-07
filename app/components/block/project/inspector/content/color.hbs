@@ -10,11 +10,17 @@
       {{on "click" this.onFollow}}
     />
   </div>
-  <div class="identifier">{{or this.reference.identifier 'No identifier'}}</div>
   <Block::Node::Palette::Color::Select
+    class="select"
     @palette={{this.reference.palette}}
     @selected={{this.color}}
     @onSelect={{this.onSelect}}
     @disabled={{or @model.editable.disabled (not this.reference.palette)}}
+  />
+  <Input::Text
+    class="identifier"
+    @value={{this.reference.identifier}}
+    @disabled={{or @model.editable.disabled (not this.reference.palette)}}
+    @onChange={{this.onChange}}
   />
 </div>
