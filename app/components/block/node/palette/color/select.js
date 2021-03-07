@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class BlockNodePaletteSelectComponent extends Component {
+export default class BlockNodePaletteColorSelectComponent extends Component {
 
   @tracked _open = false;
 

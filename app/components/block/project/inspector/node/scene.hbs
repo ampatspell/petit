@@ -3,7 +3,7 @@
 <@content.identifier/>
 <@content.position/>
 <@content.size/>
-<@content.reference @label="Color Palette" @collection="palettes" @key="palette"/>
+<@content.palette @key="palette"/>
 <@content.color @label="Background Color" @palette="palette" @key="background"/>
 <@content.actions as |actions|>
   <actions.button @label="Add new layer" @onClick={{this.addLayer}}/>
