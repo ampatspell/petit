@@ -24,11 +24,11 @@ const color = () => {
   return {
     get() {
       let color = this.doc.data.color || 0;
-      return this.palette.model.colors[color] || null;
+      return this.palette.model?.colors[color] || null;
     },
-    set(color) {
-      this.doc.data.color = color?.index || 0;
-      this._scheduleSave.schedule();
+    set(model) {
+      let color = model?.index || 0;
+      this.update({ color });
     }
   };
 }
