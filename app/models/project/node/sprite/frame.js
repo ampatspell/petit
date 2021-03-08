@@ -52,7 +52,8 @@ export default class SpriteFrameNode extends Node {
     this.update({ bytes });
   }
 
-  setPixel(index, value) {
+  setPixel(index, color) {
+    let value = this.colors.valueForColor(color);
     this.mutateBytes(bytes => bytes[index] = value);
   }
 

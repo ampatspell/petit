@@ -71,15 +71,21 @@ class Colors {
   _addHash(hash) {
     this.data.push(hash);
     this.node._scheduleSave.schedule();
+    return hash;
   }
 
-  register(color) {
-    if(this._hashForColor(color)) {
-      return;
-    }
+  _registerColor(color) {
     let { identifier } = color;
     let value = this._nextInt();
-    this._addHash({ identifier, value });
+    return this._addHash({ identifier, value });
+  }
+
+  valueForColor(color) {
+    let hash = this._hashForColor(color);
+    if(!hash) {
+      hash = this._registerColor(color);
+    }
+    return hash.value;
   }
 
 }

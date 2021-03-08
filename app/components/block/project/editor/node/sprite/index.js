@@ -6,7 +6,7 @@ export default class BlockProjectEditorNodeSpriteIndexComponent extends Componen
 
   @reads('args.node') sprite;
   @reads('sprite.colors') colors;
-  @reads('sprite.color.index') color;
+  @reads('sprite.color') color;
   @reads('sprite.frame') frame;
 
   @equal('sprite.tools.selected.type', 'edit') editing;
