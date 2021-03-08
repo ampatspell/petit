@@ -224,5 +224,14 @@
       @include border();
       @include label();
     }
+    &.json {
+      @include padding();
+      @include border();
+      @include label();
+      > .value {
+        white-space: pre-wrap;
+        font-size: $font-size-small;
+      }
+    }
   }
 }
