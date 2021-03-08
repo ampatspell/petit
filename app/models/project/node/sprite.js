@@ -19,7 +19,7 @@ const defaultBytes = node => {
   return node.store.blobFromUint8Array(new Uint8Array(heart));
 };
 
-// TODO: take this from scene
+// TODO: use sprite.colors
 const color = () => {
   return {
     get() {
