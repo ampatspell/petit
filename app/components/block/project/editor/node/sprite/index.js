@@ -5,11 +5,12 @@ import { action } from "@ember/object";
 export default class BlockProjectEditorNodeSpriteIndexComponent extends Component {
 
   @reads('args.node') sprite;
+  @reads('sprite.colors') colors;
+  @reads('sprite.color.index') color;
   @reads('sprite.frame') frame;
-  @reads('frame.palette.model') palette;
+
   @equal('sprite.tools.selected.type', 'edit') editing;
   @equal('sprite.tools.selected.type', 'resize') resizing;
-  @reads('sprite.color.index') color;
 
   get size() {
     let { width, height, pixel: { absolute: pixel } } = this.frame;

@@ -17,6 +17,38 @@ class Colors {
     return this.node.doc.data[this.opts.key];
   }
 
+  get mapped() {
+    let { palette, data } = this;
+    if(!palette) {
+      return null;
+    }
+    return data.map(({ identifier, value }) => {
+      let color = palette.colorByIdentifier(identifier);
+      return {
+        value,
+        identifier,
+        color
+      };
+    });
+  }
+
+  _buildColorFunction(key) {
+    let { mapped } = this;
+    if(!mapped) {
+      return null;
+    }
+    let values = mapped.map(({ color }) => color?.[key]).filter(Boolean);
+    return index => values[index];
+  }
+
+  get rgba() {
+    return this._buildColorFunction('rgba');
+  }
+
+  get canvas() {
+    return this._buildColorFunction('canvas');
+  }
+
   _nextInt() {
     let { data } = this;
     let value = 0;

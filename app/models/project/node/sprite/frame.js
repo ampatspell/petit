@@ -24,10 +24,7 @@ export default class SpriteFrameNode extends Node {
   @reads('sprite.width') width;
   @reads('sprite.height') height;
   @reads('sprite.pixel') pixel;
-
-  //
-
-  @reads('sprite.palette') palette;
+  @reads('sprite.colors') colors;
 
   //
 
