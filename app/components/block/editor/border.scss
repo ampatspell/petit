@@ -1,0 +1,15 @@
+.block-editor-border {
+  border: 1px solid transparent;
+  @mixin color($value) {
+    border-color: $value;
+  }
+  &.state-locked {
+    @include color(rgba(0,0,0,0.15));
+  }
+  &.state-editing {
+    @include color(rgba(255,102,97,0.75));
+  }
+  &.state-regular {
+    @include color(rgba(96,190,253, 0.5));
+  }
+}

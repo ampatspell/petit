@@ -1,16 +1,6 @@
-<Konva::Stage @size={{this.size}} as |parent|>
-  <Konva::Node::Layer @parent={{parent}} as |parent|>
-
-    <Konva::Node::Rect @parent={{parent}} @model={{hash
-      x=0
-      y=0
-      width=this.size.width
-      height=this.size.height
-      fill=this.scene.background.model.rgba
-      stroke=this.stroke
-    }}/>
-
-    <Konva::Node::Group @parent={{parent}} as |parent|>
+<Block::Editor::Border @node={{@node}}>
+  <Konva::Stage @size={{this.size}} as |parent|>
+    <Konva::Node::Layer @parent={{parent}} as |parent|>
 
       {{#each this.layers as |layer idx|}}
 
@@ -34,11 +24,10 @@
 
       {{/each}}
 
-    </Konva::Node::Group>
-
-  </Konva::Node::Layer>
-</Konva::Stage>
+    </Konva::Node::Layer>
+  </Konva::Stage>
+</Block::Editor::Border>
 
 {{#if this.resizing}}
-  <Block::Resize class="resize" @node={{this.scene}} @onCommit={{this.onResize}}/>
+  <Block::Editor::Resize class="resize" @node={{this.scene}} @onCommit={{this.onResize}}/>
 {{/if}}

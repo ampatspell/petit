@@ -1,0 +1,13 @@
+<div
+  class="block-editor-resize"
+  ...attributes
+  style={{this.style}}
+>
+  {{#if this.size}}
+    <div class="size">{{this.size.width}}×{{this.size.height}}</div>
+  {{/if}}
+  <Block::Editor::Resize::Handle @position="top"/>
+  <Block::Editor::Resize::Handle @position="left"/>
+  <Block::Editor::Resize::Handle @position="bottom"/>
+  <Block::Editor::Resize::Handle @position="right"/>
+</div>

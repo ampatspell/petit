@@ -1,24 +1,24 @@
-{{#if this.frame}}
+<Block::Editor::Border @node={{@node}}>
 
-  <Konva::Stage @size={{this.size}}
-    as |parent|>
-
-    <Konva::Node::Layer @parent={{parent}} as |parent|>
-
-      <Block::Project::Editor::Node::Sprite::Frame::Editor
-        @parent={{parent}}
-        @size={{this.size}}
-        @frame={{this.frame}}
-        @editing={{this.editing}}
-        @color={{this.color}}
-        @colors={{this.colors}}
-      />
-
-    </Konva::Node::Layer>
+  <Konva::Stage @size={{this.size}} as |parent|>
+    {{#if this.frame}}
+      <Konva::Node::Layer @parent={{parent}} as |parent|>
+        <Block::Project::Editor::Node::Sprite::Frame::Editor
+          @parent={{parent}}
+          @size={{this.size}}
+          @frame={{this.frame}}
+          @editing={{this.editing}}
+          @color={{this.color}}
+          @colors={{this.colors}}
+        />
+      </Konva::Node::Layer>
+    {{/if}}
   </Konva::Stage>
 
-  {{#if this.resizing}}
-    <Block::Resize class="resize" @node={{this.sprite}} @onCommit={{this.onResize}}/>
-  {{/if}}
+</Block::Editor::Border>
 
+{{#if this.frame}}
+  {{#if this.resizing}}
+    <Block::Editor::Resize class="resize" @node={{this.sprite}} @onCommit={{this.onResize}}/>
+  {{/if}}
 {{/if}}
