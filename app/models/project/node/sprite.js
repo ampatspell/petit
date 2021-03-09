@@ -3,6 +3,7 @@ import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { colors } from './sprite/colors';
+import { Warning } from './-node/warnings';
 
 const {
   assign
@@ -33,6 +34,18 @@ const color = () => {
   };
 }
 
+class MissingColors extends Warning {
+
+  get description() {
+    return 'Missing colors';
+  }
+
+  get has() {
+    return this.node.colors.missing.length > 0;
+  }
+
+}
+
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
   { icon: 'pen',           type: 'edit' },
@@ -47,7 +60,9 @@ export default class SpriteNode extends Node {
     lock(this);
     hide(this);
     expand(this);
-    warnings(this);
+    warnings(this, {
+      add: [ MissingColors ]
+    });
     pixel(this);
     tools(this);
     editable(this);

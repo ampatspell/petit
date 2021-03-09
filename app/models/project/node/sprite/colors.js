@@ -98,6 +98,10 @@ class Colors {
     this.node._scheduleSave.schedule();
   }
 
+  get missing() {
+    return this.mapped.filter(hash => !hash.color);
+  }
+
 }
 
 export const colors = (node, opts) => {
