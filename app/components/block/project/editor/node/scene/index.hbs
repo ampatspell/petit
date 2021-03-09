@@ -2,27 +2,39 @@
   <Konva::Stage @size={{this.size}} as |parent|>
     <Konva::Node::Layer @parent={{parent}} as |parent|>
 
-      {{#each this.layers as |layer idx|}}
+      <Konva::Node::Rect @parent={{parent}} @model={{hash
+        x=0
+        y=0
+        width=this.size.width
+        height=this.size.height
+        fill=this.scene.background.model.rgba
+      }}/>
 
-        <Konva::Node::Group @parent={{parent}} @zIndex={{idx}} as |parent|>
-          <Konva::Node::Rect @parent={{parent}} @model={{hash
-            x=0
-            y=0
-            width=this.size.width
-            height=this.size.height
-            fill="#fff"
-            opacity=0.9
-          }}/>
-          <Konva::Node::Text @parent={{parent}} @model={{hash
-            x=5
-            y=5
-            fontFamily="Ubuntu Mono"
-            fill="#000"
-            text=layer.identifier
-          }}/>
-        </Konva::Node::Group>
+      <Konva::Node::Group @parent={{parent}} as |parent|>
 
-      {{/each}}
+        {{#each this.layers as |layer idx|}}
+
+          <Konva::Node::Group @parent={{parent}} @zIndex={{idx}} as |parent|>
+            <Konva::Node::Rect @parent={{parent}} @model={{hash
+              x=0
+              y=0
+              width=this.size.width
+              height=this.size.height
+              fill="#fff"
+              opacity=0.9
+            }}/>
+            <Konva::Node::Text @parent={{parent}} @model={{hash
+              x=5
+              y=5
+              fontFamily="Ubuntu Mono"
+              fill="#000"
+              text=layer.identifier
+            }}/>
+          </Konva::Node::Group>
+
+        {{/each}}
+
+      </Konva::Node::Group>
 
     </Konva::Node::Layer>
   </Konva::Stage>
