@@ -1,6 +1,6 @@
 import Node, { editor, editable, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
 import { heart } from 'petit/util/heart';
-import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
+import { lastObject, firstObject, nextObject, prevObject, uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { colors } from './sprite/colors';
 import { Warning } from './-node/warnings';
@@ -41,7 +41,7 @@ class MissingColors extends Warning {
   }
 
   get has() {
-    return this.node.colors.missing.length > 0;
+    return this.node.colors.missing?.length > 0;
   }
 
 }
@@ -66,7 +66,11 @@ export default class SpriteNode extends Node {
     pixel(this);
     tools(this);
     editable(this);
-    colors(this, { key: 'colors', palette: 'palette' });
+    colors(this, {
+      key: 'colors',
+      palette: 'palette',
+      used: 'uniqueFrameBytes'
+    });
   }
 
   typeName = 'Sprite';
@@ -119,6 +123,12 @@ export default class SpriteNode extends Node {
 
   didMoveFrame(frame) {
     this.select(frame);
+  }
+
+  //
+
+  get uniqueFrameBytes() {
+    return uniq(this.frames.reduce((ret, frame) => ([...ret, ...frame.bytes]), []));
   }
 
   //

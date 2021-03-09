@@ -1,3 +1,5 @@
+import { removeObjects } from 'petit/util/array';
+
 class Colors {
 
   constructor(node, opts) {
@@ -63,10 +65,14 @@ class Colors {
     }
   }
 
+  _hashFor(key, value) {
+    let { data } = this;
+    return data.find(hash => hash[key] === value);
+  }
+
   _hashForColor(color) {
     let { identifier } = color;
-    let { data } = this;
-    return data.find(hash => hash.identifier === identifier);
+    return this._hashFor('identifier', identifier);
   }
 
   _addHash(hash) {
@@ -99,7 +105,22 @@ class Colors {
   }
 
   get missing() {
-    return this.mapped.filter(hash => !hash.color);
+    return this.mapped?.filter(hash => !hash.color);
+  }
+
+  get used() {
+    return this.node[this.opts.used];
+  }
+
+  get unused() {
+    let { data, used } = this;
+    return data.filter(hash => !used.includes(hash.value));
+  }
+
+  compact() {
+    let { data, unused } = this;
+    removeObjects(data, unused);
+    this.node._scheduleSave.schedule();
   }
 
 }

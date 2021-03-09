@@ -2,3 +2,6 @@
 <@content.warnings/>
 <@content.reference @label="Color Palette" @collection="palettes" @key="palette"/>
 <@content.colors @label="Colors" @key="colors"/>
+<@content.actions as |actions|>
+  <actions.button @label="Remove unused colors" @onClick={{this.compact}} @disabled={{not @model.colors.unused.length}}/>
+</@content.actions>

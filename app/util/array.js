@@ -13,6 +13,10 @@ export const removeObject = (array, object) => {
   return removeAt(array, index);
 }
 
+export const removeObjects = (array, objects) => {
+  return objects.map(object => removeObject(array, object));
+}
+
 export const addObject = (array, object) => {
   if(!array.includes(object)) {
     array.push(object);
