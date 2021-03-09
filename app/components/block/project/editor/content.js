@@ -15,6 +15,18 @@ export default class BlockProjectEditorContentComponent extends Component {
   }
 
   @action
+  onCenter(node, component, el) {
+    let rect = this.contentElement.getBoundingClientRect();
+    let box = el.getBoundingClientRect();
+    let calc = (p, s) => Math.round((rect[s] / 2) - node.editor[p] - (box[s] / 2));
+    let pos = {
+      x: calc('x', 'width'),
+      y: calc('y', 'height')
+    };
+    this.project.update(pos);
+  }
+
+  @action
   onDeselect(e) {
     if(this.dragging) {
       return;

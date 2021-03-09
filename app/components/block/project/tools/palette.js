@@ -5,6 +5,7 @@ export default class BlockProjectToolsPaletteComponent extends Base {
 
   @action
   bindKeys(keys) {
+    keys.add('c', handler(() => this.node.editor.actions.center()));
     keys.add('space', handler(e => {
       e.preventRepeat();
       this.node.tools.selectByType('project:drag');

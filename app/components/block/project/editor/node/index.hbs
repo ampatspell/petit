@@ -5,6 +5,8 @@
   data-index={{@index}}
   style={{this.style}}
   {{on 'click' this.onClick}}
+  {{did-insert this.didInsertContentElement}}
+  {{did-update this.didUpdateActions @node.editor.actions.queued}}
 >
   {{#if this.overlays}}
     <div class="identifier">{{or @node.identifier 'No identifier'}}</div>

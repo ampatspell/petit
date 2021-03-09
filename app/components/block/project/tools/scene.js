@@ -5,6 +5,7 @@ export default class BlockProjectToolsSceneComponent extends Base {
 
   @action
   bindKeys(keys) {
+    keys.add('c', handler(() => this.node.editor.actions.center()));
     keys.add('e', handler(() => this.tools.selectByType('edit')));
     keys.add('r', handler(() => this.tools.selectByType('resize')));
     keys.add('esc', handler(() => {

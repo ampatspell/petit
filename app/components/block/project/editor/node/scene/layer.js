@@ -20,7 +20,6 @@ export default class BlockProjectEditorNodeSceneLayerComponent extends Group {
       let { target } = e;
       let name = target.name();
       if(name === 'layer-background') {
-        e.cancelBubble = true;
         let { layer, layer: { nodes } } = this;
         nodes.select(layer);
       }
