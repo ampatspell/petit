@@ -1,0 +1,19 @@
+<div class="scene-layer" ...attributes {{konva-node this}}>
+
+  <Konva::Node::Rect @parent={{this}} @model={{hash
+    name="layer-background"
+    x=0
+    y=0
+    width=@size.width
+    height=@size.height
+  }}/>
+  <Konva::Node::Text @parent={{this}} @model={{hash
+    x=5
+    y=5
+    fontFamily="Ubuntu Mono"
+    fontSize=11
+    fill="#000"
+    text=@layer.identifier
+  }}/>
+
+</div>

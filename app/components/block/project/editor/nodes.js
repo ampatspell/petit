@@ -24,6 +24,10 @@ export default class BlockProjectEditorNodesComponent extends Component {
   @action
   onSelect(node) {
     let { project: { nodes } } = this;
+    // TODO: selected
+    if(node.selected || node.hasSelectedChild) {
+      return;
+    }
     nodes.select(node);
   }
 
