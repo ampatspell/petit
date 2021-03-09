@@ -3,7 +3,7 @@
     {{#each this.colors.mapped as |model|}}
       <div class="color">
         <div class="label">
-          <div class="text">{{model.identifier}}</div>
+          <div class="text">#{{model.value}} – {{model.identifier}}</div>
           {{#unless model.color}}
             <Block::Icon class="icon warning" @name="exclamation-circle"/>
           {{/unless}}
