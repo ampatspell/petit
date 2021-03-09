@@ -1,6 +1,6 @@
 {{#if @palette}}
   <div class="block-node-toolbar-palette">
-    {{#each @palette.colors as |color|}}
+    {{#each @palette.identifiedColors as |color|}}
       <Block::Node::Palette::Color::Rect
         class={{class 'color' selected=(eq @selected color)}}
         @size="regular"

@@ -37,8 +37,13 @@ class Colors {
     if(!mapped) {
       return null;
     }
-    let values = mapped.map(({ color }) => color?.[key]).filter(Boolean);
-    return index => values[index];
+
+    let pairs = {};
+    mapped.forEach(({ value, color }) => {
+      pairs[value] = color?.[key];
+    });
+
+    return value => pairs[value];
   }
 
   get rgba() {
