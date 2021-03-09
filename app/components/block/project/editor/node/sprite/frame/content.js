@@ -9,13 +9,13 @@ export default class BlockProjectEditorNodeSpriteFramesFrameContentComponent ext
   @reads('args.size') size;
   @reads('args.frame') frame;
   @reads('args.color') color;
-  @reads('args.palette') palette;
+  @reads('args.colors') colors;
 
   @cached
   get sceneFunc() {
-    let { palette, frame: { width, height, pixel: { absolute: pixel }, bytes } } = this;
+    let { colors, frame: { width, height, pixel: { absolute: pixel }, bytes } } = this;
     let size = { width, height };
-    let rgba = palette?.rgba;
+    let rgba = colors.rgba;
     return (ctx) => {
       if(bytes && rgba) {
         bytes.forEach((byte, idx) => {

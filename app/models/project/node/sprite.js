@@ -2,6 +2,7 @@ import Node, { editor, editable, lock, hide, expand, warnings, data, reference, 
 import { heart } from 'petit/util/heart';
 import { lastObject, firstObject, nextObject, prevObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
+import { colors } from './sprite/colors';
 
 const {
   assign
@@ -16,18 +17,18 @@ const defaultBytes = node => {
     return;
   }
   return node.store.blobFromUint8Array(new Uint8Array(heart));
-};
+}
 
-// TODO: take this from scene
+// TODO: use sprite.colors
 const color = () => {
   return {
     get() {
       let color = this.doc.data.color || 0;
-      return this.palette.model.colors[color] || null;
+      return this.palette.model?.colors[color] || null;
     },
-    set(color) {
-      this.doc.data.color = color?.index || 0;
-      this._scheduleSave.schedule();
+    set(model) {
+      let color = model?.index || 0;
+      this.update({ color });
     }
   };
 }
@@ -50,6 +51,7 @@ export default class SpriteNode extends Node {
     pixel(this);
     tools(this);
     editable(this);
+    colors(this, { key: 'colors', palette: 'palette' });
   }
 
   typeName = 'Sprite';

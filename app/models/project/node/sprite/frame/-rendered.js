@@ -10,7 +10,7 @@ class Rendered {
   @reads('node.width') width;
   @reads('node.height') height;
   @reads('node.bytes') bytes;
-  @reads('node.palette.model.canvas') palette;
+  @reads('node.colors.canvas') colors;
 
   @cached
   get canvas() {
@@ -28,8 +28,8 @@ class Rendered {
 
   @cached
   get content() {
-    let { canvas, width, height, bytes, palette } = this;
-    if(!canvas || !bytes || !palette) {
+    let { canvas, width, height, bytes, colors } = this;
+    if(!canvas || !bytes || !colors) {
       return null;
     }
 
@@ -38,7 +38,7 @@ class Rendered {
     let { data } = image;
 
     bytes.forEach((byte, idx) => {
-      let color = palette(byte);
+      let color = colors(byte);
       if(color) {
         let { r, g, b, a } = color;
         let i = idx * 4;
