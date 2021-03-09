@@ -5,7 +5,7 @@
     border-color: $value;
   }
   &.locked {
-    @include color(rgba(0,0,0,0.13));
+    @include color(rgba(0,0,0,0.11));
     &.selected {
       @include color(rgba(0,0,0,0.3));
     }
