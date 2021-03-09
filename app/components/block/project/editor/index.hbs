@@ -1,6 +1,10 @@
 <div class="block-project-editor">
   <div class="border"></div>
-  <Block::Project::Editor::Content class="content" @project={{@project}}>
-    <Block::Project::Editor::Nodes class="nodes" @project={{@project}}/>
+  <Block::Project::Editor::Content class="content" @project={{@project}} as |content|>
+    <Block::Project::Editor::Nodes
+      class="nodes"
+      @project={{@project}}
+      @onCenter={{content.onCenter}}
+    />
   </Block::Project::Editor::Content>
 </div>

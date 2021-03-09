@@ -6,9 +6,15 @@ import { reads } from "macro-decorators";
 
 export default class BlockProjectEditorNodeIndexComponent extends Component {
 
-  @reads('args.node.nodes.selected.group') selected;
+  @reads('args.node') node;
+  @reads('node.nodes.selected.group') selected;
   @reads('selected.tools.selected') selectedTool;
-  @reads('args.node.tools.selected') nodeTool;
+  @reads('node.tools.selected') nodeTool;
+
+  @action
+  didInsertContentElement(el) {
+    this.contentElement = el;
+  }
 
   get editor() {
     let editor = this.args.node.editor;
@@ -31,6 +37,15 @@ export default class BlockProjectEditorNodeIndexComponent extends Component {
   get style() {
     let { x, y } = this.editor;
     return htmlSafe(`transform: translate(${x}px, ${y}px)`);
+  }
+
+  @action
+  didUpdateActions() {
+    this.node.editor.actions.consume().forEach(action => {
+      if(action.name === 'center') {
+        this.args.onCenter(this, this.contentElement);
+      }
+    });
   }
 
 }
