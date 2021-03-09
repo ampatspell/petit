@@ -2,8 +2,6 @@
 
 ## TODO
 
-* missing colors in sprite.colors warning
-* remove unused colors from sprite.colors
 * identifier save needs optionally update usages
 * move selection to project
 * provide project as node.project instead of nodes
@@ -35,3 +33,5 @@
 * color dropdown filter colors with identifiers
 * scene.color missing reference
 * color mapping to color identifiers for sprites
+* missing colors in sprite.colors warning
+* remove unused colors from sprite.colors
