@@ -21,4 +21,9 @@ export default class BlockProjectInspectorNodeProjectComponent extends Component
     this.nodes.createNewPalette();
   }
 
+  @action
+  addSequence() {
+    this.nodes.createNewSequence();
+  }
+
 }

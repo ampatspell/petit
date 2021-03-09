@@ -16,5 +16,6 @@ export default class IdentifiedNodes extends Model {
   }
 
   @identified('palette') palettes;
+  @identified('sprite') sprites;
 
 }

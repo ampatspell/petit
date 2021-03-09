@@ -104,7 +104,8 @@ export default class Nodes extends Model {
       'sprite': 'spr',
       'sprite/frame': null,
       'entity': 'ent',
-      'palette': 'cp'
+      'palette': 'cp',
+      'sequence': 'seq'
     };
     let abbr = abbreviations[props.type];
     let identifier = '';
@@ -145,6 +146,7 @@ export default class Nodes extends Model {
   }
 
   _newSpriteProperties() {
+    // TODO: this.identified.palettes
     let palette = this.all.find(node => node.type === 'palette' && node.identifier) || null;
     let colors = [];
 
@@ -195,6 +197,18 @@ export default class Nodes extends Model {
         { r: 255, g: 255, b: 255, a: 255 }
       ],
       version: 1
+    });
+  }
+
+  async createNewSequence() {
+    // TODO: this.identified.sprites
+    let sprites = sortedBy(this.all.filter(node => node.type === 'sprite' && node.identifier), node => node.frames.length).reverse();
+    let sprite = sprites[0]?.identifier || null;
+
+    return await this._createNode(null, {
+      type: 'sequence',
+      sprite,
+      vesion: 1
     });
   }
 
