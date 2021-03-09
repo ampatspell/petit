@@ -1,2 +1,4 @@
 <@content.header @name={{@model.identifier}}/>
-<@content.json @label="colors" @value={{@model.doc.serialized.data.colors}}/>
+<@content.warnings/>
+<@content.reference @label="Color Palette" @collection="palettes" @key="palette"/>
+<@content.colors @label="Colors" @key="colors"/>

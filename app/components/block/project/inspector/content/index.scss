@@ -6,10 +6,10 @@
     @mixin border() {
       border-bottom: 1px solid $background-grey-border-color;
     }
-    @mixin label() {
+    @mixin label($margin-bottom: 3px) {
       > .label {
         font-weight: $font-bold;
-        margin-bottom: 3px;
+        margin-bottom: $margin-bottom;
       }
     }
     @mixin label-reference() {
@@ -222,7 +222,7 @@
     &.placeholder {
       @include padding();
       @include border();
-      @include label();
+      @include label(0);
     }
     &.json {
       @include padding();
@@ -231,6 +231,18 @@
       > .value {
         white-space: pre-wrap;
         font-size: $font-size-small;
+      }
+    }
+    &.colors {
+      > .color {
+        @include padding();
+        @include border();
+        @include label-reference();
+      }
+      > .placeholder {
+        @include padding();
+        @include border();
+        @include label(0);
       }
     }
   }

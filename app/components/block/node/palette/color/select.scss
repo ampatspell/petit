@@ -2,6 +2,7 @@
   position: relative;
   > .overlay {
     position: absolute;
+    z-index: 1;
     top: -6px;
     left: -6px;
     right: -6px;

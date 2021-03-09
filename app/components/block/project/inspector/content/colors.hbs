@@ -1,0 +1,25 @@
+{{#if this.colors.palette}}
+  <div class="group colors">
+    {{#each this.colors.mapped as |model|}}
+      <div class="color">
+        <div class="label">
+          <div class="text">#{{model.value}}</div>
+          {{#unless model.color}}
+            <Block::Icon class="icon warning" @name="exclamation-circle"/>
+          {{/unless}}
+        </div>
+        <Block::Node::Palette::Color::Select
+          class="select"
+          @palette={{this.colors.palette}}
+          @selected={{model.color}}
+          @disabled={{@model.editable.disabled}}
+          @onSelect={{fn this.selectColor model}}
+        />
+      </div>
+    {{else}}
+      <div class="placeholder">
+        <div class="label">No colors used</div>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}

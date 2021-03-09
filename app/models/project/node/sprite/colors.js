@@ -1,4 +1,3 @@
-
 class Colors {
 
   constructor(node, opts) {
@@ -88,6 +87,15 @@ class Colors {
       hash = this._registerColor(color);
     }
     return hash.value;
+  }
+
+  replaceColor(value, color) {
+    let hash = this.data.find(hash => hash.value === value);
+    if(!hash) {
+      return;
+    }
+    hash.identifier = color.identifier;
+    this.node._scheduleSave.schedule();
   }
 
 }

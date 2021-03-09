@@ -2,7 +2,7 @@
 
 ## TODO
 
-* color mapping to color identifiers for sprites
+* missing colors in sprite.colors warning
 * identifier save needs optionally update usages
 * move selection to project
 * provide project as node.project instead of nodes
@@ -33,3 +33,4 @@
 * color.warnings, ui
 * color dropdown filter colors with identifiers
 * scene.color missing reference
+* color mapping to color identifiers for sprites
