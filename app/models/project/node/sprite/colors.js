@@ -4,9 +4,6 @@ class Colors {
   constructor(node, opts) {
     this.node = node;
     this.opts = opts;
-    if(!this.data) {
-      node.update({ [this.opts.key]: [] });
-    }
   }
 
   get palette() {

@@ -144,15 +144,32 @@ export default class Nodes extends Model {
     }
   }
 
-  async createNewSprite() {
-    let palette = this.all.find(node => node.type === 'palette' && node.identifier)?.identifier || null;
+  _newSpriteProperties() {
+    let palette = this.all.find(node => node.type === 'palette' && node.identifier) || null;
+    let colors = [];
 
-    let sprite = await this._createNode(null, {
-      type: 'sprite',
-      palette,
+    let color = value => {
+      let identifier = palette?.identifiedColors[value]?.identifier;
+      identifier && colors.push({ identifier, value });
+    }
+    color(0);
+    color(1);
+    color(2);
+
+    return {
       width: 16,
       height: 16,
-      version: 1
+      palette: palette?.identifier || null,
+      colors
+    };
+  }
+
+  async createNewSprite() {
+    let props = this._newSpriteProperties();
+    let sprite = await this._createNode(null, {
+      type: 'sprite',
+      version: 1,
+      ...props
     });
 
     await sprite.createNewFrame({ select: false });
