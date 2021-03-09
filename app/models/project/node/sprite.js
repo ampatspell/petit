@@ -174,6 +174,10 @@ export default class SpriteNode extends Node {
     this.tools.reset();
   }
 
+  didMutateFrameBytes() {
+    this.colors.compact();
+  }
+
   //
 
   resize({ handle, x, y, width, height }) {

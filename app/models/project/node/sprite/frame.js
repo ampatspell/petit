@@ -50,6 +50,7 @@ export default class SpriteFrameNode extends Node {
     }
     bytes = this._blobFromUint8Array(bytes);
     this.update({ bytes });
+    this.sprite.didMutateFrameBytes(this);
   }
 
   setPixel(index, color) {

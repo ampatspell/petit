@@ -13,7 +13,7 @@ export default class BlockProjectEditorNodeSpriteIndexComponent extends Componen
   @equal('sprite.tools.selected.type', 'resize') resizing;
 
   get size() {
-    let { width, height, pixel: { absolute: pixel } } = this.frame;
+    let { width, height, pixel: { absolute: pixel } } = this.sprite;
     let s = value => value * pixel;
     return {
       width: s(width),
