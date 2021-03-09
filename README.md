@@ -2,6 +2,7 @@
 
 ## TODO
 
+* overall selection borders
 * identifier save needs optionally update usages
 * move selection to project
 * provide project as node.project instead of nodes
