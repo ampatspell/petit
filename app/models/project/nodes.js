@@ -146,8 +146,7 @@ export default class Nodes extends Model {
   }
 
   _newSpriteProperties() {
-    // TODO: this.identified.palettes
-    let palette = this.all.find(node => node.type === 'palette' && node.identifier) || null;
+    let palette = this.identified.palettes[0] || null;
     let colors = [];
 
     let color = value => {
@@ -201,8 +200,7 @@ export default class Nodes extends Model {
   }
 
   async createNewSequence() {
-    // TODO: this.identified.sprites
-    let sprites = sortedBy(this.all.filter(node => node.type === 'sprite' && node.identifier), node => node.frames.length).reverse();
+    let sprites = sortedBy(this.identified.sprites, node => node.frames.length).reverse();
     let sprite = sprites[0]?.identifier || null;
 
     return await this._createNode(null, {
