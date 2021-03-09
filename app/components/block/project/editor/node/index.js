@@ -6,7 +6,8 @@ import { reads } from "macro-decorators";
 
 export default class BlockProjectEditorNodeIndexComponent extends Component {
 
-  @reads('args.node.nodes.selected.group.tools.selected') selectedTool;
+  @reads('args.node.nodes.selected.group') selected;
+  @reads('selected.tools.selected') selectedTool;
   @reads('args.node.tools.selected') nodeTool;
 
   get editor() {
