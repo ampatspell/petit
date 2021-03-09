@@ -2,9 +2,9 @@
 
 ## TODO
 
-* overall selection borders
-* identifier save needs optionally update usages
 * move selection to project
+* node.selection.{selected,child,group}
+* identifier save needs optionally update usages
 * provide project as node.project instead of nodes
 * sprite select, move parts of pixels
 * color picker
@@ -36,3 +36,4 @@
 * color mapping to color identifiers for sprites
 * missing colors in sprite.colors warning
 * remove unused colors from sprite.colors
+* overall selection borders

@@ -60,10 +60,12 @@ export default class Node extends Model {
 
   //
 
+  // TODO: selected
   get selected() {
     return this.nodes.selected === this;
   }
 
+  // TODO: selected
   get hasSelectedChild() {
     return !!this.children.find(node => {
       if(node.selected) {
