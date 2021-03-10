@@ -81,7 +81,7 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     this.batchDraw();
 
     next(() => this.nextFrame());
-    later(() => this.animate(), 1000 / 10);
+    later(() => this.animate(), 1000 / 3);
   }
 
 }
