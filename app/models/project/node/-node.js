@@ -91,16 +91,19 @@ export default class Node extends Model {
     return parent?.hasParent(node);
   }
 
+  @cached
   get isFirst() {
     return firstObject(this.parentChildren) === this;
   }
 
+  @cached
   get isLast() {
     return lastObject(this.parentChildren) === this;
   }
 
   //
 
+  @cached
   get parent() {
     let { nodes, parentId } = this;
     if(!parentId) {
@@ -109,6 +112,7 @@ export default class Node extends Model {
     return nodes.all.find(node => node.id === parentId) || null;
   }
 
+  @cached
   get children() {
     return sortedBy(this.nodes.all.filter(node => node.parent === this), 'index');
   }
@@ -117,6 +121,7 @@ export default class Node extends Model {
     return this.children.length > 0;
   }
 
+  @cached
   get visibleChildren() {
     let visible = arr => arr.filter(node => !node.hide || !node.hide.hidden);
     return visible(this.children).reverse();

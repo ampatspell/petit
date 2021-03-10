@@ -6,6 +6,7 @@ import { tracked } from "@glimmer/tracking";
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 import { selection } from './nodes/selection';
+import { cached } from "tracked-toolbox";
 
 const {
   assign
@@ -48,10 +49,12 @@ export default class Nodes extends Model {
 
   //
 
+  @cached
   get root() {
     return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
 
+  @cached
   get visible() {
     let visible = arr => arr.filter(node => node.hide && !node.hide.hidden);
     return visible(this.root).reverse();

@@ -3,7 +3,7 @@ import { reads } from "macro-decorators";
 import { cached } from "tracked-toolbox";
 import { tracked } from "@glimmer/tracking";
 import { next, later } from '@ember/runloop';
-import { nextObject, firstObject } from 'petit/util/array';
+import { nextObject } from 'petit/util/array';
 import { action } from "@ember/object";
 
 export default class BlockProjectEditorNodeSequenceContentComponent extends Shape {

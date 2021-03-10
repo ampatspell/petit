@@ -4,6 +4,7 @@ import { nextObject, prevObject, uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { colors } from './sprite/colors';
 import { Warning } from './-node/warnings';
+import { cached } from "tracked-toolbox";
 
 const {
   assign
@@ -127,6 +128,7 @@ export default class SpriteNode extends Node {
 
   //
 
+  @cached
   get uniqueFrameBytes() {
     return uniq(this.frames.reduce((ret, frame) => ([...ret, ...frame.bytes]), []));
   }
