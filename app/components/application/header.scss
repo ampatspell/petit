@@ -1,11 +1,12 @@
 .application-header {
   background: $background-grey-color;
-  border-bottom: 1px solid $background-grey-border-color;
+  border-bottom: 1px solid lighten(#000, 78%);
   padding: 0 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   line-height: 1;
+  position: relative;
   > .items {
     display: flex;
     flex-direction: row;
