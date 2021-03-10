@@ -66,10 +66,7 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     let next;
     if(sprite) {
       let { frames } = sprite;
-      next = nextObject(frames, frame);
-      if(!next) {
-        next = firstObject(frames);
-      }
+      next = nextObject(frames, frame, true);
     }
     this._frame = next;
   }
