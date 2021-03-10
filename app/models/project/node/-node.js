@@ -16,6 +16,7 @@ import { editable } from './-node/editable';
 import { move } from './-node/move';
 import { actions } from './-node/actions';
 import { color } from './-node/color';
+import { cached } from "tracked-toolbox";
 
 export {
   editor,
@@ -61,11 +62,13 @@ export default class Node extends Model {
   //
 
   // TODO: selected
+  @cached
   get selected() {
     return this.nodes.selected === this;
   }
 
   // TODO: selected
+  @cached
   get hasSelectedChild() {
     return !!this.children.find(node => {
       if(node.selected) {
