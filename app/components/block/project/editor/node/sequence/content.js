@@ -4,6 +4,7 @@ import { cached } from "tracked-toolbox";
 import { tracked } from "@glimmer/tracking";
 import { next, later } from '@ember/runloop';
 import { nextObject, firstObject } from 'petit/util/array';
+import { action } from "@ember/object";
 
 export default class BlockProjectEditorNodeSequenceContentComponent extends Shape {
 
@@ -77,11 +78,15 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     if(this.isDestroying) {
       return;
     }
-
     this.batchDraw();
-
     next(() => this.nextFrame());
     later(() => this.animate(), 1000 / 3);
+  }
+
+  @action
+  didUpdateSprite() {
+    this.nextFrame();
+    this.batchDraw();
   }
 
 }
