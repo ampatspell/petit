@@ -4,6 +4,12 @@ const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }
 ]);
 
+const size = (_target, key) => ({
+  get() {
+    return this.sprite.model?.[key] || 16;
+  }
+});
+
 export default class SequenceyNode extends Node {
 
   typeName = 'Sequence';
@@ -15,6 +21,9 @@ export default class SequenceyNode extends Node {
 
   @data('sprite') _sprite;
   @reference('sprite', '_sprite') sprite;
+
+  @size width;
+  @size height;
 
   constructor() {
     super(...arguments);

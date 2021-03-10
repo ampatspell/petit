@@ -1,1 +1,13 @@
-Sequence
+<Block::Editor::Border @node={{@node}}>
+
+  <Konva::Stage @size={{this.size}} as |parent|>
+    <Konva::Node::Layer @parent={{parent}} as |parent|>
+      <Block::Project::Editor::Node::Sequence::Content
+        @parent={{parent}}
+        @size={{this.size}}
+        @sprite={{this.sprite}}
+      />
+    </Konva::Node::Layer>
+  </Konva::Stage>
+
+</Block::Editor::Border>

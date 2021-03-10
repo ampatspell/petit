@@ -12,6 +12,7 @@ export default class BlockProjectEditorNodeSpriteIndexComponent extends Componen
   @equal('sprite.tools.selected.type', 'edit') editing;
   @equal('sprite.tools.selected.type', 'resize') resizing;
 
+  // TODO: move to editor
   get size() {
     let { width, height, pixel: { absolute: pixel } } = this.sprite;
     let s = value => value * pixel;
