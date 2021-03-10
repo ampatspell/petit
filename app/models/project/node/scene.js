@@ -4,7 +4,7 @@ import { reads } from "macro-decorators";
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
   { icon: 'pen',           type: 'edit' },
-  { icon: 'expand',        type: 'resize' }
+  { icon: 'expand',        type: 'resize', overlaysHidden: true }
 ]);
 
 export default class SceneNode extends Node {
