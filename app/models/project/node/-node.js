@@ -59,8 +59,6 @@ export default class Node extends Model {
     move(this);
   }
 
-  //
-
   // TODO: selected
   @cached
   get selected() {
