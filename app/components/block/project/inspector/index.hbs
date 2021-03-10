@@ -5,11 +5,17 @@
         {{component (concat 'block/project/inspector/node/' @project.selected.type) model=@project.selected content=content}}
       </Block::Project::Inspector::Content>
       <div class="development">
-        <Block::SetGlobal
-          class="set-global"
-          @key={{if @project.selected.isProject "project" "node"}}
-          @value={{@project.selected}}
-        />
+        <div class="row">
+          <Block::SetGlobal
+            class="icon set-global"
+            @key={{if @project.selected.isProject "project" "node"}}
+            @value={{@project.selected}}
+          />
+          <Block::OpenDashboard
+            class="icon open-dashboard"
+            @doc={{@project.selected.doc}}
+          />
+        </div>
       </div>
     </div>
   </div>

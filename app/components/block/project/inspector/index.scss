@@ -17,14 +17,19 @@
       bottom: 0;
       > .development {
         padding: 10px;
-        > .set-global {
-          margin-bottom: 5px;
-        }
         > .row {
           margin-bottom: 5px;
           font-size: $font-size-small;
           overflow: hidden;
           text-overflow: ellipsis;
+          display: flex;
+          flex-direction: row;
+          > .icon {
+            margin-right: 10px;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
           &:last-child {
             margin-bottom: 0;
           }
