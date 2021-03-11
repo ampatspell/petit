@@ -10,7 +10,7 @@ export default class BlockProjectEditorNodePaletteComponent extends Component {
   @action
   select(color, e) {
     e.stopPropagation();
-    this.args.node.select(color);
+    this.args.node.nodes.select(color);
   }
 
   get style() {

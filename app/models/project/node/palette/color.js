@@ -1,10 +1,10 @@
-import Model from '../../../-model';
+import DataNode from '../-data-node';
+import { warnings, Warning } from '../-node/properties';
 import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
-import { tracked } from "@glimmer/tracking";
 import { round } from 'petit/util/math';
-import { compact } from 'petit/util/object';
 import TheColor from 'color';
+import { compact } from 'petit/util/object';
 
 const {
   assign
@@ -18,23 +18,29 @@ const hsv = (_target, key) => ({
   }
 });
 
-export default class Color extends Model {
+class IdentifierConflict extends Warning {
 
+  get description() {
+    return 'Identifier conflict';
+  }
+
+  @cached
+  get has() {
+    let { node, node: { identifier, palette }  } = this;
+    if(!identifier) {
+      return false;
+    }
+    return !!palette.colors.find(color => color !== node && color.identifier === identifier);
+  }
+
+}
+
+export default class Color extends DataNode {
+
+  type = 'palette/color';
   typeName = 'Color';
 
-  @tracked data;
-
-  @reads('palette.editable') editable;
-
-  constructor(owner, { palette, data }) {
-    super(owner);
-    this.palette = palette;
-    this.data = data;
-  }
-
-  mappingDidChange({ data }) {
-    this.data = data;
-  }
+  @reads('parent') palette;
 
   @data('identifier') identifier;
   @data('r') r;
@@ -42,8 +48,9 @@ export default class Color extends Model {
   @data('b') b;
   @data('a') a;
 
-  get index() {
-    return this.palette.colors.indexOf(this);
+  constructor() {
+    super(...arguments);
+    warnings(this, { replace: [ IdentifierConflict ] });
   }
 
   //
@@ -104,12 +111,7 @@ export default class Color extends Model {
     if(!props) {
       return;
     }
-    assign(this.data, props);
-    this.palette._didUpdateColor(this);
-  }
-
-  async delete() {
-    await this.palette._deleteColor(this);
+    super.update(props);
   }
 
   toStringExtension() {

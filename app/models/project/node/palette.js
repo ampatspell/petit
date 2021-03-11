@@ -1,9 +1,9 @@
 import Node from './-doc-node';
 import { data } from './-node/decorators';
-import { editor, lock, editable, hide, pixel, warnings, Warning, tools as _tools, actions } from './-node/properties';
-import { tracked } from "@glimmer/tracking";
+import { editor, lock, editable, hide, pixel, warnings, Warning, tools as _tools, actions, expand } from './-node/properties';
 import { models } from 'zuglet/decorators';
-import { lastObject, removeAt, uniq } from 'petit/util/array';
+import { lastObject, uniq, sortedBy } from 'petit/util/array';
+import { cached } from "tracked-toolbox";
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' },
@@ -32,6 +32,7 @@ export default class PaletteNode extends Node {
     editor(this);
     lock(this);
     hide(this);
+    expand(this);
     pixel(this);
     tools(this);
     editable(this);
@@ -50,59 +51,40 @@ export default class PaletteNode extends Node {
   @models()
     .source(({ _colors }) => _colors)
     .named('project/node/palette/color')
-    .mapping((data, palette) => ({ palette, data }))
+    .mapping((data, parent) => ({ key: 'colors', parent, data }))
   colors;
 
+  @cached
+  get children() {
+    return sortedBy(this.colors, 'index');
+  }
+
+  //
+
   get identifiedColors() {
-    return this.colors.filter(color => !!color.identifier);
+    return this.children.filter(color => !!color.identifier);
   }
 
   colorByIdentifier(identifier) {
     return this.colors.find(color => color.identifier === identifier) || null;
   }
 
-  _didUpdate() {
-    this.scheduleSave.schedule();
-  }
-
-  _didUpdateColor() {
-    this._didUpdate();
-  }
-
-  _deleteColor(color) {
-    this.doc.data.colors = removeAt(this.doc.data.colors, this.colors.indexOf(color));
-    this._didUpdate();
-    this.actions.invoke('delete-color', color);
-  }
-
-  //
-
-  @tracked _color;
-
-  get color() {
-    let { _color, colors } = this;
-    if(!colors.includes(_color)) {
-      return null;
-    }
-    return _color;
-  }
-
-  select(color) {
-    this._color = color;
-    this.actions.invoke('select-color', color);
-  }
-
   //
 
   createNewColor() {
-    let identifier = `c_${this._colors.length + 1}`;
-    this._colors.push({ r: 255, g: 100, b: 200, a: 255, identifier });
-    let color = lastObject(this.colors);
-    this.select(color);
-    this._didUpdate();
+    let index = lastObject(this.children)?.index || 0;
+    let identifier = this.nodes.createIdentifier('palette/color');
+    this._colors.push({
+      index,
+      identifier,
+      r: 255,
+      g: 100,
+      b: 200,
+      a: 255
+    });
+    this.scheduleSave.schedule();
+    this.nodes.select(this.colors.find(color => color.identifier === identifier));
   }
-
-  //
 
   // Mapped colors for tracked consume outside of konva scene functions
   get rgba() {
