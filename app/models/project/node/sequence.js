@@ -1,4 +1,4 @@
-import Node from './-node';
+import Node from './-doc-node';
 import { data } from './-node/doc';
 import { editor } from './-node/editor';
 import { lock } from './-node/lock';

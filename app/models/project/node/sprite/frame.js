@@ -1,4 +1,4 @@
-import Node from '../-node';
+import Node from '../-doc-node';
 import { data } from '../-node/doc';
 import { editable } from '../-node/editable';
 import { toIndex } from '../../../../util/pixel';

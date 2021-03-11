@@ -5,7 +5,7 @@ import { scheduleSave } from '../../../util/schedule-save';
 import { sortedBy } from '../../../util/array';
 import { cached } from "tracked-toolbox";
 
-export default class Node extends BaseNode {
+export default class DocumentNode extends BaseNode {
 
   @activate() doc;
 

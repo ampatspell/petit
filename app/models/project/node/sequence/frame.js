@@ -1,6 +1,6 @@
 import { reads } from "macro-decorators";
 import { cached } from "tracked-toolbox";
-import SyntheticNode from '../-synthetic-node';
+import DataNode from '../-data-node';
 import { warnings, Warning } from '../-node/warnings';
 
 class MissingFrame extends Warning {
@@ -15,7 +15,7 @@ class MissingFrame extends Warning {
 
 }
 
-export default class SequenceFrame extends SyntheticNode {
+export default class SequenceFrame extends DataNode {
 
   type = 'sequence/frame';
   typeName = 'Frame';

@@ -1,4 +1,4 @@
-import Node from '../-node';
+import Node from '../-doc-node';
 import { editable } from '../-node/editable';
 import { warnings } from '../-node/warnings';
 import { hide } from '../-node/hide';

@@ -3,7 +3,7 @@ import { reads } from "macro-decorators";
 import { assert } from '@ember/debug';
 import { removeObject } from 'petit/util/array';
 
-export default class SyntheticNode extends BaseNode {
+export default class DataNode extends BaseNode {
 
   type = null;
   typeName = null;
