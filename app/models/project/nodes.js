@@ -7,6 +7,7 @@ import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 import { selection } from './nodes/selection';
 import { cached } from "tracked-toolbox";
+import { randomString } from '../../util/string';
 
 const {
   assign
@@ -103,17 +104,19 @@ export default class Nodes extends Model {
 
     let abbreviations = {
       'scene': 'sc',
-      'scene/layer': null,
+      'scene/layer': 'sl',
       'sprite': 'spr',
-      'sprite/frame': null,
+      'sprite/frame': 'spf',
       'entity': 'ent',
       'palette': 'cp',
       'sequence': 'seq'
     };
     let abbr = abbreviations[props.type];
+
     let identifier = '';
     if(abbr) {
-      identifier = `${abbr}_${index}`;
+      let id = randomString(5);
+      identifier = `${abbr}_${id}`;
     }
 
     return assign({
