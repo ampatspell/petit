@@ -1,3 +1,6 @@
 <div class="group placeholder">
   <div class="label">{{@label}}</div>
+  {{#if (has-block)}}
+    {{yield}}
+  {{/if}}
 </div>

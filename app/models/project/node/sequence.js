@@ -1,4 +1,5 @@
 import Node, { data, editor, lock, hide, warnings, pixel, reference, tools as _tools } from './-node';
+import { frames } from './sequence/frames';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }
@@ -33,6 +34,10 @@ export default class SequenceyNode extends Node {
     warnings(this);
     pixel(this);
     tools(this);
+    frames(this, {
+      key: 'frames',
+      sprite: 'sprite'
+    });
   }
 
 }

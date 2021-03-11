@@ -204,11 +204,17 @@ export default class Nodes extends Model {
 
   async createNewSequence() {
     let sprites = sortedBy(this.identified.sprites, node => node.frames.length).reverse();
-    let sprite = sprites[0]?.identifier || null;
+    let sprite = sprites[0];
+
+    let frames = [];
+    if(sprite) {
+      frames = sprite.frames.filter(frame => frame.identifier).map(frame => ({ identifier: frame.identifier }));
+    }
 
     return await this._createNode(null, {
       type: 'sequence',
-      sprite,
+      sprite: sprite?.identifier || null,
+      frames,
       vesion: 1
     });
   }
