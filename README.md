@@ -2,9 +2,7 @@
 
 ## TODO
 
-* sequence missing sprite warning
-* frame missing frame warning (if sprite exists)
-* refactor palette to synthetic nodes
+* sequence frame should have frame property instead of identifier
 * move selection to project
 * node.selection.{selected,child,group}
 * identifier save needs optionally update usages
@@ -40,3 +38,6 @@
 * missing colors in sprite.colors warning
 * remove unused colors from sprite.colors
 * overall selection borders
+* sequence missing sprite warning
+* frame missing frame warning (if sprite exists)
+* refactor palette to synthetic nodes
