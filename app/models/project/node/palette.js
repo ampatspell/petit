@@ -1,5 +1,5 @@
-import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, warnings, actions } from './-node';
-import { Warning } from './-node/warnings';
+import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, actions } from './-node';
+import { warnings, Warning } from './-node/warnings';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
 import { lastObject, removeAt, uniq } from 'petit/util/array';

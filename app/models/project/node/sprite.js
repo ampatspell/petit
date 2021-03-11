@@ -1,4 +1,5 @@
-import Node, { editor, editable, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
+import Node, { editor, editable, lock, hide, expand, data, reference, pixel, tools as _tools } from './-node';
+import { warnings } from './-node/warnings';
 import { heart } from 'petit/util/heart';
 import { nextObject, prevObject, uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";

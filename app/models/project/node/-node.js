@@ -5,7 +5,6 @@ import { sortedBy } from '../../../util/array';
 import { editor } from './-node/editor';
 import { lock } from './-node/lock';
 import { hide } from './-node/hide';
-import { warnings } from './-node/warnings';
 import { reference } from './-node/reference';
 import { child } from './-node/child';
 import { expand } from './-node/expand';
@@ -22,7 +21,6 @@ export {
   hide,
   lock,
   expand,
-  warnings,
   reference,
   actions,
   pixel,

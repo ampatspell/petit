@@ -1,4 +1,5 @@
-import Node, { data, reference, editor, editable, lock, hide, warnings, expand, pixel, tools as _tools, color } from './-node';
+import Node, { data, reference, editor, editable, lock, hide, expand, pixel, tools as _tools, color } from './-node';
+import { warnings } from './-node/warnings';
 import { reads } from "macro-decorators";
 
 const tools = node => _tools(node, [

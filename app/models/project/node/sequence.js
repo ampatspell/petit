@@ -1,7 +1,9 @@
-import Node, { data, editor, lock, hide, warnings, pixel, reference, tools as _tools, expand } from './-node';
+import Node, { data, editor, lock, hide, pixel, reference, tools as _tools, expand } from './-node';
+import { warnings } from './-node/warnings';
 import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
 import { sortedBy, lastObject } from 'petit/util/array';
+import { Warning } from './-node/warnings';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }
@@ -12,6 +14,19 @@ const size = (_target, key) => ({
     return this.sprite.model?.[key] || 16;
   }
 });
+
+class MissingFrames extends Warning {
+
+  get description() {
+    return 'Missing frames';
+  }
+
+  @cached
+  get has() {
+    return this.node.sprite && this.node.frames.filter(frame => !frame.frame).length > 0;
+  }
+
+}
 
 export default class SequenceyNode extends Node {
 
@@ -33,7 +48,9 @@ export default class SequenceyNode extends Node {
     editor(this);
     lock(this);
     hide(this);
-    warnings(this);
+    warnings(this, {
+      add: [ MissingFrames ]
+    });
     expand(this);
     pixel(this);
     tools(this);
