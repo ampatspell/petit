@@ -126,6 +126,15 @@ export default class SpriteNode extends Node {
     this.select(frame);
   }
 
+  @cached
+  get identifiedFrames() {
+    return this.frames.filter(frame => frame.identifier);
+  }
+
+  frameByIdentifier(identifier) {
+    return this.identifiedFrames.find(frame => frame.identifier === identifier);
+  }
+
   //
 
   @cached

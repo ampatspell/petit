@@ -10,12 +10,13 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
 
   @reads('args.size') size;
   @reads('args.sprite') sprite;
+  @reads('args.frames') frames;
 
   @tracked _frame;
 
   get frame() {
-    let { _frame, sprite } = this;
-    return _frame || sprite?.frames[0];
+    let { _frame, frames } = this;
+    return _frame || frames?.[0];
   }
 
   @cached
@@ -62,10 +63,9 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
   }
 
   nextFrame() {
-    let { frame, sprite } = this;
+    let { frame, frames } = this;
     let next;
-    if(sprite) {
-      let { frames } = sprite;
+    if(frames) {
       next = nextObject(frames, frame, true);
     }
     this._frame = next;

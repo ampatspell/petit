@@ -18,7 +18,9 @@
   <@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
 
   <@content.placeholder @label="Frames">
-    {{@model.frames}}
+    {{#each @model.frames.all as |frame|}}
+      <div class="row">{{frame.identifier}}: {{frame.frame}}</div>
+    {{/each}}
   </@content.placeholder>
 
 {{/if}}
