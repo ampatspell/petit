@@ -245,5 +245,12 @@
         @include label(0);
       }
     }
+    &.frames {
+      > .frame {
+        @include padding();
+        @include border();
+        @include label-reference();
+      }
+    }
   }
 }

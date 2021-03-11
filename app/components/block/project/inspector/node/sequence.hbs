@@ -16,11 +16,6 @@
   <@content.header @name={{@model.identifier}}/>
   <@content.warnings/>
   <@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
-
-  <@content.placeholder @label="Frames">
-    {{#each @model.frames.all as |frame|}}
-      <div class="row">{{frame.identifier}}: {{frame.frame}}</div>
-    {{/each}}
-  </@content.placeholder>
+  <@content.frames @label="Frames" @key="frames"/>
 
 {{/if}}
