@@ -1,4 +1,4 @@
-import DataNode from '../-data-node';
+import Node from '../-data-node';
 import { warnings, Warning } from '../-node/properties';
 import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
@@ -35,7 +35,7 @@ class IdentifierConflict extends Warning {
 
 }
 
-export default class Color extends DataNode {
+export default class Color extends Node {
 
   type = 'palette/color';
   typeName = 'Color';

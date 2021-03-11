@@ -26,6 +26,10 @@ export default class DataNode extends BaseNode {
 
   //
 
+  get group() {
+    return this.parent;
+  }
+
   children = [];
 
   //
