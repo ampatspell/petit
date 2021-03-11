@@ -40,7 +40,6 @@ export default class DataNode extends BaseNode {
   delete() {
     let { parent: { scheduleSave, doc }, key, data } = this;
     let array = doc.data[key];
-    console.log(key, array, data);
     removeObject(array, data);
     scheduleSave.schedule();
   }

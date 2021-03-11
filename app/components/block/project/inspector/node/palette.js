@@ -6,42 +6,42 @@ import { tracked } from "@glimmer/tracking";
 export default class BlockProjectInspectorNodePaletteComponent extends Component {
 
   @reads('args.model') model;
-  @reads('model.color') color;
+  // @reads('model.color') color;
 
-  tabs = [
-    { id: 'palette', label: 'Palette' },
-    { id: 'color', label: 'Color' }
-  ];
+  // tabs = [
+  //   { id: 'palette', label: 'Palette' },
+  //   { id: 'color', label: 'Color' }
+  // ];
 
-  @tracked tab = this.tabs[0];
+  // @tracked tab = this.tabs[0];
 
-  @action
-  selectTab(tab) {
-    this.tab = tab;
-  }
+  // @action
+  // selectTab(tab) {
+  //   this.tab = tab;
+  // }
 
   @action
   addColor() {
     this.model.createNewColor();
   }
 
-  @action
-  deleteColor() {
-    this.model.color.delete();
-  }
+  // @action
+  // deleteColor() {
+  //   this.model.color.delete();
+  // }
 
-  selectTabById(id) {
-    this.selectTab(this.tabs.find(tab => tab.id === id));
-  }
+  // selectTabById(id) {
+  //   this.selectTab(this.tabs.find(tab => tab.id === id));
+  // }
 
-  @action
-  onColorSelected() {
-    this.selectTabById('color');
-  }
+  // @action
+  // onColorSelected() {
+  //   this.selectTabById('color');
+  // }
 
-  @action
-  onColorDeleted() {
-    this.selectTabById('palette');
-  }
+  // @action
+  // onColorDeleted() {
+  //   this.selectTabById('palette');
+  // }
 
 }

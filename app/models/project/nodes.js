@@ -91,6 +91,26 @@ export default class Nodes extends Model {
 
   //
 
+  createIdentifier(type) {
+    let abbreviations = {
+      'scene': 'sc',
+      'scene/layer': 'sl',
+      'sprite': 'spr',
+      'sprite/frame': 'spf',
+      'entity': 'ent',
+      'palette': 'plt',
+      'palette/color': 'clr',
+      'sequence': 'seq'
+    };
+    let abbr = abbreviations[type];
+    let identifier = '';
+    if(abbr) {
+      let id = randomString(5);
+      identifier = `${abbr}_${id}`;
+    }
+    return identifier;
+  }
+
   _createNodeProperties(parentNode, props) {
     let parent = parentNode?.id || null;
 
@@ -101,23 +121,7 @@ export default class Nodes extends Model {
     }
 
     let createdAt = this.store.serverTimestamp;
-
-    let abbreviations = {
-      'scene': 'sc',
-      'scene/layer': 'sl',
-      'sprite': 'spr',
-      'sprite/frame': 'spf',
-      'entity': 'ent',
-      'palette': 'cp',
-      'sequence': 'seq'
-    };
-    let abbr = abbreviations[props.type];
-
-    let identifier = '';
-    if(abbr) {
-      let id = randomString(5);
-      identifier = `${abbr}_${id}`;
-    }
+    let identifier = this.createIdentifier(props.type);
 
     return assign({
       parent,
