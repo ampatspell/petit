@@ -1,18 +1,9 @@
 import Node from './-doc-node';
-import { data } from './-node/doc';
-import { editor } from './-node/editor';
-import { lock } from './-node/lock';
-import { editable } from './-node/editable';
-import { hide } from './-node/hide';
-import { expand } from './-node/expand';
-import { reference } from './-node/reference';
-import { warnings } from './-node/warnings';
-import { pixel } from './-node/pixel';
-import { tools as _tools } from './-node/tools';
+import { data, reference } from './-node/decorators';
+import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning } from './-node/properties';
 import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
 import { sortedBy, lastObject } from 'petit/util/array';
-import { Warning } from './-node/warnings';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }

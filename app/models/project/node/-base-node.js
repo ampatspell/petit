@@ -1,6 +1,6 @@
 import Model from '../../-model';
 import { inject as service } from "@ember/service";
-import { move } from './-node/move';
+import { move } from './-node/properties';
 import { cached } from "tracked-toolbox";
 import { firstObject, lastObject } from '../../../util/array';
 import { assert } from '@ember/debug';

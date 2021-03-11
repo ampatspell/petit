@@ -1,6 +1,6 @@
 import BaseNode from './-base-node';
 import { activate } from 'zuglet/decorators';
-import { doc, data } from './-node/doc';
+import { doc, data } from './-node/decorators';
 import { scheduleSave } from '../../../util/schedule-save';
 import { sortedBy } from '../../../util/array';
 import { cached } from "tracked-toolbox";

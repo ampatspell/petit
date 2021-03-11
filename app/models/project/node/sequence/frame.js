@@ -1,7 +1,7 @@
 import { reads } from "macro-decorators";
 import { cached } from "tracked-toolbox";
 import DataNode from '../-data-node';
-import { warnings, Warning } from '../-node/warnings';
+import { warnings, Warning } from '../-node/properties';
 
 class MissingFrame extends Warning {
 
