@@ -1,5 +1,14 @@
-import Node, { data, editor, lock, hide, pixel, reference, tools as _tools, expand } from './-node';
+import Node from './-node';
+import { data } from './-node/doc';
+import { editor } from './-node/editor';
+import { lock } from './-node/lock';
+import { editable } from './-node/editable';
+import { hide } from './-node/hide';
+import { expand } from './-node/expand';
+import { reference } from './-node/reference';
 import { warnings } from './-node/warnings';
+import { pixel } from './-node/pixel';
+import { tools as _tools } from './-node/tools';
 import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
 import { sortedBy, lastObject } from 'petit/util/array';
@@ -48,6 +57,7 @@ export default class SequenceyNode extends Node {
     editor(this);
     lock(this);
     hide(this);
+    editable(this);
     warnings(this, {
       add: [ MissingFrames ]
     });
@@ -75,7 +85,7 @@ export default class SequenceyNode extends Node {
       index,
       identifier: ''
     });
-    this._scheduleSave.schedule();
+    this.scheduleSave.schedule();
   }
 
 }

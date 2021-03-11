@@ -21,6 +21,7 @@ export default class SyntheticNode extends BaseNode {
   //
 
   @reads('parent.exists') exists;
+  @reads('parent.editable') editable;
   @reads('data.index') index;
 
   //
@@ -32,16 +33,16 @@ export default class SyntheticNode extends BaseNode {
   update(props, schedule=true) {
     Object.assign(this.data, this._normalizeReferences(props));
     if(schedule) {
-      this.parent._scheduleSave.schedule();
+      this.parent.scheduleSave.schedule();
     }
   }
 
   delete() {
-    let { parent: { _scheduleSave, doc }, key, data } = this;
+    let { parent: { scheduleSave, doc }, key, data } = this;
     let array = doc.data[key];
     console.log(key, array, data);
     removeObject(array, data);
-    _scheduleSave.schedule();
+    scheduleSave.schedule();
   }
 
 }

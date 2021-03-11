@@ -1,4 +1,6 @@
-import Node, { data, editable } from '../-node';
+import Node from '../-node';
+import { data } from '../-node/doc';
+import { editable } from '../-node/editable';
 import { toIndex } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
 import { rendered } from './frame/rendered';

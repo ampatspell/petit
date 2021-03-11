@@ -1,5 +1,13 @@
-import Node, { editor, lock, hide, data, pixel, editable, tools as _tools, actions } from './-node';
+import Node from './-node';
+import { data } from './-node/doc';
+import { editor } from './-node/editor';
+import { lock } from './-node/lock';
+import { editable } from './-node/editable';
+import { hide } from './-node/hide';
+import { pixel } from './-node/pixel';
 import { warnings, Warning } from './-node/warnings';
+import { tools as _tools } from './-node/tools';
+import { actions } from './-node/actions';
 import { tracked } from "@glimmer/tracking";
 import { models } from 'zuglet/decorators';
 import { lastObject, removeAt, uniq } from 'petit/util/array';
@@ -61,7 +69,7 @@ export default class PaletteNode extends Node {
   }
 
   _didUpdate() {
-    this._scheduleSave.schedule();
+    this.scheduleSave.schedule();
   }
 
   _didUpdateColor() {

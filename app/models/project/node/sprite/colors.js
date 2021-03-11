@@ -77,7 +77,7 @@ class Colors {
 
   _addHash(hash) {
     this.data.push(hash);
-    this.node._scheduleSave.schedule();
+    this.node.scheduleSave.schedule();
     return hash;
   }
 
@@ -101,7 +101,7 @@ class Colors {
       return;
     }
     hash.identifier = color.identifier;
-    this.node._scheduleSave.schedule();
+    this.node.scheduleSave.schedule();
   }
 
   get missing() {
@@ -120,7 +120,7 @@ class Colors {
   compact() {
     let { data, unused } = this;
     removeObjects(data, unused);
-    this.node._scheduleSave.schedule();
+    this.node.scheduleSave.schedule();
   }
 
 }
