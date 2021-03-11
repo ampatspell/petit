@@ -2,6 +2,9 @@
 
 ## TODO
 
+* sequence missing sprite warning
+* frame missing frame warning (if sprite exists)
+* refactor palette to synthetic nodes
 * move selection to project
 * node.selection.{selected,child,group}
 * identifier save needs optionally update usages

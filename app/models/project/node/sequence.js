@@ -1,7 +1,7 @@
 import Node, { data, editor, lock, hide, warnings, pixel, reference, tools as _tools, expand } from './-node';
 import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
-import { sortedBy } from 'petit/util/array';
+import { sortedBy, lastObject } from 'petit/util/array';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }
@@ -50,6 +50,15 @@ export default class SequenceyNode extends Node {
   @cached
   get children() {
     return sortedBy(this.frames, 'index');
+  }
+
+  addNewFrame() {
+    let index = lastObject(this.children)?.index || 0;
+    this._frames.push({
+      index,
+      identifier: ''
+    });
+    this._scheduleSave.schedule();
   }
 
 }

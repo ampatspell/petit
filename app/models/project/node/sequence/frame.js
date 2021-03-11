@@ -9,10 +9,13 @@ export default class SequenceFrame extends SyntheticNode {
 
   @reads('data.identifier') identifier;
 
+  @reads('parent') sequence;
+  @reads('sequence.sprite.model') sprite;
+
   @cached
   get frame() {
-    let { frames, identifier } = this;
-    return frames.sprite?.frameByIdentifier(identifier);
+    let { sprite, identifier } = this;
+    return sprite?.frameByIdentifier(identifier);
   }
 
 }

@@ -3,6 +3,9 @@
 <@content.identifier/>
 <@content.position/>
 <@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
+<@content.actions as |actions|>
+  <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>
+</@content.actions>
 <@content.pixel/>
 <@content.reorder/>
 <@content.delete @label="Delete sequence" @confirmation="Are you sure you want to delete this sequence?"/>
