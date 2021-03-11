@@ -1,15 +1,3 @@
-{{!-- <Block::Actions
-  @model={{@model}}
-  @handlers={{hash
-    select-color=this.onColorSelected
-    delete-color=this.onColorDeleted
-  }}
-/> --}}
-
-{{!-- <@content.tabs @tabs={{this.tabs}} @tab={{this.tab}} @label="label" @onSelect={{this.selectTab}}/>
-
-{{#if (eq this.tab.id 'palette')}} --}}
-
 <@content.header @name={{@model.identifier}}/>
 <@content.warnings/>
 <@content.identifier/>
@@ -20,21 +8,3 @@
 <@content.pixel/>
 <@content.reorder/>
 <@content.delete @label="Delete palette" @confirmation="Are you sure you want to delete this palette?"/>
-
-{{!-- {{else if (eq this.tab.id 'color')}}
-
-  {{#with @model.color as |color|}}
-
-    <@content.header @model={{color}} @name={{color.identifier}}/>
-    <@content.identifier @model={{color}}/>
-    <@content.color-input @model={{color}}/>
-    <@content.pixel/>
-    <@content.delete @label="Delete color" @confirmation="Are you sure you want to delete this color?" @model={{color}}/>
-
-  {{else}}
-
-    <@content.placeholder @label="No color selected"/>
-
-  {{/with}}
-
-{{/if}} --}}

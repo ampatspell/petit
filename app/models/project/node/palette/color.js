@@ -4,6 +4,11 @@ import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
 import { round } from 'petit/util/math';
 import TheColor from 'color';
+import { compact } from 'petit/util/object';
+
+const {
+  assign
+} = Object;
 
 const data = key => reads(`data.${key}`);
 
@@ -80,35 +85,34 @@ export default class Color extends DataNode {
     return { r, g, b, a };
   }
 
-  // _normalizeProps(props) {
-  //   let { hex, h, s, v } = props;
-  //   let has = value => typeof value !== 'undefined';
-  //   if(has(hex)) {
-  //     try {
-  //       props = TheColor(hex).object();
-  //     } catch {
-  //       console.error('Invalid color.update for hex', props);
-  //       return;
-  //     }
-  //   } else if(has(h) || has(s) || has(v)) {
-  //     try {
-  //       props = TheColor(assign(this._hsv, compact({ h, s, v }))).rgb().round().object();
-  //     } catch(e) {
-  //       console.error('Invalid color.update for hsv', props);
-  //       return;
-  //     }
-  //   }
-  //   return props;
-  // }
+  _normalizeProps(props) {
+    let { hex, h, s, v } = props;
+    let has = value => typeof value !== 'undefined';
+    if(has(hex)) {
+      try {
+        props = TheColor(hex).object();
+      } catch {
+        console.error('Invalid color.update for hex', props);
+        return;
+      }
+    } else if(has(h) || has(s) || has(v)) {
+      try {
+        props = TheColor(assign(this._hsv, compact({ h, s, v }))).rgb().round().object();
+      } catch(e) {
+        console.error('Invalid color.update for hsv', props);
+        return;
+      }
+    }
+    return props;
+  }
 
-  // update(props) {
-  //   props = this._normalizeProps(props);
-  //   if(!props) {
-  //     return;
-  //   }
-  //   assign(this.data, props);
-  //   this.palette._didUpdateColor(this);
-  // }
+  update(props) {
+    props = this._normalizeProps(props);
+    if(!props) {
+      return;
+    }
+    super.update(props);
+  }
 
   toStringExtension() {
     let { r, g, b, a } = this;
