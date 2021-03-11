@@ -4,6 +4,7 @@ import { move } from './-node/properties';
 import { cached } from "tracked-toolbox";
 import { firstObject, lastObject } from '../../../util/array';
 import { assert } from '@ember/debug';
+import { reads } from "macro-decorators";
 
 export default class Node extends Model {
 
@@ -19,6 +20,8 @@ export default class Node extends Model {
     this.nodes = nodes;
     move(this);
   }
+
+  @reads('identifier') description;
 
   // TODO: selected
   @cached

@@ -1,6 +1,6 @@
+import Node from '../-data-node';
 import { reads } from "macro-decorators";
 import { cached } from "tracked-toolbox";
-import DataNode from '../-data-node';
 import { warnings, Warning } from '../-node/properties';
 
 class MissingFrame extends Warning {
@@ -15,7 +15,7 @@ class MissingFrame extends Warning {
 
 }
 
-export default class SequenceFrame extends DataNode {
+export default class SequenceFrame extends Node {
 
   type = 'sequence/frame';
   typeName = 'Frame';
@@ -28,14 +28,20 @@ export default class SequenceFrame extends DataNode {
   }
 
   @reads('data.identifier') identifier;
+  @reads('data.frame') _frame;
 
   @reads('parent') sequence;
   @reads('sequence.sprite.model') sprite;
 
+  get description() {
+    let { _frame, identifier } = this;
+    return [ _frame, identifier ].filter(Boolean).join(' – ');
+  }
+
   @cached
   get frame() {
-    let { sprite, identifier } = this;
-    return sprite?.frameByIdentifier(identifier);
+    let { sprite, _frame } = this;
+    return sprite?.frameByIdentifier(_frame);
   }
 
 }

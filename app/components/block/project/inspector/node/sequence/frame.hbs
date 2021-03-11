@@ -1,6 +1,7 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.warnings/>
 <@content.identifier/>
+<@content.input @label="Frame" @key="_frame" @onChange={{this.updateFrame}}/>
 <@content.pixel @model={{@model.sequence}}/>
 <@content.reorder/>
 <@content.delete @label="Delete frame" @confirmation="Are you sure you want to delete this frame?"/>

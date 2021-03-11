@@ -5,8 +5,12 @@ export default class BlockProjectInspectorContentInputComponent extends Componen
 
   @action
   onChange(value) {
-    let { model, key, } = this.args;
-    model.update({ [key]: value });
+    let { onChange, model, key } = this.args;
+    if(onChange) {
+      onChange(value);
+    } else {
+      model.update({ [key]: value });
+    }
   }
 
 }

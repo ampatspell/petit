@@ -100,7 +100,8 @@ export default class Nodes extends Model {
       'entity': 'ent',
       'palette': 'plt',
       'palette/color': 'clr',
-      'sequence': 'seq'
+      'sequence': 'seq',
+      'sequence/frame': 'sef'
     };
     let abbr = abbreviations[type];
     let identifier = '';
@@ -215,7 +216,13 @@ export default class Nodes extends Model {
 
     let frames = [];
     if(sprite) {
-      frames = sprite.frames.filter(frame => frame.identifier).map(frame => ({ identifier: frame.identifier }));
+      frames = sprite.frames.filter(frame => frame.identifier).map((frame, index) => {
+        return {
+          index,
+          identifier: this.createIdentifier('sequence/frame'),
+          frame: frame.identifier
+        };
+      });
     }
 
     return await this._createNode(null, {

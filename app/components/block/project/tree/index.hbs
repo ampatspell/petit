@@ -1,12 +1,10 @@
 <div class="block-project-tree">
   <Block::Tree class="tree" @onClick={{fn this.onSelect null}} as |tree|>
-
     <Block::Project::Tree::Content
       @array={{@nodes.root}}
       @tree={{tree}}
       @onSelect={{this.onSelect}}
       @onUpdate={{this.onUpdate}}
     />
-
   </Block::Tree>
 </div>

@@ -72,9 +72,11 @@ export default class SequenceyNode extends Node {
 
   addNewFrame() {
     let index = lastObject(this.children)?.index || 0;
+    let identifier = this.nodes.createIdentifier('sequence/frame');
     this._frames.push({
       index,
-      identifier: '' // TODO: identifier -> frame
+      identifier,
+      frame: null
     });
     this.scheduleSave.schedule();
   }
