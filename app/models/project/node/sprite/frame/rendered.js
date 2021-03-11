@@ -58,7 +58,6 @@ class Rendered {
     return this.content?.toDataURL();
   }
 
-
 }
 
 export const rendered = node => {
