@@ -40,6 +40,11 @@ class SequenceFrames {
     return this.data.map(data => new SequenceFrame(this, data));
   }
 
+  @cached
+  get mapped() {
+    return this.all.map(model => model.frame);
+  }
+
 }
 
 export const frames = (node, opts) => {
