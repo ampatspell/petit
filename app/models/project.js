@@ -69,7 +69,7 @@ export default class Project extends Model {
     }))
   nodes
 
-  @scheduleSave _scheduleSave;
+  @scheduleSave scheduleSave;
 
   constructor(owner, { doc }) {
     super(owner);
@@ -98,7 +98,7 @@ export default class Project extends Model {
   }
 
   async delete() {
-    this._scheduleSave.cancel();
+    this.scheduleSave.cancel();
     await this.doc.delete();
   }
 
@@ -106,7 +106,7 @@ export default class Project extends Model {
 
   update(props) {
     Object.assign(this.doc.data, props);
-    this._scheduleSave.schedule();
+    this.scheduleSave.schedule();
   }
 
   //

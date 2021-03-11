@@ -24,9 +24,9 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     let { size } = this;
     return ctx => {
       ctx.imageSmoothingEnabled = false;
-      let { frame } = this;
-      if(frame) {
-        ctx.drawImage(frame.rendered.content, 0, 0, size.width, size.height);
+      let content = this.frame?.frame?.rendered.content;
+      if(content) {
+        ctx.drawImage(content, 0, 0, size.width, size.height);
       } else {
         ctx.fillStyle = 'rgba(255,0,0,0.2)';
         ctx.fillRect(0, 0, size.width, size.height);

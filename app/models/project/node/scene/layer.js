@@ -1,4 +1,9 @@
-import Node, { lock, hide, warnings, expand, editable } from '../-node';
+import Node from '../-doc-node';
+import { editable } from '../-node/editable';
+import { warnings } from '../-node/warnings';
+import { hide } from '../-node/hide';
+import { lock } from '../-node/lock';
+import { expand } from '../-node/expand';
 import { reads } from "macro-decorators";
 
 export default class LayerNode extends Node {

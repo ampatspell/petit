@@ -1,21 +1,11 @@
-<@content.tabs @tabs={{this.tabs}} @tab={{this.tab}} @label="label" @onSelect={{this.selectTab}}/>
-
-{{#if (eq this.tab.id 'sequence')}}
-
-  <@content.header @name={{@model.identifier}}/>
-  <@content.warnings/>
-  <@content.identifier/>
-  <@content.position/>
-  <@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
-  <@content.pixel/>
-  <@content.reorder/>
-  <@content.delete @label="Delete sequence" @confirmation="Are you sure you want to delete this sequence?"/>
-
-{{else if (eq this.tab.id 'frames')}}
-
-  <@content.header @name={{@model.identifier}}/>
-  <@content.warnings/>
-  <@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
-  <@content.frames @label="Frames" @key="frames"/>
-
-{{/if}}
+<@content.header @name={{@model.identifier}}/>
+<@content.warnings/>
+<@content.identifier/>
+<@content.position/>
+<@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
+<@content.actions as |actions|>
+  <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>
+</@content.actions>
+<@content.pixel/>
+<@content.reorder/>
+<@content.delete @label="Delete sequence" @confirmation="Are you sure you want to delete this sequence?"/>
