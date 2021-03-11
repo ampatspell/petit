@@ -14,7 +14,7 @@ class NodesSelection {
 
   get _existing() {
     let node = this._selected;
-    if(node && node.doc.exists) {
+    if(node && node.exists) {
       return node;
     }
     return null;

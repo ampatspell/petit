@@ -1,5 +1,7 @@
-import Node, { data, editor, lock, hide, warnings, pixel, reference, tools as _tools } from './-node';
-import { frames } from './sequence/frames';
+import Node, { data, editor, lock, hide, warnings, pixel, reference, tools as _tools, expand } from './-node';
+import { models } from 'zuglet/decorators';
+import { cached } from "tracked-toolbox";
+import { sortedBy } from 'petit/util/array';
 
 const tools = node => _tools(node, [
   { icon: 'mouse-pointer', type: 'idle' }
@@ -32,12 +34,22 @@ export default class SequenceyNode extends Node {
     lock(this);
     hide(this);
     warnings(this);
+    expand(this);
     pixel(this);
     tools(this);
-    frames(this, {
-      key: 'frames',
-      sprite: 'sprite'
-    });
+  }
+
+  @data('frames') _frames;
+
+  @models()
+    .source(({ _frames }) => _frames)
+    .named('project/node/sequence/frame')
+    .mapping((data, parent) => ({ key: 'frames', parent, data }))
+  frames;
+
+  @cached
+  get children() {
+    return sortedBy(this.frames, 'index');
   }
 
 }

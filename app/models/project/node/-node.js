@@ -1,8 +1,7 @@
-import Model, { doc, data } from '../../-model';
+import BaseNode, { doc, data } from './-base-node';
 import { activate } from 'zuglet/decorators';
 import { scheduleSave } from '../../../util/schedule-save';
-import { firstObject, lastObject, sortedBy } from '../../../util/array';
-import { inject as service } from "@ember/service";
+import { sortedBy } from '../../../util/array';
 import { editor } from './-node/editor';
 import { lock } from './-node/lock';
 import { hide } from './-node/hide';
@@ -13,7 +12,6 @@ import { expand } from './-node/expand';
 import { pixel } from './-node/pixel';
 import { tools } from './-node/tools';
 import { editable } from './-node/editable';
-import { move } from './-node/move';
 import { actions } from './-node/actions';
 import { color } from './-node/color';
 import { cached } from "tracked-toolbox";
@@ -35,16 +33,12 @@ export {
   data
 };
 
-export default class Node extends Model {
-
-  @service store;
-  nodes;
-
-  referenceKeys = [];
+export default class Node extends BaseNode {
 
   @activate() doc;
 
   @doc('id') id;
+  @doc('exists') exists;
   @data('type') type;
   @data('index') index;
   @data('identifier') identifier;
@@ -53,52 +47,8 @@ export default class Node extends Model {
   @scheduleSave _scheduleSave;
 
   constructor(owner, { doc, nodes }) {
-    super(owner);
+    super(owner, { nodes });
     this.doc = doc;
-    this.nodes = nodes;
-    move(this);
-  }
-
-  // TODO: selected
-  @cached
-  get selected() {
-    return this.nodes.selected === this;
-  }
-
-  // TODO: selected
-  @cached
-  get hasSelectedChild() {
-    return !!this.children.find(node => {
-      if(node.selected) {
-        return true;
-      }
-      return node.hasSelectedChild;
-    });
-  }
-
-  //
-
-  get parentChildren() {
-    let { parent } = this;
-    return parent ? parent.children : this.nodes.root;
-  }
-
-  hasParent(node) {
-    let { parent } = this;
-    if(parent === node) {
-      return true;
-    }
-    return parent?.hasParent(node);
-  }
-
-  @cached
-  get isFirst() {
-    return firstObject(this.parentChildren) === this;
-  }
-
-  @cached
-  get isLast() {
-    return lastObject(this.parentChildren) === this;
   }
 
   //
@@ -117,33 +67,10 @@ export default class Node extends Model {
     return sortedBy(this.nodes.all.filter(node => node.parent === this), 'index');
   }
 
-  get hasChildren() {
-    return this.children.length > 0;
-  }
-
-  @cached
-  get visibleChildren() {
-    let visible = arr => arr.filter(node => !node.hide || !node.hide.hidden);
-    return visible(this.children).reverse();
-  }
-
   //
 
   async save() {
     await this.doc.save({ token: true });
-  }
-
-  _normalizeReferences(props) {
-    let { referenceKeys } = this;
-    let hash = {};
-    for(let key in props) {
-      let value = props[key];
-      if(referenceKeys.includes(key)) {
-        value = value?.identifier || null;
-      }
-      hash[key] = value;
-    }
-    return hash;
   }
 
   update(props, schedule=true) {
@@ -156,13 +83,6 @@ export default class Node extends Model {
   async delete() {
     this._scheduleSave.cancel();
     await this.doc.delete();
-  }
-
-  //
-
-  async _createNode(props, opts) {
-    this.expand?.expand();
-    return this.nodes._createNode(this, props, opts);
   }
 
   //
