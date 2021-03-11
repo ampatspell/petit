@@ -6,6 +6,8 @@ import { tracked } from "@glimmer/tracking";
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 import { selection } from './nodes/selection';
+import { cached } from "tracked-toolbox";
+import { randomString } from '../../util/string';
 
 const {
   assign
@@ -48,10 +50,12 @@ export default class Nodes extends Model {
 
   //
 
+  @cached
   get root() {
     return sortedBy(this.all.filter(node => !node.parentId), 'index');
   }
 
+  @cached
   get visible() {
     let visible = arr => arr.filter(node => node.hide && !node.hide.hidden);
     return visible(this.root).reverse();
@@ -100,16 +104,19 @@ export default class Nodes extends Model {
 
     let abbreviations = {
       'scene': 'sc',
-      'scene/layer': null,
+      'scene/layer': 'sl',
       'sprite': 'spr',
-      'sprite/frame': null,
+      'sprite/frame': 'spf',
       'entity': 'ent',
-      'palette': 'cp'
+      'palette': 'cp',
+      'sequence': 'seq'
     };
     let abbr = abbreviations[props.type];
+
     let identifier = '';
     if(abbr) {
-      identifier = `${abbr}_${index}`;
+      let id = randomString(5);
+      identifier = `${abbr}_${id}`;
     }
 
     return assign({
@@ -145,7 +152,7 @@ export default class Nodes extends Model {
   }
 
   _newSpriteProperties() {
-    let palette = this.all.find(node => node.type === 'palette' && node.identifier) || null;
+    let palette = this.identified.palettes[0] || null;
     let colors = [];
 
     let color = value => {
@@ -195,6 +202,23 @@ export default class Nodes extends Model {
         { r: 255, g: 255, b: 255, a: 255 }
       ],
       version: 1
+    });
+  }
+
+  async createNewSequence() {
+    let sprites = sortedBy(this.identified.sprites, node => node.frames.length).reverse();
+    let sprite = sprites[0];
+
+    let frames = [];
+    if(sprite) {
+      frames = sprite.frames.filter(frame => frame.identifier).map(frame => ({ identifier: frame.identifier }));
+    }
+
+    return await this._createNode(null, {
+      type: 'sequence',
+      sprite: sprite?.identifier || null,
+      frames,
+      vesion: 1
     });
   }
 

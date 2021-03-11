@@ -3,12 +3,11 @@
   position: relative;
   > .border {
     position: absolute;
-    top: -1px;
+    top: 0;
     left: -1px;
     bottom: 0px;
     right: -1px;
     $b: 1px solid lighten(#000, 78%);
-    border-top: $b;
     border-left: $b;
     border-right: $b;
     z-index: 1;

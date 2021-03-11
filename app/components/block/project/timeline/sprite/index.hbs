@@ -7,7 +7,12 @@
           role="button"
           {{on 'click' (fn this.select frame)}}
         >
-          <Block::Node::Sprite::Frame class="image" @pixel={{this.pixel}} @frame={{frame}}/>
+          <Block::Node::Sprite::Frame
+            class="image"
+            @pixel={{this.pixel}}
+            @maxHeight={{this.maxHeight}}
+            @frame={{frame}}
+          />
         </div>
       {{/each}}
     </div>

@@ -16,7 +16,8 @@ module.exports = function() {
       'expand',
       'mouse-pointer',
       'pen',
-      'arrows-alt'
+      'arrows-alt',
+      'server'
     ]
   };
 };

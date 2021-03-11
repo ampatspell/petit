@@ -8,14 +8,16 @@ export default class BlockProjectTimelineSpriteIndexComponent extends Component 
   @reads('args.node.group') sprite;
   @reads('sprite.height') height;
 
+  maxHeight = 64;
   pixel = 2;
 
   get style() {
-    let { height, pixel } = this;
+    let { height, pixel, maxHeight } = this;
     if(!height) {
       return null;
     }
-    let px = height * pixel + 5;
+    let padding = 2;
+    let px = Math.min(height * pixel, maxHeight) + (padding * 2) + 1;
     return htmlSafe(`height: ${px}px`);
   }
 

@@ -1,0 +1,9 @@
+<div class="block-project-tools-scene">
+  <Konva::Hotkeys @onBind={{this.bindKeys}}/>
+  <Block::Node::Toolbar::Tools
+    class="tools"
+    @tools={{this.tools.all}}
+    @tool={{this.tool}}
+    @onSelect={{this.selectTool}}
+  />
+</div>

@@ -1,9 +1,10 @@
 import Node, { editor, editable, lock, hide, expand, warnings, data, reference, pixel, tools as _tools } from './-node';
 import { heart } from 'petit/util/heart';
-import { lastObject, firstObject, nextObject, prevObject, uniq } from 'petit/util/array';
+import { nextObject, prevObject, uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { colors } from './sprite/colors';
 import { Warning } from './-node/warnings';
+import { cached } from "tracked-toolbox";
 
 const {
   assign
@@ -125,8 +126,18 @@ export default class SpriteNode extends Node {
     this.select(frame);
   }
 
+  @cached
+  get identifiedFrames() {
+    return this.frames.filter(frame => frame.identifier);
+  }
+
+  frameByIdentifier(identifier) {
+    return this.identifiedFrames.find(frame => frame.identifier === identifier);
+  }
+
   //
 
+  @cached
   get uniqueFrameBytes() {
     return uniq(this.frames.reduce((ret, frame) => ([...ret, ...frame.bytes]), []));
   }
@@ -138,12 +149,7 @@ export default class SpriteNode extends Node {
     if(!frame) {
       return;
     }
-
-    let next = prevObject(frames, frame);
-    if(!next) {
-      next = lastObject(frames);
-    }
-
+    let next = prevObject(frames, frame, true);
     if(next) {
       this.select(next);
     }
@@ -154,12 +160,7 @@ export default class SpriteNode extends Node {
     if(!frame) {
       return;
     }
-
-    let next = nextObject(frames, frame);
-    if(!next) {
-      next = firstObject(frames);
-    }
-
+    let next = nextObject(frames, frame, true);
     if(next) {
       this.select(next);
     }

@@ -13,7 +13,7 @@ export default class SessionNew extends Model {
     try {
       await this.store.auth.methods.popup.google.signIn();
     } catch(err) {
-      console.error(err.stack);
+      console.error(err.stack || err);
       return;
     }
     if(!this.requirements.retryStoredTransition()) {

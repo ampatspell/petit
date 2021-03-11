@@ -1,8 +1,19 @@
 .block-editor-border {
-  border: 1px solid transparent;
-  transition: 0.15s ease-in-out border-color;
+  position: relative;
+  > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    transition: 0.15s ease-in-out border-color;
+    pointer-events: none;
+  }
   @mixin color($value) {
-    border-color: $value;
+    > .overlay {
+      border-color: $value;
+    }
   }
   &.locked {
     @include color(rgba(0,0,0,0.11));

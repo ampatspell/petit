@@ -36,17 +36,29 @@ export const lastObjects = (array, count) => {
   return array && array.slice(-count);
 }
 
-export const nextObject = (array, object) => {
+export const nextObject = (array, object, wrap=false) => {
   let idx = array.indexOf(object);
-  if(idx === -1 || idx === array.length - 1) {
+  if(idx === -1) {
+    return;
+  }
+  if(idx === array.length - 1) {
+    if(wrap) {
+      return firstObject(array);
+    }
     return;
   }
   return array[idx + 1];
 }
 
-export const prevObject = (array, object) => {
+export const prevObject = (array, object, wrap=false) => {
   let idx = array.indexOf(object);
-  if(idx === -1 || idx === 0) {
+  if(idx === -1) {
+    return;
+  }
+  if(idx === 0) {
+    if(wrap) {
+      return lastObject(array);
+    }
     return;
   }
   return array[idx - 1];
@@ -60,10 +72,14 @@ export const replaceObject = (array, previous, object) => {
   return array;
 }
 
-export const sortedBy = (array, key) => {
+export const sortedBy = (array, arg) => {
+  let fn = model => model[arg];
+  if(typeof arg === 'function') {
+    fn = arg;
+  }
   return [ ...array ].sort((a, b) => {
-    a = a[key];
-    b = b[key];
+    a = fn(a);
+    b = fn(b);
     return a < b ? -1 : a > b ? 1 : 0;
   });
 }

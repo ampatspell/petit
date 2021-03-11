@@ -10,8 +10,16 @@ export default class BlockNodeSpriteFrameComponent extends Component {
   }
 
   get style() {
-    let { args: { frame: { width, height } }, pixel } = this;
-    return htmlSafe(`width: ${width * pixel}px; height: ${height * pixel}px`);
+    let { args: { frame: { width, height }, maxHeight: max }, pixel } = this;
+    width = width * pixel;
+    height = height * pixel;
+    if(max) {
+      if(height > max) {
+        width = Math.round(width * (max / height));
+        height = max;
+      }
+    }
+    return htmlSafe(`width: ${width}px; height: ${height}px`);
   }
 
   get url() {
