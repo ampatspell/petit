@@ -2,6 +2,9 @@
 
 ## TODO
 
+* dropdown with any content
+* reference inspector use custom dropdown
+* sequence inspector: frame selection dropdown
 * move selection to project
 * node.selection.{selected,child,group}
 * identifier save needs optionally update usages

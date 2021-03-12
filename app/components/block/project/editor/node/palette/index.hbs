@@ -1,5 +1,5 @@
 <Block::Editor::Border @node={{@node}}>
-  <div class="block-project-editor-node-palette" style={{this.style}} role="button" {{on "click" (fn this.select null)}}>
+  <div class="block-project-editor-node-palette" style={{this.style}} role="button" {{on "click" (fn this.select @node)}}>
     <div class="colors">
       {{#each @node.children as |color|}}
         {{!-- template-lint-disable no-nested-interactive --}}
