@@ -5,9 +5,7 @@ import { models } from 'zuglet/decorators';
 import { lastObject, uniq, sortedBy } from 'petit/util/array';
 import { cached } from "tracked-toolbox";
 
-const tools = node => _tools(node, [
-  { icon: 'mouse-pointer', type: 'idle' },
-]);
+const tools = _tools([ 'idle', 'center' ]);
 
 class ColorIdentifierConflict extends Warning {
 

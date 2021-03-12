@@ -48,11 +48,7 @@ class MissingColors extends Warning {
 
 }
 
-const tools = node => _tools(node, [
-  { icon: 'mouse-pointer', type: 'idle' },
-  { icon: 'pen',           type: 'edit' },
-  { icon: 'expand',        type: 'resize', overlaysHidden: true }
-]);
+const tools = _tools([ 'idle', 'edit', 'resize', 'center' ]);
 
 export default class SpriteNode extends Node {
 

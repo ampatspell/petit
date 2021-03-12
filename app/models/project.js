@@ -4,13 +4,10 @@ import { load } from 'zuglet/utils';
 import { model } from 'zuglet/decorators';
 import { scheduleSave } from '../util/schedule-save';
 import { reads } from "macro-decorators";
-import {
-  tools as _tools,
-  editable
-} from './project/node/-node/properties';
+import { tools as _tools, editable } from './project/node/-node/properties';
 
-const tools = node => _tools(node, [
-  { icon: 'mouse-pointer', type: 'idle' },
+const tools = _tools([
+  'idle',
   { icon: 'arrows-alt',    type: 'project:drag' }
 ]);
 

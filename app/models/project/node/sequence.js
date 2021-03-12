@@ -5,9 +5,7 @@ import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
 import { sortedBy, lastObject } from 'petit/util/array';
 
-const tools = node => _tools(node, [
-  { icon: 'mouse-pointer', type: 'idle' }
-]);
+const tools = _tools([ 'idle', 'center' ]);
 
 const size = (_target, key) => ({
   get() {

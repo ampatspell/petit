@@ -17,6 +17,10 @@ export default class BlockProjectToolsBaseComponent extends Component {
 
   @action
   selectTool(tool) {
+    if(tool.type === 'center') {
+      this.args.node.editor.actions.center();
+      return;
+    }
     this.args.node.tools.select(tool);
   }
 

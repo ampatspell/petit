@@ -3,11 +3,7 @@ import { data, reference, color } from './-node/decorators';
 import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings } from './-node/properties';
 import { reads } from "macro-decorators";
 
-const tools = node => _tools(node, [
-  { icon: 'mouse-pointer', type: 'idle' },
-  { icon: 'pen',           type: 'edit' },
-  { icon: 'expand',        type: 'resize', overlaysHidden: true }
-]);
+const tools = _tools([ 'idle', 'edit', 'resize', 'center' ]);
 
 export default class SceneNode extends Node {
 
