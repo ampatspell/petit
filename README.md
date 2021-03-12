@@ -2,7 +2,6 @@
 
 ## TODO
 
-* save selection also for doc-node
 * dropdown with any content
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
@@ -50,3 +49,4 @@
 * sequence frame should have frame property instead of identifier
 * use property/select for sprite
 * sequence timeline
+* save selection also for doc-node
