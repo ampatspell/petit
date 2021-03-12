@@ -7,6 +7,8 @@
 * sequence inspector: frame selection dropdown
 * sequence timeline
 * sequence "animate" boolean
+* tree filter by type
+* tree search
 * move selection to project
 * node.selection.{selected,child,group}
 * identifier save needs optionally update usages
