@@ -22,8 +22,8 @@ class ProjectNodesDelegate {
   @reads('_project.doc.data.selected') initialSelection;
   @reads('_project.pixel') pixel;
 
-  didSelectNode(node) {
-    this._project.nodesDidSelectNode(node);
+  didSelectNodeWithId(id) {
+    this._project.nodesDidSelectNodeWithId(id);
   }
 
 }
@@ -110,8 +110,7 @@ export default class Project extends Model {
 
   //
 
-  nodesDidSelectNode(node) {
-    let selected = node?.id || null;
+  nodesDidSelectNodeWithId(selected) {
     this.update({ selected });
   }
 
