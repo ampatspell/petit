@@ -3,6 +3,7 @@
 ## TODO
 
 * dropdown with any content
+* buttons with icons for "add new *"
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
 * sequence "animate" boolean
