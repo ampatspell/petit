@@ -3,6 +3,7 @@
 ## TODO
 
 * dropdown with any content
+* update color select to use dropdown
 * buttons with icons for "add new *"
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
