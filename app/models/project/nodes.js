@@ -199,12 +199,13 @@ export default class Nodes extends Model {
   }
 
   async createNewPalette() {
+    let id = () => this.createIdentifier('palette/color');
     return await this._createNode(null, {
       type: 'palette',
       colors: [
-        { r: 0,   g: 0,   b: 0,   a: 0   },
-        { r: 0,   g: 0,   b: 0,   a: 255 },
-        { r: 255, g: 255, b: 255, a: 255 }
+        { index: 0, identifier: id(), r: 0,   g: 0,   b: 0,   a: 0   },
+        { index: 1, identifier: id(), r: 0,   g: 0,   b: 0,   a: 255 },
+        { index: 2, identifier: id(), r: 255, g: 255, b: 255, a: 255 }
       ],
       version: 1
     });
