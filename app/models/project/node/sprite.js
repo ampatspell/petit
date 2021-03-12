@@ -1,8 +1,8 @@
 import Node from './-doc-node';
 import { data, reference } from './-node/decorators';
-import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning } from './-node/properties';
+import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning, selection } from './-node/properties';
 import { heart } from 'petit/util/heart';
-import { nextObject, prevObject, uniq } from 'petit/util/array';
+import { uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { colors } from './sprite/colors';
 import { cached } from "tracked-toolbox";
@@ -73,6 +73,7 @@ export default class SpriteNode extends Node {
       palette: 'palette',
       used: 'uniqueFrameBytes'
     });
+    selection(this);
   }
 
   typeName = 'Sprite';
@@ -141,31 +142,6 @@ export default class SpriteNode extends Node {
   @cached
   get uniqueFrameBytes() {
     return uniq(this.frames.reduce((ret, frame) => ([...ret, ...frame.bytes]), []));
-  }
-
-  //
-
-  // TODO: extract as a property
-  selectPrev() {
-    let { frame, frames } = this;
-    if(!frame) {
-      return;
-    }
-    let next = prevObject(frames, frame, true);
-    if(next) {
-      this.select(next);
-    }
-  }
-
-  selectNext() {
-    let { frame, frames } = this;
-    if(!frame) {
-      return;
-    }
-    let next = nextObject(frames, frame, true);
-    if(next) {
-      this.select(next);
-    }
   }
 
   //

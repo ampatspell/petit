@@ -6,8 +6,8 @@ export default class BlockProjectToolsSpriteComponent extends Base {
   @action
   bindKeys(keys) {
     keys.add('c', handler(() => this.node.editor.actions.center()));
-    keys.add('left', handler(() => this.node.selectPrev()));
-    keys.add('right', handler(() => this.node.selectNext()));
+    keys.add('left', handler(() => this.node.selection.prev()));
+    keys.add('right', handler(() => this.node.selection.next()));
     keys.add('e', handler(() => this.tools.selectByType('edit')));
     keys.add('r', handler(() => this.tools.selectByType('resize')));
     keys.add('esc', handler(() => {

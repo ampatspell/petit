@@ -2,7 +2,6 @@
 
 ## TODO
 
-* use property/select for sprite
 * move selection to project
 * node.selection.{selected,child,group}
 * identifier save needs optionally update usages
@@ -42,3 +41,4 @@
 * frame missing frame warning (if sprite exists)
 * refactor palette to synthetic nodes
 * sequence frame should have frame property instead of identifier
+* use property/select for sprite

@@ -1,6 +1,6 @@
 import Node from './-doc-node';
 import { data } from './-node/decorators';
-import { editor, lock, editable, hide, pixel, warnings, Warning, tools as _tools, actions, expand, select } from './-node/properties';
+import { editor, lock, editable, hide, pixel, warnings, Warning, tools as _tools, actions, expand, selection } from './-node/properties';
 import { models } from 'zuglet/decorators';
 import { lastObject, uniq, sortedBy } from 'petit/util/array';
 import { cached } from "tracked-toolbox";
@@ -40,7 +40,7 @@ export default class PaletteNode extends Node {
     warnings(this, {
       add: [ ColorIdentifierConflict ]
     });
-    select(this);
+    selection(this);
   }
 
   group = this;

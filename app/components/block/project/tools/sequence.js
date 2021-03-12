@@ -5,8 +5,8 @@ export default class BlockProjectToolsSequenceComponent extends Base {
 
   @action
   bindKeys(keys) {
-    keys.add('left', handler(() => this.node.select.prev()));
-    keys.add('right', handler(() => this.node.select.next()));
+    keys.add('left', handler(() => this.node.selection.prev()));
+    keys.add('right', handler(() => this.node.selection.next()));
     keys.add('c', handler(() => this.node.editor.actions.center()));
     [ 1, 2, 4, 8 ].forEach((pixel, idx) => {
       keys.add(`alt + ${idx+1}`, handler(() => {

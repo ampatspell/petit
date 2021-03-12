@@ -8,7 +8,7 @@ import { move } from './move';
 import { pixel } from './pixel';
 import { tools } from './tools';
 import { warnings, Warning } from './warnings';
-import { select } from './select';
+import { selection } from './selection';
 
 export {
   actions,
@@ -22,5 +22,5 @@ export {
   tools,
   warnings,
   Warning,
-  select
+  selection
 };

@@ -1,22 +1,31 @@
 import { firstObject, lastObject, prevObject, nextObject } from 'petit/util/array';
 
-class Select {
+class Selection {
 
   constructor(node) {
     this.node = node;
   }
 
+  select(model) {
+    let { node } = this;
+    if(node.select) {
+      node.select(model);
+    } else {
+      node.nodes.select(model);
+    }
+  }
+
   _select({initial, next}) {
-    let { node, node: { children, nodes, nodes: { selected } } } = this;
+    let { node, node: { children, nodes: { selected } } } = this;
     if(selected === node) {
       let model = initial(children);
       if(model) {
-        nodes.select(model);
+        this.select(model);
       }
     } else if(selected.hasParent(node)) {
       let model = next(children, selected);
       if(model) {
-        nodes.select(model);
+        this.select(model);
       }
     }
   }
@@ -37,6 +46,6 @@ class Select {
 
 }
 
-export const select = node => {
-  node.select = new Select(node);
+export const selection = node => {
+  node.selection = new Selection(node);
 }
