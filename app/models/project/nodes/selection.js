@@ -61,7 +61,6 @@ class NodesSelection {
   }
 
   maybeSelectInitial(identifier) {
-    console.log(identifier);
     if(identifier) {
       let [ id, index ] = identifier.split('/');
       if(!id) {
