@@ -2,6 +2,7 @@
 
 ## TODO
 
+* save selection also for doc-node
 * dropdown with any content
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
