@@ -145,6 +145,7 @@ export default class SpriteNode extends Node {
 
   //
 
+  // TODO: extract as a property
   selectPrev() {
     let { frame, frames } = this;
     if(!frame) {
