@@ -1,4 +1,4 @@
-.block-project-timeline-sprite {
+.block-node-timeline-frames {
   position: relative;
   border-top: 1px solid lighten(#000, 78%);
   > .scrollable {
@@ -14,7 +14,7 @@
       width: max-content;
       > .frame {
         border-right: 1px solid lighten(#000, 78%);
-        > .image {
+        > .block-node-sprite-frame {
           padding: 2px;
         }
         position: relative;

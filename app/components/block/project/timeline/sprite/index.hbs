@@ -1,20 +1,7 @@
-<div class="block-project-timeline-sprite" style={{this.style}}>
-  <div class="scrollable">
-    <div class="frames">
-      {{#each @node.group.frames as |frame|}}
-        <div
-          class={{class 'frame' selected=(eq frame @node.group.frame)}}
-          role="button"
-          {{on 'click' (fn this.select frame)}}
-        >
-          <Block::Node::Sprite::Frame
-            class="image"
-            @pixel={{this.pixel}}
-            @maxHeight={{this.maxHeight}}
-            @frame={{frame}}
-          />
-        </div>
-      {{/each}}
-    </div>
-  </div>
-</div>
+<Block::Node::Timeline::Frames
+  @sprite={{this.sprite}}
+  @frames={{this.sprite.frames}}
+  @frame={{this.sprite.frame}}
+  @onSelect={{this.onSelect}} as |block model|>
+  {{block frame=model}}
+</Block::Node::Timeline::Frames>

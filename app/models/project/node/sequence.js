@@ -69,6 +69,10 @@ export default class SequenceyNode extends Node {
     return sortedBy(this.frames, 'index');
   }
 
+  get needsTimeline() {
+    return this.children.length > 0;
+  }
+
   addNewFrame() {
     let index = lastObject(this.children)?.index || 0;
     let identifier = this.nodes.createIdentifier('sequence/frame');

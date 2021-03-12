@@ -1,0 +1,18 @@
+<div class="block-node-timeline-frames" style={{this.style}}>
+  <div class="scrollable">
+    <div class="frames">
+      {{#each @frames as |frame|}}
+        <div
+          class={{class 'frame' selected=(eq frame @frame)}}
+          role="button"
+          {{on 'click' (fn @onSelect frame)}}
+        >
+          {{yield
+            (component 'block/node/sprite/frame' pixel=this.pixel maxHeight=this.maxHeight)
+            frame
+          }}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

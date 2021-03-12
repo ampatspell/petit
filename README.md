@@ -5,7 +5,6 @@
 * dropdown with any content
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
-* sequence timeline
 * sequence "animate" boolean
 * tree filter by type
 * tree search
@@ -49,3 +48,4 @@
 * refactor palette to synthetic nodes
 * sequence frame should have frame property instead of identifier
 * use property/select for sprite
+* sequence timeline
