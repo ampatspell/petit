@@ -257,5 +257,29 @@
       flex-direction: column;
       align-items: center;
     }
+    &.frame-input {
+      @include padding();
+      @include border();
+      @include label();
+      > .input {
+        > .overlay {
+          > .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: darken(#fff, 12%);
+            border: 1px solid darken(#fff, 12%);
+            margin-bottom: 1px;
+            border-radius: 2px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            &.selected {
+              border-color: darken(#fff, 35%);
+            }
+          }
+        }
+      }
+    }
   }
 }

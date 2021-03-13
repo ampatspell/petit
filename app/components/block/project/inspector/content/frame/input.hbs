@@ -1,0 +1,20 @@
+<div class="group frame-input">
+  <div class="label">{{or @label "Sprite Frame"}}</div>
+  <Input::Select
+    class="input"
+    @disabled={{@model.editable.disabled}}
+    @values={{@frames}}
+    @value={{this.frame}}
+    @onChange={{this.onChange}}
+    as |model selected open|>
+    {{#if model}}
+      {{#if open}}
+        <Block::Node::Sprite::Frame @pixel={{2}} @frame={{model}} @maxHeight={{32}}/>
+      {{else}}
+        {{model.identifier}}
+      {{/if}}
+    {{else}}
+      Missing frame
+    {{/if}}
+  </Input::Select>
+</div>

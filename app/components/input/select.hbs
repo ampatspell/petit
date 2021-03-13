@@ -1,5 +1,15 @@
-<select disabled={{@disabled}} {{on 'change' this.onChange}}>
-  {{#each @values as |value|}}
-    <option selected={{eq value @value}}>{{yield value}}</option>
-  {{/each}}
-</select>
+<div class={{class "input-select" disabled=@disabled}} ...attributes>
+  <div class="item" role="button" {{on "click" this.setOpen}}>
+    {{yield @value false false}}
+  </div>
+  {{#if this.open}}
+    <div class="background" role="button" {{on "click" this.setClosed}}></div>
+    <div class="overlay">
+      {{#each @values as |value|}}
+        <div class={{class "item" selected=(eq value @value)}} role="button" {{on "click" (fn this.select value)}}>
+          {{yield value (eq value @value) true}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

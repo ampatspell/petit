@@ -19,6 +19,7 @@ export default class SequenceFrame extends Node {
 
   type = 'sequence/frame';
   typeName = 'Sequence Frame';
+  referenceKeys = [ 'frame' ];
 
   constructor() {
     super(...arguments);

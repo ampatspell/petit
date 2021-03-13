@@ -2,13 +2,10 @@
 
 ## TODO
 
-* dropdown with any content
-* update color select to use dropdown
-* buttons with icons for "add new *"
-* reference inspector use custom dropdown
-* sequence inspector: frame selection dropdown
 * sequence "animate" boolean
 * sequence framerate
+* buttons with icons for "add new *"
+* update color select to use dropdown (block/node/palette/color/select)
 * tree filter by type
 * tree search
 * move selection to project
@@ -53,3 +50,6 @@
 * use property/select for sprite
 * sequence timeline
 * save selection also for doc-node
+* dropdown with any content
+* reference inspector use custom dropdown
+* sequence inspector: frame selection dropdown

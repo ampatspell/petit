@@ -1,0 +1,50 @@
+.input-select {
+  @mixin item() {
+    color: #000;
+    background: #fff;
+    padding: 5px;
+    line-height: 1;
+    &.selected {
+      font-weight: $font-bold;
+    }
+    transition:
+      0.15s ease-in-out opacity,
+      0.15s ease-in-out color;
+  }
+  position: relative;
+  > .item {
+    @include item();
+    border-radius: 3px;
+    border: 1px solid $background-grey-border-color;
+  }
+  > .overlay {
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    border-radius: 3px;
+    padding: 5px;
+    border-radius: 3px;
+    background: $background-grey-color;
+    border: 1px solid $background-grey-border-color;
+    box-shadow: 0 2px 5px fade-out(#000, 0.9);
+    > .item {
+      @include item();
+    }
+  }
+  > .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.disabled {
+    opacity: 0.7;
+    > .item,
+    > .overlay > .item {
+      color: fade-out(#000, 0.5);
+    }
+  }
+}
