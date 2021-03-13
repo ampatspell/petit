@@ -3,6 +3,7 @@
 ## TODO
 
 * data-node exists should check for `parent[key].includes`
+* clear sequence frames
 * sequence frame.frame should be reference
 * sequence "animate" boolean
 * sequence framerate
