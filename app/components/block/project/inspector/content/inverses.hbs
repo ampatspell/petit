@@ -1,12 +1,14 @@
-<div class="group inverses">
-  <div class="label" role="button" {{on 'click' this.toggle}}>{{this.label}}</div>
-  {{#if this.open}}
-    <div class="nodes">
-      {{#each @model.dependencies.inverses as |node|}}
-        <div class="node">{{node.type}}: {{or node.identifier "No identifier"}}</div>
-      {{else}}
-        <div class="placeholder">No uses</div>
-      {{/each}}
-    </div>
-  {{/if}}
-</div>
+{{#if @model.identifier}}
+  <div class="group inverses">
+    <div class="label" role="button" {{on 'click' this.toggle}}>{{this.label}}</div>
+    {{#if this.open}}
+      <div class="nodes">
+        {{#each @model.dependencies.inverses as |node|}}
+          <div class="node">{{node.type}}: {{or node.identifier "No identifier"}}</div>
+        {{else}}
+          <div class="placeholder">No uses</div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

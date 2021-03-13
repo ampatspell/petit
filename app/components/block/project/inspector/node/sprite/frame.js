@@ -6,7 +6,6 @@ export default class BlockProjectInspectorNodeSpriteFrameComponent extends Compo
 
   tabs = [
     { id: 'frame', label: 'Frame' },
-    { id: 'sprite', label: 'Sprite' },
     { id: 'colors', label: 'Colors' }
   ];
 

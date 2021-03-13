@@ -15,12 +15,6 @@
   <@content.reorder/>
   <@content.delete @label="Delete frame" @confirmation="Are you sure you want to delete this frame?"/>
 
-{{else if (eq this.tab.id 'sprite')}}
-
-  <Block::Project::Inspector::Content::Nested @model={{@model.sprite}} as |content|>
-    <Block::Project::Inspector::Node::Sprite::Content @model={{@model.sprite}} @content={{content}}/>
-  </Block::Project::Inspector::Content::Nested>
-
 {{else if (eq this.tab.id 'colors')}}
 
   <Block::Project::Inspector::Content::Nested @model={{@model.sprite}} as |content|>

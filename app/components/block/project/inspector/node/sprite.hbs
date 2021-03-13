@@ -2,7 +2,20 @@
 
 {{#if (eq this.tab.id 'sprite')}}
 
-  <Block::Project::Inspector::Node::Sprite::Content @model={{@model}} @content={{@content}}/>
+  <@content.header @name={{@model.identifier}}/>
+  <@content.inverses/>
+  <@content.frames @frames="frames"/>
+  <@content.warnings/>
+  <@content.identifier/>
+  <@content.position/>
+  <@content.size/>
+  <@content.reference @label="Color Palette" @collection="palettes" @key="palette"/>
+  <@content.actions as |actions|>
+    <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>
+  </@content.actions>
+  <@content.pixel/>
+  <@content.reorder/>
+  <@content.delete @label="Delete sprite" @confirmation="Are you sure you want to delete this sprite?"/>
 
 {{else if (eq this.tab.id 'colors')}}
 
