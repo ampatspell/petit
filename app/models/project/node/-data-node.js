@@ -20,7 +20,7 @@ export default class DataNode extends BaseNode {
 
   //
 
-  @reads('parent.exists') exists;
+  @reads('parent.exists') exists; // TODO: parent.exists && parent[key].includes(this)
   @reads('parent.editable') editable;
   @reads('data.index') index;
 
