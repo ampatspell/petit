@@ -7,7 +7,7 @@ import { rendered } from './frame/rendered';
 
 export default class SpriteFrameNode extends Node {
 
-  typeName = 'Frame';
+  typeName = 'Sprite Frame';
 
   constructor() {
     super(...arguments);

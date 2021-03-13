@@ -18,7 +18,7 @@ class MissingFrame extends Warning {
 export default class SequenceFrame extends Node {
 
   type = 'sequence/frame';
-  typeName = 'Frame';
+  typeName = 'Sequence Frame';
 
   constructor() {
     super(...arguments);
