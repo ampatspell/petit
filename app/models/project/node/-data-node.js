@@ -20,11 +20,15 @@ export default class DataNode extends BaseNode {
 
   //
 
-  @reads('parent.exists') exists; // TODO: parent.exists && parent[key].includes(this)
   @reads('parent.editable') editable;
   @reads('data.index') index;
 
   //
+
+  get exists() {
+    let { parent, key } = this;
+    return parent.exists && parent[key].includes(this);
+  }
 
   get group() {
     return this.parent;
