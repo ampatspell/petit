@@ -8,6 +8,7 @@
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
 * sequence "animate" boolean
+* sequence framerate
 * tree filter by type
 * tree search
 * move selection to project
