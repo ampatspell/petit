@@ -31,6 +31,7 @@ export default class SequenceyNode extends Node {
   typeName = 'Sequence';
   group = this;
   referenceKeys = [ 'sprite' ];
+  hasDataChildren = true;
 
   @data('x') x;
   @data('y') y;

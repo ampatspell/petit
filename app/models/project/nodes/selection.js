@@ -39,16 +39,7 @@ class NodesSelection {
   }
 
   didSelectNotifyDelegate(node) {
-    let identifier = null;
-    if(node) {
-      let id = node.id;
-      if(id) {
-        identifier = id;
-      } else {
-        identifier = `${node.parent.id}/${node.index}`;
-      }
-    }
-    this.nodes.delegate.didSelectNodeWithId(identifier);
+    this.nodes.delegate.didSelectNodeWithId(node.id);
   }
 
   didSelect(selected, node, expandParents) {
@@ -60,21 +51,10 @@ class NodesSelection {
     }
   }
 
-  maybeSelectInitial(identifier) {
-    if(identifier) {
-      let [ id, index ] = identifier.split('/');
-      if(!id) {
-        id = identifier;
-      }
+  maybeSelectInitial(id) {
+    if(id) {
       let node = this.nodes.all.find(node => node.id === id);
       if(node) {
-        if(index) {
-          let child = node.children[index];
-          if(child) {
-            this.select(child, { expandParents: true });
-            return;
-          }
-        }
         this.select(node, { expandParents: true });
       }
     }

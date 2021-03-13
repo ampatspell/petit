@@ -23,7 +23,15 @@ export default class DataNode extends BaseNode {
   @reads('parent.editable') editable;
   @reads('data.index') index;
 
+  get id() {
+    return `${this.parent.id}/${this.index}`;
+  }
+
   //
+
+  get _all() {
+    return [ this ];
+  }
 
   get exists() {
     let { parent, key } = this;

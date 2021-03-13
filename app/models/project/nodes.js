@@ -41,7 +41,12 @@ export default class Nodes extends Model {
     .source(({ query }) => query.content)
     .named(doc => `project/node/${doc.data.type}`)
     .mapping((doc, nodes) => ({ doc, nodes }))
-  all;
+  models;
+
+  @cached
+  get all() {
+    return this.models.reduce((all, node) => [ ...all, ...node._all ], []);
+  }
 
   async load() {
     await load(this.query);
@@ -52,7 +57,7 @@ export default class Nodes extends Model {
 
   @cached
   get root() {
-    return sortedBy(this.all.filter(node => !node.parentId), 'index');
+    return sortedBy(this.all.filter(node => node.isRoot), 'index');
   }
 
   @cached

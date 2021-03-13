@@ -26,6 +26,19 @@ export default class DocumentNode extends BaseNode {
   //
 
   @cached
+  get _all() {
+    if(this.hasDataChildren) {
+      return [ this, ...this.children ];
+    } else {
+      return [ this ];
+    }
+  }
+
+  get isRoot() {
+    return !this.parentId;
+  }
+
+  @cached
   get parent() {
     let { nodes, parentId } = this;
     if(!parentId) {

@@ -24,6 +24,7 @@ class ColorIdentifierConflict extends Warning {
 export default class PaletteNode extends Node {
 
   typeName = 'Palette';
+  hasDataChildren = true;
 
   constructor() {
     super(...arguments);
