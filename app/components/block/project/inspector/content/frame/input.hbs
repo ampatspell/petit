@@ -10,6 +10,8 @@
           @maxHeight={{32}}
           {{on 'click' (fn this.onChange frame)}}
         />
+      {{else}}
+        <div class="placeholder">No frames</div>
       {{/each}}
     </div>
   </div>
