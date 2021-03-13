@@ -30,7 +30,7 @@ class Reference {
   }
 
   toString() {
-    return toString(this, `${this.identifier}`);
+    return toString(this, `${this.opts.type}:${this.identifier}`);
   }
 
 }
