@@ -1,16 +1,17 @@
 import Shape from 'ember-cli-konva/components/konva/node/shape';
-import { reads } from "macro-decorators";
-import { cached } from "tracked-toolbox";
-import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
 import { next, later } from '@ember/runloop';
 import { nextObject } from 'petit/util/array';
-import { action } from "@ember/object";
+import { reads } from "macro-decorators";
+import { tracked } from "@glimmer/tracking";
+import { cached } from "tracked-toolbox";
 
-export default class BlockProjectEditorNodeSequenceContentComponent extends Shape {
+export default class BlockKonvaFramesComponent extends Shape {
 
   @reads('args.size') size;
-  @reads('args.sprite') sprite;
   @reads('args.frames') frames;
+
+  interval = 1000 / 3;
 
   @tracked _frame;
 
@@ -19,12 +20,20 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     return _frame || frames?.[0];
   }
 
+  get content() {
+    let { frame, args: { key } } = this;
+    if(key) {
+      frame = frame?.[key];
+    }
+    return frame?.rendered?.content;
+  }
+
   @cached
   get sceneFunc() {
     let { size } = this;
     return ctx => {
       ctx.imageSmoothingEnabled = false;
-      let content = this.frame?.frame?.rendered.content;
+      let { content } = this;
       if(content) {
         ctx.drawImage(content, 0, 0, size.width, size.height);
       } else {
@@ -77,11 +86,11 @@ export default class BlockProjectEditorNodeSequenceContentComponent extends Shap
     }
     this.batchDraw();
     next(() => this.nextFrame());
-    later(() => this.animate(), 1000 / 3);
+    later(() => this.animate(), this.interval);
   }
 
   @action
-  didUpdateSprite() {
+  didUpdateFrames() {
     this.nextFrame();
     this.batchDraw();
   }

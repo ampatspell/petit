@@ -4,6 +4,7 @@
 
   <@content.header @name={{@model.identifier}}/>
   <@content.warnings @model={{@model.sprite}}/>
+  <@content.frame/>
   <@content.identifier/>
   <@content.actions as |actions|>
     <actions.button @label="Clear frame" @onClick={{this.clearFrame}} @confirmation="Are you sure you want to clear this frame?"/>

@@ -1,14 +1,12 @@
-<Block::Editor::Border @node={{@node}}>
-
-  <Konva::Stage @size={{this.size}} as |parent|>
+<div class="group frames">
+  <Konva::Stage class="stage" @size={{this.size}} as |parent|>
     <Konva::Node::Layer @parent={{parent}} as |parent|>
       <Block::Konva::Frames
         @parent={{parent}}
         @size={{this.size}}
         @frames={{this.frames}}
-        @key="frame"
+        @key={{@key}}
       />
     </Konva::Node::Layer>
   </Konva::Stage>
-
-</Block::Editor::Border>
+</div>

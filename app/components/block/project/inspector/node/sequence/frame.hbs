@@ -1,5 +1,6 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.warnings/>
+<@content.frame @model={{@model.frame}}/>
 <@content.identifier/>
 <@content.input @label="Frame" @key="_frame" @onChange={{this.updateFrame}}/>
 <@content.pixel @model={{@model.sequence}}/>
