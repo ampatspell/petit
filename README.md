@@ -2,7 +2,6 @@
 
 ## TODO
 
-* sequence frame.frame should be reference
 * sequence "animate" boolean
 * sequence framerate
 * buttons with icons for "add new *"
@@ -56,3 +55,4 @@
 * sequence inspector: frame selection dropdown
 * data-node exists should check for `parent[key].includes`
 * clear sequence frames
+* sequence frame.frame should be reference
