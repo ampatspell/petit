@@ -2,6 +2,7 @@
 
 ## TODO
 
+* sequence frame.frame should be reference
 * sequence "animate" boolean
 * sequence framerate
 * buttons with icons for "add new *"

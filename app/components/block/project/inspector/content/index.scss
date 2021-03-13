@@ -261,22 +261,25 @@
       @include padding();
       @include border();
       @include label();
-      > .input {
-        > .overlay {
-          > .item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: darken(#fff, 12%);
-            border: 1px solid darken(#fff, 12%);
-            margin-bottom: 1px;
-            border-radius: 2px;
-            &:last-child {
-              margin-bottom: 0;
-            }
-            &.selected {
-              border-color: darken(#fff, 35%);
-            }
+      > .frames {
+        margin-bottom: 1px;
+        > .frame {
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: darken(#fff, 12%);
+          border: 1px solid darken(#fff, 12%);
+          margin-bottom: 1px;
+          border-radius: 2px;
+          transition:
+            0.15s ease-in-out opacity,
+            0.15s ease-in-out border-color;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          &.selected {
+            border-color: darken(#fff, 40%);
           }
         }
       }

@@ -39,6 +39,7 @@ export default class SequenceFrame extends Node {
     return [ _frame, identifier ].filter(Boolean).join(' – ');
   }
 
+  // TODO: reference
   @cached
   get frame() {
     let { sprite, _frame } = this;

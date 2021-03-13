@@ -1,20 +1,16 @@
-<div class="group frame-input">
-  <div class="label">{{or @label "Sprite Frame"}}</div>
-  <Input::Select
-    class="input"
-    @disabled={{@model.editable.disabled}}
-    @values={{@frames}}
-    @value={{this.frame}}
-    @onChange={{this.onChange}}
-    as |model selected open|>
-    {{#if model}}
-      {{#if open}}
-        <Block::Node::Sprite::Frame @pixel={{2}} @frame={{model}} @maxHeight={{32}}/>
-      {{else}}
-        {{model.identifier}}
-      {{/if}}
-    {{else}}
-      Missing frame
-    {{/if}}
-  </Input::Select>
-</div>
+{{#if @frames}}
+  <div class={{class 'group frame-input' disabled=this.disabled}}>
+    <div class="label">{{or @label "Sprite Frame"}}</div>
+    <div class="frames">
+      {{#each @frames as |frame|}}
+        <Block::Node::Sprite::Frame
+          class={{class "frame" selected=(eq frame this.frame)}}
+          @pixel={{2}}
+          @frame={{frame}}
+          @maxHeight={{32}}
+          {{on 'click' (fn this.onChange frame)}}
+        />
+      {{/each}}
+    </div>
+  </div>
+{{/if}}
