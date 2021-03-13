@@ -1,6 +1,6 @@
 import Node from '../-doc-node';
 import { data } from '../-node/decorators';
-import { editable } from '../-node/properties';
+import { editable, dependencies } from '../-node/properties';
 import { toIndex } from '../../../../util/pixel';
 import { reads } from "macro-decorators";
 import { rendered } from './frame/rendered';
@@ -13,6 +13,7 @@ export default class SpriteFrameNode extends Node {
     super(...arguments);
     rendered(this);
     editable(this);
+    dependencies(this);
   }
 
   @reads('parent') sprite;

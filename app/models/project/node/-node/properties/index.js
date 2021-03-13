@@ -9,6 +9,7 @@ import { pixel } from './pixel';
 import { tools } from './tools';
 import { warnings, Warning, MissingReferences } from './warnings';
 import { selection } from './selection';
+import { dependencies } from './dependencies';
 
 export {
   actions,
@@ -21,6 +22,7 @@ export {
   pixel,
   tools,
   selection,
+  dependencies,
   warnings,
   Warning,
   MissingReferences

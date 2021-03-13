@@ -1,6 +1,6 @@
 import Node from './-doc-node';
 import { data, reference } from './-node/decorators';
-import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning, selection } from './-node/properties';
+import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning, selection, dependencies } from './-node/properties';
 import { heart } from 'petit/util/heart';
 import { uniq } from 'petit/util/array';
 import { reads } from "macro-decorators";
@@ -70,6 +70,7 @@ export default class SpriteNode extends Node {
       used: 'uniqueFrameBytes'
     });
     selection(this);
+    dependencies(this, () => this.colors.mapped.map(({ color }) => color));
   }
 
   typeName = 'Sprite';

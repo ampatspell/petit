@@ -1,6 +1,6 @@
 import Node from '../-data-node';
 import { reads } from "macro-decorators";
-import { warnings, MissingReferences } from '../-node/properties';
+import { warnings, MissingReferences, dependencies } from '../-node/properties';
 import { reference } from '../-node/decorators';
 
 export default class SequenceFrame extends Node {
@@ -14,6 +14,7 @@ export default class SequenceFrame extends Node {
     warnings(this, {
       replace: [ MissingReferences ]
     });
+    dependencies(this);
   }
 
   @reads('data.identifier') identifier;

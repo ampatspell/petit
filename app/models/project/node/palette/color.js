@@ -1,5 +1,5 @@
 import Node from '../-data-node';
-import { warnings, Warning } from '../-node/properties';
+import { warnings, Warning, dependencies } from '../-node/properties';
 import { cached } from 'tracked-toolbox';
 import { reads } from "macro-decorators";
 import { round } from 'petit/util/math';
@@ -51,6 +51,7 @@ export default class Color extends Node {
   constructor() {
     super(...arguments);
     warnings(this, { replace: [ IdentifierConflict ] });
+    dependencies(this);
   }
 
   //

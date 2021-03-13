@@ -1,6 +1,6 @@
 import Node from './-doc-node';
 import { data, reference } from './-node/decorators';
-import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning, selection } from './-node/properties';
+import { editor, lock, editable, hide, expand, tools as _tools, pixel, warnings, Warning, selection, dependencies } from './-node/properties';
 import { models } from 'zuglet/decorators';
 import { cached } from "tracked-toolbox";
 import { sortedBy, lastObject } from 'petit/util/array';
@@ -55,6 +55,7 @@ export default class SequenceyNode extends Node {
     pixel(this);
     tools(this);
     selection(this);
+    dependencies(this);
   }
 
   @data('frames') _frames;

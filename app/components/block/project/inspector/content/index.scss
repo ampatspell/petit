@@ -284,5 +284,13 @@
         }
       }
     }
+    &.inverses {
+      @include padding();
+      @include border();
+      @include label(0);
+      > .nodes {
+        margin-top: 3px;
+      }
+    }
   }
 }
