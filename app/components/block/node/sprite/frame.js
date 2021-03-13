@@ -10,7 +10,11 @@ export default class BlockNodeSpriteFrameComponent extends Component {
   }
 
   get style() {
-    let { args: { frame: { width, height }, maxHeight: max }, pixel } = this;
+    let { args: { frame, maxHeight: max }, pixel } = this;
+    if(!frame) {
+      return null;
+    }
+    let { width, height } = frame;
     width = width * pixel;
     height = height * pixel;
     if(max) {
@@ -23,7 +27,7 @@ export default class BlockNodeSpriteFrameComponent extends Component {
   }
 
   get url() {
-    let url = this.args.frame.rendered.url;
+    let url = this.args.frame?.rendered.url;
     if(!url) {
       url = blank;
     }
