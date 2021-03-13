@@ -8,4 +8,9 @@ export default class BlockProjectInspectorNodeSequenceComponent extends Componen
     this.args.model.addNewFrame();
   }
 
+  @action
+  deleteAllFrames() {
+    this.args.model.deleteAllFrames();
+  }
+
 }

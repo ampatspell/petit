@@ -84,4 +84,8 @@ export default class SequenceyNode extends Node {
     this.scheduleSave.schedule();
   }
 
+  deleteAllFrames() {
+    this.update({ frames: [] });
+  }
+
 }
