@@ -1,6 +1,6 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.warnings/>
-<@content.frame @model={{@model.frame}}/>
+<@content.frame @model={{@model.frame.model}}/>
 <@content.identifier/>
 <@content.frame-input @frames={{@model.sequence.sprite.model.identifiedFrames}} @key="frame"/>
 <@content.pixel @model={{@model.sequence}}/>

@@ -5,6 +5,7 @@ import { nextObject } from 'petit/util/array';
 import { reads } from "macro-decorators";
 import { tracked } from "@glimmer/tracking";
 import { cached } from "tracked-toolbox";
+import { unwrapReference } from 'petit/util/reference';
 
 export default class BlockKonvaFramesComponent extends Shape {
 
@@ -25,6 +26,7 @@ export default class BlockKonvaFramesComponent extends Shape {
     if(key) {
       frame = frame?.[key];
     }
+    frame = unwrapReference(frame);
     return frame?.rendered?.content;
   }
 

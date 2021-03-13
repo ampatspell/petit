@@ -1,12 +1,12 @@
 import Model from '../../-model';
+import { assert } from '@ember/debug';
+import { cached } from "tracked-toolbox";
 
-const identified = type => () => {
-  return {
-    get() {
-      return this.nodes.all.filter(model => model.type === type && model.identifier);
-    }
-  };
-}
+const identified = (_target, key) => cached(_target, key, {
+  get() {
+    return this.nodes.all.filter(model => model.type === key && model.identifier);
+  }
+});
 
 export default class IdentifiedNodes extends Model {
 
@@ -15,7 +15,13 @@ export default class IdentifiedNodes extends Model {
     this.nodes = nodes;
   }
 
-  @identified('palette') palettes;
-  @identified('sprite') sprites;
+  @identified palette;
+  @identified sprite;
+
+  byTypeAndIdentifier(type, identifier) {
+    let typed = this[type];
+    assert(`nodes.${type} is required`, !!typed);
+    return typed.find(node => node.identifier === identifier);
+  }
 
 }

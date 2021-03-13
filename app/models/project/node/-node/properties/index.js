@@ -7,7 +7,7 @@ import { lock } from './lock';
 import { move } from './move';
 import { pixel } from './pixel';
 import { tools } from './tools';
-import { warnings, Warning } from './warnings';
+import { warnings, Warning, MissingReferences } from './warnings';
 import { selection } from './selection';
 
 export {
@@ -20,7 +20,8 @@ export {
   move,
   pixel,
   tools,
+  selection,
   warnings,
   Warning,
-  selection
+  MissingReferences
 };

@@ -6,7 +6,7 @@ export default class BlockProjectTimelineSequenceIndexComponent extends Componen
 
   @reads('args.node.group') sequence;
   @reads('sequence.sprite.model') sprite;
-  @reads('sequence.frames') frames;
+  @reads('sequence.children') frames;
 
   get frame() {
     let { sequence, sequence: { nodes: { selected } } } = this;

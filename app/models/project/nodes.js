@@ -157,7 +157,7 @@ export default class Nodes extends Model {
   }
 
   _newSpriteProperties() {
-    let palette = this.identified.palettes[0] || null;
+    let palette = this.identified.palette[0] || null;
     let colors = [];
 
     let color = value => {
@@ -212,7 +212,7 @@ export default class Nodes extends Model {
   }
 
   async createNewSequence() {
-    let sprites = sortedBy(this.identified.sprites, node => node.frames.length).reverse();
+    let sprites = sortedBy(this.identified.sprite, node => node.frames.length).reverse();
     let sprite = sprites[0];
 
     let frames = [];

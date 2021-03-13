@@ -4,7 +4,7 @@
     <div class="frames">
       {{#each @frames as |frame|}}
         <Block::Node::Sprite::Frame
-          class={{class "frame" selected=(eq frame this.frame)}}
+          class={{class "frame" selected=(eq frame this.frame.model)}}
           @pixel={{2}}
           @frame={{frame}}
           @maxHeight={{32}}

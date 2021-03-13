@@ -1,19 +1,7 @@
 import Node from '../-data-node';
 import { reads } from "macro-decorators";
-import { cached } from "tracked-toolbox";
-import { warnings, Warning } from '../-node/properties';
-
-class MissingFrame extends Warning {
-
-  get description() {
-    return 'Missing frame';
-  }
-
-  get has() {
-    return this.node.sprite && !this.node.frame;
-  }
-
-}
+import { warnings, MissingReferences } from '../-node/properties';
+import { reference } from '../-node/decorators';
 
 export default class SequenceFrame extends Node {
 
@@ -24,7 +12,7 @@ export default class SequenceFrame extends Node {
   constructor() {
     super(...arguments);
     warnings(this, {
-      replace: [ MissingFrame ]
+      replace: [ MissingReferences ]
     });
   }
 
@@ -39,11 +27,7 @@ export default class SequenceFrame extends Node {
     return [ _frame, identifier ].filter(Boolean).join(' – ');
   }
 
-  // TODO: reference
-  @cached
-  get frame() {
-    let { sprite, _frame } = this;
-    return sprite?.frameByIdentifier(_frame);
-  }
+  @reference('frame', '_frame', (node, _type, identifier) => node.sprite?.frameByIdentifier(identifier))
+  frame;
 
 }

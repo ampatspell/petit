@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { htmlSafe } from '@ember/template';
+import { unwrapReference } from 'petit/util/reference';
 
 const blank = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
@@ -9,8 +10,12 @@ export default class BlockNodeSpriteFrameComponent extends Component {
     return this.args.pixel || 1;
   }
 
+  get frame() {
+    return unwrapReference(this.args.frame);
+  }
+
   get style() {
-    let { args: { frame, maxHeight: max }, pixel } = this;
+    let { frame, args: { maxHeight: max }, pixel } = this;
     if(!frame) {
       return null;
     }
@@ -27,7 +32,7 @@ export default class BlockNodeSpriteFrameComponent extends Component {
   }
 
   get url() {
-    let url = this.args.frame?.rendered.url;
+    let url = this.frame?.rendered.url;
     if(!url) {
       url = blank;
     }
