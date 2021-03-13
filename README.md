@@ -2,7 +2,6 @@
 
 ## TODO
 
-* data-node exists should check for `parent[key].includes`
 * clear sequence frames
 * sequence frame.frame should be reference
 * sequence "animate" boolean
@@ -56,3 +55,4 @@
 * dropdown with any content
 * reference inspector use custom dropdown
 * sequence inspector: frame selection dropdown
+* data-node exists should check for `parent[key].includes`
