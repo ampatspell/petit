@@ -3,7 +3,7 @@
 <@content.frames @frames="children" @key="frame"/>
 <@content.identifier/>
 <@content.position/>
-<@content.reference @label="Sprite" @collection="sprites" @key="sprite"/>
+<@content.reference @label="Sprite" @collection="sprite" @key="sprite"/>
 <@content.actions as |actions|>
   <actions.button @label="Clear" @onClick={{this.deleteAllFrames}} @confirmation="Are you sure you want to delete all frames?"/>
   <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>

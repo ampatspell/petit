@@ -2,6 +2,7 @@
 
 ## TODO
 
+* sequence timeline with missing frames
 * sequence "animate" boolean
 * sequence framerate
 * buttons with icons for "add new *"
