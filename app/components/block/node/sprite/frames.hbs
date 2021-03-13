@@ -1,0 +1,10 @@
+<Konva::Stage class="stage" @size={{this.size}} as |parent|>
+  <Konva::Node::Layer @parent={{parent}} as |parent|>
+    <Block::Konva::Frames
+      @parent={{parent}}
+      @size={{this.size}}
+      @frames={{@frames}}
+      @key={{@key}}
+    />
+  </Konva::Node::Layer>
+</Konva::Stage>
