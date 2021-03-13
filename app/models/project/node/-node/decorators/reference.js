@@ -1,11 +1,32 @@
 import { toString } from 'zuglet/utils';
+import { getInstance } from 'petit/util/instances';
+import { cached } from "tracked-toolbox";
 
 class Reference {
 
-  constructor(identifier, missing, model) {
-    this.identifier = identifier;
-    this.missing = missing;
-    this.model = model;
+  isReference = true;
+
+  constructor(target, key, opts) {
+    this.node = target;
+    this.key = key;
+    this.opts = opts;
+  }
+
+  get identifier() {
+    return this.node[this.opts.identifier];
+  }
+
+  @cached
+  get model() {
+    let { node, opts: { type }, identifier } = this;
+    if(!identifier) {
+      return null;
+    }
+    return this.opts.lookup(node, type, identifier) || null;
+  }
+
+  get missing() {
+    return this.identifier && !this.model;
   }
 
   toString() {
@@ -14,15 +35,12 @@ class Reference {
 
 }
 
-export const reference = (type, identifierKey) => () => ({
+const getReference = (target, key, opts) => getInstance(target, key, () => new Reference(target, key, opts));
+
+const defaultLookup = (node, type, identifier) => node.nodes.identified.byTypeAndIdentifier(type, identifier);
+
+export const reference = (type, identifier, lookup=defaultLookup) => (_target, key) => ({
   get() {
-    let identifier = this[identifierKey];
-    let model = null;
-    let missing = false;
-    if(identifier) {
-      model = this.nodes.all.find(node => node.type === type && node.identifier === identifier);
-      missing = !model;
-    }
-    return new Reference(identifier, missing, model);
+    return getReference(this, key, { type, identifier, lookup });
   }
 });
