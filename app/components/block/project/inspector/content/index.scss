@@ -290,6 +290,11 @@
       @include padding();
       @include border();
       @include label-reference(0);
+      > .label {
+        > .icon {
+          margin-right: 2px;
+        }
+      }
       > .nodes {
         margin-top: 10px;
         > .node {
