@@ -8,6 +8,14 @@ export default class BlockProjectToolsPaletteComponent extends Base {
     keys.add('c', handler(() => this.node.editor.actions.center()));
     keys.add('left', handler(() => this.node.selection.prev()));
     keys.add('right', handler(() => this.node.selection.next()));
+    keys.add('esc', handler(() => {
+      let { node, tools, tool } = this;
+      if(tool.type === 'idle') {
+        node.nodes.select(node);
+      } else {
+        tools.reset();
+      }
+    }));
     keys.add('space', handler(e => {
       e.preventRepeat();
       this.node.tools.selectByType('project:drag');
