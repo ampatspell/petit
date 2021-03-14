@@ -1,10 +1,23 @@
 {{#if @model.identifier}}
   <div class="group inverses">
-    <div class="label" role="button" {{on 'click' this.toggle}}>{{this.label}}</div>
+    <div class="label" role="button" {{on 'click' this.toggle}}>
+      <div class="text">{{this.label}}</div>
+      <Block::Icon
+        class={{class "icon" faded=(not this.openable)}}
+        @name={{if this.open "angle-down" "angle-right"}}
+      />
+    </div>
     {{#if this.open}}
       <div class="nodes">
         {{#each @model.dependencies.inverses as |node|}}
-          <div class="node">{{node.type}}: {{or node.identifier "No identifier"}}</div>
+          <div class="node">
+            <div class="label">{{node.referenceDescription}}</div>
+            <Block::Icon
+              class={{class "icon" "follow"}}
+              @name="chevron-circle-right"
+              {{on "click" (fn this.onFollow node)}}
+            />
+          </div>
         {{else}}
           <div class="placeholder">No uses</div>
         {{/each}}

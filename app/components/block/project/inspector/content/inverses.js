@@ -18,6 +18,10 @@ export default class BlockProjectInspectorContentInversesComponent extends Compo
   @reads('args.model.dependencies.inverses') inverses;
   @reads('inverses.length') count;
 
+  get openable() {
+    return this.count > 0;
+  }
+
   get open() {
     return shared.open && this.count > 0;
   }
@@ -32,13 +36,15 @@ export default class BlockProjectInspectorContentInversesComponent extends Compo
     if(count === 0) {
       return 'Unused';
     }
-    if(shared.open) {
-      return `Used by`;
-    }
     if(count === 1) {
       return `Used by ${count} node`;
     }
     return `Used by ${count} nodes`;
+  }
+
+  @action
+  onFollow(node) {
+    node.nodes.select(node, { expandParents: true });
   }
 
 }

@@ -93,4 +93,11 @@ export default class Node extends Model {
     return hash;
   }
 
+  get referenceDescription() {
+    return [
+      this.parent?.referenceDescription,
+      this.identifier || 'No identifier'
+    ].filter(Boolean).join(' – ');
+  }
+
 }
