@@ -1,0 +1,20 @@
+<div class="group slider">
+  <div class="label">{{@label}}</div>
+  <div class="content">
+    <Input::Slider
+      class="slider"
+      @min={{this.min}}
+      @max={{this.max}}
+      @disabled={{this.disabled}}
+      @value={{this.value}}
+      @onInput={{this.onInput}}
+    />
+    <Input::Text
+      class="input small"
+      @type="int"
+      @disabled={{this.disabled}}
+      @value={{this.value}}
+      @onInput={{this.onInput}}
+    />
+  </div>
+</div>

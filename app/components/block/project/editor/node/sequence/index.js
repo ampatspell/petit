@@ -6,6 +6,7 @@ export default class BlockProjectEditorNodeSequenceIndexComponent extends Compon
   @reads('args.node') sequence;
   @reads('sequence.sprite.model') sprite;
   @reads('sequence.frames') frames;
+  @reads('sequence.framerate') framerate;
 
   // TODO: move to editor
   get size() {

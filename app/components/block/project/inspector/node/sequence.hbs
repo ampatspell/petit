@@ -1,9 +1,10 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.warnings/>
-<@content.frames @frames="children" @key="frame"/>
+<@content.frames @frames="children" @key="frame" @framerate={{@model.framerate}}/>
 <@content.identifier/>
 <@content.position/>
 <@content.reference @label="Sprite" @collection="sprite" @key="sprite"/>
+<@content.slider @label="Framerate" @key="framerate" @min={{1}} @max={{14}}/>
 <@content.actions as |actions|>
   <actions.button @label="Clear" @onClick={{this.deleteAllFrames}} @confirmation="Are you sure you want to delete all frames?"/>
   <actions.button @label="Add new frame" @onClick={{this.addFrame}}/>

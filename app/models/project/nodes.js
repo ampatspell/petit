@@ -226,7 +226,8 @@ export default class Nodes extends Model {
         return {
           index,
           identifier: this.createIdentifier('sequence/frame'),
-          frame: frame.identifier
+          frame: frame.identifier,
+          framerate: 5
         };
       });
     }

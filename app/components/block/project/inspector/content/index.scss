@@ -134,6 +134,7 @@
           }
           > .input {
             width: 28px;
+            text-align: center;
           }
           &:last-child {
             margin-bottom: 0;
@@ -309,6 +310,23 @@
             font-size: 11px;
             margin-left: 5px;
           }
+        }
+      }
+    }
+    &.slider {
+      @include padding();
+      @include border();
+      @include label();
+      > .content {
+        display: flex;
+        flex-direction: row;
+        > .slider {
+          margin-right: 1px;
+          flex: 1;
+        }
+        > .input {
+          width: 28px;
+          text-align: center;
         }
       }
     }

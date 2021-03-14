@@ -11,8 +11,11 @@ export default class BlockKonvaFramesComponent extends Shape {
 
   @reads('args.size') size;
   @reads('args.frames') frames;
+  @reads('args.framerate', 5) framerate;
 
-  interval = 1000 / 3;
+  get interval() {
+    return 1000 / this.framerate;
+  }
 
   @tracked _frame;
 

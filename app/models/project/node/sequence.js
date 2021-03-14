@@ -39,6 +39,8 @@ export default class SequenceyNode extends Node {
   @data('sprite') _sprite;
   @reference('sprite', '_sprite') sprite;
 
+  @data('framerate') framerate;
+
   @size width;
   @size height;
 
