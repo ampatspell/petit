@@ -10,16 +10,22 @@ export default class BlockNodeSpriteFrameComponent extends Component {
     return this.args.pixel || 1;
   }
 
+  // TODO: wrap ref component around
   get frame() {
     return unwrapReference(this.args.frame);
   }
 
+  // TODO: relevant only for timeline. wrap
+  get size() {
+    return this.frame || this.args.size;
+  }
+
   get style() {
-    let { frame, args: { maxHeight: max }, pixel } = this;
-    if(!frame) {
+    let { size, args: { maxHeight: max }, pixel } = this;
+    if(!size) {
       return null;
     }
-    let { width, height } = frame;
+    let { width, height } = size;
     width = width * pixel;
     height = height * pixel;
     if(max) {

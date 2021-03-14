@@ -4,4 +4,9 @@
     image-rendering: pixelated;
     background: darken(#fff, 12%);
   }
+  &.empty {
+    > .image {
+      background: fade-out(red, 0.8);
+    }
+  }
 }

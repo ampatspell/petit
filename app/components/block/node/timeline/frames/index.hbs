@@ -8,7 +8,7 @@
           {{on 'click' (fn @onSelect frame)}}
         >
           {{yield
-            (component 'block/node/sprite/frame' pixel=this.pixel maxHeight=this.maxHeight)
+            (component 'block/node/sprite/frame' pixel=this.pixel maxHeight=this.maxHeight size=@sprite)
             frame
           }}
         </div>

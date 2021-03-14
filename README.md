@@ -2,7 +2,6 @@
 
 ## TODO
 
-* sequence timeline with missing frames
 * sequence "animate" boolean
 * layer position increments (8x8 or free)
 * buttons with icons for "add new *"
@@ -59,3 +58,4 @@
 * sequence frame.frame should be reference
 * nodes.all should include also data-based nodes
 * sequence framerate
+* sequence timeline with missing frames
