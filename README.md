@@ -2,9 +2,9 @@
 
 ## TODO
 
-* layer position increments (8x8 or free)
 * sequence timeline with missing frames
 * sequence "animate" boolean
+* layer position increments (8x8 or free)
 * buttons with icons for "add new *"
 * update color select to use dropdown (block/node/palette/color/select)
 * tree filter by type
