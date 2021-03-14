@@ -35,7 +35,7 @@ export default class DialogsService extends Service {
   }
 
   _remove(model) {
-    this.models.removeObject(model);
+    this.models = removeObject(this.models, model);
   }
 
   model(dialog, presenter, opts) {
@@ -46,7 +46,7 @@ export default class DialogsService extends Service {
   present(label, name, opts) {
     let presenter = this.presenter(label || 'application');
     let model = this.model(name, presenter, opts);
-    this.models.pushObject(model);
+    this.models = addObject(this.models, model);
     return model.promise;
   }
 
@@ -60,8 +60,8 @@ export default class DialogsService extends Service {
     let result = await this.present('application', 'alert', {
       message,
       actions: [
-        { label: cancel,  status: 'cancelled' },
-        { label: confirm, status: 'confirmed', color: 'warning', fn: () => fn && fn() }
+        { label: cancel,  status: 'cancelled', key: 'esc' },
+        { label: confirm, status: 'confirmed', key: 'enter', color: 'warning', fn: () => fn && fn() }
       ]
     });
 

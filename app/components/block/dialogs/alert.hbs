@@ -1,4 +1,5 @@
-<div class="block-dialogs-dialog alert">
+<div class="block-dialogs-dialog alert" tabindex="0" {{did-insert this.didInsertAlert}}>
+  <Konva::Hotkeys @onBind={{this.bindKeys}}/>
   <div class="message">
     {{this.dialog.message}}
   </div>

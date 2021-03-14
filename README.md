@@ -2,6 +2,7 @@
 
 ## TODO
 
+* layer position increments (8x8 or free)
 * sequence timeline with missing frames
 * sequence "animate" boolean
 * buttons with icons for "add new *"
