@@ -4,7 +4,6 @@
 
 * sequence timeline with missing frames
 * sequence "animate" boolean
-* sequence framerate
 * buttons with icons for "add new *"
 * update color select to use dropdown (block/node/palette/color/select)
 * tree filter by type
@@ -58,3 +57,4 @@
 * clear sequence frames
 * sequence frame.frame should be reference
 * nodes.all should include also data-based nodes
+* sequence framerate
