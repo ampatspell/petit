@@ -1,14 +1,11 @@
 <div class="sequence" ...attributes {{konva-node this}}>
 
-  <Konva::Node::Rect
+  <Block::Konva::Frames
     @parent={{this}}
-    @model={{hash
-      x=0
-      y=0
-      width=16
-      height=16
-      fill="#000"
-    }}
+    @size={{this.size}}
+    @frames={{this.frames}}
+    @framerate={{this.framerate}}
+    @key="frame"
   />
 
 </div>

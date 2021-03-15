@@ -9,7 +9,7 @@
   }}/>
 
   <Konva::Node::Group @parent={{@parent}} as |parent|>
-    {{#each @node.children as |entity idx|}}
+    {{#each @node.visibleChildren as |entity idx|}}
       {{component
         (concat 'block/project/editor/node/scene/layer/' entity.type)
         parent=parent

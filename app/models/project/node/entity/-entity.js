@@ -18,7 +18,6 @@ export default class SceneNode extends Node {
 
   typeName = 'Entity';
   group = this;
-  referenceKeys = [];
 
   @data('x') x;
   @data('y') y;

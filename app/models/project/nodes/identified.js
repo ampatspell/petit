@@ -17,6 +17,7 @@ export default class IdentifiedNodes extends Model {
 
   @identified palette;
   @identified sprite;
+  @identified sequence;
 
   byTypeAndIdentifier(type, identifier) {
     let typed = this[type];

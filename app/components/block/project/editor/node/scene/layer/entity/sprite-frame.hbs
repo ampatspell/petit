@@ -1,14 +1,9 @@
 <div class="sprite-frame" ...attributes {{konva-node this}}>
 
-  <Konva::Node::Rect
+  <Block::Konva::Frame
     @parent={{this}}
-    @model={{hash
-      x=0
-      y=0
-      width=16
-      height=16
-      fill="#000"
-    }}
+    @size={{this.size}}
+    @frame={{this.frame}}
   />
 
 </div>
