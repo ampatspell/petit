@@ -9,7 +9,7 @@ export default class Router extends EmberRouter {
 
   constructor() {
     super(...arguments);
-    this.on('routeDidChange', () => didLoad());
+    this.on('routeWillChange', () => didLoad());
   }
 
 }
