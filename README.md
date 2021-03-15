@@ -2,7 +2,8 @@
 
 ## TODO
 
-* sequence "animate" boolean
+* SpriteFrameEntity, SequenceEntity
+* sequence "animate" boolean. if off, show selected frame
 * layer position increments (8x8 or free)
 * buttons with icons for "add new *"
 * update color select to use dropdown (block/node/palette/color/select)
