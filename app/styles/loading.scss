@@ -1,17 +1,27 @@
-.application-loading {
+@mixin application-loading() {
   position: fixed;
-  top: 24px;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background: $background-grey-color;
-  z-index: -1;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  > img {
+  > .heart {
     display: block;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 3px;
   }
+  > .label {
+    font-size: $font-size-small;
+  }
+}
+
+.application-loading {
+  @include application-loading();
+  background: $background-grey-color;
+  z-index: -1;
 }

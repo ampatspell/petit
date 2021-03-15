@@ -8,5 +8,5 @@ export const didLoad = () => {
   setTimeout(() => {
     let el = document.querySelector('.application-loading');
     el.remove();
-  }, 150);
+  }, 1000);
 }
