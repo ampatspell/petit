@@ -51,18 +51,4 @@ export default class SceneNode extends Node {
     this.update({ width, height });
   }
 
-  //
-
-  onKeyEsc() {
-    this.tools.selectByType('idle');
-  }
-
-  onKeyLetter(key) {
-    if(key === 'e') {
-      this.tools.selectByType('edit');
-    } else if(key === 'r') {
-      this.tools.selectByType('resize');
-    }
-  }
-
 }

@@ -106,7 +106,9 @@ export default class Nodes extends Model {
       'palette': 'plt',
       'palette/color': 'clr',
       'sequence': 'seq',
-      'sequence/frame': 'sef'
+      'sequence/frame': 'sef',
+      'entity/sprite-frame': 'ent',
+      'entity/sequence': 'ent'
     };
     let abbr = abbreviations[type];
     let identifier = '';

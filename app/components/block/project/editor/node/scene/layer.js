@@ -3,7 +3,7 @@ import { reads } from "macro-decorators";
 
 export default class BlockProjectEditorNodeSceneLayerComponent extends Group {
 
-  @reads('args.layer') layer;
+  @reads('args.node') layer;
 
   get nodeProperties() {
     let { args: { size: { width, height } } } = this

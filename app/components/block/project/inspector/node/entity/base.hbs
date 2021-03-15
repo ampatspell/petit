@@ -1,0 +1,9 @@
+<@content.header @name={{@model.identifier}}/>
+<@content.input @label="Identifier" @key="identifier"/>
+<@content.position/>
+
+{{yield}}
+
+<@content.pixel @model={{@model.scene}}/>
+<@content.reorder/>
+<@content.delete @label="Delete entity" @confirmation="Are you sure you want to delete this entity?"/>
