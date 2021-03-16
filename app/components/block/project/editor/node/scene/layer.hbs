@@ -10,12 +10,11 @@
 
   <Konva::Node::Group @parent={{this}} as |parent|>
     {{#each @node.visibleChildren as |entity idx|}}
-      {{component
-        (concat 'block/project/editor/node/scene/layer/' entity.type)
-        parent=parent
-        node=entity
-        zIndex=idx
-      }}
+      <Block::Project::Editor::Node::Scene::Layer::Entity
+        @parent={{parent}}
+        @zIndex={{idx}}
+        @node={{entity}}
+      />
     {{/each}}
   </Konva::Node::Group>
 

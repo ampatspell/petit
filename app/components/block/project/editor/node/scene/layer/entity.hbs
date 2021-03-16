@@ -1,0 +1,21 @@
+<div class="entity" ...attributes {{konva-node this}}>
+
+  {{component (concat 'block/project/editor/node/scene/layer/' @node.type)
+    parent=this
+    node=@node
+    size=this.size
+  }}
+
+  <Konva::Node::Rect
+    @parent={{this}}
+    @model={{hash
+      x=0
+      y=0
+      width=this.size.width
+      height=this.size.height
+      stroke="rgba(96,190,253, 0.5)"
+      strokeWidth=1
+    }}
+  />
+
+</div>

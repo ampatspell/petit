@@ -17,7 +17,10 @@ export default class SceneNode extends Node {
   }
 
   typeName = 'Entity';
-  group = this;
+
+  get group() {
+    return this.scene;
+  }
 
   @data('x') x;
   @data('y') y;
