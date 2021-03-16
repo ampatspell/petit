@@ -143,6 +143,7 @@ export default class SpriteNode extends Node {
 
   //
 
+  // TODO: move to tools
   didDeselect(next) {
     if(next === this || next?.parent === this) {
       return;

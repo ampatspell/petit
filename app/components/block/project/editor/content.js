@@ -15,7 +15,7 @@ export default class BlockProjectEditorContentComponent extends Component {
   }
 
   @action
-  onCenter(node, component, el) {
+  onCenter(node, _component, el) {
     let rect = this.contentElement.getBoundingClientRect();
     let box = el.getBoundingClientRect();
     let calc = (p, s) => Math.round((rect[s] / 2) - node.editor[p] - (box[s] / 2));

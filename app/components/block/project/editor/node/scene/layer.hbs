@@ -1,11 +1,11 @@
 <div class="scene-layer" ...attributes {{konva-node this}}>
 
-  <Konva::Node::Rect @parent={{this}} @model={{hash
-    name="layer-background"
-    x=0
-    y=0
-    width=@size.width
-    height=@size.height
-  }}/>
+  {{#each @node.visibleChildren as |entity idx|}}
+    <Block::Project::Editor::Node::Scene::Layer::Entity
+      @parent={{this}}
+      @zIndex={{idx}}
+      @node={{entity}}
+    />
+  {{/each}}
 
 </div>

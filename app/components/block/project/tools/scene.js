@@ -1,32 +1,31 @@
-import Base, { handler } from './-base';
+import Base, { handler, center, edit, resize, arrows, reset, pixel, drag } from './-base';
 import { action } from "@ember/object";
 
 export default class BlockProjectToolsSceneComponent extends Base {
 
   @action
   bindKeys(keys) {
-    keys.add('c', handler(() => this.node.editor.actions.center()));
-    keys.add('e', handler(() => this.tools.selectByType('edit')));
-    keys.add('r', handler(() => this.tools.selectByType('resize')));
-    keys.add('esc', handler(() => {
-      let { node, tools, tool } = this;
-      if(tool.type === 'idle') {
-        node.nodes.select(node);
-      } else {
-        tools.reset();
+    center(this, keys);
+    arrows(this, keys);
+    edit(this, keys);
+    resize(this, keys);
+    reset(this, keys);
+    pixel(this, keys);
+    drag(this, keys);
+
+    // TODO: locked
+    let delta = (x, y) => handler(() => {
+      if(this.tool.type === 'edit') {
+        let selected = this.node.nodes.selected;
+        if(selected.parent.type === 'scene/layer') {
+          selected.update(selected.delta({ x, y }));
+        }
       }
-    }));
-    [ 1, 2, 4, 8 ].forEach((pixel, idx) => {
-      keys.add(`alt + ${idx+1}`, handler(() => {
-        this.node.update({ pixel });
-      }));
     });
-    keys.add('space', handler(e => {
-      e.preventRepeat();
-      this.node.tools.selectByType('project:drag');
-    }), handler(() => {
-      this.node.tools.reset();
-    }));
+    keys.add('up', delta(0, -1));
+    keys.add('down', delta(0, 1));
+    keys.add('left', delta(-1, 0));
+    keys.add('right', delta(1, 0));
   }
 
 }

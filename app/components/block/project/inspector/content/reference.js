@@ -22,13 +22,23 @@ export default class BlockProjectInspectorContentReferenceComponent extends Comp
 
   missing = new Missing(this);
 
-  get values() {
-    let { args: { collection }, value } = this;
-    let models = this.identified[collection];
-    if(value?.missing) {
-      return [ null, value, ...models ];
+  get collection() {
+    let { args: { collection, models } } = this;
+    if(models) {
+      return models;
     }
-    return [ null, ...models ];
+    if(collection) {
+      return this.identified[collection];
+    }
+    return [];
+  }
+
+  get values() {
+    let { collection, value } = this;
+    if(value?.missing) {
+      return [ null, value, ...collection ];
+    }
+    return [ null, ...collection ];
   }
 
   get reference() {

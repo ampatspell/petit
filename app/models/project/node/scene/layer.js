@@ -24,4 +24,24 @@ export default class LayerNode extends Node {
   resize() {
   }
 
+  //
+
+  createNewSpriteFrameEntity() {
+    return this._createNode({
+      type: 'entity/sprite-frame',
+      x: 0,
+      y: 0,
+      version: 1
+    });
+  }
+
+  createNewSequenceEntity() {
+    return this._createNode({
+      type: 'entity/sequence',
+      x: 0,
+      y: 0,
+      version: 1
+    });
+  }
+
 }

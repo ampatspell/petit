@@ -9,6 +9,7 @@ export default class BlockProjectEditorNodeSpriteIndexComponent extends Componen
   @reads('sprite.color') color;
   @reads('sprite.frame') frame;
 
+  // TODO: locked
   @equal('sprite.tools.selected.type', 'edit') editing;
   @equal('sprite.tools.selected.type', 'resize') resizing;
 

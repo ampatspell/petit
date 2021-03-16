@@ -30,6 +30,7 @@ export default class SceneNode extends Node {
   @data('y') y;
   @data('width') width;
   @data('height') height;
+  @data('borders') borders;
   @data('palette') _palette;
 
   @reference('palette', '_palette') palette;
@@ -51,18 +52,20 @@ export default class SceneNode extends Node {
     this.update({ width, height });
   }
 
-  //
-
-  onKeyEsc() {
-    this.tools.selectByType('idle');
+  // TODO: move to tools
+  didDeselect(next) {
+    if(next.hasParent?.(this)) {
+      return;
+    }
+    this.tools.reset();
   }
 
-  onKeyLetter(key) {
-    if(key === 'e') {
-      this.tools.selectByType('edit');
-    } else if(key === 'r') {
-      this.tools.selectByType('resize');
+  // TODO: move to tools
+  didDeselectEntity(entity, next) {
+    if(next === this || next.hasParent?.(this)) {
+      return;
     }
+    this.tools.reset();
   }
 
 }
