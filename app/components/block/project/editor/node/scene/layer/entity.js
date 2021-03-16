@@ -7,7 +7,9 @@ export default class BlockProjectEditorNodeSceneLayerEntityComponent extends Gro
   @reads('args.node') entity;
   @reads('entity.scene') scene;
   @reads('scene.pixel.absolute') pixel;
+  @reads('scene.borders') borders;
 
+  // TODO: locked
   @equal('scene.tools.selected.type', 'edit') editing;
 
   @cached
@@ -25,68 +27,58 @@ export default class BlockProjectEditorNodeSceneLayerEntityComponent extends Gro
   }
 
   get nodeProperties() {
-    let { entity: { x, y }, pixel } = this;
+    let { entity: { x, y }, pixel, editing } = this;
     let s = value => value * pixel;
     return {
       x: s(x),
-      y: s(y)
+      y: s(y),
+      draggable: editing
     };
   }
 
   didCreateNode() {
+    let dragging = false;
 
-    let dragging = null;
-
-    let getPointerPosition = ({ evt: e }) => {
-      let { pageX: x, pageY: y } = e;
-      return { x, y };
-    }
-
-    this.on('mousedown', e => {
+    this.on('mousedown', () => {
       let { entity, entity: { nodes } } = this;
       nodes.select(entity);
-
-      if(!this.editing) {
-        return;
-      }
-
-      let pointer = getPointerPosition(e);
-      let { x, y } = entity.editor;
-
-      dragging = {
-        pointer,
-        position: { x, y }
-      };
     });
 
-    this.on('mousemove', e => {
+    this.on('dragstart', () => {
+      dragging = true;
+    });
+
+    this.on('dragmove', () => {
       if(!dragging) {
         return;
       }
 
-      let pointer = getPointerPosition(e);
-      let { entity, scene: { pixel: { absolute: pixel } } } = this;
+      let position = this.node.position();
+      let pixel = this.scene.pixel.absolute;
 
-      let round = v => Math.ceil(v / pixel) * pixel;
-
-      let _diff = prop => round(pointer[prop] - dragging.pointer[prop]);
-      let diff = {
-        x: _diff('x'),
-        y: _diff('y')
+      let _n = prop => Math.floor(position[prop] / pixel);
+      let normalized = {
+        x: _n('x'),
+        y: _n('y')
       };
 
-      let _c = prop => Math.ceil((dragging.position[prop] + diff[prop]) / pixel);
-      entity.update({
-        x: _c('x'),
-        y: _c('y'),
-      });
+      let clamped = this.entity.clamp(normalized);
+
+      let _s = prop => clamped[prop] * pixel;
+      let scaled = {
+        x: _s('x'),
+        y: _s('y'),
+      }
+
+      this.node.position(scaled);
+      this.entity.update(clamped);
     });
 
-    this.on('mouseup', () => {
+    this.on('dragend', () => {
       if(!dragging) {
         return;
       }
-      dragging = null;
+      dragging = false;
     });
   }
 

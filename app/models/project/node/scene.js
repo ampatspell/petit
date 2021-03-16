@@ -30,6 +30,7 @@ export default class SceneNode extends Node {
   @data('y') y;
   @data('width') width;
   @data('height') height;
+  @data('borders') borders;
   @data('palette') _palette;
 
   @reference('palette', '_palette') palette;
@@ -49,6 +50,22 @@ export default class SceneNode extends Node {
     this.layers.forEach(layer => layer.resize(handle, { width, height }));
     this.editor.update({ x, y });
     this.update({ width, height });
+  }
+
+  // TODO: move to tools
+  didDeselect(next) {
+    if(next.hasParent?.(this)) {
+      return;
+    }
+    this.tools.reset();
+  }
+
+  // TODO: move to tools
+  didDeselectEntity(entity, next) {
+    if(next === this || next.hasParent?.(this)) {
+      return;
+    }
+    this.tools.reset();
   }
 
 }

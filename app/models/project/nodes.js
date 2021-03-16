@@ -201,6 +201,7 @@ export default class Nodes extends Model {
       type: 'scene',
       width: 120,
       height: 64,
+      borders: true,
       version: 1
     });
   }

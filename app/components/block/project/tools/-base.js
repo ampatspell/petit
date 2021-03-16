@@ -6,6 +6,9 @@ export const handler = cb => e => {
   if(e.target.tagName === 'INPUT') {
     return;
   }
+  if(e.metaKey) {
+    return;
+  }
   return cb(e);
 }
 

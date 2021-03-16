@@ -5,7 +5,7 @@ import { reads } from "macro-decorators";
 
 const tools = _tools([ 'idle', 'center' ]);
 
-export default class SceneNode extends Node {
+export default class EntityNode extends Node {
 
   constructor() {
     super(...arguments);
@@ -27,5 +27,29 @@ export default class SceneNode extends Node {
 
   @reads('parent') layer;
   @reads('layer.scene') scene;
+
+  step = 1;
+
+  clamp(position) {
+    let { step } = this;
+    let _c = prop => Math.floor(position[prop] / step) * step;
+    return {
+      x: _c('x'),
+      y: _c('y')
+    }
+  }
+
+  delta(props) {
+    let { step } = this;
+    let _c = prop => this[prop] + (props[prop] * step);
+    return {
+      x: _c('x'),
+      y: _c('y')
+    };
+  }
+
+  didDeselect(next) {
+    this.scene.didDeselectEntity(this, next);
+  }
 
 }

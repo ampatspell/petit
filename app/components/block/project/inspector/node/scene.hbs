@@ -6,6 +6,9 @@
 <@content.palette @key="palette"/>
 <@content.color @label="Background Color" @palette="palette" @key="background"/>
 <@content.actions as |actions|>
+  <actions.checkbox @label="Show borders" @key="borders"/>
+</@content.actions>
+<@content.actions as |actions|>
   <actions.button @label="Add new layer" @onClick={{this.addLayer}}/>
 </@content.actions>
 <@content.pixel/>
