@@ -1,5 +1,5 @@
 import Node from '../-doc-node';
-import { lock, editable, hide, expand, warnings } from '../-node/properties';
+import { lock, editable, hide, expand, warnings, grid } from '../-node/properties';
 import { data } from '../-node/decorators';
 import { reads } from "macro-decorators";
 
@@ -14,6 +14,7 @@ export default class LayerNode extends Node {
     expand(this);
     warnings(this);
     editable(this);
+    grid(this);
   }
 
   get group() {

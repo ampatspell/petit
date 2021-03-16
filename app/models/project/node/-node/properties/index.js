@@ -10,6 +10,7 @@ import { tools } from './tools';
 import { warnings, Warning, MissingReferences } from './warnings';
 import { selection } from './selection';
 import { dependencies } from './dependencies';
+import { grid } from './grid';
 
 export {
   actions,
@@ -25,5 +26,6 @@ export {
   dependencies,
   warnings,
   Warning,
-  MissingReferences
+  MissingReferences,
+  grid
 };

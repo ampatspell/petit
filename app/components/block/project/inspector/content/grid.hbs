@@ -1,0 +1,10 @@
+<div class="group grid">
+  <div class="label">Grid</div>
+  {{#if this.grid.enabled}}
+  {{else}}
+    <div class="enabled" role="button" {{on "click" this.toggleGridEnabled}}>
+      <Input::Checkbox class="checkbox" @value={{this.grid.enabled}} @disabled={{@model.editable.disabled}}/>
+      <div class="label">Enabled</div>
+    </div>
+  {{/if}}
+</div>

@@ -1,6 +1,7 @@
 <@content.header @name={{@model.identifier}}/>
 <@content.input @label="Identifier" @key="identifier"/>
 <@content.position/>
+<@content.grid/>
 <@content.actions as |actions|>
   <actions.button @label="Add new sprite frame" @onClick={{this.addSpriteFrame}}/>
   <actions.button @label="Add new sequence" @onClick={{this.addSequence}}/>

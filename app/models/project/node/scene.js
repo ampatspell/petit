@@ -42,6 +42,10 @@ export default class SceneNode extends Node {
       type: 'scene/layer',
       x: 0,
       y: 0,
+      grid: {
+        x: 8,
+        y: 8
+      },
       version: 1
     });
   }
