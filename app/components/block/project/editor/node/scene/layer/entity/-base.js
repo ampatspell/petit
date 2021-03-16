@@ -18,7 +18,8 @@ export default class EntityComponent extends Group {
 
   didCreateNode() {
     this.on('mousedown', () => {
-      console.log('entity');
+      let { entity, entity: { nodes } } = this;
+      nodes.select(entity);
     });
   }
 

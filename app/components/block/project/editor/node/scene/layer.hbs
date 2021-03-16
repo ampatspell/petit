@@ -8,7 +8,7 @@
     height=@size.height
   }}/>
 
-  <Konva::Node::Group @parent={{@parent}} as |parent|>
+  <Konva::Node::Group @parent={{this}} as |parent|>
     {{#each @node.visibleChildren as |entity idx|}}
       {{component
         (concat 'block/project/editor/node/scene/layer/' entity.type)
