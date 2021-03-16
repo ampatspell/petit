@@ -4,10 +4,6 @@ import { reads } from "macro-decorators";
 export default class BlockProjectEditorNodeSceneLayerEntitySpriteFrameComponent extends Base {
 
   @reads('entity.sprite.model') sprite;
-
-  // TODO: reference
-  get frame() {
-    return this.sprite?.frames[0];
-  }
+  @reads('entity.frame.model') frame;
 
 }

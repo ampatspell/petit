@@ -1,5 +1,6 @@
 import Group from 'ember-cli-konva/components/konva/node/group';
 import { reads } from "macro-decorators";
+import { cached } from "tracked-toolbox";
 
 export default class BlockProjectEditorNodeSceneLayerEntityComponent extends Group {
 
@@ -7,8 +8,13 @@ export default class BlockProjectEditorNodeSceneLayerEntityComponent extends Gro
   @reads('entity.scene') scene;
   @reads('scene.pixel.absolute') pixel;
 
+  @cached
   get size() {
     let { entity: { width, height }, pixel } = this;
+    if(!width || !height) {
+      return null;
+    }
+
     let s = value => value * pixel;
     return {
       width: s(width),
