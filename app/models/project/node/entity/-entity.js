@@ -28,11 +28,11 @@ export default class EntityNode extends Node {
   @reads('parent') layer;
   @reads('layer.scene') scene;
 
-  step = 1;
+  //
 
   clamp(position) {
-    let { step } = this;
-    let _c = prop => Math.floor(position[prop] / step) * step;
+    let snapping = this.layer.grid.snapping;
+    let _c = prop => Math.floor(position[prop] / snapping[prop]) * snapping[prop];
     return {
       x: _c('x'),
       y: _c('y')
@@ -40,13 +40,15 @@ export default class EntityNode extends Node {
   }
 
   delta(props) {
-    let { step } = this;
-    let _c = prop => this[prop] + (props[prop] * step);
+    let snapping = this.layer.grid.snapping;
+    let _c = prop => this[prop] + (props[prop] * snapping[prop]);
     return {
       x: _c('x'),
       y: _c('y')
     };
   }
+
+  //
 
   didDeselect(next) {
     this.scene.didDeselectEntity(this, next);

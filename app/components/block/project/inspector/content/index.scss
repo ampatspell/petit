@@ -345,6 +345,22 @@
       @include padding();
       @include border();
       @include label();
+      > .props {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+        > .key {
+          @include label();
+          > .value {
+            color: #000;
+            padding: 5px;
+            line-height: 1;
+            border-radius: 3px;
+            border: 1px solid $background-grey-border-color;
+          }
+        }
+        margin-bottom: 5px;
+      }
       > .enabled {
         display: flex;
         flex-direction: row;

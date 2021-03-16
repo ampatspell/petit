@@ -1,4 +1,5 @@
 import { cached } from "tracked-toolbox";
+import { pick } from 'petit/util/object';
 
 const {
   assign
@@ -6,7 +7,7 @@ const {
 
 const data = (_target, key) => ({
   get() {
-    return this.data?.[key] ?? null;
+    return this.data[key];
   }
 });
 
@@ -19,19 +20,35 @@ class Grid {
 
   @cached
   get data() {
-    return this.node.doc[this.opts.key] || null;
+    return this.node.doc.data[this.opts.key];
   }
 
-  get enabled() {
-    return !!this.data;
+  _set(props) {
+    assign(this.node.doc.data[this.opts.key], props);
+    this.node.scheduleSave.schedule();
   }
 
+  @data enabled;
   @data x;
   @data y;
 
   update(props) {
-    this.node.doc[this.opts.key] = props || null;
-    this.node.scheduleSave.schedule();
+    if(props) {
+      props = assign(pick(this, [ 'x', 'y', 'enabled' ]), props);
+    }
+    this._set(props || null);
+  }
+
+  get snapping() {
+    let { enabled, x, y } = this;
+    if(!enabled) {
+      x = 1;
+      y = 1;
+    }
+    return {
+      x,
+      y
+    };
   }
 
 }

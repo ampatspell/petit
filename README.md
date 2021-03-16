@@ -2,7 +2,8 @@
 
 ## TODO
 
-* SpriteFrameEntity, SequenceEntity
+* entities should show snapping rect as border if snapping is on
+* entity alignment in snapping rect (vertical, horizontal)
 * sequence "animate" boolean. if off, show selected frame
 * layer position increments (8x8 or free)
 * buttons with icons for "add new *"
@@ -60,3 +61,4 @@
 * nodes.all should include also data-based nodes
 * sequence framerate
 * sequence timeline with missing frames
+* SpriteFrameEntity, SequenceEntity

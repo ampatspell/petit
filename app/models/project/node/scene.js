@@ -44,7 +44,8 @@ export default class SceneNode extends Node {
       y: 0,
       grid: {
         x: 8,
-        y: 8
+        y: 8,
+        enabled: false
       },
       version: 1
     });

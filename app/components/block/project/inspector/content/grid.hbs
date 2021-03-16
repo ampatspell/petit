@@ -1,10 +1,23 @@
 <div class="group grid">
-  <div class="label">Grid</div>
-  {{#if this.grid.enabled}}
-  {{else}}
-    <div class="enabled" role="button" {{on "click" this.toggleGridEnabled}}>
-      <Input::Checkbox class="checkbox" @value={{this.grid.enabled}} @disabled={{@model.editable.disabled}}/>
-      <div class="label">Enabled</div>
-    </div>
-  {{/if}}
+  <div class="label">Snapping</div>
+  <div class="props">
+    {{#if this.grid.enabled}}
+      {{#each this.props as |prop|}}
+        <div class="key">
+          <div class="label">{{prop.label}}</div>
+          <Input::Text
+            class="input"
+            @type="int"
+            @value={{get this.grid prop.key}}
+            @disabled={{@model.editable.disabled}}
+            @onChange={{fn this.onChange prop.key}}
+          />
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class="enabled" role="button" {{on "click" this.toggleGridEnabled}}>
+    <Input::Checkbox class="checkbox" @value={{this.grid.enabled}} @disabled={{@model.editable.disabled}}/>
+    <div class="label">Enabled</div>
+  </div>
 </div>
