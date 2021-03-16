@@ -1,5 +1,6 @@
 import Node from '../-doc-node';
 import { lock, editable, hide, expand, warnings } from '../-node/properties';
+import { data } from '../-node/decorators';
 import { reads } from "macro-decorators";
 
 export default class LayerNode extends Node {
@@ -20,6 +21,9 @@ export default class LayerNode extends Node {
   }
 
   @reads('parent') scene;
+
+  @data('x') x;
+  @data('y') y;
 
   resize() {
   }
