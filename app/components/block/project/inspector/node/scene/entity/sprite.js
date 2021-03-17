@@ -7,10 +7,8 @@ export default class BlockProjectInspectorNodeSceneEntitySpriteComponent extends
   onAssetSelected(asset) {
     // TODO: remove
     let { args: { model } } = this;
-    if(asset.type === 'sprite') {
-      model.update({ sprite: asset });
-    } else if(asset.type === 'sprite/frame') {
-      model.update({ frame: asset });
+    if(asset.type === 'sprite/frame') {
+      model.update({ sprite: asset.sprite, frame: asset });
     }
   }
 
