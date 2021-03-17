@@ -17,10 +17,7 @@ export default class LayerNode extends Node {
     grid(this);
   }
 
-  get group() {
-    return this.parent;
-  }
-
+  @reads('parent') group;
   @reads('parent') scene;
 
   @data('x') x;

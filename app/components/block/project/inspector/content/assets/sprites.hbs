@@ -2,7 +2,11 @@
   <Block::Project::Inspector::Content::Assets::Header @label="Sprites">
     <div class="list">
       {{#each this.sprites as |sprite|}}
-        <div class={{class "item" selected=(eq @sprite sprite)}}>
+        <div
+          class={{class "item" selected=(eq @sprite sprite)}}
+          role="button"
+          {{on 'click' (fn this.onSelect sprite)}}
+        >
           <Block::Node::Sprite::Frame
             class="content"
             @pixel={{2}}

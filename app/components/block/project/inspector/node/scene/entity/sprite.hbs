@@ -6,6 +6,6 @@
     {{/if}}
   </:content>
   <:assets>
-    <@content.assets @sprite={{@model.sprite.model}} @frame={{@model.frame.model}}/>
+    <@content.assets @sprite={{@model.sprite.model}} @frame={{@model.frame.model}} @onSelect={{this.onAssetSelected}}/>
   </:assets>
 </Block::Project::Inspector::Node::Scene::Entity::Base>

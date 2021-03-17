@@ -3,6 +3,6 @@
     <@content.reference @label="Sequence" @collection="sequence" @key="sequence"/>
   </:content>
   <:assets>
-    <@content.assets @sequence={{@model.sequence.model}}/>
+    <@content.assets @sequence={{@model.sequence.model}} @onSelect={{this.onAssetSelected}}/>
   </:assets>
 </Block::Project::Inspector::Node::Scene::Entity::Base>

@@ -2,7 +2,11 @@
   <Block::Project::Inspector::Content::Assets::Header @label="Sequences">
     <div class="list">
       {{#each this.sequences as |sequence|}}
-        <div class={{class "item" selected=(eq @sequence sequence)}}>
+        <div
+          class={{class "item" selected=(eq @sequence sequence)}}
+          role="button"
+          {{on 'click' (fn this.onSelect sequence)}}
+        >
           <Block::Node::Sprite::Frames
             class="content"
             @frames={{sequence.frames}}
