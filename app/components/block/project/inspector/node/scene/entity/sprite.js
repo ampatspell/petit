@@ -5,11 +5,13 @@ export default class BlockProjectInspectorNodeSceneEntitySpriteComponent extends
 
   @action
   onAssetSelected(asset) {
-    console.log(asset+'');
     // TODO: remove
-    // if(asset.type === 'sprite/frame') {
-      // this.args.model.update({ sequence: asset });
-    // }
+    let { args: { model } } = this;
+    if(asset.type === 'sprite') {
+      model.update({ sprite: asset });
+    } else if(asset.type === 'sprite/frame') {
+      model.update({ frame: asset });
+    }
   }
 
 }

@@ -7,12 +7,32 @@
           role="button"
           {{on 'click' (fn this.onSelect sprite)}}
         >
-          <Block::Node::Sprite::Frame
-            class="content"
-            @pixel={{2}}
-            @frame={{sprite.frame}}
-            @maxHeight={{64}}
-          />
+
+          {{#if (eq @sprite sprite)}}
+
+            {{#each sprite.identifiedFrames as |frame|}}
+
+              <Block::Node::Sprite::Frame
+                class="content"
+                @pixel={{2}}
+                @frame={{frame}}
+                @maxHeight={{64}}
+                {{on 'click' (fn this.onSelect frame)}}
+              />
+
+            {{/each}}
+
+          {{else}}
+
+            <Block::Node::Sprite::Frame
+              class="content"
+              @pixel={{2}}
+              @frame={{sprite.frame}}
+              @maxHeight={{64}}
+            />
+
+          {{/if}}
+
         </div>
       {{/each}}
     </div>
