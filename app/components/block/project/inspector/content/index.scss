@@ -370,5 +370,9 @@
         }
       }
     }
+    &.assets {
+      @include padding();
+      @include border();
+    }
   }
 }

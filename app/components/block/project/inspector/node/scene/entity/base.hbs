@@ -6,12 +6,14 @@
   <@content.input @label="Identifier" @key="identifier"/>
   <@content.position/>
 
-  {{yield}}
+  {{yield to='content'}}
 
   <@content.pixel @model={{@model.scene}}/>
   <@content.reorder/>
   <@content.delete @label="Delete entity" @confirmation="Are you sure you want to delete this entity?"/>
 
 {{else if (eq this.tab.id 'assets')}}
+
+  {{yield to='assets'}}
 
 {{/if}}
