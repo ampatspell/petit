@@ -1,5 +1,5 @@
 import Entity from './-entity';
-import { data, reference } from '../-node/decorators';
+import { data, reference } from '../../-node/decorators';
 import { reads } from "macro-decorators";
 
 export default class SequenceEntity extends Entity {

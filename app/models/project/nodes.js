@@ -107,8 +107,8 @@ export default class Nodes extends Model {
       'palette/color': 'clr',
       'sequence': 'seq',
       'sequence/frame': 'sef',
-      'entity/sprite-frame': 'ent',
-      'entity/sequence': 'ent'
+      'scene/entity/sprite': 'ent',
+      'scene/entity/sequence': 'ent'
     };
     let abbr = abbreviations[type];
     let identifier = '';

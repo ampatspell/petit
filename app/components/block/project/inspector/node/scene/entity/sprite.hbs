@@ -1,0 +1,6 @@
+<Block::Project::Inspector::Node::Scene::Entity::Base @content={{@content}} @model={{@model}}>
+  <@content.reference @label="Sprite" @collection="sprite" @key="sprite"/>
+  {{#if @model.sprite.model}}
+    <@content.reference @label="Frame" @models={{@model.sprite.model.identifiedFrames}} @key="frame"/>
+  {{/if}}
+</Block::Project::Inspector::Node::Scene::Entity::Base>

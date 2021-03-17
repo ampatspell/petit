@@ -2,7 +2,7 @@
 
   {{#if this.size}}
 
-    {{component (concat 'block/project/editor/node/scene/layer/' @node.type)
+    {{component (concat 'block/project/editor/node/' @node.type)
       parent=this
       node=@node
       size=this.size

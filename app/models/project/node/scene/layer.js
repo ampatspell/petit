@@ -33,7 +33,7 @@ export default class LayerNode extends Node {
 
   createNewSpriteFrameEntity() {
     return this._createNode({
-      type: 'entity/sprite-frame',
+      type: 'scene/entity/sprite',
       x: 0,
       y: 0,
       version: 1
@@ -42,7 +42,7 @@ export default class LayerNode extends Node {
 
   createNewSequenceEntity() {
     return this._createNode({
-      type: 'entity/sequence',
+      type: 'scene/entity/sequence',
       x: 0,
       y: 0,
       version: 1

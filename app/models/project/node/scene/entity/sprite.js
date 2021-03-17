@@ -1,12 +1,12 @@
 import Entity from './-entity';
-import { data, reference } from '../-node/decorators';
+import { data, reference } from '../../-node/decorators';
 import { reads } from "macro-decorators";
 
 const frameByIdentifier = (node, _type, identifier) => node.sprite.model?.frameByIdentifier(identifier);
 
-export default class SpriteFrameEntity extends Entity {
+export default class SpriteEntity extends Entity {
 
-  typeName = 'Sprite Frame Entity';
+  typeName = 'Sprite Entity';
   referenceKeys = [ 'sprite', 'frame' ];
 
   @data('sprite') _sprite;
