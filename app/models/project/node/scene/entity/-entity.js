@@ -1,6 +1,6 @@
 import Node from '../../-doc-node';
 import { data } from '../../-node/decorators';
-import { editor, lock, hide, tools as _tools, warnings } from '../../-node/properties';
+import { editor, lock, hide, tools as _tools, warnings, editable } from '../../-node/properties';
 import { reads } from "macro-decorators";
 
 const tools = _tools([ 'idle', 'center' ]);
@@ -12,6 +12,7 @@ export default class EntityNode extends Node {
     editor(this);
     lock(this);
     hide(this);
+    editable(this);
     warnings(this);
     tools(this);
   }
@@ -19,7 +20,6 @@ export default class EntityNode extends Node {
   typeName = 'Entity';
 
   @reads('scene') group;
-  @reads('layer.editable') editable
 
   @data('x') x;
   @data('y') y;
