@@ -373,6 +373,48 @@
     &.assets {
       @include padding();
       @include border();
+      @include label-reference();
+      > .label {
+        > .icon {
+          margin-right: 2px;
+        }
+      }
+      @mixin list() {
+        margin-bottom: 1px;
+        > .item {
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: darken(#fff, 12%);
+          border: 1px solid darken(#fff, 12%);
+          margin-bottom: 1px;
+          border-radius: 2px;
+          transition:
+            0.15s ease-in-out opacity,
+            0.15s ease-in-out border-color;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          &.selected {
+            border-color: darken(#fff, 40%);
+          }
+        }
+      }
+      &.sequences {
+        > .sequence {
+          @include list();
+        }
+      }
+      &.sprites {
+        > .sprite {
+          @include list();
+          > .item {
+            min-height: 25px;
+          }
+        }
+      }
     }
   }
 }

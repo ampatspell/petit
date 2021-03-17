@@ -1,0 +1,9 @@
+<div class="group assets sprites">
+  <Block::Project::Inspector::Content::Assets::Header @label="Sprites">
+    {{#each this.sprites as |sprite|}}
+      <div class="sprite">
+        <Block::Node::Sprite::Frame class="item" @pixel={{2}} @frame={{sprite.frame}} @maxHeight={{64}}/>
+      </div>
+    {{/each}}
+  </Block::Project::Inspector::Content::Assets::Header>
+</div>
