@@ -1,6 +1,11 @@
 <Block::Project::Inspector::Node::Scene::Entity::Base @content={{@content}} @model={{@model}}>
-  <@content.reference @label="Sprite" @collection="sprite" @key="sprite"/>
-  {{#if @model.sprite.model}}
-    <@content.reference @label="Frame" @models={{@model.sprite.model.identifiedFrames}} @key="frame"/>
-  {{/if}}
+  <:content>
+    <@content.reference @label="Sprite" @collection="sprite" @key="sprite"/>
+    {{#if @model.sprite.model}}
+      <@content.reference @label="Frame" @models={{@model.sprite.model.identifiedFrames}} @key="frame"/>
+    {{/if}}
+  </:content>
+  <:assets>
+    <@content.assets @sprite={{@model.sprite.model}} @frame={{@model.frame.model}} @onSelect={{this.onAssetSelected}} @types={{array 'sprites'}}/>
+  </:assets>
 </Block::Project::Inspector::Node::Scene::Entity::Base>

@@ -1,3 +1,8 @@
 <Block::Project::Inspector::Node::Scene::Entity::Base @content={{@content}} @model={{@model}}>
-  <@content.reference @label="Sequence" @collection="sequence" @key="sequence"/>
+  <:content>
+    <@content.reference @label="Sequence" @collection="sequence" @key="sequence"/>
+  </:content>
+  <:assets>
+    <@content.assets @sequence={{@model.sequence.model}} @onSelect={{this.onAssetSelected}} @types={{array 'sequences'}}/>
+  </:assets>
 </Block::Project::Inspector::Node::Scene::Entity::Base>

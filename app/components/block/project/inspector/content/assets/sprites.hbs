@@ -1,0 +1,38 @@
+<div class="group assets sprites">
+  <Block::Project::Inspector::Content::Assets::Header @label="Sprites" @openable={{@openable}}>
+    <div class="list">
+      {{#each this.sprites as |sprite|}}
+        <div
+          class={{class "item" selected=(eq sprite this.sprite)}}
+          role="button"
+          {{on 'click' (fn this.selectSprite sprite)}}
+        >
+          <Block::Node::Sprite::Frame
+            class="content"
+            @pixel={{2}}
+            @frame={{sprite.frame}}
+            @maxHeight={{64}}
+          />
+        </div>
+      {{/each}}
+    </div>
+    {{#if (and this.selectedSprite this.selectedSprite.identifiedFrames.length)}}
+      <div class="list">
+        {{#each this.sprite.identifiedFrames as |frame|}}
+          <div
+            class={{class "item" selected=(eq frame @frame)}}
+            role="button"
+            {{on 'click' (fn this.selectFrame frame)}}
+          >
+            <Block::Node::Sprite::Frame
+              class="content"
+              @pixel={{2}}
+              @frame={{frame}}
+              @maxHeight={{64}}
+            />
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </Block::Project::Inspector::Content::Assets::Header>
+</div>

@@ -1,0 +1,10 @@
+<div class="label" role="button" {{on 'click' this.toggle}}>
+  <div class="text">{{@label}}</div>
+  <Block::Icon
+    class={{class "icon"}}
+    @name={{if this.open "angle-down" "angle-right"}}
+  />
+</div>
+{{#if this.open}}
+  {{yield}}
+{{/if}}

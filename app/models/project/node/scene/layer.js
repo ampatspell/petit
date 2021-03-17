@@ -17,10 +17,7 @@ export default class LayerNode extends Node {
     grid(this);
   }
 
-  get group() {
-    return this.parent;
-  }
-
+  @reads('parent') group;
   @reads('parent') scene;
 
   @data('x') x;
@@ -31,20 +28,28 @@ export default class LayerNode extends Node {
 
   //
 
-  createNewSpriteFrameEntity() {
+  createNewSpriteFrameEntity(opts={}) {
+    let { sprite, frame } = opts;
+    sprite = sprite?.identifier || null;
+    frame = frame?.identifier || null;
     return this._createNode({
       type: 'scene/entity/sprite',
       x: 0,
       y: 0,
+      sprite,
+      frame,
       version: 1
     });
   }
 
-  createNewSequenceEntity() {
+  createNewSequenceEntity(opts={}) {
+    let { sequence } = opts;
+    sequence = sequence?.identifier || null;
     return this._createNode({
       type: 'scene/entity/sequence',
       x: 0,
       y: 0,
+      sequence,
       version: 1
     });
   }

@@ -18,9 +18,8 @@ export default class EntityNode extends Node {
 
   typeName = 'Entity';
 
-  get group() {
-    return this.scene;
-  }
+  @reads('scene') group;
+  @reads('layer.editable') editable
 
   @data('x') x;
   @data('y') y;

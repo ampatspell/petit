@@ -370,5 +370,54 @@
         }
       }
     }
+    &.assets {
+      @include border();
+      @include label-reference(0);
+      > .label {
+        @include padding();
+        > .icon {
+          margin-right: 2px;
+        }
+      }
+      @mixin list() {
+        > .list {
+          margin-bottom: 5px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          padding: 8px 5px;
+          background: darken(#fff, 12%);
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          flex-wrap: wrap;
+          > .item {
+            > .content {
+              padding: 5px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid darken(#fff, 12%);
+              border-radius: 2px;
+              transition:
+                0.15s ease-in-out opacity,
+                0.15s ease-in-out border-color;
+            }
+            &.selected {
+              > .content {
+                border-color: darken(#fff, 40%);
+              }
+            }
+          }
+        }
+      }
+      &.sequences {
+        @include list();
+      }
+      &.sprites {
+        @include list();
+      }
+    }
   }
 }
