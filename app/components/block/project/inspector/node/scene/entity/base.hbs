@@ -1,9 +1,17 @@
-<@content.header @name={{@model.identifier}}/>
-<@content.input @label="Identifier" @key="identifier"/>
-<@content.position/>
+<@content.tabs @tabs={{this.tabs}} @tab={{this.tab}} @label="label" @onSelect={{this.selectTab}}/>
 
-{{yield}}
+{{#if (eq this.tab.id 'entity')}}
 
-<@content.pixel @model={{@model.scene}}/>
-<@content.reorder/>
-<@content.delete @label="Delete entity" @confirmation="Are you sure you want to delete this entity?"/>
+  <@content.header @name={{@model.identifier}}/>
+  <@content.input @label="Identifier" @key="identifier"/>
+  <@content.position/>
+
+  {{yield}}
+
+  <@content.pixel @model={{@model.scene}}/>
+  <@content.reorder/>
+  <@content.delete @label="Delete entity" @confirmation="Are you sure you want to delete this entity?"/>
+
+{{else if (eq this.tab.id 'assets')}}
+
+{{/if}}
