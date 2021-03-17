@@ -4,7 +4,7 @@ import { action } from "@ember/object";
 
 export default class BlockProjectInspectorContentAssetsHeaderComponent extends Component {
 
-  @tracked open = false;
+  @tracked open = true;
 
   @action
   toggle() {

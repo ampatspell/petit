@@ -26,4 +26,17 @@ export default class BlockProjectInspectorNodeSceneLayerComponent extends Compon
     this.args.model.createNewSequenceEntity();
   }
 
+  @action
+  onAssetSelected(asset) {
+    let { args: { model } } = this;
+    if(asset.type === 'sprite/frame') {
+      let frame = asset;
+      let sprite = frame.sprite;
+      model.createNewSpriteFrameEntity({ sprite, frame });
+    } else if(asset.type === 'sequence') {
+      let sequence = asset;
+      model.createNewSequenceEntity({ sequence });
+    }
+  }
+
 }
