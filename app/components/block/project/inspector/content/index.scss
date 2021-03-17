@@ -373,45 +373,52 @@
     &.assets {
       @include padding();
       @include border();
-      @include label-reference();
+      @include label-reference(0);
       > .label {
         > .icon {
           margin-right: 2px;
         }
       }
       @mixin list() {
-        margin-bottom: 1px;
-        > .item {
-          padding: 5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: darken(#fff, 12%);
-          border: 1px solid darken(#fff, 12%);
-          margin-bottom: 1px;
-          border-radius: 2px;
-          transition:
-            0.15s ease-in-out opacity,
-            0.15s ease-in-out border-color;
-          &:last-child {
-            margin-bottom: 0;
-          }
-          &.selected {
-            border-color: darken(#fff, 40%);
+        > .list {
+          margin: 3px 0 0 0;
+          > .item {
+            margin: 1px 0 0 0;
+            > .content {
+              padding: 5px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              background: darken(#fff, 12%);
+              border: 1px solid darken(#fff, 12%);
+              margin-bottom: 1px;
+              border-radius: 2px;
+              transition:
+                0.15s ease-in-out opacity,
+                0.15s ease-in-out border-color;
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+            &.selected {
+              > .content {
+                border-color: darken(#fff, 40%);
+              }
+            }
           }
         }
       }
       &.sequences {
-        > .sequence {
-          @include list();
-        }
+        @include list();
       }
       &.sprites {
-        > .sprite {
-          @include list();
+        @include list();
+        > .list {
           > .item {
-            min-height: 25px;
+            > .content {
+              min-height: 25px;
+            }
           }
         }
       }

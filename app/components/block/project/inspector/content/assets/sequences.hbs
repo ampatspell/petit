@@ -1,19 +1,21 @@
 <div class="group assets sequences">
   <Block::Project::Inspector::Content::Assets::Header @label="Sequences">
-    {{#each this.sequences as |sequence|}}
-      <div class="sequence">
-        <Block::Node::Sprite::Frames
-          class="item"
-          @frames={{sequence.frames}}
-          @key="frame"
-          @pixel={{2}}
-          @framerate={{sequence.framerate}}
-          @size={{hash
-            width=sequence.width
-            height=sequence.height
-          }}
-        />
-      </div>
-    {{/each}}
+    <div class="list">
+      {{#each this.sequences as |sequence|}}
+        <div class={{class "item" selected=(eq @sequence sequence)}}>
+          <Block::Node::Sprite::Frames
+            class="content"
+            @frames={{sequence.frames}}
+            @key="frame"
+            @pixel={{2}}
+            @framerate={{sequence.framerate}}
+            @size={{hash
+              width=sequence.width
+              height=sequence.height
+            }}
+          />
+        </div>
+      {{/each}}
+    </div>
   </Block::Project::Inspector::Content::Assets::Header>
 </div>
