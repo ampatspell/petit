@@ -10,8 +10,11 @@ class ScheduleSave extends Model {
     this.model = model;
   }
 
+  _promise = null;
+
   async save() {
-    await this.model.save({ type: 'scheduled' });
+    await this._promise;
+    this._promise = this.model.save({ type: 'scheduled' });
   }
 
   cancel() {
