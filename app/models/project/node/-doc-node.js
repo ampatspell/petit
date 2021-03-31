@@ -67,6 +67,7 @@ export default class DocumentNode extends BaseNode {
 
   async delete() {
     this.scheduleSave.cancel();
+    await this.willDelete?.();
     await this.doc.delete();
   }
 

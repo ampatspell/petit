@@ -54,4 +54,8 @@ export default class LayerNode extends Node {
     });
   }
 
+  willDelete() {
+    this.nodes.select(this.scene);
+  }
+
 }

@@ -47,4 +47,8 @@ export default class EntityNode extends Node {
     };
   }
 
+  willDelete() {
+    this.nodes.select(this.layer);
+  }
+
 }
