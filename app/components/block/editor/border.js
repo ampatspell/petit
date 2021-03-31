@@ -5,7 +5,7 @@ export default class BlockEditorBorderComponent extends Component {
 
   @reads('args.node') node;
   @reads('node.nodes.selected.group') selected;
-  @reads('node.tools.selected') tool;
+  @reads('node.tools.tool') tool;
   @equal('tool.type', 'edit') editing;
   @equal('tool.overlaysHidden', true) overlaysHidden;
   @reads('node.lock.locked') locked;

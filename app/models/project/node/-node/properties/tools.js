@@ -1,4 +1,11 @@
+import { tracked } from "@glimmer/tracking";
+import { reads } from "macro-decorators";
+
 class Tools {
+
+  @tracked _tool;
+
+  @reads('node.nodes.selection.selected.group') _group;
 
   constructor(node, tools) {
     this.node = node;
@@ -8,12 +15,23 @@ class Tools {
     }
   }
 
+  get default() {
+    return this.all[0];
+  }
+
+  get tool() {
+    return this._tool || this.default;
+  }
+
   get selected() {
-    return this.node.nodes.tools.selected(this.node) || this.all[0];
+    if(this._group === this.node) {
+      return this.tool;
+    }
+    return this.default;
   }
 
   select(tool) {
-    this.node.nodes.tools.select(this.node, tool);
+    this._tool = tool;
   }
 
   reset() {

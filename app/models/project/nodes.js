@@ -6,7 +6,6 @@ import { tracked } from "@glimmer/tracking";
 import { reads } from "macro-decorators";
 import { lastObject, sortedBy } from '../../util/array';
 import { selection } from './nodes/selection';
-import { tools } from './nodes/tools';
 import { cached } from "tracked-toolbox";
 import { randomString } from '../../util/string';
 
@@ -25,7 +24,6 @@ export default class Nodes extends Model {
     this.projectId = projectId;
     this.delegate = delegate;
     selection(this);
-    tools(this);
   }
 
   //
