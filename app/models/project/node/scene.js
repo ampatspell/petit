@@ -59,20 +59,4 @@ export default class SceneNode extends Node {
     this.update({ width, height });
   }
 
-  // TODO: move to tools
-  didDeselect(next) {
-    if(next.hasParent?.(this)) {
-      return;
-    }
-    this.tools.reset();
-  }
-
-  // TODO: move to tools
-  didDeselectEntity(entity, next) {
-    if(next === this || next.hasParent?.(this)) {
-      return;
-    }
-    this.tools.reset();
-  }
-
 }

@@ -47,10 +47,4 @@ export default class EntityNode extends Node {
     };
   }
 
-  //
-
-  didDeselect(next) {
-    this.scene.didDeselectEntity(this, next);
-  }
-
 }

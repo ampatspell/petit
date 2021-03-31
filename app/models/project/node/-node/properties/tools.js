@@ -1,8 +1,4 @@
-import { tracked } from "@glimmer/tracking";
-
 class Tools {
-
-  @tracked _selected;
 
   constructor(node, tools) {
     this.node = node;
@@ -12,22 +8,16 @@ class Tools {
     }
   }
 
-  get _default() {
-    return this.all[0];
+  get selected() {
+    return this.node.nodes.tools.selected(this.node) || this.all[0];
   }
 
-  //
-
   select(tool) {
-    this._selected = tool;
+    this.node.nodes.tools.select(this.node, tool);
   }
 
   reset() {
-    this._selected = null;
-  }
-
-  get selected() {
-    return this._selected || this._default;
+    this.select(null);
   }
 
   findWith(key, value) {
