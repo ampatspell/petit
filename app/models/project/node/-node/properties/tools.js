@@ -50,6 +50,12 @@ class Tools {
     this.selectWith('type', type);
   }
 
+  temporarySelectByType(type) {
+    let tool = this._tool;
+    this.selectByType(type);
+    return () => this.select(tool);
+  }
+
 }
 
 let mapping = {

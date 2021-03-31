@@ -53,11 +53,12 @@ export const pixel = (component, keys, values=[ 1, 2, 4, 8 ]) => {
 }
 
 export const drag = (component, keys) => {
+  let cancel;
   keys.add('space', handler(e => {
     e.preventRepeat();
-    component.node.tools.selectByType('project:drag');
+    cancel = component.node.tools.temporarySelectByType('project:drag');
   }), handler(() => {
-    component.node.tools.reset();
+    cancel();
   }));
 }
 
